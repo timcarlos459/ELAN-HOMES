@@ -1,0 +1,2396 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap");
+
+/* =====================================
+
+   ELAN HOMES - GLOBAL DESIGN
+
+===================================== */
+
+:root {
+  --elan-black: #151515;
+
+  --elan-dark: #10100f;
+
+  --elan-gold: #c5a36b;
+
+  --elan-gold-light: #dfc18f;
+
+  --elan-cream: #f5f2eb;
+
+  --elan-white: #ffffff;
+
+  --elan-text: #292929;
+
+  --elan-muted: #77736b;
+
+  --elan-border: #e9e4da;
+
+  --elan-heading: "Playfair Display", serif;
+
+  --elan-body: "DM Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  scroll-padding-top: 100px;
+}
+
+body {
+  font-family: var(--elan-body);
+
+  background: var(--elan-cream);
+
+  color: var(--elan-text);
+
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+
+  color: inherit;
+}
+
+img {
+  display: block;
+
+  max-width: 100%;
+}
+
+.app {
+  width: 100%;
+
+  overflow: hidden;
+}
+
+/* =====================================
+
+   NAVIGATION
+
+===================================== */
+
+.navbar {
+  width: 100%;
+
+  min-height: 85px;
+
+  padding: 15px 6%;
+
+  background: var(--elan-black);
+
+  color: white;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 25px;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  box-shadow: 0 3px 15px #00000015;
+}
+
+.logo {
+  font-size: 25px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  color: white;
+
+  white-space: nowrap;
+}
+
+.logo span,
+.footer-logo span {
+  color: var(--elan-gold);
+}
+
+.navbar nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 23px;
+}
+
+.navbar nav a {
+  color: #e8e8e8;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  transition: color 0.25s ease;
+
+  white-space: nowrap;
+}
+
+.navbar nav a:hover,
+.navbar nav .bnb-nav-link {
+  color: var(--elan-gold);
+}
+
+.bnb-nav-link {
+  font-weight: 800 !important;
+}
+
+.nav-button {
+  padding: 14px 21px;
+
+  background: var(--elan-gold);
+
+  color: var(--elan-black);
+
+  border: 1px solid var(--elan-gold);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  transition: 0.25s ease;
+
+  white-space: nowrap;
+}
+
+.nav-button:hover {
+  background: var(--elan-gold-light);
+
+  border-color: var(--elan-gold-light);
+}
+
+.mobile-menu-button {
+  display: none;
+
+  background: transparent;
+
+  border: none;
+
+  color: white;
+
+  font-size: 27px;
+}
+
+/* =====================================
+
+   HERO SECTION
+
+===================================== */
+
+.hero {
+  min-height: 650px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 90px 9%;
+
+  color: white;
+
+  position: relative;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.88) 0%,
+
+      rgba(0, 0, 0, 0.65) 48%,
+
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800")
+      center/cover no-repeat;
+}
+
+.hero-content {
+  max-width: 750px;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.eyebrow {
+  color: var(--elan-gold);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 20px;
+
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  color: white;
+
+  font-family: var(--elan-heading);
+
+  font-size: clamp(42px, 6vw, 76px);
+
+  font-weight: 600;
+
+  line-height: 1.14;
+
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: var(--elan-gold);
+}
+
+.hero-description {
+  max-width: 550px;
+
+  color: #e0ded9;
+
+  font-size: 15px;
+
+  line-height: 1.9;
+
+  margin-bottom: 35px;
+}
+
+.hero-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
+}
+
+.hero-button,
+.hero-outline-button {
+  display: inline-flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 16px 25px;
+
+  border: 1px solid var(--elan-gold);
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+  transition: 0.3s ease;
+}
+
+.hero-button {
+  background: var(--elan-gold);
+
+  color: var(--elan-black);
+}
+
+.hero-button:hover {
+  background: var(--elan-gold-light);
+
+  transform: translateY(-3px);
+}
+
+.hero-outline-button {
+  background: transparent;
+
+  color: white;
+}
+
+.hero-outline-button:hover {
+  background: white;
+
+  color: var(--elan-black);
+}
+
+/* =====================================
+
+   INTRODUCTION STRIP
+
+===================================== */
+
+.intro-strip {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+
+  padding: 35px 6%;
+
+  background: var(--elan-black);
+
+  color: white;
+}
+
+.intro-strip div {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  gap: 9px;
+}
+
+.intro-strip strong {
+  color: var(--elan-gold);
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+.intro-strip span {
+  color: #c6c2ba;
+
+  font-size: 11px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =====================================
+
+   SECTION HEADINGS
+
+===================================== */
+
+.section-heading {
+  max-width: 750px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+.section-heading h2 {
+  font-family: var(--elan-heading);
+
+  color: var(--elan-black);
+
+  font-size: clamp(30px, 4vw, 45px);
+
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  margin: 12px 0 17px;
+}
+
+.section-heading > p:last-child {
+  color: var(--elan-muted);
+
+  font-size: 14px;
+
+  line-height: 1.9;
+}
+
+/* =====================================
+
+   PROPERTIES
+
+===================================== */
+
+.properties {
+  padding: 95px 7%;
+
+  background: white;
+}
+
+.property-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 27px;
+}
+
+.property-card {
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 15px 35px #00000012;
+}
+
+.property-image {
+  height: 245px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.property-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image img {
+  transform: scale(1.05);
+}
+
+.property-label {
+  position: absolute;
+
+  top: 16px;
+
+  left: 16px;
+
+  padding: 8px 13px;
+
+  background: var(--elan-gold);
+
+  color: #111;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+.property-info {
+  padding: 25px;
+}
+
+.property-info h3,
+.stay-info h3,
+.land-card h3 {
+  font-family: var(--elan-heading);
+
+  color: var(--elan-black);
+
+  font-size: 21px;
+
+  margin-bottom: 13px;
+}
+
+.property-info p,
+.stay-info p,
+.land-card p {
+  color: var(--elan-muted);
+
+  font-size: 13px;
+
+  margin: 11px 0;
+
+  line-height: 1.6;
+}
+
+.property-info strong,
+.stay-info strong,
+.land-card strong {
+  display: block;
+
+  color: #a58249;
+
+  font-size: 17px;
+
+  margin: 18px 0;
+}
+
+.dark-button {
+  width: 100%;
+
+  padding: 15px;
+
+  background: var(--elan-black);
+
+  color: white;
+
+  border: none;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  transition: background 0.3s ease;
+}
+
+.dark-button:hover {
+  background: #a58249;
+}
+
+.center-action {
+  text-align: center;
+
+  margin-top: 40px;
+}
+
+.outline-button {
+  padding: 15px 25px;
+
+  background: transparent;
+
+  color: var(--elan-black);
+
+  border: 1px solid var(--elan-gold);
+
+  font-weight: 800;
+
+  transition: 0.3s;
+}
+
+.outline-button:hover {
+  background: var(--elan-gold);
+}
+
+/* =====================================
+
+   BNB SECTION
+
+===================================== */
+
+.bnb-navigator {
+  padding: 100px 7%;
+
+  background: var(--elan-cream);
+}
+
+.bnb-search {
+  max-width: 1150px;
+
+  margin: 40px auto 55px;
+
+  padding: 25px;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1.2fr 1.2fr auto;
+
+  align-items: end;
+
+  gap: 15px;
+
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  box-shadow: 0 8px 30px #0000000b;
+}
+
+.search-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.search-field label {
+  color: #777;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+.search-field input,
+.search-field select {
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 15px 12px;
+
+  background: white;
+
+  border: 1px solid #ddd8ce;
+
+  outline: none;
+
+  color: #333;
+
+  font-size: 12px;
+}
+
+.search-field input:focus,
+.search-field select:focus {
+  border-color: var(--elan-gold);
+}
+
+.bnb-search-button {
+  padding: 16px 21px;
+
+  background: var(--elan-gold);
+
+  color: #111;
+
+  border: none;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition: 0.3s;
+}
+
+.bnb-search-button:hover {
+  background: var(--elan-gold-light);
+}
+
+.bnb-results-heading {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+
+  scroll-margin-top: 110px;
+}
+
+.bnb-results-heading h3 {
+  font-family: var(--elan-heading);
+
+  font-size: 25px;
+
+  color: var(--elan-black);
+
+  margin-bottom: 8px;
+}
+
+.bnb-results-heading p {
+  font-size: 12px;
+
+  color: var(--elan-muted);
+}
+
+.reset-button {
+  padding: 12px 18px;
+
+  background: transparent;
+
+  border: 1px solid var(--elan-gold);
+
+  color: #333;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition: 0.3s;
+}
+
+.reset-button:hover {
+  background: var(--elan-gold);
+}
+
+/* =====================================
+
+   BNB ACCOMMODATION CARDS
+
+===================================== */
+
+.stay-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 27px;
+}
+
+.stay-card {
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.stay-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 15px 35px #00000012;
+}
+
+.stay-image {
+  height: 235px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.stay-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.stay-card:hover .stay-image img {
+  transform: scale(1.05);
+}
+
+.bnb-category {
+  position: absolute;
+
+  top: 15px;
+
+  left: 15px;
+
+  padding: 8px 12px;
+
+  background: var(--elan-gold);
+
+  color: #111;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+.stay-info {
+  padding: 23px;
+}
+
+.stay-info h3 {
+  font-size: 20px;
+}
+
+.stay-details {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+
+  margin: 15px 0;
+}
+
+.stay-details span {
+  color: #777;
+
+  font-size: 11px;
+}
+
+.stay-info strong {
+  font-size: 16px;
+}
+
+/* =====================================
+
+   NO SEARCH RESULTS
+
+===================================== */
+
+.no-results {
+  padding: 60px 20px;
+
+  background: white;
+
+  text-align: center;
+
+  border: 1px solid var(--elan-border);
+}
+
+.no-results h3 {
+  font-family: var(--elan-heading);
+
+  font-size: 24px;
+
+  margin-bottom: 12px;
+}
+
+.no-results p {
+  color: var(--elan-muted);
+
+  font-size: 13px;
+}
+
+/* =====================================
+
+   SELECTED BNB DETAILS
+
+===================================== */
+
+.bnb-details {
+  margin-top: 55px;
+
+  padding: 30px;
+
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  scroll-margin-top: 110px;
+}
+
+.close-details {
+  display: block;
+
+  margin-left: auto;
+
+  margin-bottom: 20px;
+
+  padding: 10px 15px;
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  color: #333;
+
+  font-size: 12px;
+}
+
+.close-details:hover {
+  background: var(--elan-black);
+
+  color: white;
+}
+
+.bnb-details-layout {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 35px;
+
+  align-items: center;
+}
+
+.bnb-details-layout > img {
+  width: 100%;
+
+  height: 390px;
+
+  object-fit: cover;
+}
+
+.bnb-details-content h2 {
+  font-family: var(--elan-heading);
+
+  font-size: 30px;
+
+  margin: 13px 0;
+}
+
+.bnb-details-content > p {
+  color: #666;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+
+  margin: 13px 0;
+}
+
+.bnb-details-content h3 {
+  margin: 24px 0 13px;
+
+  font-size: 16px;
+}
+
+.facility-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin: 15px 0;
+}
+
+.facility-list span {
+  padding: 10px 13px;
+
+  background: var(--elan-cream);
+
+  color: #555;
+
+  font-size: 11px;
+}
+
+.bnb-details-content > strong {
+  display: block;
+
+  color: #a58249;
+
+  font-size: 23px;
+
+  margin: 20px 0;
+}
+
+.coming-soon {
+  padding: 15px;
+
+  background: #f5f1e8;
+
+  color: #72551e !important;
+
+  font-size: 12px !important;
+}
+
+/* =====================================
+
+   LAND SECTION
+
+===================================== */
+
+.land-section {
+  padding: 95px 7%;
+
+  background: white;
+}
+
+.land-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 27px;
+}
+
+.land-card {
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  overflow: hidden;
+
+  transition: 0.3s ease;
+}
+
+.land-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 15px 35px #00000012;
+}
+
+.land-card > img {
+  width: 100%;
+
+  height: 240px;
+
+  object-fit: cover;
+}
+
+.land-card > div {
+  padding: 23px;
+}
+
+/* =====================================
+
+   TESTIMONIALS
+
+===================================== */
+
+.testimonials {
+  padding: 95px 7%;
+
+  background: var(--elan-cream);
+}
+
+.testimonial-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 25px;
+}
+
+.testimonial-card {
+  padding: 32px;
+
+  background: white;
+
+  border: 1px solid var(--elan-border);
+
+  transition: 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 12px 30px #0000000c;
+}
+
+.stars {
+  color: var(--elan-gold);
+
+  font-size: 22px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 20px;
+}
+
+.testimonial-card p {
+  color: #555;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+
+  margin-bottom: 25px;
+}
+
+.testimonial-card h3 {
+  color: var(--elan-black);
+
+  font-size: 15px;
+
+  margin-bottom: 8px;
+}
+
+.testimonial-card span,
+.testimonial-card small {
+  display: block;
+
+  color: #888;
+
+  font-size: 11px;
+
+  margin-top: 8px;
+}
+
+/* =====================================
+
+   ABOUT SECTION
+
+===================================== */
+
+.about {
+  padding: 105px 10%;
+
+  background: var(--elan-black);
+
+  color: white;
+}
+
+.about-content {
+  max-width: 800px;
+}
+
+.about h2 {
+  font-family: var(--elan-heading);
+
+  font-size: clamp(32px, 4.5vw, 48px);
+
+  line-height: 1.3;
+
+  color: white;
+
+  margin: 20px 0;
+}
+
+.about-content > p:not(.eyebrow) {
+  color: #c9c6bf;
+
+  font-size: 14px;
+
+  line-height: 2;
+
+  margin-bottom: 20px;
+}
+
+.about .hero-button {
+  margin-top: 15px;
+
+  cursor: pointer;
+}
+
+/* =====================================
+
+   FOOTER
+
+===================================== */
+
+.footer {
+  padding: 65px 7% 20px;
+
+  background: #0d0d0c;
+
+  color: white;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+
+  gap: 35px;
+
+  padding-bottom: 45px;
+}
+
+.footer-logo {
+  font-size: 25px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 20px;
+}
+
+.footer-grid h3 {
+  color: var(--elan-gold);
+
+  font-size: 14px;
+
+  margin-bottom: 22px;
+}
+
+.footer-grid p {
+  color: #aaa;
+
+  font-size: 12px;
+
+  line-height: 2;
+
+  margin-bottom: 8px;
+}
+
+.footer-grid a {
+  display: block;
+
+  color: #aaa;
+
+  font-size: 12px;
+
+  margin-bottom: 15px;
+
+  transition: color 0.25s;
+}
+
+.footer-grid a:hover {
+  color: var(--elan-gold);
+}
+
+.footer-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid #333;
+}
+
+.footer-bottom p {
+  color: #999;
+
+  font-size: 11px;
+}
+
+/* =====================================
+
+   TABLET RESPONSIVENESS
+
+===================================== */
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding-left: 4%;
+
+    padding-right: 4%;
+
+    gap: 15px;
+  }
+
+  .navbar nav {
+    gap: 13px;
+  }
+
+  .navbar nav a {
+    font-size: 10px;
+  }
+
+  .nav-button {
+    padding: 12px 14px;
+
+    font-size: 10px;
+  }
+
+  .bnb-search {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =====================================
+
+   MOBILE RESPONSIVENESS
+
+===================================== */
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .navbar {
+    min-height: 75px;
+
+    padding: 12px 5%;
+
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .mobile-menu-button {
+    display: block;
+
+    margin-left: auto;
+  }
+
+  .navbar nav {
+    display: none;
+
+    position: absolute;
+
+    top: 75px;
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 20px 6%;
+
+    background: #151515;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 17px;
+
+    box-shadow: 0 12px 20px #00000025;
+  }
+
+  .navbar nav.nav-open {
+    display: flex;
+  }
+
+  .navbar nav a {
+    font-size: 13px;
+
+    padding: 5px 0;
+  }
+
+  .navbar .nav-button {
+    display: none;
+  }
+
+  .hero {
+    min-height: 540px;
+
+    padding: 65px 7%;
+
+    background-position: center;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .intro-strip {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px 15px;
+
+    padding: 35px 5%;
+  }
+
+  .properties,
+  .bnb-navigator,
+  .land-section,
+  .testimonials {
+    padding: 70px 6%;
+  }
+
+  .property-grid,
+  .stay-grid,
+  .land-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-image,
+  .stay-image {
+    height: 260px;
+  }
+
+  .bnb-search {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+  }
+
+  .bnb-search-button {
+    width: 100%;
+  }
+
+  .bnb-results-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .bnb-details {
+    padding: 18px;
+  }
+
+  .bnb-details-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bnb-details-layout > img {
+    height: 270px;
+  }
+
+  .about {
+    padding: 75px 7%;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+}
+
+/* =====================================
+
+   SMALL PHONES
+
+===================================== */
+
+@media (max-width: 450px) {
+  .hero {
+    min-height: 510px;
+  }
+
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .hero-button,
+  .hero-outline-button {
+    width: 100%;
+  }
+
+  .intro-strip strong {
+    font-size: 15px;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .property-image,
+  .stay-image {
+    height: 220px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================
+
+   INDIVIDUAL LISTING DETAILS PAGE
+
+================================ */
+
+.listing-details-container {
+  width: min(1200px, 92%);
+
+  margin: 50px auto 80px;
+}
+
+.listing-details-layout {
+  display: grid;
+
+  grid-template-columns: 1.1fr 0.9fr;
+
+  gap: 45px;
+
+  margin-top: 35px;
+
+  align-items: start;
+}
+
+.listing-details-image {
+  width: 100%;
+
+  height: 520px;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+}
+
+.listing-details-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.listing-details-information h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(30px, 4vw, 46px);
+
+  margin: 12px 0;
+}
+
+.listing-location {
+  color: #888;
+
+  margin-bottom: 20px;
+}
+
+.listing-price {
+  color: #b18a45;
+
+  font-size: 28px;
+
+  margin-bottom: 22px;
+}
+
+.listing-facts {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.listing-facts span,
+.facility-list span {
+  background: #f3efe7;
+
+  color: #242424;
+
+  padding: 10px 15px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+}
+
+.listing-description,
+.listing-facilities {
+  margin: 25px 0;
+}
+
+.listing-description h3,
+.listing-facilities h3 {
+  margin-bottom: 12px;
+}
+
+.listing-description p {
+  color: #777;
+
+  line-height: 1.8;
+}
+
+.listing-contact-note {
+  background: #f5f1e9;
+
+  padding: 25px;
+
+  margin-top: 30px;
+
+  border-radius: 8px;
+}
+
+.listing-contact-note p {
+  color: #777;
+
+  line-height: 1.7;
+
+  margin: 12px 0 20px;
+}
+
+.listing-contact {
+  background: #171717;
+
+  color: white;
+
+  text-align: center;
+
+  padding: 55px 20px;
+
+  margin-top: 70px;
+
+  border-radius: 10px;
+}
+
+.listing-contact h2 {
+  font-family: "Playfair Display", serif;
+
+  margin: 12px 0;
+}
+
+.listing-contact p {
+  color: #ccc;
+
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .listing-details-layout {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .listing-details-image {
+    height: 300px;
+  }
+
+  .listing-details-container {
+    margin-top: 25px;
+  }
+
+  .listing-details-information h1 {
+    font-size: 30px;
+  }
+
+  .listing-contact {
+    padding: 40px 15px;
+  }
+}
+
+/* ================================
+
+   ELAN HOMES PREMIUM PHOTO GALLERY
+
+================================ */
+
+.listing-gallery {
+  margin: 35px 0 45px;
+}
+
+.gallery-main {
+  height: 520px;
+
+  width: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #171717;
+}
+
+.gallery-main > img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  cursor: zoom-in;
+}
+
+.gallery-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 48px;
+
+  height: 48px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  color: white;
+
+  font-size: 32px;
+
+  cursor: pointer;
+}
+
+.gallery-previous {
+  left: 18px;
+}
+
+.gallery-next {
+  right: 18px;
+}
+
+.gallery-counter {
+  position: absolute;
+
+  bottom: 18px;
+
+  left: 20px;
+
+  color: white;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  padding: 8px 14px;
+
+  border-radius: 5px;
+
+  font-size: 13px;
+}
+
+.gallery-expand {
+  position: absolute;
+
+  bottom: 18px;
+
+  right: 20px;
+
+  padding: 10px 15px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  background: #fff;
+
+  color: #171717;
+
+  cursor: pointer;
+}
+
+.gallery-thumbnails {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+.gallery-thumbnail {
+  height: 105px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 2px solid transparent;
+
+  border-radius: 7px;
+
+  background: none;
+
+  cursor: pointer;
+}
+
+.gallery-thumbnail img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.gallery-thumbnail.active {
+  border-color: #b18a45;
+}
+
+.gallery-lightbox {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  background: rgba(0, 0, 0, 0.96);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  padding: 60px 25px;
+}
+
+.gallery-lightbox img {
+  max-width: 80%;
+
+  max-height: 85vh;
+
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+
+  top: 20px;
+
+  right: 30px;
+
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 32px;
+
+  cursor: pointer;
+}
+
+.lightbox-arrow {
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 50px;
+
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .gallery-main {
+    height: 300px;
+  }
+
+  .gallery-thumbnails {
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 6px;
+  }
+
+  .gallery-thumbnail {
+    height: 65px;
+  }
+
+  .gallery-arrow {
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 25px;
+  }
+
+  .gallery-expand {
+    font-size: 11px;
+
+    padding: 8px;
+  }
+
+  .gallery-lightbox {
+    gap: 5px;
+
+    padding: 50px 8px;
+  }
+
+  .gallery-lightbox img {
+    max-width: 78%;
+  }
+
+  .lightbox-arrow {
+    font-size: 35px;
+  }
+}
+
+/* =====================================
+
+   ELAN HOMES - PROPERTY ENQUIRY FORM
+
+===================================== */
+
+.enquiry-section {
+  margin-top: 40px;
+
+  padding: 30px;
+
+  background: #fff;
+
+  border: 1px solid var(--elan-border);
+
+  border-radius: 10px;
+}
+
+.enquiry-section h2 {
+  font-family: var(--elan-heading);
+
+  font-size: 27px;
+
+  margin-bottom: 10px;
+
+  color: var(--elan-black);
+}
+
+.enquiry-section > p {
+  color: var(--elan-muted);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  margin-bottom: 25px;
+}
+
+.enquiry-form {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+}
+
+.enquiry-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.enquiry-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.enquiry-field label {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  color: #555;
+}
+
+.enquiry-field input,
+.enquiry-field textarea,
+.enquiry-field select {
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #dedbd4;
+
+  border-radius: 5px;
+
+  outline: none;
+
+  font: inherit;
+
+  font-size: 13px;
+
+  background: #fff;
+}
+
+.enquiry-field input:focus,
+.enquiry-field textarea:focus,
+.enquiry-field select:focus {
+  border-color: var(--elan-gold);
+}
+
+.enquiry-field textarea {
+  min-height: 120px;
+
+  resize: vertical;
+}
+
+.enquiry-submit {
+  grid-column: 1 / -1;
+
+  padding: 16px;
+
+  background: var(--elan-black);
+
+  color: white;
+
+  border: none;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  transition: 0.3s ease;
+}
+
+.enquiry-submit:hover {
+  background: var(--elan-gold);
+
+  color: var(--elan-black);
+}
+
+.enquiry-success {
+  padding: 15px;
+
+  background: #edf7ed;
+
+  color: #246b35;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  margin-top: 15px;
+}
+
+.enquiry-whatsapp {
+  display: block;
+
+  margin-top: 15px;
+
+  padding: 15px;
+
+  background: #168b50;
+
+  color: white;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  border-radius: 5px;
+
+  text-decoration: none;
+}
+
+.enquiry-whatsapp:hover {
+  background: #116d3e;
+}
+
+@media (max-width: 600px) {
+  .enquiry-section {
+    padding: 20px;
+  }
+
+  .enquiry-form {
+    grid-template-columns: 1fr;
+  }
+
+  .enquiry-field.full-width,
+  .enquiry-submit {
+    grid-column: auto;
+  }
+}
+
+.property-unavailable {
+  color: #a12b25;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  margin-top: 10px;
+}
+
+.property-filters {
+  display: flex;
+
+  gap: 15px;
+
+  margin: 30px 0 15px;
+
+  flex-wrap: wrap;
+}
+
+.property-filters input,
+.property-filters select {
+  padding: 14px 16px;
+
+  border: 1px solid #d6c8a5;
+
+  background: #fff;
+
+  color: #222;
+
+  font-size: 14px;
+
+  border-radius: 4px;
+}
+
+.property-filters input {
+  flex: 1;
+
+  min-width: 240px;
+}
+
+.property-filters select {
+  min-width: 170px;
+}
+
+.property-results-count {
+  margin-bottom: 20px;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .property-filters {
+    flex-direction: column;
+  }
+
+  .property-filters input,
+  .property-filters select {
+    width: 100%;
+  }
+}
+
+.property-filters {
+  display: flex;
+
+  gap: 15px;
+
+  margin: 30px 0 15px;
+
+  flex-wrap: wrap;
+}
+
+.property-filters input,
+.property-filters select {
+  padding: 14px 16px;
+
+  border: 1px solid #d6c8a5;
+
+  background: #fff;
+
+  color: #222;
+
+  font-size: 14px;
+
+  border-radius: 4px;
+}
+
+.property-filters input {
+  flex: 1;
+
+  min-width: 240px;
+}
+
+.property-filters select {
+  min-width: 170px;
+}
+
+.property-results-count {
+  margin-bottom: 20px;
+
+  color: #777;
+
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .property-filters {
+    flex-direction: column;
+  }
+
+  .property-filters input,
+  .property-filters select {
+    width: 100%;
+  }
+}
+
+/* =====================================
+   ELAN HOMES - PREMIUM LISTING POLISH
+===================================== */
+
+.property-grid,
+.stay-grid,
+.land-grid {
+  align-items: stretch;
+}
+
+.property-card,
+.stay-card,
+.land-card {
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(25, 22, 16, 0.045);
+}
+
+.property-card:hover,
+.stay-card:hover,
+.land-card:hover {
+  border-color: rgba(197, 163, 107, 0.65);
+  box-shadow: 0 18px 38px rgba(25, 22, 16, 0.12);
+}
+
+.property-image,
+.stay-image,
+.land-card > img {
+  height: 255px;
+  background: #e9e4da;
+}
+
+.property-image img,
+.stay-image img,
+.land-card > img {
+  object-fit: cover;
+}
+
+.property-info,
+.stay-info,
+.land-card > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 220px;
+}
+
+.property-info h3,
+.stay-info h3,
+.land-card h3 {
+  line-height: 1.35;
+}
+
+.property-info strong,
+.stay-info strong,
+.land-card strong {
+  margin-top: auto;
+  padding-top: 8px;
+  letter-spacing: 0.2px;
+}
+
+.property-info .dark-button,
+.stay-info .dark-button,
+.land-card .dark-button {
+  margin-top: 12px;
+  border-radius: 3px;
+}
+
+.property-filters input,
+.property-filters select {
+  min-height: 50px;
+  border-radius: 5px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.property-filters input:focus,
+.property-filters select:focus {
+  outline: none;
+  border-color: var(--elan-gold);
+  box-shadow: 0 0 0 3px rgba(197, 163, 107, 0.15);
+}
+
+.property-results-count {
+  line-height: 1.6;
+}
+
+.no-results {
+  border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  .property-grid,
+  .stay-grid,
+  .land-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .property-grid,
+  .stay-grid,
+  .land-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-image,
+  .stay-image,
+  .land-card > img {
+    height: 235px;
+  }
+
+  .property-info,
+  .stay-info,
+  .land-card > div {
+    min-height: 0;
+  }
+}
+
+/* =================================
+   ELAN HOMES - BNB BOOKING FORM
+================================= */
+
+.booking-summary {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e5dccb;
+  background: #f7f4ee !important;
+  color: #171717;
+}
+
+.booking-summary strong {
+  color: #9b7940;
+  font-size: 14px;
+}
+
+.booking-summary h3 {
+  margin: 12px 0;
+  color: #171717;
+  font-size: 23px;
+}
+
+.booking-summary p {
+  color: #666;
+  margin: 10px 0;
+}
+
+.booking-summary small {
+  color: #777;
+  line-height: 1.6;
+}
+
+.enquiry-section .enquiry-form {
+  max-width: 850px;
+}
+
+.enquiry-section .enquiry-field input,
+.enquiry-section .enquiry-field select,
+.enquiry-section .enquiry-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.enquiry-section .enquiry-field input:focus,
+.enquiry-section .enquiry-field select:focus,
+.enquiry-section .enquiry-field textarea:focus {
+  border-color: #b89b63;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(184, 155, 99, 0.12);
+}
+
+.enquiry-section .enquiry-field small {
+  display: block;
+  margin-top: 7px;
+  color: #777;
+}
+
+.enquiry-section .enquiry-submit {
+  background: #171717;
+  color: #fff;
+  border: 1px solid #171717;
+  transition: 0.3s ease;
+}
+
+.enquiry-section .enquiry-submit:hover {
+  background: #b89b63;
+  border-color: #b89b63;
+  color: #171717;
+}
+
+.enquiry-success {
+  padding: 20px;
+  background: #edf6ef;
+  border-left: 4px solid #27804b;
+  border-radius: 5px;
+  color: #225b36;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .enquiry-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .booking-summary h3 {
+    font-size: 20px;
+  }
+}
