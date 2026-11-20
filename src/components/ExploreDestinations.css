@@ -1,0 +1,181 @@
+/* =================================
+   ELAN HOMES - EXPLORE DESTINATIONS
+================================= */
+
+.explore-destinations {
+  padding: 90px 6%;
+  background: #f8f6f1;
+}
+
+.destinations-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* HEADING */
+
+.destinations-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.destinations-heading span:first-child {
+  display: inline-block;
+  color: #b18b45;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 13px;
+}
+
+.destinations-heading h2 {
+  color: #171717;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.destinations-heading p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 550px;
+}
+
+.destinations-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #171717;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-bottom: 7px;
+  transition: 0.3s ease;
+}
+
+.destinations-heading > a span {
+  color: #b18b45;
+  font-size: 18px;
+}
+
+.destinations-heading > a:hover {
+  color: #b18b45;
+}
+
+/* DESTINATION GRID */
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* DESTINATION CARD */
+
+.destination-card {
+  position: relative;
+  height: 330px;
+  overflow: hidden;
+  display: block;
+  background: #222;
+}
+
+.destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.08);
+}
+
+/* IMAGE OVERLAY */
+
+.destination-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.05) 75%
+  );
+}
+
+.destination-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+  color: #fff;
+}
+
+.destination-overlay h3 {
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.destination-overlay p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.destination-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.destination-card:hover .destination-arrow {
+  background: #c6a15b;
+  border-color: #c6a15b;
+  color: #171717;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .explore-destinations {
+    padding: 65px 5%;
+  }
+
+  .destinations-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .destinations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-card {
+    height: 280px;
+  }
+}

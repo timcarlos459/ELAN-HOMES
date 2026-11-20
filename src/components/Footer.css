@@ -1,0 +1,225 @@
+/* =========================================
+   ELAN HOMES - PREMIUM FOOTER
+========================================= */
+
+.elan-footer {
+  width: 100%;
+  background: #101010;
+  color: #e9e4da;
+  border-top: 1px solid rgba(197, 164, 109, 0.3);
+  font-family: "Inter", sans-serif;
+}
+
+/* =========================================
+   FOOTER MAIN
+========================================= */
+
+.footer-main {
+  width: 92%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 75px 0 65px;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.footer-brand {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  margin-bottom: 23px;
+}
+
+.footer-brand-name {
+  color: #d5b477;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.footer-brand-tagline {
+  color: #f1eade;
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-top: 8px;
+}
+
+.footer-brand-section > p {
+  max-width: 300px;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 25px;
+}
+
+/* =========================================
+   SOCIAL LINKS
+========================================= */
+
+.footer-socials {
+  display: flex;
+  gap: 11px;
+}
+
+.footer-socials a {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(213, 180, 119, 0.4);
+  border-radius: 50%;
+  color: #d5b477;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+  background: #d5b477;
+  color: #101010;
+  border-color: #d5b477;
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   FOOTER COLUMNS
+========================================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-column h3 {
+  position: relative;
+  color: #d5b477;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  padding-bottom: 15px;
+}
+
+.footer-column h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 32px;
+  height: 1px;
+  background: #d5b477;
+}
+
+.footer-column a {
+  color: #aaa49a;
+  font-size: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #d5b477;
+  padding-left: 5px;
+}
+
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+
+.footer-bottom {
+  width: 92%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 23px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-bottom p {
+  color: #817d75;
+  font-size: 11px;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+  .footer-main {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px 30px;
+  }
+
+  .footer-brand-section {
+    grid-column: span 3;
+  }
+
+  .footer-brand-section > p {
+    max-width: 450px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .footer-main {
+    width: 90%;
+    padding: 55px 0 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 38px 20px;
+  }
+
+  .footer-brand-section {
+    grid-column: span 2;
+  }
+
+  .footer-brand-name {
+    font-size: 25px;
+  }
+
+  .footer-brand-section > p {
+    font-size: 12px;
+  }
+
+  .footer-column h3 {
+    font-size: 15px;
+  }
+
+  .footer-column a {
+    font-size: 11px;
+  }
+
+  .footer-bottom {
+    width: 90%;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 350px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand-section {
+    grid-column: span 1;
+  }
+}

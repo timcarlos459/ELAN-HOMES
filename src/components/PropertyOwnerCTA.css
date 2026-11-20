@@ -1,0 +1,213 @@
+/* =================================
+   ELAN HOMES - PROPERTY OWNER CTA
+================================= */
+
+.property-owner-cta {
+  padding: 90px 7%;
+  background: #f8f6f1;
+}
+
+.owner-cta-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* CONTENT */
+
+.owner-cta-content {
+  max-width: 560px;
+}
+
+.owner-cta-label {
+  display: inline-block;
+  color: #b18a45;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+
+.owner-cta-content h2 {
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.12;
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: 24px;
+}
+
+.owner-cta-content h2 span {
+  color: #b18a45;
+}
+
+.owner-cta-content > p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 490px;
+  margin-bottom: 32px;
+}
+
+/* BUTTONS */
+
+.owner-cta-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 38px;
+}
+
+.owner-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  background: #171717;
+  color: #fff;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.owner-primary-btn span {
+  color: #c6a15b;
+  font-size: 19px;
+}
+
+.owner-primary-btn:hover {
+  background: #b18a45;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.owner-primary-btn:hover span {
+  color: #fff;
+}
+
+.owner-secondary-btn {
+  color: #171717;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 15px 5px;
+  border-bottom: 1px solid #c6a15b;
+  transition: 0.3s ease;
+}
+
+.owner-secondary-btn:hover {
+  color: #b18a45;
+}
+
+/* NOTE */
+
+.owner-cta-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding-top: 22px;
+  border-top: 1px solid #e3dfd5;
+}
+
+.owner-cta-note span {
+  color: #b18a45;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.owner-cta-note p {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* IMAGE */
+
+.owner-cta-image {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.owner-cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.owner-cta-image:hover img {
+  transform: scale(1.04);
+}
+
+.owner-image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 35px 28px 25px;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.owner-image-caption span {
+  color: #d7b875;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.owner-image-caption p {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .property-owner-cta {
+    padding: 70px 5%;
+  }
+
+  .owner-cta-container {
+    gap: 40px;
+  }
+
+  .owner-cta-image {
+    height: 400px;
+  }
+}
+
+@media (max-width: 700px) {
+  .property-owner-cta {
+    padding: 60px 6%;
+  }
+
+  .owner-cta-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .owner-cta-content {
+    max-width: 100%;
+  }
+
+  .owner-cta-image {
+    height: 350px;
+  }
+}
+
+@media (max-width: 450px) {
+  .owner-cta-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .owner-cta-image {
+    height: 300px;
+  }
+}
