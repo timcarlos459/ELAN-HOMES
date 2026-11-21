@@ -1,0 +1,312 @@
+/* =================================
+   ELAN HOMES - LIST YOUR PROPERTY
+================================= */
+
+.list-property-page {
+  background: #faf9f6;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* =================================
+   HERO
+================================= */
+
+.list-property-hero {
+  min-height: 350px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600")
+      center/cover no-repeat;
+
+  display: flex;
+  align-items: center;
+  padding: 70px 8%;
+}
+
+.list-property-hero-content {
+  max-width: 850px;
+  color: #fff;
+}
+
+.list-property-hero-content span {
+  color: #d6b36a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.list-property-hero-content h1 {
+  font-size: clamp(35px, 5vw, 58px);
+  margin: 20px 0;
+  line-height: 1.15;
+}
+
+.list-property-hero-content p {
+  color: #e6e6e6;
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+/* =================================
+   INTRO
+================================= */
+
+.list-property-intro {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 80px 25px 60px;
+  text-align: center;
+}
+
+.list-property-eyebrow {
+  color: #98743b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.list-property-intro h2 {
+  font-size: 36px;
+  margin: 18px 0;
+}
+
+.list-property-intro p {
+  color: #777;
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+/* =================================
+   MAIN CONTENT
+================================= */
+
+.list-property-main {
+  padding: 30px 8% 90px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+}
+
+/* =================================
+   INFORMATION SECTION
+================================= */
+
+.list-property-info {
+  padding-top: 20px;
+}
+
+.list-property-info h2 {
+  font-size: 34px;
+  margin: 20px 0;
+  line-height: 1.3;
+}
+
+.list-property-info > p {
+  color: #777;
+  line-height: 1.9;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+.listing-benefit {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 35px;
+  align-items: flex-start;
+}
+
+.listing-benefit > span {
+  color: #b18a45;
+  font-size: 17px;
+  font-weight: 700;
+  min-width: 35px;
+}
+
+.listing-benefit h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.listing-benefit p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* =================================
+   FORM CONTAINER
+================================= */
+
+.list-property-form-container {
+  background: #fff;
+  padding: 40px;
+  border: 1px solid #e8e2d8;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.list-property-form-container h2 {
+  font-size: 28px;
+  margin: 18px 0 12px;
+}
+
+.list-property-form-container > p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/* =================================
+   FORM
+================================= */
+
+.list-property-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.list-property-form h3 {
+  font-size: 17px;
+  margin-top: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e8e2d8;
+}
+
+.list-property-form input,
+.list-property-form select,
+.list-property-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ded8cd;
+  border-radius: 4px;
+  background: #faf9f6;
+  color: #171717;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.list-property-form input:focus,
+.list-property-form select:focus,
+.list-property-form textarea:focus {
+  border-color: #b18a45;
+  background: #fff;
+}
+
+.list-property-form input::placeholder,
+.list-property-form textarea::placeholder {
+  color: #999;
+}
+
+.list-property-form textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.7;
+}
+
+/* =================================
+   FORM ROWS
+================================= */
+
+.list-property-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* =================================
+   SUBMIT BUTTON
+================================= */
+
+.list-property-form button {
+  width: 100%;
+  background: #171717;
+  color: #d6b36a;
+  border: 1px solid #171717;
+  padding: 17px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.list-property-form button:hover {
+  background: #c5a15b;
+  color: #171717;
+  border-color: #c5a15b;
+  transform: translateY(-2px);
+}
+
+.list-property-form small {
+  color: #888;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 1000px) {
+  .list-property-main {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .list-property-info {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 600px) {
+  .list-property-hero {
+    min-height: 270px;
+    padding: 50px 6%;
+  }
+
+  .list-property-hero-content h1 {
+    font-size: 35px;
+  }
+
+  .list-property-hero-content p {
+    font-size: 14px;
+  }
+
+  .list-property-intro {
+    padding: 55px 6% 40px;
+  }
+
+  .list-property-intro h2 {
+    font-size: 28px;
+  }
+
+  .list-property-main {
+    padding: 20px 6% 60px;
+    gap: 35px;
+  }
+
+  .list-property-info h2 {
+    font-size: 28px;
+  }
+
+  .list-property-form-container {
+    padding: 25px 20px;
+  }
+
+  .list-property-form-container h2 {
+    font-size: 24px;
+  }
+
+  .list-property-form-row {
+    grid-template-columns: 1fr;
+  }
+}

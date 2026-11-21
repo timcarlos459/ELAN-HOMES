@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./PropertyOwnerCTA.css";
 
 export default function PropertyOwnerCTA() {
@@ -19,13 +20,13 @@ export default function PropertyOwnerCTA() {
           </p>
 
           <div className="owner-cta-actions">
-            <a href="/list-property" className="owner-primary-btn">
+            <Link to="/list-property" className="owner-primary-btn">
               List Your Property <span>↗</span>
-            </a>
+            </Link>
 
-            <a href="/contact" className="owner-secondary-btn">
+            <Link to="/contact" className="owner-secondary-btn">
               Talk to Our Team
-            </a>
+            </Link>
           </div>
 
           <div className="owner-cta-note">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -16,10 +17,10 @@ export default function Navbar() {
     <header className="elan-navbar">
       <div className="elan-navbar-inner">
         {/* BRAND */}
-        <a href="/" className="elan-brand" onClick={closeMenus}>
+        <Link to="/" className="elan-brand" onClick={closeMenus}>
           <span className="brand-name">ÉLAN</span>
           <span className="brand-subtitle">H O M E S</span>
-        </a>
+        </Link>
 
         {/* MOBILE MENU BUTTON */}
         <button
@@ -33,21 +34,21 @@ export default function Navbar() {
 
         {/* NAVIGATION */}
         <nav className={`elan-nav-links ${menuOpen ? "show" : ""}`}>
-          <a href="/" onClick={closeMenus}>
+          <Link to="/" onClick={closeMenus}>
             Home
-          </a>
+          </Link>
 
-          <a href="#properties" onClick={closeMenus}>
+          <Link to="/properties" onClick={closeMenus}>
             Properties
-          </a>
+          </Link>
 
-          <a href="#bnb" onClick={closeMenus}>
+          <Link to="/stays" onClick={closeMenus}>
             Holiday Stays
-          </a>
+          </Link>
 
-          <a href="#land" onClick={closeMenus}>
+          <Link to="/land" onClick={closeMenus}>
             Land
-          </a>
+          </Link>
 
           {/* DESTINATIONS DROPDOWN */}
           <div className="nav-dropdown">
@@ -66,55 +67,55 @@ export default function Navbar() {
               <div className="nav-dropdown-menu destinations-menu">
                 <div className="dropdown-heading">EXPLORE KENYA</div>
 
-                <a href="#nairobi" onClick={closeMenus}>
+                <Link to="/destinations/nairobi" onClick={closeMenus}>
                   Nairobi
-                </a>
-                <a href="#coastal" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/coastal" onClick={closeMenus}>
                   Coastal Region
-                </a>
-                <a href="#Eastern" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/eastern" onClick={closeMenus}>
                   Eastern
-                </a>
-                <a href="#kajiado" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/kajiado" onClick={closeMenus}>
                   Kajiado
-                </a>
-                <a href="#central" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/central" onClick={closeMenus}>
                   Central
-                </a>
-                <a href="#Rift Valley" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/rift-valley" onClick={closeMenus}>
                   Rift Valley
-                </a>
-                <a href="#Nyanza/Western" onClick={closeMenus}>
+                </Link>
+                <Link to="/destinations/nyanza-western" onClick={closeMenus}>
                   Nyanza & Western
-                </a>
+                </Link>
               </div>
             )}
           </div>
 
-          <a href="#about" onClick={closeMenus}>
-            About
-          </a>
+          <Link to="/about" onClick={closeMenus}>
+            About Us
+          </Link>
 
-          <a href="#contact" onClick={closeMenus}>
+          <Link to="/contact" onClick={closeMenus}>
             Contact
-          </a>
+          </Link>
 
           {/* MOBILE ACTIONS */}
           <div className="mobile-nav-actions">
-            <a href="#search" onClick={closeMenus}>
+            <Link to="/search" onClick={closeMenus}>
               Search
-            </a>
-            <a href="#list-property" onClick={closeMenus}>
+            </Link>
+            <Link to="/list-property" onClick={closeMenus}>
               List Your Property
-            </a>
+            </Link>
           </div>
         </nav>
 
         {/* RIGHT SIDE ACTIONS */}
         <div className="elan-nav-actions">
-          <a href="#search" className="nav-search">
+          <Link to="/search" className="nav-search">
             <span>⌕</span> Search
-          </a>
+          </Link>
 
           {/* ACCOUNT DROPDOWN */}
           <div className="nav-dropdown account-dropdown">
@@ -133,30 +134,30 @@ export default function Navbar() {
 
             {accountOpen && (
               <div className="nav-dropdown-menu account-menu">
-                <a href="#signin" onClick={closeMenus}>
+                <Link to="/signin" onClick={closeMenus}>
                   Sign In
-                </a>
-                <a href="#register" onClick={closeMenus}>
+                </Link>
+                <Link to="/register" onClick={closeMenus}>
                   Create Account
-                </a>
+                </Link>
                 <div className="dropdown-divider"></div>
-                <a href="#my-account" onClick={closeMenus}>
+                <Link to="/account" onClick={closeMenus}>
                   My Account
-                </a>
-                <a href="#saved" onClick={closeMenus}>
+                </Link>
+                <Link to="/saved" onClick={closeMenus}>
                   Saved Listings
-                </a>
-                <a href="#bookings" onClick={closeMenus}>
+                </Link>
+                <Link to="/bookings" onClick={closeMenus}>
                   My Bookings
-                </a>
+                </Link>
               </div>
             )}
           </div>
 
-          <a href="#list-property" className="list-property-btn">
+          <Link to="/list-property" className="list-property-btn">
             List Your Property
             <span>↗</span>
-          </a>
+          </Link>
         </div>
       </div>
     </header>

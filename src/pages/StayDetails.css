@@ -1,0 +1,550 @@
+/* =================================
+   ELAN HOMES - STAY DETAILS
+================================= */
+
+.stay-details-page {
+  background: #faf9f6;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO */
+
+.stay-details-hero {
+  min-height: 300px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600")
+      center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 60px 8%;
+}
+
+.stay-details-hero-content {
+  color: #fff;
+  max-width: 850px;
+}
+
+.stay-details-hero-content span {
+  color: #d6b36a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.stay-details-hero-content h1 {
+  font-size: clamp(32px, 5vw, 55px);
+  margin: 18px 0 10px;
+}
+
+.stay-details-hero-content p {
+  color: #e6e6e6;
+  font-size: 16px;
+}
+
+/* BREADCRUMB */
+
+.stay-details-breadcrumb {
+  padding: 22px 8%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  color: #777;
+}
+
+.stay-details-breadcrumb a {
+  color: #777;
+  text-decoration: none;
+}
+
+.stay-details-breadcrumb a:hover {
+  color: #b18a45;
+}
+
+.stay-details-breadcrumb strong {
+  color: #171717;
+}
+
+/* GALLERY */
+
+.stay-details-gallery {
+  padding: 10px 8% 45px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 12px;
+  height: 480px;
+}
+
+.stay-gallery-main,
+.stay-gallery-side {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.stay-gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stay-gallery-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.stay-gallery-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* MAIN LAYOUT */
+
+.stay-details-container {
+  padding: 20px 8% 70px;
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 55px;
+  align-items: start;
+}
+
+.stay-details-main {
+  min-width: 0;
+}
+
+.stay-details-heading > span {
+  display: inline-block;
+  color: #9c793c;
+  background: #f1eadc;
+  padding: 7px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 3px;
+}
+
+.stay-details-heading h2 {
+  font-size: 34px;
+  margin: 15px 0 8px;
+}
+
+.stay-details-heading p {
+  color: #777;
+  font-size: 15px;
+}
+
+/* FEATURES */
+
+.stay-details-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 30px 0;
+  padding: 25px 0;
+  border-top: 1px solid #e6e1d8;
+  border-bottom: 1px solid #e6e1d8;
+}
+
+.stay-details-features div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.stay-details-features strong {
+  font-size: 17px;
+}
+
+.stay-details-features span {
+  color: #777;
+  font-size: 12px;
+}
+
+/* SECTIONS */
+
+.stay-details-section {
+  padding: 28px 0;
+  border-bottom: 1px solid #e6e1d8;
+}
+
+.stay-details-section h3 {
+  font-size: 21px;
+  margin-bottom: 18px;
+}
+
+.stay-details-section p {
+  color: #666;
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+/* AMENITIES */
+
+.stay-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 17px;
+}
+
+.stay-amenity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  font-size: 14px;
+}
+
+.stay-amenity span {
+  color: #b18a45;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* CHECK IN AND OUT */
+
+.stay-check-times {
+  display: flex;
+  gap: 60px;
+}
+
+.stay-check-times div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stay-check-times span {
+  color: #777;
+  font-size: 13px;
+}
+
+.stay-check-times strong {
+  font-size: 18px;
+}
+
+/* BOOKING CARD */
+
+.stay-booking-card {
+  background: #fff;
+  border: 1px solid #e7e1d6;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 100px;
+}
+
+.stay-booking-card > span {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.stay-booking-card h2 {
+  font-size: 29px;
+  margin: 12px 0 6px;
+  color: #171717;
+}
+
+.stay-booking-card > p {
+  color: #888;
+  font-size: 12px;
+}
+
+.stay-booking-divider {
+  height: 1px;
+  background: #e9e4dc;
+  margin: 25px 0;
+}
+
+.stay-booking-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0;
+  font-size: 14px;
+}
+
+.stay-booking-info span {
+  color: #777;
+}
+
+.stay-booking-info strong {
+  color: #222;
+}
+
+.stay-booking-btn {
+  display: block;
+  background: #171717;
+  color: #d6b36a;
+  padding: 16px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 28px;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.stay-booking-btn:hover {
+  background: #c5a15b;
+  color: #171717;
+}
+
+.stay-booking-card .stay-booking-note {
+  line-height: 1.7;
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* BACK BUTTON */
+
+.stay-details-back {
+  padding: 0 8% 60px;
+}
+
+.stay-details-back a {
+  color: #98743b;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* NOT FOUND */
+
+.stay-not-found {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.stay-not-found h1 {
+  font-size: 35px;
+}
+
+.stay-not-found a {
+  background: #171717;
+  color: #d6b36a;
+  padding: 14px 25px;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .stay-details-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .stay-booking-card {
+    position: static;
+  }
+
+  .stay-details-gallery {
+    height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stay-details-hero {
+    min-height: 240px;
+    padding: 45px 6%;
+  }
+
+  .stay-details-breadcrumb {
+    padding: 18px 6%;
+  }
+
+  .stay-details-gallery {
+    padding: 5px 6% 30px;
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .stay-gallery-main {
+    height: 260px;
+  }
+
+  .stay-gallery-side {
+    height: 180px;
+  }
+
+  .stay-details-container {
+    padding: 15px 6% 50px;
+  }
+
+  .stay-details-heading h2 {
+    font-size: 27px;
+  }
+
+  .stay-details-features {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 25px;
+  }
+
+  .stay-amenities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stay-check-times {
+    gap: 35px;
+  }
+
+  .stay-booking-card {
+    padding: 24px;
+  }
+
+  .stay-details-back {
+    padding: 0 6% 40px;
+  }
+}
+
+/* =================================
+   BOOKING FORM FIELDS
+================================= */
+
+.stay-booking-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 20px 0;
+}
+
+.stay-booking-field label {
+  color: #444;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stay-booking-field input,
+.stay-booking-field select {
+  width: 100%;
+  padding: 13px 12px;
+  border: 1px solid #ded8cd;
+  border-radius: 4px;
+  background: #faf9f6;
+  color: #171717;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.stay-booking-field input:focus,
+.stay-booking-field select:focus {
+  border-color: #b18a45;
+}
+
+.stay-booking-field input:disabled {
+  background: #eeeae3;
+  cursor: not-allowed;
+}
+
+/* =================================
+   BOOKING PRICE SUMMARY
+================================= */
+
+.stay-price-summary {
+  background: #faf9f6;
+  border: 1px solid #e7e1d6;
+  border-radius: 5px;
+  padding: 18px;
+  margin-top: 25px;
+}
+
+.stay-price-summary h3 {
+  font-size: 16px;
+  margin: 0 0 20px;
+  color: #171717;
+}
+
+.stay-price-summary .stay-booking-info {
+  margin: 14px 0;
+  font-size: 12px;
+}
+
+.stay-price-summary .stay-booking-info strong {
+  font-weight: 700;
+}
+
+.stay-booking-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.stay-booking-total span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #171717;
+}
+
+.stay-booking-total strong {
+  color: #98743b;
+  font-size: 19px;
+}
+
+/* =================================
+   BOOKING BUTTON
+================================= */
+
+.stay-booking-btn {
+  width: 100%;
+  border: 1px solid #171717;
+  cursor: pointer;
+}
+
+.stay-booking-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* =================================
+   MOBILE BOOKING FORM
+================================= */
+
+@media (max-width: 600px) {
+  .stay-booking-field {
+    margin: 17px 0;
+  }
+
+  .stay-price-summary {
+    padding: 15px;
+  }
+
+  .stay-booking-total strong {
+    font-size: 17px;
+  }
+}
+.save-listing-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #c9a45c;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.save-listing-btn:hover,
+.save-listing-btn.saved {
+  background: #111111;
+  color: #c9a45c;
+}

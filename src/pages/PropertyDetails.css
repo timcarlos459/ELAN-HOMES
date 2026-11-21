@@ -1,0 +1,664 @@
+/* ==========================================
+   ELAN HOMES - PROPERTY DETAILS PAGE
+========================================== */
+
+.property-details-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   BREADCRUMB
+========================================== */
+
+.property-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 25px 8%;
+  font-size: 12px;
+  color: #888;
+  background: #fff;
+  border-bottom: 1px solid #eeeae2;
+}
+
+.property-breadcrumb a {
+  color: #777;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.property-breadcrumb a:hover {
+  color: #b18a45;
+}
+
+.property-breadcrumb span:last-child {
+  color: #171717;
+}
+
+/* ==========================================
+   PROPERTY HERO
+========================================== */
+
+.property-details-hero {
+  padding: 45px 8% 35px;
+}
+
+.property-details-image {
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+  background: #ddd;
+}
+
+.property-details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.details-status {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background: #171717;
+  color: #d4af72;
+  padding: 11px 18px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* ==========================================
+   PROPERTY HEADING
+========================================== */
+
+.property-details-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 35px 0;
+  border-bottom: 1px solid #e5e0d6;
+}
+
+.details-category {
+  display: block;
+  color: #b18a45;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.property-details-heading h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.details-location {
+  color: #777;
+  font-size: 14px;
+}
+
+.details-price {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  text-align: right;
+}
+
+.details-price span {
+  color: #888;
+  font-size: 12px;
+}
+
+.details-price strong {
+  color: #171717;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+/* ==========================================
+   MAIN CONTENT LAYOUT
+========================================== */
+
+.property-details-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 55px;
+  padding: 35px 8% 100px;
+  align-items: start;
+}
+
+.property-main-information {
+  min-width: 0;
+}
+
+/* ==========================================
+   SECTION LABELS
+========================================== */
+
+.details-label {
+  display: block;
+  color: #b18a45;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+}
+
+/* ==========================================
+   PROPERTY OVERVIEW
+========================================== */
+
+.property-overview {
+  margin-bottom: 45px;
+}
+
+.property-overview h2,
+.property-amenities h2 {
+  font-size: 27px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.property-overview p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 850px;
+}
+
+/* ==========================================
+   PROPERTY SPECIFICATIONS
+========================================== */
+
+.property-specifications {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: #fff;
+  border: 1px solid #eeeae2;
+  margin-bottom: 50px;
+}
+
+.specification-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border-bottom: 1px solid #eeeae2;
+}
+
+.specification-item:nth-child(odd) {
+  border-right: 1px solid #eeeae2;
+}
+
+.specification-item span {
+  color: #888;
+  font-size: 12px;
+}
+
+.specification-item strong {
+  color: #171717;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   AMENITIES
+========================================== */
+
+.property-amenities {
+  margin-bottom: 45px;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  font-size: 14px;
+}
+
+.amenity-item span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  background: #eee7d8;
+  color: #a47d39;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   ENQUIRY PANEL
+========================================== */
+
+.property-enquiry-panel {
+  position: sticky;
+  top: 110px;
+  background: #fff;
+  padding: 30px;
+  border: 1px solid #e9e5dc;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+}
+
+.property-enquiry-panel h3 {
+  font-size: 23px;
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.property-enquiry-panel p {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+/* ENQUIRE BUTTON */
+
+.property-enquiry-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  background: #171717;
+  color: #d4af72;
+  border: 1px solid #171717;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.property-enquiry-btn:hover {
+  background: #d4af72;
+  color: #171717;
+  border-color: #d4af72;
+}
+
+/* BACK BUTTON */
+
+.property-back-btn {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  color: #777;
+  font-size: 12px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.property-back-btn:hover {
+  color: #b18a45;
+}
+
+/* ==========================================
+   PROPERTY NOT FOUND
+========================================== */
+
+.property-not-found {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  background: #f8f6f1;
+}
+
+.property-not-found h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.property-not-found p {
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.property-not-found a {
+  display: inline-flex;
+  padding: 13px 22px;
+  background: #171717;
+  color: #d4af72;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE
+========================================== */
+
+@media (max-width: 1000px) {
+  .property-details-content {
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 30px;
+  }
+
+  .property-details-image {
+    height: 420px;
+  }
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+  .property-breadcrumb {
+    padding: 20px 6%;
+    gap: 8px;
+  }
+
+  .property-details-hero {
+    padding: 25px 6%;
+  }
+
+  .property-details-image {
+    height: 300px;
+  }
+
+  .property-details-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+    padding: 25px 0;
+  }
+
+  .details-price {
+    text-align: left;
+  }
+
+  .property-details-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 25px 6% 70px;
+  }
+
+  .property-overview h2,
+  .property-amenities h2 {
+    font-size: 23px;
+  }
+
+  .property-specifications {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .specification-item {
+    padding: 18px;
+  }
+
+  .amenities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .property-enquiry-panel {
+    position: static;
+    padding: 25px;
+  }
+}
+/* PROPERTY IMAGE GALLERY */
+
+.property-gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.gallery-thumbnail {
+  width: 100%;
+  height: 105px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+.gallery-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-thumbnail:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-thumbnail.active {
+  border-color: #c5a253;
+  box-shadow: 0 0 0 2px rgba(197, 162, 83, 0.2);
+}
+
+.gallery-thumbnail:focus-visible {
+  outline: 2px solid #c5a253;
+  outline-offset: 3px;
+}
+
+/* RESPONSIVE GALLERY */
+
+@media (max-width: 768px) {
+  .property-gallery-thumbnails {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .gallery-thumbnail {
+    height: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-thumbnail {
+    height: 65px;
+  }
+}
+
+/* MAIN GALLERY IMAGE BUTTON */
+
+.main-gallery-image {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.main-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.main-gallery-image:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-expand-label {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #d6b46a;
+  padding: 11px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* FULL SCREEN LIGHTBOX */
+
+.property-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 80px;
+}
+
+.lightbox-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.lightbox-content p {
+  color: #d6b46a;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* CLOSE BUTTON */
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 42px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+  color: #d6b46a;
+}
+
+/* NAVIGATION ARROWS */
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(214, 180, 106, 0.6);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d6b46a;
+  font-size: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.lightbox-arrow:hover {
+  background: #d6b46a;
+  color: #000;
+}
+
+.lightbox-previous {
+  left: 25px;
+}
+
+.lightbox-next {
+  right: 25px;
+}
+
+/* MOBILE GALLERY */
+
+@media (max-width: 768px) {
+  .property-lightbox {
+    padding: 55px 15px;
+  }
+
+  .lightbox-content img {
+    max-height: 65vh;
+  }
+
+  .lightbox-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 28px;
+  }
+
+  .lightbox-previous {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 18px;
+    font-size: 36px;
+  }
+
+  .gallery-expand-label {
+    bottom: 12px;
+    right: 12px;
+    font-size: 11px;
+    padding: 9px 12px;
+  }
+}
+.save-listing-btn {
+  margin-top: 12px;
+  padding: 12px 20px;
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #c9a45c;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.save-listing-btn:hover,
+.save-listing-btn.saved {
+  background: #111111;
+  color: #c9a45c;
+}
