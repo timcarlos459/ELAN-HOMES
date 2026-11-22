@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Nairobi.css";
+import "./nairobi.css";
 
 // LOCATION IMPORTS
 import Lavington from "./locations/Lavington";

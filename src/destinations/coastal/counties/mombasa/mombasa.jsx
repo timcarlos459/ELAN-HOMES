@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Mombasa.css";
+import "./mombasa.css";
 
 // INDIVIDUAL LOCATION IMPORTS
 import MombasaIslandCBD from "./locations/MombasaIslandCBD";
