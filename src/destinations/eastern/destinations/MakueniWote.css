@@ -1,0 +1,193 @@
+.makueni-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.makueni-hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e")
+      center/cover no-repeat;
+}
+
+.makueni-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.makueni-hero-content > span,
+.makueni-intro > span,
+.makueni-heading > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.makueni-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.makueni-hero p {
+  max-width: 620px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.makueni-button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #b89552;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.makueni-button:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+.makueni-intro {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 25px;
+  text-align: center;
+}
+
+.makueni-intro h2,
+.makueni-heading h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.makueni-intro p,
+.makueni-heading p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* EXPLORE SECTION */
+.makueni-explore {
+  padding: 90px 9%;
+  background: #fff;
+}
+
+.makueni-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.makueni-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.makueni-card {
+  background: #f8f6f1;
+  border: 1px solid #e8e0d2;
+  transition: 0.3s ease;
+}
+
+.makueni-card:hover {
+  transform: translateY(-6px);
+  border-color: #b89552;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+.makueni-card-content {
+  padding: 40px 35px;
+}
+
+.makueni-card-content > span:first-child {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.makueni-card h3 {
+  font-size: 27px;
+  margin: 25px 0 15px;
+}
+
+.makueni-card p {
+  min-height: 75px;
+  color: #686868;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.makueni-coming-soon {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 14px;
+  border: 1px solid #b89552;
+  color: #8b6b32;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+/* BACK NAVIGATION */
+.makueni-back {
+  padding: 35px 9%;
+}
+
+.makueni-back a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.makueni-back a:hover {
+  color: #b89552;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .makueni-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .makueni-intro {
+    padding: 70px 7%;
+  }
+
+  .makueni-explore {
+    padding: 70px 7%;
+  }
+
+  .makueni-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .makueni-card-content {
+    padding: 30px 25px;
+  }
+
+  .makueni-card p {
+    min-height: auto;
+  }
+
+  .makueni-back {
+    padding: 30px 7%;
+  }
+}

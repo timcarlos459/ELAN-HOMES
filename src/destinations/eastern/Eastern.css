@@ -1,0 +1,200 @@
+.eastern-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+
+.eastern-hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e")
+      center/cover no-repeat;
+}
+
+.eastern-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.eastern-hero-content > span,
+.eastern-intro > span,
+.eastern-heading > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.eastern-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.eastern-hero p {
+  max-width: 620px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.eastern-button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #b89552;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.eastern-button:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.eastern-intro {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 25px;
+  text-align: center;
+}
+
+.eastern-intro h2,
+.eastern-heading h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.eastern-intro p,
+.eastern-heading p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* DESTINATION GRID */
+
+.eastern-destinations {
+  padding: 90px 9%;
+  background: #fff;
+}
+
+.eastern-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.eastern-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.eastern-card {
+  background: #f8f6f1;
+  border: 1px solid #e8e0d2;
+  transition: 0.3s ease;
+}
+
+.eastern-card:hover {
+  transform: translateY(-6px);
+  border-color: #b89552;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+.eastern-card-content {
+  padding: 40px 35px;
+}
+
+.eastern-number {
+  color: #b89552;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.eastern-card h3 {
+  font-size: 27px;
+  margin: 25px 0 15px;
+}
+
+.eastern-card p {
+  min-height: 75px;
+  color: #686868;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.eastern-card a {
+  display: inline-block;
+  margin-top: 22px;
+  color: #171717;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.eastern-card a:hover {
+  color: #b89552;
+}
+
+/* BACK NAVIGATION */
+
+.eastern-back {
+  padding: 35px 9%;
+}
+
+.eastern-back a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.eastern-back a:hover {
+  color: #b89552;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .eastern-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .eastern-intro {
+    padding: 70px 7%;
+  }
+
+  .eastern-destinations {
+    padding: 70px 7%;
+  }
+
+  .eastern-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .eastern-card-content {
+    padding: 30px 25px;
+  }
+
+  .eastern-card p {
+    min-height: auto;
+  }
+
+  .eastern-back {
+    padding: 30px 7%;
+  }
+}

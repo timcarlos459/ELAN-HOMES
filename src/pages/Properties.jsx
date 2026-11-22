@@ -57,15 +57,42 @@ const locations = {
   ],
 };
 
+/* NORMALIZE LOCATION NAMES */
+
+const normalizeLocation = (value = "") =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+
+/* FORMAT DESTINATION NAME */
+
+const formatLocationName = (value = "") =>
+  value
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+/* PROPERTIES PAGE */
+
 export default function Properties() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const requestedLocation = searchParams.get("location") || "";
+
+  const requestedLocationName = formatLocationName(requestedLocation);
 
   /* INITIAL SEARCH VALUES */
 
   const initialRegion = searchParams.get("region") || "All Regions";
+
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
+
   const initialType = searchParams.get("type") || "All Types";
+
   const initialBudget = searchParams.get("budget") || "All Prices";
 
   /* FILTER STATES */
@@ -107,6 +134,14 @@ export default function Properties() {
       destination === "All Destinations" ||
       property.destination === destination;
 
+    const matchesRequestedLocation =
+      !requestedLocation ||
+      normalizeLocation(property.destination) ===
+        normalizeLocation(requestedLocation) ||
+      normalizeLocation(property.location).includes(
+        normalizeLocation(requestedLocation),
+      );
+
     const matchesType = type === "All Types" || property.type === type;
 
     const matchesPrice =
@@ -118,6 +153,7 @@ export default function Properties() {
     return (
       matchesRegion &&
       matchesDestination &&
+      matchesRequestedLocation &&
       matchesType &&
       matchesPrice &&
       matchesBedrooms
@@ -150,7 +186,11 @@ export default function Properties() {
         <div className="properties-hero-content">
           <span>ELAN HOMES COLLECTION</span>
 
-          <h1>Discover Exceptional Properties</h1>
+          <h1>
+            {requestedLocationName
+              ? `Properties in ${requestedLocationName}`
+              : "Discover Exceptional Properties"}
+          </h1>
 
           <p>
             Explore beautiful homes, modern apartments and exclusive residences
@@ -274,49 +314,69 @@ export default function Properties() {
 
         {/* PROPERTY CARDS */}
 
-        <div className="properties-grid">
-          {filteredProperties.map((property) => (
-            <article className="property-card" key={property.id}>
-              <div className="property-card-image">
-                <img src={property.image} alt={property.name} />
+        {filteredProperties.length > 0 && (
+          <div className="properties-grid">
+            {filteredProperties.map((property) => (
+              <article className="property-card" key={property.id}>
+                <div className="property-card-image">
+                  <img src={property.image} alt={property.name} />
 
-                <span className="property-status">FOR SALE</span>
-              </div>
-
-              <div className="property-card-details">
-                <span className="property-type">{property.type}</span>
-
-                <h3>{property.name}</h3>
-
-                <p className="property-location">{property.location}</p>
-
-                <div className="property-features">
-                  <span>{property.bedrooms} Bedrooms</span>
-                  <span>{property.bathrooms} Bathrooms</span>
+                  <span className="property-status">FOR SALE</span>
                 </div>
 
-                <div className="property-card-bottom">
-                  <strong>{formatPrice(property.price)}</strong>
+                <div className="property-card-details">
+                  <span className="property-type">{property.type}</span>
 
-                  <Link
-                    to={`/properties/${property.id}`}
-                    className="view-details-btn"
-                  >
-                    View Details <span>↗</span>
-                  </Link>
+                  <h3>{property.name}</h3>
+
+                  <p className="property-location">{property.location}</p>
+
+                  <div className="property-features">
+                    <span>{property.bedrooms} Bedrooms</span>
+                    <span>{property.bathrooms} Bathrooms</span>
+                  </div>
+
+                  <div className="property-card-bottom">
+                    <strong>{formatPrice(property.price)}</strong>
+
+                    <Link
+                      to={`/properties/${property.id}`}
+                      className="view-details-btn"
+                    >
+                      View Details <span>↗</span>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </article>
+            ))}
+          </div>
+        )}
 
-        {/* NO RESULTS */}
+        {/* EMPTY STATE */}
 
         {filteredProperties.length === 0 && (
           <div className="properties-empty">
-            <h3>No properties found</h3>
+            {requestedLocation ? (
+              <>
+                <span>ÉLAN HOMES COLLECTION</span>
 
-            <p>Try adjusting your filters to see more properties.</p>
+                <h3>Properties Coming Soon</h3>
+
+                <p>
+                  We are preparing our property collection for{" "}
+                  {requestedLocationName}. Beautiful homes, villas and
+                  apartments will be featured here soon.
+                </p>
+
+                <Link to="/destinations">Explore Other Destinations</Link>
+              </>
+            ) : (
+              <>
+                <h3>No properties found</h3>
+
+                <p>Try adjusting your filters to see more properties.</p>
+              </>
+            )}
           </div>
         )}
       </section>

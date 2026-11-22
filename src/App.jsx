@@ -18,6 +18,7 @@ import Land from "./pages/Land";
 import Contact from "./pages/Contact";
 import Search from "./pages/Search";
 import ListProperty from "./pages/ListProperty";
+import Destination from "./pages/Destination";
 
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
@@ -46,19 +47,43 @@ function App() {
       <Navbar />
 
       <Routes>
+        {/* HOME */}
         <Route path="/" element={<Home />} />
+
+        {/* GENERAL PAGES */}
         <Route path="/about" element={<About />} />
 
+        {/* PROPERTIES */}
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/:id" element={<PropertyDetails />} />
 
+        {/* STAYS */}
         <Route path="/stays" element={<Stays />} />
         <Route path="/stays/:id" element={<StayDetails />} />
 
+        {/* OTHER PAGES */}
         <Route path="/land" element={<Land />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/search" element={<Search />} />
         <Route path="/list-property" element={<ListProperty />} />
+
+        {/* DESTINATIONS MAIN PAGE */}
+        <Route path="/destinations" element={<ExploreDestinations />} />
+
+        {/* DESTINATION REGION PAGES */}
+        <Route path="/destinations/:slug" element={<Destination />} />
+
+        {/* NAIROBI LOCATIONS AND COASTAL COUNTY PAGES */}
+        <Route
+          path="/destinations/:slug/:locationSlug"
+          element={<Destination />}
+        />
+
+        {/* COASTAL COUNTY LOCATION PAGES */}
+        <Route
+          path="/destinations/:slug/:countySlug/:locationSlug"
+          element={<Destination />}
+        />
 
         {/* ACCOUNT PAGES */}
         <Route path="/signin" element={<SignIn />} />

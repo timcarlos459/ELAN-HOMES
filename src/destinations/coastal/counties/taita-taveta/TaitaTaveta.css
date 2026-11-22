@@ -1,0 +1,182 @@
+.taita-taveta-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO */
+
+.taita-taveta-hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1511497584788-876760111969")
+      center/cover no-repeat;
+}
+
+.taita-taveta-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.taita-taveta-hero-content > span,
+.taita-taveta-intro > span,
+.taita-taveta-locations-heading > span,
+.taita-taveta-card-content > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.taita-taveta-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.taita-taveta-hero p {
+  max-width: 620px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+/* INTRODUCTION */
+
+.taita-taveta-intro {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 25px;
+  text-align: center;
+}
+
+.taita-taveta-intro h2,
+.taita-taveta-locations-heading h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.taita-taveta-intro p,
+.taita-taveta-locations-heading p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* DESTINATION LOCATIONS */
+
+.taita-taveta-locations {
+  padding: 90px 9%;
+  background: #fff;
+}
+
+.taita-taveta-locations-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.taita-taveta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.taita-taveta-card {
+  background: #f8f6f1;
+  border: 1px solid #e8e0d2;
+  transition: 0.3s ease;
+}
+
+.taita-taveta-card:hover {
+  transform: translateY(-6px);
+  border-color: #b89552;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+.taita-taveta-card-content {
+  padding: 35px 28px;
+}
+
+.taita-taveta-card h3 {
+  font-size: 24px;
+  margin: 25px 0 15px;
+}
+
+.taita-taveta-card p {
+  min-height: 90px;
+  color: #686868;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.taita-taveta-card a {
+  display: inline-block;
+  margin-top: 22px;
+  color: #171717;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.taita-taveta-card a:hover {
+  color: #b89552;
+}
+
+/* BACK NAVIGATION */
+
+.taita-taveta-back {
+  padding: 35px 9%;
+}
+
+.taita-taveta-back a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.taita-taveta-back a:hover {
+  color: #b89552;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .taita-taveta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .taita-taveta-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .taita-taveta-intro {
+    padding: 70px 7%;
+  }
+
+  .taita-taveta-locations {
+    padding: 70px 7%;
+  }
+
+  .taita-taveta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .taita-taveta-card p {
+    min-height: auto;
+  }
+
+  .taita-taveta-back {
+    padding: 30px 7%;
+  }
+}

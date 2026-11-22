@@ -1,0 +1,243 @@
+/* =========================================
+   MALINDI DESTINATION PAGE
+========================================= */
+
+.malindi-page {
+  width: 100%;
+  background: #f8f6f1;
+  color: #171717;
+  overflow: hidden;
+}
+
+/* HERO */
+
+.malindi-hero {
+  min-height: 620px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.76) 0%,
+      rgba(0, 0, 0, 0.48) 48%,
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2000&q=85")
+      center/cover no-repeat;
+}
+
+.malindi-hero-overlay {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 100px 7%;
+  color: #fff;
+}
+
+.malindi-hero-overlay > span {
+  display: inline-block;
+  color: #d6b46a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+
+.malindi-hero-overlay h1 {
+  max-width: 800px;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.05;
+  font-weight: 600;
+  margin: 0 0 25px;
+  letter-spacing: -2px;
+}
+
+.malindi-hero-overlay p {
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 35px;
+}
+
+.malindi-hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 30px;
+  background: #c7a45b;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.malindi-hero-button:hover {
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+/* INTRODUCTION */
+
+.malindi-intro {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 110px 25px 90px;
+  text-align: center;
+}
+
+.malindi-intro > span,
+.malindi-section-heading > span {
+  display: block;
+  color: #a9843e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+.malindi-intro h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin: 0 0 22px;
+}
+
+.malindi-intro p {
+  max-width: 750px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COLLECTION */
+
+.malindi-collection {
+  padding: 80px 7% 110px;
+  background: #fff;
+}
+
+.malindi-section-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.malindi-section-heading h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin: 0 0 18px;
+}
+
+.malindi-section-heading p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* EMPTY STATE */
+
+.malindi-empty-state {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 65px 25px;
+  text-align: center;
+  background: #f8f6f1;
+  border: 1px solid #e9e3d7;
+}
+
+.malindi-empty-state h3 {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0 0 15px;
+}
+
+.malindi-empty-state p {
+  max-width: 550px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* BACK LINKS */
+
+.malindi-back {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 35px 7%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.malindi-back a {
+  color: #8d6c32;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.malindi-back a:hover {
+  color: #171717;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .malindi-hero {
+    min-height: 520px;
+    background-position: center;
+  }
+
+  .malindi-hero-overlay {
+    padding: 80px 7%;
+  }
+
+  .malindi-hero-overlay h1 {
+    font-size: 52px;
+  }
+
+  .malindi-hero-overlay p {
+    font-size: 15px;
+  }
+
+  .malindi-intro {
+    padding: 75px 22px;
+  }
+
+  .malindi-collection {
+    padding: 65px 6% 75px;
+  }
+
+  .malindi-back {
+    padding: 30px 6%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .malindi-hero {
+    min-height: 460px;
+  }
+
+  .malindi-hero-overlay h1 {
+    font-size: 43px;
+  }
+
+  .malindi-hero-overlay > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .malindi-empty-state {
+    padding: 45px 20px;
+  }
+}

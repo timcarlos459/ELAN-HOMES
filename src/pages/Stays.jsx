@@ -60,18 +60,45 @@ const locations = {
 };
 
 /* =================================
+   LOCATION HELPERS
+================================= */
+
+const normalizeLocation = (value = "") =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+
+const formatLocationName = (value = "") =>
+  value
+    .split("-")
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+/* =================================
    HOLIDAY STAYS PAGE
 ================================= */
 
 export default function Stays() {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  /* LOCATION FROM DESTINATION PAGE */
+
+  const requestedLocation = searchParams.get("location") || "";
+
+  const requestedLocationName = formatLocationName(requestedLocation);
+
   /* INITIAL SEARCH VALUES */
 
   const initialRegion = searchParams.get("region") || "All Regions";
+
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
+
   const initialType = searchParams.get("type") || "All Types";
+
   const initialBudget = searchParams.get("budget") || "All Prices";
 
   /* FILTER STATES */
@@ -87,13 +114,13 @@ export default function Stays() {
   );
 
   const [checkIn, setCheckIn] = useState(searchParams.get("checkIn") || "");
+
   const [checkOut, setCheckOut] = useState(searchParams.get("checkOut") || "");
+
   const [guests, setGuests] = useState("Any");
 
   const [type, setType] = useState(
-    ["Villa", "Apartment", "Cottage", "Lodge", "Hotel", "Estate"].includes(
-      initialType,
-    )
+    ["Villa", "Apartment", "Cottage", "Lodge", "Estate"].includes(initialType)
       ? initialType
       : "All Types",
   );
@@ -115,6 +142,14 @@ export default function Stays() {
     const matchesDestination =
       destination === "All Destinations" || stay.destination === destination;
 
+    const matchesRequestedLocation =
+      !requestedLocation ||
+      normalizeLocation(stay.destination || "") ===
+        normalizeLocation(requestedLocation) ||
+      normalizeLocation(stay.location || "").includes(
+        normalizeLocation(requestedLocation),
+      );
+
     const matchesGuests = guests === "Any" || stay.guests >= Number(guests);
 
     const matchesType = type === "All Types" || stay.type === type;
@@ -122,12 +157,16 @@ export default function Stays() {
     const matchesPrice =
       maxPrice === "All Prices" || stay.price <= Number(maxPrice);
 
+    const isNotHotel = (stay.type || "").toLowerCase() !== "hotel";
+
     return (
       matchesRegion &&
       matchesDestination &&
+      matchesRequestedLocation &&
       matchesGuests &&
       matchesType &&
-      matchesPrice
+      matchesPrice &&
+      isNotHotel
     );
   });
 
@@ -146,7 +185,8 @@ export default function Stays() {
     setType("All Types");
     setMaxPrice("All Prices");
 
-    setSearchParams({});
+    // Keep the selected destination when clearing other filters.
+    setSearchParams(requestedLocation ? { location: requestedLocation } : {});
   };
 
   /* PAGE CONTENT */
@@ -285,7 +325,6 @@ export default function Stays() {
               <option value="Apartment">Apartment</option>
               <option value="Cottage">Cottage</option>
               <option value="Lodge">Lodge</option>
-              <option value="Hotel">Hotel</option>
               <option value="Estate">Estate</option>
             </select>
           </div>
@@ -318,7 +357,11 @@ export default function Stays() {
         {/* RESULTS */}
 
         <div className="stays-results-heading">
-          <h2>Available Holiday Stays</h2>
+          <h2>
+            {requestedLocation
+              ? `Stays in ${requestedLocationName}`
+              : "Available Holiday Stays"}
+          </h2>
 
           <span>{filteredStays.length} Stays Found</span>
         </div>
@@ -362,13 +405,31 @@ export default function Stays() {
           ))}
         </div>
 
-        {/* NO RESULTS */}
+        {/* NO RESULTS / COMING SOON */}
 
         {filteredStays.length === 0 && (
           <div className="stays-empty">
-            <h3>No holiday stays found</h3>
+            {requestedLocation ? (
+              <>
+                <span>ÉLAN HOMES COLLECTION</span>
 
-            <p>Try adjusting your filters to explore other destinations.</p>
+                <h3>Stays Coming Soon</h3>
+
+                <p>
+                  We are preparing our accommodation collection for{" "}
+                  {requestedLocationName}. Beautiful B&Bs, holiday homes and
+                  furnished short stays will be featured here soon.
+                </p>
+
+                <Link to="/destinations">Explore Other Destinations →</Link>
+              </>
+            ) : (
+              <>
+                <h3>No holiday stays found</h3>
+
+                <p>Try adjusting your filters to explore other destinations.</p>
+              </>
+            )}
           </div>
         )}
       </section>

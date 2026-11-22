@@ -1,0 +1,239 @@
+/* =====================================
+   WATAMU DESTINATION PAGE
+===================================== */
+
+.watamu-page {
+  width: 100%;
+  background: #f8f6f1;
+  color: #171717;
+  overflow: hidden;
+}
+
+/* HERO */
+
+.watamu-hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.76),
+      rgba(0, 0, 0, 0.42),
+      rgba(0, 0, 0, 0.12)
+    ),
+    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2000&q=85")
+      center/cover no-repeat;
+}
+
+.watamu-hero-content {
+  width: 100%;
+  max-width: 1250px;
+  margin: auto;
+  padding: 100px 7%;
+  color: #fff;
+}
+
+.watamu-hero-content > span {
+  color: #d6b46a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.watamu-hero-content h1 {
+  max-width: 800px;
+  margin: 22px 0;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -2px;
+}
+
+.watamu-hero-content p {
+  max-width: 620px;
+  margin-bottom: 35px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.watamu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 30px;
+  background: #c7a45b;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.watamu-button:hover {
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+/* INTRODUCTION */
+
+.watamu-intro {
+  max-width: 1000px;
+  margin: auto;
+  padding: 110px 25px 90px;
+  text-align: center;
+}
+
+.watamu-intro > span,
+.watamu-heading > span {
+  display: block;
+  margin-bottom: 18px;
+  color: #a9843e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.watamu-intro h2 {
+  margin-bottom: 22px;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.watamu-intro p {
+  max-width: 750px;
+  margin: auto;
+  color: #777;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COLLECTION */
+
+.watamu-collection {
+  padding: 80px 7% 110px;
+  background: #fff;
+}
+
+.watamu-heading {
+  max-width: 750px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.watamu-heading h2 {
+  margin-bottom: 18px;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.watamu-heading p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* EMPTY STATE */
+
+.watamu-empty {
+  max-width: 850px;
+  margin: auto;
+  padding: 65px 25px;
+  text-align: center;
+  background: #f8f6f1;
+  border: 1px solid #e9e3d7;
+}
+
+.watamu-empty h3 {
+  margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.watamu-empty p {
+  max-width: 550px;
+  margin: auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* BACK LINKS */
+
+.watamu-back {
+  max-width: 1250px;
+  margin: auto;
+  padding: 35px 7%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.watamu-back a {
+  color: #8d6c32;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.watamu-back a:hover {
+  color: #171717;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .watamu-hero {
+    min-height: 520px;
+  }
+
+  .watamu-hero-content {
+    padding: 80px 7%;
+  }
+
+  .watamu-hero-content h1 {
+    font-size: 52px;
+  }
+
+  .watamu-hero-content p {
+    font-size: 15px;
+  }
+
+  .watamu-intro {
+    padding: 75px 22px;
+  }
+
+  .watamu-collection {
+    padding: 65px 6% 75px;
+  }
+
+  .watamu-back {
+    padding: 30px 6%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .watamu-hero {
+    min-height: 460px;
+  }
+
+  .watamu-hero-content h1 {
+    font-size: 43px;
+  }
+
+  .watamu-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .watamu-empty {
+    padding: 45px 20px;
+  }
+}

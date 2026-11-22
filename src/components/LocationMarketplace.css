@@ -1,0 +1,111 @@
+.location-marketplace {
+  width: 100%;
+  padding: 90px 7%;
+  background: #f8f6f1;
+  color: #171717;
+}
+
+.location-marketplace-heading {
+  max-width: 760px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.location-marketplace-heading > span {
+  color: #a88746;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.location-marketplace-heading h2 {
+  margin: 15px 0;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -1.5px;
+}
+
+.location-marketplace-heading p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.location-marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.location-marketplace-card {
+  min-height: 300px;
+  display: flex;
+  align-items: flex-end;
+  padding: 38px;
+  background: #171717;
+  color: #fff;
+  border: 1px solid #302a20;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.location-marketplace-card:hover {
+  transform: translateY(-6px);
+  border-color: #b89755;
+}
+
+.location-marketplace-card-content {
+  max-width: 450px;
+}
+
+.location-marketplace-category {
+  color: #c5a66a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.location-marketplace-card h3 {
+  margin: 15px 0;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.location-marketplace-card p {
+  color: #c4c4c4;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.location-marketplace-status {
+  display: inline-block;
+  margin-top: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #b89755;
+  color: #d2b477;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+@media (max-width: 768px) {
+  .location-marketplace {
+    padding: 65px 6%;
+  }
+
+  .location-marketplace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .location-marketplace-card {
+    min-height: 260px;
+    padding: 28px;
+  }
+
+  .location-marketplace-card h3 {
+    font-size: 29px;
+  }
+}

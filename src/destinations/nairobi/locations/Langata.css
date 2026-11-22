@@ -1,0 +1,216 @@
+/* LANGATA PAGE */
+
+.langata-page {
+  background: #fff;
+  color: #171717;
+}
+
+/* HERO */
+
+.langata-hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.25)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000")
+      center/cover no-repeat;
+}
+
+.langata-hero-content {
+  max-width: 680px;
+  color: #fff;
+}
+
+.langata-hero-content > span,
+.langata-intro > span,
+.langata-heading span {
+  color: #c5a36a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.langata-hero-content h1 {
+  margin: 20px 0;
+  font-size: clamp(42px, 6vw, 72px);
+}
+
+.langata-hero-content p {
+  max-width: 550px;
+  color: #eee;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.langata-hero-content a {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 15px 28px;
+  background: #c5a36a;
+  color: #171717;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.langata-hero-content a:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.langata-intro {
+  max-width: 900px;
+  margin: auto;
+  padding: 85px 25px;
+  text-align: center;
+}
+
+.langata-intro h2 {
+  margin: 18px 0;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.langata-intro p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* LISTINGS */
+
+.langata-listings {
+  padding: 65px 8%;
+  background: #f8f7f4;
+}
+
+.langata-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.langata-heading h2 {
+  margin: 15px 0 0;
+  font-size: clamp(25px, 3vw, 36px);
+}
+
+.langata-heading > a {
+  color: #a3844e;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.langata-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.langata-listing-card {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  color: #171717;
+  text-decoration: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.langata-listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.langata-listing-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.langata-listing-card > div {
+  padding: 22px;
+}
+
+.langata-listing-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.langata-listing-card p {
+  margin: 0 0 15px;
+  color: #888;
+  font-size: 13px;
+}
+
+.langata-listing-card strong {
+  color: #a3844e;
+  font-size: 14px;
+}
+
+.langata-empty {
+  padding: 35px 20px;
+  background: #fff;
+  color: #777;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* BACK LINK */
+
+.langata-back {
+  padding: 35px 8%;
+  border-top: 1px solid #eee;
+}
+
+.langata-back a {
+  color: #a3844e;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .langata-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .langata-hero {
+    min-height: 420px;
+    padding: 60px 6%;
+  }
+
+  .langata-intro {
+    padding: 65px 6%;
+  }
+
+  .langata-listings {
+    padding: 50px 6%;
+  }
+
+  .langata-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .langata-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .langata-listing-card img {
+    height: 220px;
+  }
+}

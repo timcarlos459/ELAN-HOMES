@@ -1,0 +1,268 @@
+.coastal-page {
+  width: 100%;
+  background: #f8f7f4;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO */
+
+.coastal-hero {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2)),
+    url("https://images.unsplash.com/photo-1519046904884-53103b34b206?w=2000")
+      center/cover no-repeat;
+}
+
+.coastal-hero-content {
+  max-width: 720px;
+  color: #fff;
+}
+
+.coastal-hero-content > span,
+.coastal-intro > span,
+.coastal-heading > span,
+.coastal-county-content > span {
+  display: block;
+  color: #b99a5b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+.coastal-hero-content h1 {
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.08;
+  font-weight: 600;
+  margin: 0 0 24px;
+}
+
+.coastal-hero-content p {
+  max-width: 580px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #eeeeee;
+  margin-bottom: 35px;
+}
+
+.coastal-hero-button {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #c5a66b;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.coastal-hero-button:hover {
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+/* INTRODUCTION */
+
+.coastal-intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 95px 25px 75px;
+  text-align: center;
+}
+
+.coastal-intro h2 {
+  font-size: clamp(30px, 4vw, 45px);
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+.coastal-intro p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COUNTY SECTION */
+
+.coastal-counties {
+  padding: 50px 8% 90px;
+}
+
+.coastal-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.coastal-heading h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  margin: 0 0 15px;
+  font-weight: 600;
+}
+
+.coastal-heading p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* COUNTY GRID */
+
+.coastal-county-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.coastal-county-card {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  background: #fff;
+  border: 1px solid #e9e5dc;
+  padding: 35px;
+  transition: 0.3s ease;
+}
+
+.coastal-county-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+.coastal-county-number {
+  color: #c5a66b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.coastal-county-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.coastal-county-content > span {
+  font-size: 10px;
+  margin-bottom: 12px;
+}
+
+.coastal-county-content h3 {
+  font-size: 25px;
+  margin: 0 0 13px;
+  font-weight: 600;
+}
+
+.coastal-county-content > p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+/* LOCATION LINKS */
+
+.coastal-location-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+  border-top: 1px solid #eeeae2;
+}
+
+.coastal-location-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eeeae2;
+  color: #292929;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.coastal-location-link span {
+  color: #b99a5b;
+  font-size: 17px;
+}
+
+.coastal-location-link:hover {
+  color: #b99a5b;
+}
+
+/* BACK LINK */
+
+.coastal-back {
+  padding: 20px 8% 75px;
+}
+
+.coastal-back a {
+  color: #171717;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.coastal-back a:hover {
+  color: #b99a5b;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .coastal-county-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .coastal-hero {
+    min-height: 470px;
+    padding: 65px 7%;
+  }
+
+  .coastal-hero-content p {
+    font-size: 15px;
+  }
+
+  .coastal-intro {
+    padding: 70px 7% 55px;
+  }
+
+  .coastal-counties {
+    padding: 35px 7% 65px;
+  }
+
+  .coastal-heading {
+    margin-bottom: 35px;
+  }
+
+  .coastal-county-card {
+    padding: 25px 20px;
+    gap: 15px;
+  }
+
+  .coastal-county-number {
+    font-size: 25px;
+  }
+
+  .coastal-county-content h3 {
+    font-size: 21px;
+  }
+
+  .coastal-location-list {
+    grid-template-columns: 1fr;
+  }
+
+  .coastal-back {
+    padding: 15px 7% 55px;
+  }
+}

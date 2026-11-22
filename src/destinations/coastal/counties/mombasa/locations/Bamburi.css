@@ -1,0 +1,169 @@
+.bamburi-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO */
+
+.bamburi-hero {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21")
+      center/cover no-repeat;
+}
+
+.bamburi-hero-content {
+  max-width: 720px;
+  color: #fff;
+}
+
+.bamburi-hero-content > span,
+.bamburi-intro > span,
+.bamburi-collection-heading > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.bamburi-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.bamburi-hero p {
+  max-width: 590px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.bamburi-button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #b89552;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.bamburi-button:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.bamburi-intro {
+  max-width: 950px;
+  margin: auto;
+  padding: 95px 25px;
+  text-align: center;
+}
+
+.bamburi-intro h2,
+.bamburi-collection-heading h2 {
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.bamburi-intro p,
+.bamburi-collection-heading p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COLLECTION */
+
+.bamburi-collection {
+  padding: 85px 9%;
+  background: #fff;
+}
+
+.bamburi-collection-heading {
+  max-width: 720px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.bamburi-empty-state {
+  max-width: 750px;
+  margin: auto;
+  padding: 65px 25px;
+  text-align: center;
+  border: 1px solid #e7dfd0;
+  background: #f8f6f1;
+}
+
+.bamburi-empty-state > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.bamburi-empty-state h3 {
+  font-size: 26px;
+  margin: 18px 0 12px;
+}
+
+.bamburi-empty-state p {
+  color: #686868;
+  line-height: 1.7;
+}
+
+/* NAVIGATION */
+
+.bamburi-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 35px 9%;
+}
+
+.bamburi-navigation a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.bamburi-navigation a:hover {
+  color: #b89552;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .bamburi-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .bamburi-intro {
+    padding: 70px 7%;
+  }
+
+  .bamburi-collection {
+    padding: 70px 7%;
+  }
+
+  .bamburi-empty-state {
+    padding: 45px 20px;
+  }
+
+  .bamburi-navigation {
+    padding: 30px 7%;
+    flex-direction: column;
+  }
+}

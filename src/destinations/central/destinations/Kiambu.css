@@ -1,0 +1,113 @@
+.kiambu-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+
+.kiambu-hero {
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8")
+      center/cover no-repeat;
+}
+
+.kiambu-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.kiambu-hero-content > span,
+.kiambu-intro > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.kiambu-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.kiambu-hero p {
+  max-width: 620px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.kiambu-button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #b89552;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.kiambu-button:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.kiambu-intro {
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 25px;
+  text-align: center;
+}
+
+.kiambu-intro h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.kiambu-intro p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* BACK NAVIGATION */
+
+.kiambu-back {
+  padding: 35px 9%;
+}
+
+.kiambu-back a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.kiambu-back a:hover {
+  color: #b89552;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .kiambu-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .kiambu-intro {
+    padding: 70px 7%;
+  }
+
+  .kiambu-back {
+    padding: 30px 7%;
+  }
+}

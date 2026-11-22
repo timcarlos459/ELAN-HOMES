@@ -1,0 +1,169 @@
+.taveta-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO */
+
+.taveta-hero {
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  padding: 90px 9%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
+    url("https://images.unsplash.com/photo-1500382017468-9049fed747ef")
+      center/cover no-repeat;
+}
+
+.taveta-hero-content {
+  max-width: 720px;
+  color: #fff;
+}
+
+.taveta-hero-content > span,
+.taveta-intro > span,
+.taveta-collection-heading > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.taveta-hero h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.taveta-hero p {
+  max-width: 590px;
+  color: #e6e6e6;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.taveta-button {
+  display: inline-block;
+  padding: 15px 27px;
+  background: #b89552;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.taveta-button:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.taveta-intro {
+  max-width: 950px;
+  margin: auto;
+  padding: 95px 25px;
+  text-align: center;
+}
+
+.taveta-intro h2,
+.taveta-collection-heading h2 {
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.taveta-intro p,
+.taveta-collection-heading p {
+  color: #686868;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* COLLECTION */
+
+.taveta-collection {
+  padding: 85px 9%;
+  background: #fff;
+}
+
+.taveta-collection-heading {
+  max-width: 720px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.taveta-empty-state {
+  max-width: 750px;
+  margin: auto;
+  padding: 65px 25px;
+  text-align: center;
+  border: 1px solid #e7dfd0;
+  background: #f8f6f1;
+}
+
+.taveta-empty-state > span {
+  color: #b89552;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.taveta-empty-state h3 {
+  font-size: 26px;
+  margin: 18px 0 12px;
+}
+
+.taveta-empty-state p {
+  color: #686868;
+  line-height: 1.7;
+}
+
+/* NAVIGATION */
+
+.taveta-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 35px 9%;
+}
+
+.taveta-navigation a {
+  color: #171717;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.taveta-navigation a:hover {
+  color: #b89552;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .taveta-hero {
+    min-height: 480px;
+    padding: 70px 7%;
+  }
+
+  .taveta-intro {
+    padding: 70px 7%;
+  }
+
+  .taveta-collection {
+    padding: 70px 7%;
+  }
+
+  .taveta-empty-state {
+    padding: 45px 20px;
+  }
+
+  .taveta-navigation {
+    padding: 30px 7%;
+    flex-direction: column;
+  }
+}

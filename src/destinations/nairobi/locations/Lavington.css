@@ -1,0 +1,220 @@
+/* LAVINGTON PAGE */
+
+.lavington-page {
+  background: #fff;
+  color: #171717;
+}
+
+/* HERO */
+
+.lavington-hero {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.25)),
+    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2000")
+      center/cover no-repeat;
+}
+
+.lavington-hero-content {
+  max-width: 680px;
+  color: #fff;
+}
+
+.lavington-hero-content > span,
+.lavington-intro > span,
+.lavington-heading span {
+  color: #c5a36a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.lavington-hero-content h1 {
+  margin: 20px 0;
+  font-size: clamp(42px, 6vw, 72px);
+}
+
+.lavington-hero-content p {
+  max-width: 550px;
+  color: #eee;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.lavington-hero-content a {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 15px 28px;
+  background: #c5a36a;
+  color: #171717;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.lavington-hero-content a:hover {
+  background: #fff;
+}
+
+/* INTRODUCTION */
+
+.lavington-intro {
+  max-width: 900px;
+  margin: auto;
+  padding: 85px 25px;
+  text-align: center;
+}
+
+.lavington-intro h2 {
+  margin: 18px 0;
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.lavington-intro p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* PROPERTY AND STAY LISTINGS */
+
+.lavington-listings {
+  padding: 65px 8%;
+  background: #f8f7f4;
+}
+
+.lavington-listings:nth-of-type(4) {
+  background: #fff;
+}
+
+.lavington-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.lavington-heading h2 {
+  margin: 15px 0 0;
+  font-size: clamp(25px, 3vw, 36px);
+}
+
+.lavington-heading > a {
+  color: #a3844e;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lavington-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.lavington-listing-card {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  color: #171717;
+  text-decoration: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.lavington-listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.lavington-listing-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.lavington-listing-card > div {
+  padding: 22px;
+}
+
+.lavington-listing-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.lavington-listing-card p {
+  margin: 0 0 15px;
+  color: #888;
+  font-size: 13px;
+}
+
+.lavington-listing-card strong {
+  color: #a3844e;
+  font-size: 14px;
+}
+
+.lavington-empty {
+  padding: 35px 20px;
+  background: #fff;
+  color: #777;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* BACK TO NAIROBI */
+
+.lavington-back {
+  padding: 35px 8%;
+  border-top: 1px solid #eee;
+}
+
+.lavington-back a {
+  color: #a3844e;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .lavington-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .lavington-hero {
+    min-height: 420px;
+    padding: 60px 6%;
+  }
+
+  .lavington-intro {
+    padding: 65px 6%;
+  }
+
+  .lavington-listings {
+    padding: 50px 6%;
+  }
+
+  .lavington-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lavington-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lavington-listing-card img {
+    height: 220px;
+  }
+}

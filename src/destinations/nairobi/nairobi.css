@@ -1,0 +1,252 @@
+/* ================================
+   NAIROBI DESTINATION PAGE
+================================ */
+
+.nairobi-page {
+  width: 100%;
+  background: #fff;
+  color: #171717;
+}
+
+/* HERO */
+
+.nairobi-hero {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1613977257363-707ba9348227?w=2000")
+      center/cover no-repeat;
+}
+
+.nairobi-hero-content {
+  max-width: 720px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.nairobi-hero-content > span {
+  color: #d0ad70;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.nairobi-hero-content h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 22px 0;
+  font-weight: 700;
+}
+
+.nairobi-hero-content p {
+  max-width: 580px;
+  color: #e5e5e5;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* INTRODUCTION */
+
+.nairobi-introduction {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 90px 24px 70px;
+  text-align: center;
+}
+
+.nairobi-eyebrow {
+  color: #a3844e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.nairobi-introduction h2,
+.nairobi-section-heading h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 18px 0;
+  color: #171717;
+}
+
+.nairobi-introduction p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* LOCATIONS */
+
+.nairobi-locations {
+  padding: 50px 8% 100px;
+  background: #f8f7f4;
+}
+
+.nairobi-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.nairobi-section-heading h2 {
+  margin-bottom: 0;
+}
+
+.nairobi-section-heading > p {
+  max-width: 350px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.nairobi-location-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.nairobi-location-card {
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  background: #222;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3px;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.nairobi-location-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.05));
+  z-index: 1;
+  transition: background 0.35s ease;
+}
+
+.nairobi-location-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.13);
+}
+
+.nairobi-location-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.nairobi-location-card-content span {
+  color: #d0ad70;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.nairobi-location-card-content h3 {
+  margin: 12px 0;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.nairobi-location-card-content strong {
+  display: inline-block;
+  margin-top: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nairobi-location-card:hover .nairobi-location-card-content strong {
+  color: #d0ad70;
+}
+
+/* TEMPORARY LOCATION PAGE */
+
+.nairobi-coming-soon {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.nairobi-coming-soon h1 {
+  font-size: clamp(32px, 5vw, 52px);
+}
+
+.nairobi-coming-soon p {
+  color: #777;
+  line-height: 1.8;
+}
+
+.nairobi-coming-soon a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 13px 25px;
+  background: #171717;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.nairobi-coming-soon a:hover {
+  background: #a3844e;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .nairobi-location-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nairobi-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .nairobi-hero {
+    min-height: 430px;
+    padding: 65px 6%;
+  }
+
+  .nairobi-hero-content p {
+    font-size: 14px;
+  }
+
+  .nairobi-introduction {
+    padding: 65px 6% 50px;
+  }
+
+  .nairobi-locations {
+    padding: 45px 6% 70px;
+  }
+
+  .nairobi-location-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .nairobi-location-card {
+    min-height: 210px;
+  }
+}

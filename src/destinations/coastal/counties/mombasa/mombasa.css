@@ -1,0 +1,210 @@
+.mombasa-page {
+  width: 100%;
+  background: #f8f6f1;
+  color: #171717;
+}
+
+/* HERO */
+.mombasa-hero {
+  min-height: 520px;
+  padding: 110px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21")
+      center/cover no-repeat;
+  color: #fff;
+}
+
+.mombasa-hero > span {
+  color: #d5b36a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+
+.mombasa-hero h1 {
+  max-width: 750px;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.08;
+  margin: 0 0 22px;
+  font-weight: 700;
+}
+
+.mombasa-hero p {
+  max-width: 620px;
+  color: #e5e5e5;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.mombasa-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #c5a15d;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.mombasa-button:hover {
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+/* CONTENT */
+.mombasa-content {
+  max-width: 1400px;
+  margin: auto;
+  padding: 90px 7%;
+}
+
+.mombasa-heading {
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.mombasa-heading > span {
+  color: #ad8845;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.mombasa-heading h2 {
+  font-size: clamp(30px, 4vw, 45px);
+  margin: 15px 0;
+  color: #171717;
+}
+
+.mombasa-heading p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* LOCATION GRID */
+.mombasa-location-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.mombasa-location-card {
+  position: relative;
+  min-height: 245px;
+  padding: 38px;
+  background: #fff;
+  border: 1px solid #e9e3d8;
+  transition: 0.3s ease;
+}
+
+.mombasa-location-card:hover {
+  transform: translateY(-6px);
+  border-color: #c5a15d;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+.mombasa-number {
+  display: inline-block;
+  color: #c5a15d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.mombasa-location-card h3 {
+  color: #171717;
+  font-size: 25px;
+  margin: 0 0 14px;
+}
+
+.mombasa-location-card p {
+  color: #6d6d6d;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.mombasa-location-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #9b7738;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.mombasa-location-card a:hover {
+  color: #171717;
+  gap: 16px;
+}
+
+/* BACK LINK */
+.mombasa-back {
+  padding: 30px 7% 60px;
+  border-top: 1px solid #e9e3d8;
+}
+
+.mombasa-back a {
+  color: #8c6b35;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mombasa-back a:hover {
+  color: #171717;
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+  .mombasa-hero {
+    min-height: 440px;
+    padding: 90px 7%;
+  }
+
+  .mombasa-content {
+    padding: 65px 6%;
+  }
+
+  .mombasa-location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mombasa-location-card {
+    min-height: auto;
+    padding: 30px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .mombasa-hero {
+    min-height: 400px;
+    padding: 75px 6%;
+  }
+
+  .mombasa-hero p {
+    font-size: 15px;
+  }
+
+  .mombasa-heading h2 {
+    font-size: 30px;
+  }
+
+  .mombasa-location-card h3 {
+    font-size: 22px;
+  }
+}
