@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import "./Account.css";
 
 export default function Account() {
@@ -26,6 +27,12 @@ export default function Account() {
 
   return (
     <main className="account-page">
+      <SEO
+        title="My Account | ÉLAN HOMES"
+        description="Manage your ÉLAN HOMES profile, personal information, saved properties, favourite holiday stays and booking enquiries."
+        noindex={true}
+      />
+
       <section className="account-header">
         <div>
           <p className="account-eyebrow">YOUR ELAN HOMES</p>

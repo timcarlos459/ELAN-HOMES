@@ -1,0 +1,125 @@
+.kiserian-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.kiserian-hero {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  padding: 100px 8%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea")
+      center/cover no-repeat;
+}
+
+.kiserian-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.kiserian-hero-content span,
+.kiserian-intro > span {
+  color: #c5a15d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.kiserian-hero-content h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 22px 0;
+  font-weight: 700;
+}
+
+.kiserian-hero-content p {
+  max-width: 600px;
+  color: #e6e2dc;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.kiserian-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 15px 27px;
+  background: #c5a15d;
+  border: 1px solid #c5a15d;
+  color: #171717;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.kiserian-button:hover {
+  background: #d7b875;
+  border-color: #d7b875;
+}
+
+/* INTRODUCTION */
+.kiserian-intro {
+  max-width: 850px;
+  margin: auto;
+  padding: 85px 20px 75px;
+  text-align: center;
+}
+
+.kiserian-intro h2 {
+  font-size: clamp(28px, 4vw, 43px);
+  margin: 18px 0;
+  font-weight: 700;
+}
+
+.kiserian-intro p {
+  max-width: 680px;
+  margin: auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* BACK NAVIGATION */
+.kiserian-back {
+  padding: 35px 8%;
+  border-top: 1px solid #e9e4da;
+}
+
+.kiserian-back a {
+  color: #a68143;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.kiserian-back a:hover {
+  color: #171717;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .kiserian-hero {
+    min-height: 500px;
+    padding: 80px 7%;
+  }
+
+  .kiserian-hero-content p {
+    font-size: 15px;
+  }
+
+  .kiserian-intro {
+    padding: 65px 20px;
+  }
+
+  .kiserian-back {
+    padding: 30px 7%;
+  }
+}

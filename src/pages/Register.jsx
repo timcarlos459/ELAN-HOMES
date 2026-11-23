@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import "./Register.css";
 
 export default function Register() {
@@ -42,6 +43,12 @@ export default function Register() {
 
   return (
     <main className="register-page">
+      <SEO
+        title="Create an Account | Join ÉLAN HOMES"
+        description="Create your ÉLAN HOMES account to explore exceptional properties for sale, save your favourite homes and manage your holiday stay enquiries across Kenya."
+        noindex={true}
+      />
+
       <div className="register-container">
         <div className="register-brand">
           <Link to="/" className="register-logo">

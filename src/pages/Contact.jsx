@@ -1,5 +1,6 @@
 import { useState, useId } from "react";
 import { useSearchParams } from "react-router-dom";
+import SEO from "../components/SEO";
 import contactDetails from "../data/contact";
 import "./Contact.css";
 
@@ -19,6 +20,16 @@ export default function Contact() {
   const total = Number(searchParams.get("total")) || 0;
 
   const isStayEnquiry = Boolean(checkIn || checkOut);
+
+  // SEO SETTINGS
+  const seoTitle = isStayEnquiry
+    ? `Holiday Stay Booking Enquiry | ÉLAN HOMES`
+    : propertyName
+      ? `Enquire About ${propertyName} | ÉLAN HOMES`
+      : "Contact ÉLAN HOMES | Property & Holiday Stay Enquiries";
+
+  const seoDescription =
+    "Contact ÉLAN HOMES for enquiries about properties for sale, holiday stays, land opportunities, property listings and partnerships across Kenya.";
 
   // FORMAT PRICE
   const formatPrice = (price) =>
@@ -88,7 +99,7 @@ Please confirm availability and provide further booking information.`
           ? existingBookings
           : [];
 
-        // GENERATE BOOKING REFERENCE WITHOUT RANDOMNESS OR TIMESTAMPS
+        // GENERATE BOOKING REFERENCE
         const bookingNumber = bookings.length + 1;
 
         const bookingReference = `ELAN-${componentId}-${String(
@@ -163,6 +174,8 @@ ${formData.message}`;
 
   return (
     <main className="contact-page">
+      <SEO title={seoTitle} description={seoDescription} />
+
       {/* CONTACT HERO */}
       <section className="contact-hero">
         <div className="contact-hero-content">

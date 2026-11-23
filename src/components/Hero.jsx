@@ -7,18 +7,79 @@ export default function Hero() {
   const [propertyType, setPropertyType] = useState("Any Type");
   const [priceRange, setPriceRange] = useState("Any Price");
 
+  const tabOptions = {
+    "Buy Property": {
+      types: ["Any Type", "House", "Villa", "Apartment", "Commercial"],
+      prices: [
+        "Any Price",
+        "Below KSh 5M",
+        "KSh 5M - 15M",
+        "KSh 15M - 30M",
+        "KSh 30M - 50M",
+        "Above KSh 50M",
+      ],
+      section: "#properties",
+    },
+
+    "Book a Stay": {
+      types: [
+        "Any Type",
+        "Studio",
+        "1 Bedroom",
+        "2 Bedrooms",
+        "3 Bedrooms",
+        "Cottage",
+        "B&B",
+        "Holiday Home",
+      ],
+      prices: [
+        "Any Price",
+        "Below KSh 2,000",
+        "KSh 2,000 - 3,500",
+        "KSh 3,500 - 5,000",
+        "KSh 5,000 - 10,000",
+        "Above KSh 10,000",
+      ],
+      section: "#bnb",
+    },
+
+    "Find Land": {
+      types: [
+        "Any Type",
+        "Residential Land",
+        "Agricultural Land",
+        "Commercial Land",
+      ],
+      prices: [
+        "Any Price",
+        "Below KSh 1M",
+        "KSh 1M - 5M",
+        "KSh 5M - 10M",
+        "KSh 10M - 30M",
+        "Above KSh 30M",
+      ],
+      section: "#land",
+    },
+  };
+
+  const currentOptions = tabOptions[activeTab];
+
+  // CHANGE TAB AND RESET FILTERS
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setPropertyType("Any Type");
+    setPriceRange("Any Price");
+  };
+
+  // SEARCH
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const section =
-      activeTab === "Buy Property"
-        ? "#properties"
-        : activeTab === "Book a Stay"
-          ? "#bnb"
-          : "#land";
+    const section = currentOptions.section;
 
     document.querySelector(section)?.scrollIntoView({
       behavior: "smooth",
+      block: "start",
     });
   };
 
@@ -77,11 +138,12 @@ export default function Hero() {
           {/* SEARCH TABS */}
           <div className="hero-search-wrapper">
             <div className="hero-search-tabs">
-              {["Buy Property", "Book a Stay", "Find Land"].map((tab) => (
+              {Object.keys(tabOptions).map((tab) => (
                 <button
                   key={tab}
+                  type="button"
                   className={activeTab === tab ? "active" : ""}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => handleTabChange(tab)}
                 >
                   {tab}
                 </button>
@@ -90,8 +152,10 @@ export default function Hero() {
 
             {/* SEARCH FORM */}
             <form className="hero-search-form" onSubmit={handleSearch}>
+              {/* LOCATION */}
               <div className="search-field">
                 <label>Location</label>
+
                 <input
                   type="text"
                   placeholder="e.g. Nairobi, Mombasa..."
@@ -100,6 +164,7 @@ export default function Hero() {
                 />
               </div>
 
+              {/* TYPE */}
               <div className="search-field">
                 <label>
                   {activeTab === "Find Land"
@@ -113,33 +178,35 @@ export default function Hero() {
                   value={propertyType}
                   onChange={(e) => setPropertyType(e.target.value)}
                 >
-                  <option>Any Type</option>
-                  <option>House</option>
-                  <option>Villa</option>
-                  <option>Apartment</option>
-                  <option>Cottage</option>
-                  <option>Commercial</option>
-                  <option>Residential Land</option>
-                  <option>Agricultural Land</option>
+                  {currentOptions.types.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
                 </select>
               </div>
 
+              {/* PRICE */}
               <div className="search-field">
-                <label>Price Range</label>
+                <label>
+                  {activeTab === "Book a Stay"
+                    ? "Price Per Night"
+                    : "Price Range"}
+                </label>
 
                 <select
                   value={priceRange}
                   onChange={(e) => setPriceRange(e.target.value)}
                 >
-                  <option>Any Price</option>
-                  <option>Below KSh 5M</option>
-                  <option>KSh 5M - 15M</option>
-                  <option>KSh 15M - 30M</option>
-                  <option>KSh 30M - 50M</option>
-                  <option>Above KSh 50M</option>
+                  {currentOptions.prices.map((price) => (
+                    <option key={price} value={price}>
+                      {price}
+                    </option>
+                  ))}
                 </select>
               </div>
 
+              {/* SEARCH BUTTON */}
               <button type="submit" className="hero-search-button">
                 Search <span>→</span>
               </button>
@@ -152,6 +219,7 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* SIGNATURE */}
         <div className="hero-signature">Live the Elan Life.</div>
       </div>
     </section>

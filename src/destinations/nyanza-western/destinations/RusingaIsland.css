@@ -1,0 +1,40 @@
+.rusinga-page {
+  background: #f8f7f4;
+}
+
+.rusinga-hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    linear-gradient(135deg, #174b58, #111111);
+}
+
+.rusinga-page .nyanza-destination-hero-content span {
+  color: #d4af65;
+}
+
+.rusinga-page .nyanza-destination-hero-content h1 {
+  color: #ffffff;
+}
+
+.rusinga-page .nyanza-destination-hero-content p {
+  color: #eeeeee;
+}
+
+.rusinga-page .nyanza-destination-intro span {
+  color: #a88745;
+}
+
+.rusinga-page .nyanza-destination-intro h2 {
+  color: #171717;
+}
+
+.rusinga-page .nyanza-destination-intro p {
+  color: #666666;
+}
+
+@media (max-width: 768px) {
+  .rusinga-page .nyanza-destination-hero {
+    min-height: 360px;
+    padding: 65px 6%;
+  }
+}

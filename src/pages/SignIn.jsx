@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import "./SignIn.css";
 
 export default function SignIn() {
@@ -29,6 +30,12 @@ export default function SignIn() {
 
   return (
     <main className="signin-page">
+      <SEO
+        title="Sign In | ÉLAN HOMES Account"
+        description="Sign in to your ÉLAN HOMES account to access your saved properties, favourite holiday stays and booking enquiries."
+        noindex={true}
+      />
+
       <div className="signin-container">
         <div className="signin-brand">
           <Link to="/" className="signin-logo">

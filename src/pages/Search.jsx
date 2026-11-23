@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SEO from "../components/SEO";
 import "./Search.css";
 
 export default function Search() {
@@ -57,6 +58,20 @@ export default function Search() {
     ],
   };
 
+  // SEO SETTINGS
+  const seoLocation = destination || region;
+
+  const seoTitle = seoLocation
+    ? `${category === "Properties" ? "Properties for Sale" : "Holiday Stays"} in ${seoLocation}, Kenya | ÉLAN HOMES`
+    : category === "Properties"
+      ? "Search Properties for Sale in Kenya | ÉLAN HOMES"
+      : "Search Holiday Stays in Kenya | ÉLAN HOMES";
+
+  const seoDescription =
+    category === "Properties"
+      ? `Search houses, villas and apartments for sale in ${seoLocation ? `${seoLocation}, ` : ""}Kenya. Explore property opportunities with ÉLAN HOMES.`
+      : `Search holiday homes, furnished accommodation and beautiful short stays in ${seoLocation ? `${seoLocation}, ` : ""}Kenya with ÉLAN HOMES.`;
+
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -74,6 +89,8 @@ export default function Search() {
 
   return (
     <main className="search-page">
+      <SEO title={seoTitle} description={seoDescription} />
+
       <section className="search-hero">
         <div className="search-hero-content">
           <span>DISCOVER YOUR NEXT PLACE</span>

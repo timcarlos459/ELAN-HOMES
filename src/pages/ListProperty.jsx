@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SEO from "../components/SEO";
 import contactDetails from "../data/contact";
 import "./ListProperty.css";
 
@@ -120,6 +121,11 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
   return (
     <main className="list-property-page">
+      <SEO
+        title="List Your Property in Kenya | Partner with ÉLAN HOMES"
+        description="List your house, apartment, villa, commercial property, land or holiday accommodation with ÉLAN HOMES. Submit your property details and connect with potential buyers and guests across Kenya."
+      />
+
       {/* HERO */}
       <section className="list-property-hero">
         <div className="list-property-hero-content">

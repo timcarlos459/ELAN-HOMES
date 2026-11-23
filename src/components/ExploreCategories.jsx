@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./ExploreCategories.css";
 
 const categories = [
@@ -6,7 +7,7 @@ const categories = [
     title: "Find Your Home",
     description:
       "Explore exceptional houses, apartments and villas for sale across Kenya.",
-    link: "#properties",
+    link: "/properties",
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000",
     action: "Explore Properties",
@@ -16,7 +17,7 @@ const categories = [
     title: "Holiday Stays",
     description:
       "Discover beautiful holiday homes, villas and unique places to stay.",
-    link: "#bnb",
+    link: "/stays",
     image:
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1000",
     action: "Explore Stays",
@@ -26,7 +27,7 @@ const categories = [
     title: "Land & Investments",
     description:
       "Discover prime residential, commercial and agricultural land opportunities.",
-    link: "#land",
+    link: "/land",
     image:
       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1000",
     action: "Explore Land",
@@ -56,7 +57,12 @@ export default function ExploreCategories() {
           {categories.map((category) => (
             <article className="explore-card" key={category.number}>
               <div className="explore-card-image">
-                <img src={category.image} alt={category.title} />
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  loading="lazy"
+                  decoding="async"
+                />
 
                 <span className="explore-number">{category.number}</span>
               </div>
@@ -66,10 +72,10 @@ export default function ExploreCategories() {
 
                 <p>{category.description}</p>
 
-                <a href={category.link}>
+                <Link to={category.link}>
                   {category.action}
                   <span>↗</span>
-                </a>
+                </Link>
               </div>
             </article>
           ))}

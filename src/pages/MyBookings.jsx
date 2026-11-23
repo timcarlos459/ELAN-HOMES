@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 import "./MyBookings.css";
 
 export default function MyBookings() {
@@ -87,8 +88,13 @@ export default function MyBookings() {
 
   return (
     <main className="my-bookings-page">
-      {/* HERO */}
+      <SEO
+        title="My Bookings | ÉLAN HOMES"
+        description="View your ÉLAN HOMES holiday accommodation booking requests, check-in dates, booking status and reservation details."
+        noindex={true}
+      />
 
+      {/* HERO */}
       <section className="bookings-hero">
         <div className="bookings-hero-content">
           <span>YOUR ELAN HOMES EXPERIENCE</span>
@@ -100,10 +106,8 @@ export default function MyBookings() {
       </section>
 
       {/* MAIN CONTENT */}
-
       <section className="bookings-container">
         {/* PAGE HEADING */}
-
         <div className="bookings-heading">
           <div>
             <span className="bookings-label">YOUR ACCOUNT</span>
@@ -120,7 +124,6 @@ export default function MyBookings() {
         </div>
 
         {/* BOOKING STATISTICS */}
-
         {bookings.length > 0 && (
           <div className="booking-statistics">
             <div className="booking-stat-item">
@@ -141,7 +144,6 @@ export default function MyBookings() {
         )}
 
         {/* BOOKINGS AVAILABLE */}
-
         {bookings.length > 0 ? (
           <div className="bookings-list">
             {bookings.map((booking, index) => {
@@ -153,7 +155,6 @@ export default function MyBookings() {
                   key={booking.id || booking.bookingReference || index}
                 >
                   {/* BOOKING HEADER */}
-
                   <div className="booking-card-top">
                     <div>
                       <span className="booking-reference">
@@ -173,7 +174,6 @@ export default function MyBookings() {
                   </div>
 
                   {/* ACCOMMODATION DETAILS */}
-
                   <div className="booking-section-title">
                     <h4>Accommodation Details</h4>
                   </div>
@@ -181,7 +181,6 @@ export default function MyBookings() {
                   <div className="booking-card-details">
                     <div>
                       <span>Accommodation</span>
-
                       <strong>
                         {booking.stayName ||
                           booking.propertyName ||
@@ -191,37 +190,31 @@ export default function MyBookings() {
 
                     <div>
                       <span>Location</span>
-
                       <strong>{booking.location || "To be confirmed"}</strong>
                     </div>
 
                     <div>
                       <span>Check-in</span>
-
                       <strong>{formatDate(booking.checkIn)}</strong>
                     </div>
 
                     <div>
                       <span>Check-out</span>
-
                       <strong>{formatDate(booking.checkOut)}</strong>
                     </div>
 
                     <div>
                       <span>Guests</span>
-
                       <strong>{booking.guests || 1}</strong>
                     </div>
 
                     <div>
                       <span>Number of Nights</span>
-
                       <strong>{booking.nights || 0}</strong>
                     </div>
 
                     <div>
                       <span>Estimated Total</span>
-
                       <strong className="booking-total">
                         {formatPrice(booking.total)}
                       </strong>
@@ -229,37 +222,31 @@ export default function MyBookings() {
                   </div>
 
                   {/* CUSTOMER INFORMATION */}
-
                   <div className="booking-customer-section">
                     <h4>Customer Information</h4>
 
                     <div className="booking-customer-details">
                       <div>
                         <span>Full Name</span>
-
                         <strong>{booking.name || "Not provided"}</strong>
                       </div>
 
                       <div>
                         <span>Email Address</span>
-
                         <strong>{booking.email || "Not provided"}</strong>
                       </div>
 
                       <div>
                         <span>Phone Number</span>
-
                         <strong>{booking.phone || "Not provided"}</strong>
                       </div>
                     </div>
                   </div>
 
                   {/* BOOKING FOOTER */}
-
                   <div className="booking-card-footer">
                     <div>
                       <span>Enquiry Submitted</span>
-
                       <strong>{formatSubmissionDate(booking.createdAt)}</strong>
                     </div>
 
@@ -271,7 +258,6 @@ export default function MyBookings() {
           </div>
         ) : (
           /* EMPTY STATE */
-
           <div className="bookings-empty">
             <div className="bookings-empty-icon">
               <span>▤</span>
@@ -292,7 +278,6 @@ export default function MyBookings() {
         )}
 
         {/* BOOKING INFORMATION */}
-
         <div className="bookings-information">
           <h3>Need Help With a Booking?</h3>
 

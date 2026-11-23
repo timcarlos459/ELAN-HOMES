@@ -1,0 +1,172 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- MAIN WEBSITE PAGES -->
+  <url>
+    <loc>https://elan-homes.vercel.app/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/about</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/properties</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/stays</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/land</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/contact</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://elan-homes.vercel.app/list-property</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- NAIROBI REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/nairobi</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- NAIROBI LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/lavington</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/langata</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/gigiri</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/karen</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/kileleshwa</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/kilimani</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/nairobi-west</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/ngong-road</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/runda</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/riverside</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/roysambu</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/westlands</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/waiyaki-way</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nairobi/buruburu</loc><priority>0.7</priority></url>
+
+  <!-- KAJIADO REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/kajiado</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- KAJIADO LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/ongata-rongai</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/kitengela</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/kiserian</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/ngong</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/amboseli</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/kajiado/oloitoktok</loc><priority>0.7</priority></url>
+
+  <!-- COASTAL REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/coastal</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- COASTAL COUNTIES -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kwale</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/lamu</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/mombasa</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/taita-taveta</loc><priority>0.7</priority></url>
+
+  <!-- KILIFI LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi/kikambala</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi/malindi</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi/mtwapa</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi/vipingo</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kilifi/watamu</loc><priority>0.6</priority></url>
+
+  <!-- KWALE LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kwale/galu-beach-kinondo</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kwale/msambweni-shimoni</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kwale/diani</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/kwale/tiwi</loc><priority>0.6</priority></url>
+
+  <!-- LAMU LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/lamu/kiwayu</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/lamu/lamu-town</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/lamu/manda-island</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/lamu/shela</loc><priority>0.6</priority></url>
+
+  <!-- MOMBASA LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/mombasa/mombasa-island-cbd</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/mombasa/bamburi</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/mombasa/nyali</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/mombasa/shanzu</loc><priority>0.6</priority></url>
+
+  <!-- TAITA TAVETA LOCATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/taita-taveta/wundanyi-taita-hills</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/taita-taveta/taveta</loc><priority>0.6</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/coastal/taita-taveta/voi</loc><priority>0.6</priority></url>
+
+  <!-- EASTERN REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/eastern</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EASTERN DESTINATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/eastern/machakos</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/eastern/meru</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/eastern/embu</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/eastern/makueni-wote</loc><priority>0.7</priority></url>
+
+  <!-- CENTRAL REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/central</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CENTRAL DESTINATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/central/kiambu</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/central/limuru</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/central/nyeri</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/central/thika</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/central/tigoni</loc><priority>0.7</priority></url>
+
+  <!-- RIFT VALLEY REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/rift-valley</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- RIFT VALLEY DESTINATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/nyanyuki</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/sekenani</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/talek</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/mara-triangle</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/eldoret</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/naivasha</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/rift-valley/nakuru</loc><priority>0.7</priority></url>
+
+  <!-- NYANZA & WESTERN REGION -->
+  <url>
+    <loc>https://elan-homes.vercel.app/destinations/nyanza-western</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- NYANZA & WESTERN DESTINATIONS -->
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/kisumu</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/homa-bay</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/kakamega</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/siaya</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/bungoma</loc><priority>0.7</priority></url>
+  <url><loc>https://elan-homes.vercel.app/destinations/nyanza-western/rusinga-island</loc><priority>0.7</priority></url>
+
+</urlset>

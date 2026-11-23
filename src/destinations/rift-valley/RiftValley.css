@@ -1,0 +1,236 @@
+/* ================================
+   RIFT VALLEY REGION
+================================ */
+
+.rift-valley-page {
+  width: 100%;
+  background: #f8f7f4;
+  color: #171717;
+}
+
+/* HERO */
+
+.rift-valley-hero {
+  min-height: 520px;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1516426122078-c23e76319801");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rift-valley-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+}
+
+.rift-valley-hero-overlay {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 80px 8%;
+  color: #fff;
+}
+
+.rift-valley-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  color: #d4af70;
+  margin-bottom: 20px;
+}
+
+.rift-valley-hero h1 {
+  font-size: clamp(48px, 8vw, 90px);
+  font-weight: 500;
+  margin: 0 0 25px;
+  letter-spacing: -2px;
+}
+
+.rift-valley-hero p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 650px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* DESTINATIONS */
+
+.rift-valley-destinations {
+  padding: 90px 7%;
+}
+
+.rift-valley-section-heading {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 55px;
+}
+
+.rift-valley-section-heading > span {
+  color: #a48650;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.rift-valley-section-heading h2 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 500;
+  margin: 18px 0;
+}
+
+.rift-valley-section-heading p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #777;
+}
+
+/* GRID */
+
+.rift-valley-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* CARDS */
+
+.rift-valley-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.rift-valley-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.rift-valley-card-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.rift-valley-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.rift-valley-card:hover img {
+  transform: scale(1.08);
+}
+
+.rift-valley-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rift-valley-card:hover .rift-valley-card-overlay {
+  opacity: 1;
+}
+
+.rift-valley-card-overlay span {
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border: 1px solid #fff;
+  padding: 14px 22px;
+}
+
+/* CARD CONTENT */
+
+.rift-valley-card-content {
+  padding: 25px;
+}
+
+.rift-valley-card-content h3 {
+  font-size: 23px;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+
+.rift-valley-card-content p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  min-height: 75px;
+}
+
+.rift-valley-card-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #a48650;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* NOT FOUND */
+
+.rift-valley-not-found {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .rift-valley-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .rift-valley-hero {
+    min-height: 420px;
+  }
+
+  .rift-valley-hero-overlay {
+    padding: 60px 6%;
+  }
+
+  .rift-valley-hero p {
+    font-size: 15px;
+  }
+
+  .rift-valley-destinations {
+    padding: 60px 5%;
+  }
+
+  .rift-valley-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .rift-valley-card-image {
+    height: 240px;
+  }
+
+  .rift-valley-card-content p {
+    min-height: auto;
+  }
+}

@@ -1,4 +1,36 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
+
+const regions = [
+  {
+    name: "Nairobi",
+    link: "/destinations/nairobi",
+  },
+  {
+    name: "Coastal Region",
+    link: "/destinations/coastal",
+  },
+  {
+    name: "Eastern Region",
+    link: "/destinations/eastern",
+  },
+  {
+    name: "Kajiado",
+    link: "/destinations/kajiado",
+  },
+  {
+    name: "Central Region",
+    link: "/destinations/central",
+  },
+  {
+    name: "Rift Valley",
+    link: "/destinations/rift-valley",
+  },
+  {
+    name: "Nyanza & Western",
+    link: "/destinations/nyanza-western",
+  },
+];
 
 export default function Footer() {
   return (
@@ -6,10 +38,10 @@ export default function Footer() {
       <div className="footer-main">
         {/* BRAND SECTION */}
         <div className="footer-brand-section">
-          <a href="/" className="footer-brand">
+          <Link to="/" className="footer-brand">
             <span className="footer-brand-name">ÉLAN HOMES</span>
             <span className="footer-brand-tagline">LIVE • STAY • INVEST</span>
-          </a>
+          </Link>
 
           <p>
             Discover exceptional properties, beautiful holiday destinations and
@@ -35,28 +67,30 @@ export default function Footer() {
         {/* QUICK LINKS */}
         <div className="footer-column">
           <h3>Explore</h3>
-          <a href="/">Home</a>
-          <a href="#properties">Properties</a>
-          <a href="#bnb">Holiday Stays</a>
-          <a href="#land">Land & Investments</a>
-          <a href="#destinations">Destinations</a>
+
+          <Link to="/">Home</Link>
+          <Link to="/properties">Properties</Link>
+          <Link to="/stays">Holiday Stays</Link>
+          <Link to="/land">Land & Investments</Link>
+          <Link to="/destinations/nairobi">Destinations</Link>
         </div>
 
         {/* DESTINATIONS */}
         <div className="footer-column">
           <h3>Destinations</h3>
-          <a href="#nairobi">Nairobi</a>
-          <a href="#mombasa">Mombasa</a>
-          <a href="#kilifi">Kilifi</a>
-          <a href="#nakuru">Nakuru</a>
-          <a href="#naivasha">Naivasha</a>
-          <a href="#nanyuki">Nanyuki</a>
+
+          {regions.map((region) => (
+            <Link to={region.link} key={region.name}>
+              {region.name}
+            </Link>
+          ))}
         </div>
 
         {/* COMPANY */}
         <div className="footer-column">
           <h3>Company</h3>
-          <a href="#about">About ELAN</a>
+
+          <a href="#about">About ÉLAN</a>
           <a href="#contact">Contact Us</a>
           <a href="#list-property">List Your Property</a>
           <a href="#careers">Careers</a>
@@ -66,6 +100,7 @@ export default function Footer() {
         {/* CUSTOMER SUPPORT */}
         <div className="footer-column">
           <h3>Support</h3>
+
           <a href="#help">Help Centre</a>
           <a href="#booking-policy">Booking Policy</a>
           <a href="#privacy">Privacy Policy</a>

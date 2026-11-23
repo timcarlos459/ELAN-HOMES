@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import properties from "../data/properties";
 import stays from "../data/stays";
 import { getSavedListings, toggleSavedListing } from "../utils/savedListings";
+import SEO from "../components/SEO";
 import "./Saved.css";
 
 export default function Saved() {
@@ -43,8 +44,13 @@ export default function Saved() {
 
   return (
     <main className="saved-page">
-      {/* PAGE HEADER */}
+      <SEO
+        title="My Saved Listings | ÉLAN HOMES"
+        description="Keep your favourite Kenyan properties for sale and holiday stays together. View and manage your saved ÉLAN HOMES listings."
+        noindex={true}
+      />
 
+      {/* PAGE HEADER */}
       <section className="saved-hero">
         <div className="saved-hero-content">
           <span>YOUR ELAN HOMES COLLECTION</span>
@@ -54,10 +60,8 @@ export default function Saved() {
       </section>
 
       {/* PAGE CONTENT */}
-
       <section className="saved-container">
         {/* PAGE INTRO */}
-
         <div className="saved-heading">
           <div>
             <span className="saved-label">YOUR COLLECTION</span>
@@ -74,7 +78,6 @@ export default function Saved() {
         </div>
 
         {/* TABS */}
-
         <div className="saved-tabs">
           <button
             type="button"
@@ -94,7 +97,6 @@ export default function Saved() {
         </div>
 
         {/* LISTINGS */}
-
         {currentListings.length > 0 ? (
           <div className="saved-grid">
             {currentListings.map((listing) => {
@@ -114,9 +116,13 @@ export default function Saved() {
                   key={`${listingType}-${listing.id}`}
                 >
                   {/* IMAGE */}
-
                   <div className="saved-card-image">
-                    <img src={image} alt={listing.name} />
+                    <img
+                      src={image}
+                      alt={listing.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
 
                     <span className="saved-card-category">
                       {isProperty ? "PROPERTY" : "HOLIDAY STAY"}
@@ -124,7 +130,6 @@ export default function Saved() {
                   </div>
 
                   {/* DETAILS */}
-
                   <div className="saved-card-content">
                     <span className="saved-card-type">{listing.type}</span>
 
@@ -135,7 +140,6 @@ export default function Saved() {
                     </p>
 
                     {/* FEATURES */}
-
                     <div className="saved-card-features">
                       {isProperty ? (
                         <>
@@ -151,7 +155,6 @@ export default function Saved() {
                     </div>
 
                     {/* PRICE */}
-
                     <div className="saved-card-bottom">
                       <strong className="saved-card-price">
                         {isProperty
@@ -170,7 +173,6 @@ export default function Saved() {
                     </div>
 
                     {/* VIEW DETAILS */}
-
                     <Link to={detailsLink} className="saved-view-btn">
                       View Details ↗
                     </Link>
@@ -181,7 +183,6 @@ export default function Saved() {
           </div>
         ) : (
           /* EMPTY STATE */
-
           <div className="saved-empty">
             <div className="saved-empty-icon">♡</div>
 

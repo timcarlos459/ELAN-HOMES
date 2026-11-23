@@ -1,3 +1,42 @@
+import waiyakiWay1 from "../components/images/stays/waiyaki-way/waiyaki-way 1.jpeg";
+import waiyakiWay2 from "../components/images/stays/waiyaki-way/waiyaki-way 2.jpeg";
+import waiyakiWay3 from "../components/images/stays/waiyaki-way/waiyaki-way 3.jpeg";
+import waiyakiWay4 from "../components/images/stays/waiyaki-way/waiyaki-way 4.jpeg";
+import waiyakiWay5 from "../components/images/stays/waiyaki-way/waiyaki-way 5.jpeg";
+import waiyakiWay6 from "../components/images/stays/waiyaki-way/waiyaki-way 6.jpeg";
+import waiyakiWay7 from "../components/images/stays/waiyaki-way/waiyaki-way 7.jpeg";
+import waiyakiWay8 from "../components/images/stays/waiyaki-way/waiyaki-way 8.jpeg";
+import waiyakiWay9 from "../components/images/stays/waiyaki-way/waiyaki-way 9.jpeg";
+
+import buruburu1Bedroom1 from "../components/images/stays/buruburu/buruburu-1-bedroom-1.jpeg";
+import buruburu1Bedroom2 from "../components/images/stays/buruburu/buruburu-1-bedroom-2.jpeg";
+import buruburu1Bedroom3 from "../components/images/stays/buruburu/buruburu-1-bedroom-3.jpeg";
+import buruburu1Bedroom4 from "../components/images/stays/buruburu/buruburu-1-bedroom-4.jpeg";
+import buruburu1Bedroom5 from "../components/images/stays/buruburu/buruburu-1-bedroom-5.jpeg";
+import buruburu1Bedroom6 from "../components/images/stays/buruburu/buruburu-1-bedroom-6.jpeg";
+import buruburu1Bedroom7 from "../components/images/stays/buruburu/buruburu-1-bedroom-7.jpeg";
+import buruburu1Bedroom8 from "../components/images/stays/buruburu/buruburu-1-bedroom-8.jpeg";
+
+import buruburu2Bedroom1 from "../components/images/stays/buruburu/buruburu-2-bedroom-1.jpeg";
+import buruburu2Bedroom2 from "../components/images/stays/buruburu/buruburu-2-bedroom-2.jpeg";
+import buruburu2Bedroom3 from "../components/images/stays/buruburu/buruburu-2-bedroom-3.jpeg";
+import buruburu2Bedroom4 from "../components/images/stays/buruburu/buruburu-2-bedroom-4.jpeg";
+import buruburu2Bedroom5 from "../components/images/stays/buruburu/buruburu-2-bedroom-5.jpeg";
+import buruburu2Bedroom6 from "../components/images/stays/buruburu/buruburu-2-bedroom-6.jpeg";
+import buruburu2Bedroom7 from "../components/images/stays/buruburu/buruburu-2-bedroom-7.jpeg";
+import buruburu2Bedroom8 from "../components/images/stays/buruburu/buruburu-2-bedroom-8.jpeg";
+
+import naivashaStay1 from "../components/images/stays/naivasha/stay-1.jpeg";
+import naivashaStay2 from "../components/images/stays/naivasha/stay-2.jpeg";
+import naivashaStay3 from "../components/images/stays/naivasha/stay-3.jpeg";
+import naivashaStay4 from "../components/images/stays/naivasha/stay-4.jpeg";
+import naivashaStay5 from "../components/images/stays/naivasha/stay-5.jpeg";
+import naivashaStay6 from "../components/images/stays/naivasha/stay-6.jpeg";
+import naivashaStay7 from "../components/images/stays/naivasha/stay-7.jpeg";
+import naivashaStay8 from "../components/images/stays/naivasha/stay-8.jpeg";
+import naivashaStay9 from "../components/images/stays/naivasha/stay-9.jpeg";
+import naivashaStay10 from "../components/images/stays/naivasha/stay-10.jpeg";
+
 const stays = [
   // =====================================
   // COASTAL REGION
@@ -128,101 +167,105 @@ const stays = [
 
   {
     id: 5,
-    name: "Westlands Executive Apartment",
-    location: "Westlands, Nairobi",
+    name: "ÉLAN HOMES",
+    location: "Buruburu Phase 3, Nairobi",
     region: "Nairobi",
-    destination: "Westlands",
+    destination: "Buruburu",
     type: "Apartment",
-    price: 8500,
+    accommodation: "2 Bedrooms",
+    price: 5600,
     currency: "KES",
-    guests: 4,
+    guests: null,
     bedrooms: 2,
-    bathrooms: 2,
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000",
+    bathrooms: null,
+
+    image: buruburu2Bedroom1,
+
     gallery: [
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1000",
-      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1000",
+      buruburu2Bedroom1,
+      buruburu2Bedroom2,
+      buruburu2Bedroom3,
+      buruburu2Bedroom4,
+      buruburu2Bedroom5,
+      buruburu2Bedroom6,
+      buruburu2Bedroom7,
+      buruburu2Bedroom8,
     ],
+
     description:
-      "A contemporary city apartment ideal for business travellers, couples and short city breaks.",
-    amenities: [
-      "Wi-Fi",
-      "Swimming Pool",
-      "Gym",
-      "Kitchen",
-      "Security",
-      "Parking",
-    ],
+      "Enjoy a comfortable and convenient stay at ÉLAN HOMES, located in Buruburu Phase 3, Nairobi. This welcoming two-bedroom apartment is ideal for families, friends, business visitors and guests seeking comfortable short-term accommodation. The property offers parking, convenient access to a nearby supermarket and 24/7 access, making it a practical choice for guests visiting Nairobi. Enjoy a relaxing stay in a convenient residential neighbourhood.",
+
+    amenities: ["Parking", "Supermarket Nearby", "24/7 Access"],
+
     checkIn: "14:00",
     checkOut: "10:00",
-    status: "demo",
   },
 
   {
     id: 6,
-    name: "Karen Garden Residence",
-    location: "Karen, Nairobi",
+    name: "ÉLAN HOMES",
+    location: "Buruburu Phase 3, Nairobi",
     region: "Nairobi",
-    destination: "Karen",
-    type: "Villa",
-    price: 22000,
+    destination: "Buruburu",
+    type: "Apartment",
+    accommodation: "1 Bedroom",
+    price: 3550,
     currency: "KES",
-    guests: 10,
-    bedrooms: 5,
-    bathrooms: 5,
-    image:
-      "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1000",
+    guests: null,
+    bedrooms: 1,
+    bathrooms: null,
+
+    image: buruburu1Bedroom1,
+
     gallery: [
-      "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1000",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000",
+      buruburu1Bedroom1,
+      buruburu1Bedroom2,
+      buruburu1Bedroom3,
+      buruburu1Bedroom4,
+      buruburu1Bedroom5,
+      buruburu1Bedroom6,
+      buruburu1Bedroom7,
+      buruburu1Bedroom8,
     ],
+
     description:
-      "A spacious garden residence offering a peaceful setting for families and group holidays.",
-    amenities: [
-      "Garden",
-      "Swimming Pool",
-      "Wi-Fi",
-      "Kitchen",
-      "Parking",
-      "Security",
-    ],
+      "Enjoy a comfortable and convenient stay at ÉLAN HOMES, located in Buruburu Phase 3, Nairobi. This welcoming one-bedroom apartment is ideal for couples, solo travellers, business visitors and guests seeking comfortable short-term accommodation. The property offers parking, convenient access to a nearby supermarket and 24/7 access, making it a practical choice for guests visiting Nairobi. Enjoy a relaxing stay in a convenient residential neighbourhood.",
+
+    amenities: ["Parking", "Supermarket Nearby", "24/7 Access"],
+
     checkIn: "14:00",
     checkOut: "10:00",
-    status: "demo",
   },
-
   {
     id: 7,
-    name: "Runda Luxury Residence",
-    location: "Runda, Nairobi",
+    name: "Sedera Homes",
+    location: "Muthiga, Waiyaki Way, near St. Peter's Hospital, Nairobi",
     region: "Nairobi",
-    destination: "Runda",
-    type: "Villa",
-    price: 28000,
+    destination: "Waiyaki Way",
+    type: "Studio",
+    accommodation: "Studio",
+    price: 2950,
     currency: "KES",
-    guests: 8,
-    bedrooms: 4,
-    bathrooms: 4,
-    image:
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000",
+    guests: null,
+    bedrooms: 0,
+    unitsAvailable: 2,
+    image: waiyakiWay1,
     gallery: [
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1000",
+      waiyakiWay1,
+      waiyakiWay2,
+      waiyakiWay3,
+      waiyakiWay4,
+      waiyakiWay5,
+      waiyakiWay6,
+      waiyakiWay7,
+      waiyakiWay8,
+      waiyakiWay9,
     ],
     description:
-      "An elegant private residence with spacious living areas for premium short-term accommodation.",
-    amenities: [
-      "Wi-Fi",
-      "Garden",
-      "Swimming Pool",
-      "Kitchen",
-      "Security",
-      "Parking",
-    ],
+      "Experience a comfortable and convenient stay at Sedera Homes, located in Muthiga along Waiyaki Way, near St. Peter's Hospital, Nairobi. These furnished studio apartments offer a welcoming space for guests seeking affordable accommodation for business trips, leisure visits or short stays in Nairobi. The apartment provides convenient parking and access to a swimming pool. Muthiga Mall is approximately 5 minutes away, while the Food Market is around 15 minutes away. Wilson Airport is approximately 35 minutes away by car (approximately 22 km), and Jomo Kenyatta International Airport (JKIA) is approximately 40 minutes away (approximately 35–40 km). Two studio units are available.",
+    amenities: ["Parking", "Swimming Pool"],
     checkIn: "14:00",
     checkOut: "10:00",
-    status: "demo",
   },
 
   // =====================================
@@ -231,30 +274,35 @@ const stays = [
 
   {
     id: 8,
-    name: "Naivasha Lakeside Retreat",
-    location: "Naivasha, Rift Valley",
+    name: "Elan Studio Stay",
+    location: "Lake View Estate, Naivasha, Nakuru County",
     region: "Rift Valley",
     destination: "Naivasha",
-    type: "Cottage",
-    price: 12000,
+    type: "Studio",
+    accommodation: "Studio",
+    price: 2500,
     currency: "KES",
-    guests: 6,
-    bedrooms: 3,
-    bathrooms: 2,
-    image:
-      "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1000",
+    guests: null,
+    bedrooms: 0,
+    image: naivashaStay1,
     gallery: [
-      "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1000",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000",
+      naivashaStay1,
+      naivashaStay2,
+      naivashaStay3,
+      naivashaStay4,
+      naivashaStay5,
+      naivashaStay6,
+      naivashaStay7,
+      naivashaStay8,
+      naivashaStay9,
+      naivashaStay10,
     ],
     description:
-      "A countryside escape for guests looking to enjoy nature, fresh air and a relaxing stay in Naivasha.",
-    amenities: ["Garden", "Wi-Fi", "Fireplace", "Kitchen", "Parking"],
-    checkIn: "14:00",
-    checkOut: "10:00",
-    status: "demo",
+      "Welcome to Elan Studio Stay, located in Lake View Estate, Naivasha. Enjoy a comfortable and affordable stay in a welcoming studio apartment, ideal for guests seeking a convenient and relaxing place to unwind. Whether visiting for a short trip, weekend getaway or peaceful break, Ngenia offers a cosy base for exploring Naivasha and its surroundings.",
+    amenities: ["Parking"],
+    checkIn: "14:00 PM",
+    checkOut: "10:30 AM",
   },
-
   {
     id: 9,
     name: "Maasai Mara Safari Lodge",

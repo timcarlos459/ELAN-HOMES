@@ -61,7 +61,12 @@ export default function FeaturedStays() {
           {featuredStays.map((stay) => (
             <article className="stay-card" key={stay.id}>
               <div className="stay-image">
-                <img src={stay.image} alt={stay.name} />
+                <img
+                  src={stay.image}
+                  alt={stay.name}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="stay-tag">{stay.tag}</span>
               </div>
 

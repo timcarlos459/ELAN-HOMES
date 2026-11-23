@@ -1,0 +1,40 @@
+.bungoma-page {
+  background: #f8f7f4;
+}
+
+.bungoma-hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.7)),
+    linear-gradient(135deg, #314b35, #111111);
+}
+
+.bungoma-page .nyanza-destination-hero-content span {
+  color: #d4af65;
+}
+
+.bungoma-page .nyanza-destination-hero-content h1 {
+  color: #ffffff;
+}
+
+.bungoma-page .nyanza-destination-hero-content p {
+  color: #eeeeee;
+}
+
+.bungoma-page .nyanza-destination-intro span {
+  color: #a88745;
+}
+
+.bungoma-page .nyanza-destination-intro h2 {
+  color: #171717;
+}
+
+.bungoma-page .nyanza-destination-intro p {
+  color: #666666;
+}
+
+@media (max-width: 768px) {
+  .bungoma-page .nyanza-destination-hero {
+    min-height: 360px;
+    padding: 65px 6%;
+  }
+}

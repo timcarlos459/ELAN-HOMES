@@ -1,0 +1,125 @@
+.ngong-page {
+  background: #f8f6f1;
+  color: #171717;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.ngong-hero {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  padding: 100px 8%;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35)),
+    url("https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde")
+      center/cover no-repeat;
+}
+
+.ngong-hero-content {
+  max-width: 750px;
+  color: #fff;
+}
+
+.ngong-hero-content span,
+.ngong-intro > span {
+  color: #c5a15d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.ngong-hero-content h1 {
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.05;
+  margin: 22px 0;
+  font-weight: 700;
+}
+
+.ngong-hero-content p {
+  max-width: 600px;
+  color: #e6e2dc;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.ngong-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 15px 27px;
+  background: #c5a15d;
+  border: 1px solid #c5a15d;
+  color: #171717;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.ngong-button:hover {
+  background: #d7b875;
+  border-color: #d7b875;
+}
+
+/* INTRODUCTION */
+.ngong-intro {
+  max-width: 850px;
+  margin: auto;
+  padding: 85px 20px 75px;
+  text-align: center;
+}
+
+.ngong-intro h2 {
+  font-size: clamp(28px, 4vw, 43px);
+  margin: 18px 0;
+  font-weight: 700;
+}
+
+.ngong-intro p {
+  max-width: 680px;
+  margin: auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* BACK NAVIGATION */
+.ngong-back {
+  padding: 35px 8%;
+  border-top: 1px solid #e9e4da;
+}
+
+.ngong-back a {
+  color: #a68143;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.3s ease;
+}
+
+.ngong-back a:hover {
+  color: #171717;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .ngong-hero {
+    min-height: 500px;
+    padding: 80px 7%;
+  }
+
+  .ngong-hero-content p {
+    font-size: 15px;
+  }
+
+  .ngong-intro {
+    padding: 65px 20px;
+  }
+
+  .ngong-back {
+    padding: 30px 7%;
+  }
+}

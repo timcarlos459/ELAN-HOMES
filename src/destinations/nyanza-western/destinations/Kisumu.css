@@ -1,0 +1,78 @@
+.nyanza-destination-page {
+  width: 100%;
+  background: #f8f7f4;
+  color: #171717;
+}
+
+.nyanza-destination-hero {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 7%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.kisumu-hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.7)),
+    linear-gradient(135deg, #34534e, #111111);
+}
+
+.nyanza-destination-hero-content {
+  max-width: 850px;
+}
+
+.nyanza-destination-hero-content > span,
+.nyanza-destination-intro > span {
+  color: #c6a76a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.nyanza-destination-hero-content h1 {
+  margin: 20px 0;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.nyanza-destination-hero-content p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #e4e4e4;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.nyanza-destination-intro {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 75px 25px 20px;
+  text-align: center;
+}
+
+.nyanza-destination-intro h2 {
+  margin: 16px 0;
+  font-size: clamp(27px, 4vw, 39px);
+  font-weight: 600;
+}
+
+.nyanza-destination-intro p {
+  color: #696969;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .nyanza-destination-hero {
+    min-height: 350px;
+    padding: 60px 22px;
+  }
+
+  .nyanza-destination-intro {
+    padding: 55px 20px 10px;
+  }
+}

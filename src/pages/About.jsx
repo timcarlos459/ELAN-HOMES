@@ -1,8 +1,14 @@
+import SEO from "../components/SEO";
 import "./About.css";
 
 export default function About() {
   return (
     <main className="about-page">
+      <SEO
+        title="About ÉLAN HOMES | Our Story, Mission & Vision"
+        description="Discover ÉLAN HOMES, a Kenyan property and lifestyle platform connecting people with exceptional homes, properties for sale, holiday stays and real estate investment opportunities."
+      />
+
       {/* ABOUT HERO */}
       <section className="about-hero">
         <div className="about-hero-overlay">
@@ -27,6 +33,8 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200"
             alt="Modern luxury property"
+            loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -86,6 +94,8 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200"
             alt="Contemporary architectural design"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </section>
@@ -150,6 +160,8 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200"
             alt="Beautiful luxury home"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </section>

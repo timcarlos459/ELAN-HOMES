@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import properties from "../data/properties";
+import SEO from "../components/SEO";
 import "./Properties.css";
 
 /* ELAN HOMES LOCATIONS */
 
 const locations = {
-  Central: ["Kiambu", "Limuru", "Nyahururu", "Nyandarua", "Nyeri", "Thika"],
+  Central: ["Kiambu", "Limuru", "Nyeri", "Thika", "Tigoni"],
 
   "Coastal Region": ["Kilifi", "Mombasa", "Lamu", "Kwale", "Taita Taveta"],
 
@@ -38,19 +39,24 @@ const locations = {
     "Roysambu",
     "Runda",
     "Westlands",
+    "Waiyaki Way",
+    "Buruburu",
   ],
 
   "Nyanza & Western": [
-    "Homa Bay / Rusinga Island",
-    "Siaya / Bondo",
+    "Homa Bay",
+    "Rusinga Island",
+    "Siaya",
     "Kisumu",
     "Kakamega",
     "Bungoma",
   ],
 
   "Rift Valley": [
-    "Nyanyuki / Laikipia",
-    "Narok / Maasai Mara",
+    "Nyanyuki",
+    "Sekenani",
+    "Talek",
+    "Mara Triangle",
     "Eldoret",
     "Naivasha",
     "Nakuru",
@@ -60,7 +66,7 @@ const locations = {
 /* NORMALIZE LOCATION NAMES */
 
 const normalizeLocation = (value = "") =>
-  value
+  String(value)
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -75,24 +81,37 @@ const formatLocationName = (value = "") =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
+/* CHECK LOCATION MATCH */
+
+const matchesLocation = (property, requestedLocation) => {
+  const search = normalizeLocation(requestedLocation);
+
+  if (!search) return true;
+
+  const destination = normalizeLocation(property.destination);
+  const location = normalizeLocation(property.location);
+
+  return (
+    destination.includes(search) ||
+    search.includes(destination) ||
+    location.includes(search)
+  );
+};
+
 /* PROPERTIES PAGE */
 
 export default function Properties() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const requestedLocation = searchParams.get("location") || "";
-
   const requestedLocationName = formatLocationName(requestedLocation);
 
   /* INITIAL SEARCH VALUES */
 
   const initialRegion = searchParams.get("region") || "All Regions";
-
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
-
   const initialType = searchParams.get("type") || "All Types";
-
   const initialBudget = searchParams.get("budget") || "All Prices";
 
   /* FILTER STATES */
@@ -108,7 +127,7 @@ export default function Properties() {
   );
 
   const [type, setType] = useState(
-    ["House", "Villa", "Apartment"].includes(initialType)
+    ["House", "Villa", "Apartment", "Commercial"].includes(initialType)
       ? initialType
       : "All Types",
   );
@@ -132,23 +151,21 @@ export default function Properties() {
 
     const matchesDestination =
       destination === "All Destinations" ||
-      property.destination === destination;
-
-    const matchesRequestedLocation =
-      !requestedLocation ||
       normalizeLocation(property.destination) ===
-        normalizeLocation(requestedLocation) ||
-      normalizeLocation(property.location).includes(
-        normalizeLocation(requestedLocation),
-      );
+        normalizeLocation(destination);
+
+    const matchesRequestedLocation = matchesLocation(
+      property,
+      requestedLocation,
+    );
 
     const matchesType = type === "All Types" || property.type === type;
 
     const matchesPrice =
-      maxPrice === "All Prices" || property.price <= Number(maxPrice);
+      maxPrice === "All Prices" || Number(property.price) <= Number(maxPrice);
 
     const matchesBedrooms =
-      bedrooms === "Any" || property.bedrooms >= Number(bedrooms);
+      bedrooms === "Any" || Number(property.bedrooms || 0) >= Number(bedrooms);
 
     return (
       matchesRegion &&
@@ -163,7 +180,7 @@ export default function Properties() {
   /* FORMAT PRICE */
 
   const formatPrice = (price) =>
-    `KSh ${(price / 1000000).toLocaleString("en-KE", {
+    `KSh ${(Number(price) / 1000000).toLocaleString("en-KE", {
       maximumFractionDigits: 1,
     })}M`;
 
@@ -180,6 +197,19 @@ export default function Properties() {
 
   return (
     <main className="properties-page">
+      <SEO
+        title={
+          requestedLocationName
+            ? `Properties for Sale in ${requestedLocationName}, Kenya | ÉLAN HOMES`
+            : "Properties for Sale in Kenya | ÉLAN HOMES"
+        }
+        description={
+          requestedLocationName
+            ? `Explore houses, villas, apartments and residential properties for sale in ${requestedLocationName}, Kenya with ÉLAN HOMES.`
+            : "Discover exceptional houses, luxury villas, modern apartments and residential properties for sale across Kenya with ÉLAN HOMES."
+        }
+      />
+
       {/* PAGE HERO */}
 
       <section className="properties-hero">
@@ -264,6 +294,7 @@ export default function Properties() {
               <option value="House">House</option>
               <option value="Villa">Villa</option>
               <option value="Apartment">Apartment</option>
+              <option value="Commercial">Commercial</option>
             </select>
           </div>
 
@@ -319,7 +350,12 @@ export default function Properties() {
             {filteredProperties.map((property) => (
               <article className="property-card" key={property.id}>
                 <div className="property-card-image">
-                  <img src={property.image} alt={property.name} />
+                  <img
+                    src={property.image}
+                    alt={property.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
 
                   <span className="property-status">FOR SALE</span>
                 </div>

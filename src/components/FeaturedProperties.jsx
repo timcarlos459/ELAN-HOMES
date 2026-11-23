@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./FeaturedProperties.css";
 
 const featuredProperties = [
@@ -46,6 +47,7 @@ export default function FeaturedProperties() {
   return (
     <section className="featured-properties" id="properties">
       <div className="featured-container">
+        {/* SECTION HEADER */}
         <div className="featured-header">
           <div>
             <span className="featured-eyebrow">EXCEPTIONAL PLACES</span>
@@ -60,16 +62,23 @@ export default function FeaturedProperties() {
             </p>
           </div>
 
-          <a href="#all-properties" className="view-all-properties">
+          {/* VIEW ALL */}
+          <Link to="/properties" className="view-all-properties">
             View All Properties <span>↗</span>
-          </a>
+          </Link>
         </div>
 
+        {/* FEATURED PROPERTY CARDS */}
         <div className="featured-grid">
           {featuredProperties.map((property) => (
             <article className="featured-card" key={property.id}>
               <div className="featured-image">
-                <img src={property.image} alt={property.name} />
+                <img
+                  src={property.image}
+                  alt={property.name}
+                  loading="lazy"
+                  decoding="async"
+                />
 
                 <span className="property-status">{property.status}</span>
 
@@ -85,9 +94,9 @@ export default function FeaturedProperties() {
                 <h3>{property.name}</h3>
 
                 <div className="property-details">
-                  <span> {property.bedrooms} Bedrooms</span>
-                  <span> {property.bathrooms} Bathrooms</span>
-                  <span> {property.area}</span>
+                  <span>{property.bedrooms} Bedrooms</span>
+                  <span>{property.bathrooms} Bathrooms</span>
+                  <span>{property.area}</span>
                 </div>
 
                 <div className="property-card-bottom">
@@ -96,12 +105,10 @@ export default function FeaturedProperties() {
                     <strong>{property.price}</strong>
                   </div>
 
-                  <a
-                    href="#property-details"
-                    aria-label={`View ${property.name}`}
-                  >
+                  {/* VIEW PROPERTY */}
+                  <Link to="/properties" aria-label={`View ${property.name}`}>
                     ↗
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>

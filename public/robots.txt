@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://elan-homes.vercel.app/sitemap.xml

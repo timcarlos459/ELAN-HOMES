@@ -37,15 +37,12 @@ export default function Navbar() {
           <Link to="/" onClick={closeMenus}>
             Home
           </Link>
-
           <Link to="/properties" onClick={closeMenus}>
             Properties
           </Link>
-
           <Link to="/stays" onClick={closeMenus}>
             Holiday Stays
           </Link>
-
           <Link to="/land" onClick={closeMenus}>
             Land
           </Link>
@@ -95,7 +92,6 @@ export default function Navbar() {
           <Link to="/about" onClick={closeMenus}>
             About Us
           </Link>
-
           <Link to="/contact" onClick={closeMenus}>
             Contact
           </Link>
@@ -113,7 +109,7 @@ export default function Navbar() {
 
         {/* RIGHT SIDE ACTIONS */}
         <div className="elan-nav-actions">
-          <Link to="/search" className="nav-search">
+          <Link to="/search" className="nav-search" onClick={closeMenus}>
             <span>⌕</span> Search
           </Link>
 
@@ -154,9 +150,13 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/list-property" className="list-property-btn">
-            List Your Property
-            <span>↗</span>
+          {/* LIST YOUR PROPERTY */}
+          <Link
+            to="/list-property"
+            className="list-property-btn"
+            onClick={closeMenus}
+          >
+            List Your Property <span>↗</span>
           </Link>
         </div>
       </div>

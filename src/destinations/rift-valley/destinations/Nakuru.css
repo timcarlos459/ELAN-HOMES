@@ -1,0 +1,76 @@
+.rift-destination-page {
+  min-height: 100vh;
+  background: #f8f6f1;
+}
+
+.rift-destination-hero {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  padding: 80px 8%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.nakuru-hero {
+  background-image:
+    linear-gradient(90deg, rgba(10, 10, 10, 0.82), rgba(10, 10, 10, 0.35)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+}
+
+.rift-destination-hero-content {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.rift-destination-eyebrow {
+  display: inline-block;
+  color: #d4b36a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.rift-destination-hero h1 {
+  color: #fff;
+  font-size: clamp(45px, 7vw, 76px);
+  font-weight: 700;
+  margin: 0 0 20px;
+  letter-spacing: -2px;
+}
+
+.rift-destination-hero p {
+  color: #eee;
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 580px;
+  margin-bottom: 30px;
+}
+
+.rift-back-link {
+  display: inline-block;
+  color: #d4b36a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.rift-back-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .rift-destination-hero {
+    min-height: 400px;
+    padding: 70px 6%;
+  }
+
+  .rift-destination-hero p {
+    font-size: 15px;
+  }
+}

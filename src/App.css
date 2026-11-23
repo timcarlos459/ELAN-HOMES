@@ -50,3 +50,37 @@ img {
   --elan-text: #333333;
   --elan-muted: #777777;
 }
+
+/* PAGE LOADING SCREEN */
+
+.page-loader {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: #f8f6f1;
+  color: #171717;
+}
+
+.page-loader p {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.page-loader-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid #ded8cc;
+  border-top-color: #b18a45;
+  border-radius: 50%;
+  animation: elan-loader-spin 0.8s linear infinite;
+}
+
+@keyframes elan-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

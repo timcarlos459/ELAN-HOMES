@@ -1,0 +1,135 @@
+.talek-page {
+  background: #f8f7f4;
+  color: #171717;
+}
+
+/* HERO */
+
+.talek-hero {
+  min-height: 520px;
+  background-image: url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.talek-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.25));
+}
+
+.talek-hero-overlay {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  padding: 80px 8%;
+  color: #fff;
+}
+
+.talek-hero-overlay > span,
+.talek-intro > span {
+  color: #b99a62;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.talek-hero h1 {
+  font-size: clamp(42px, 7vw, 72px);
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.talek-hero p {
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 650px;
+  color: #eee;
+}
+
+.talek-hero a {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 15px 25px;
+  border: 1px solid #c4a46a;
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  transition: 0.3s;
+}
+
+.talek-hero a:hover {
+  background: #c4a46a;
+  color: #111;
+}
+
+/* INTRO */
+
+.talek-intro {
+  max-width: 850px;
+  margin: auto;
+  padding: 85px 25px 65px;
+  text-align: center;
+}
+
+.talek-intro h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.talek-intro p {
+  color: #777;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* MARKETPLACE */
+
+#talek-marketplace {
+  padding-bottom: 50px;
+  scroll-margin-top: 100px;
+}
+
+/* BACK LINK */
+
+.talek-back {
+  text-align: center;
+  padding: 35px 20px 65px;
+}
+
+.talek-back a {
+  color: #a48650;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.talek-back a:hover {
+  color: #171717;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .talek-hero {
+    min-height: 420px;
+  }
+
+  .talek-hero-overlay {
+    padding: 60px 6%;
+  }
+
+  .talek-hero p {
+    font-size: 15px;
+  }
+
+  .talek-intro {
+    padding: 60px 22px 45px;
+  }
+}

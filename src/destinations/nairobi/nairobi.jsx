@@ -14,6 +14,8 @@ import Runda from "./locations/Runda";
 import Riverside from "./locations/Riverside";
 import Roysambu from "./locations/Roysambu";
 import Westlands from "./locations/Westlands";
+import WaiyakiWay from "./locations/waiyaki-way";
+import Buruburu from "./locations/Buruburu";
 
 // ALL NAIROBI LOCATIONS
 const locations = [
@@ -29,6 +31,8 @@ const locations = [
   { name: "Riverside", slug: "riverside", component: Riverside },
   { name: "Roysambu", slug: "roysambu", component: Roysambu },
   { name: "Westlands", slug: "westlands", component: Westlands },
+  { name: "Waiyaki Way", slug: "waiyaki-way", component: WaiyakiWay },
+  { name: "Buruburu", slug: "buruburu", component: Buruburu },
 ];
 
 export default function Nairobi({ locationSlug }) {
