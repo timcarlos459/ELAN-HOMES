@@ -106,8 +106,6 @@ export default function Properties() {
   const requestedLocation = searchParams.get("location") || "";
   const requestedLocationName = formatLocationName(requestedLocation);
 
-  /* INITIAL SEARCH VALUES */
-
   const initialRegion = searchParams.get("region") || "All Regions";
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
@@ -143,9 +141,11 @@ export default function Properties() {
   const availableDestinations =
     region !== "All Regions" ? locations[region] || [] : [];
 
-  /* FILTER PROPERTIES */
+  /* FILTER PROPERTIES - HIDE DEMOS */
 
   const filteredProperties = properties.filter((property) => {
+    if (property.status === "demo") return false;
+
     const matchesRegion =
       region === "All Regions" || property.region === region;
 
@@ -195,6 +195,12 @@ export default function Properties() {
     setSearchParams({});
   };
 
+  /* CHECK WHETHER REAL PROPERTIES EXIST */
+
+  const hasProperties = properties.some(
+    (property) => property.status !== "demo",
+  );
+
   return (
     <main className="properties-page">
       <SEO
@@ -205,8 +211,8 @@ export default function Properties() {
         }
         description={
           requestedLocationName
-            ? `Explore houses, villas, apartments and residential properties for sale in ${requestedLocationName}, Kenya with ÉLAN HOMES.`
-            : "Discover exceptional houses, luxury villas, modern apartments and residential properties for sale across Kenya with ÉLAN HOMES."
+            ? `Discover property opportunities in ${requestedLocationName}, Kenya with ÉLAN HOMES.`
+            : "Discover houses, luxury villas and modern apartments for sale across Kenya with ÉLAN HOMES."
         }
       />
 
@@ -244,177 +250,212 @@ export default function Properties() {
         </div>
       </section>
 
-      {/* FILTERS AND LISTINGS */}
+      {/* PROPERTY COLLECTION */}
 
-      <section className="properties-content">
-        <div className="properties-filters">
-          <div className="filter-group">
-            <label>Region</label>
-
-            <select
-              value={region}
-              onChange={(e) => {
-                setRegion(e.target.value);
-                setDestination("All Destinations");
-              }}
-            >
-              <option value="All Regions">All Regions</option>
-
-              {Object.keys(locations).map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>County / Destination</label>
-
-            <select
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              disabled={region === "All Regions"}
-            >
-              <option value="All Destinations">All Destinations</option>
-
-              {availableDestinations.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Property Type</label>
-
-            <select value={type} onChange={(e) => setType(e.target.value)}>
-              <option value="All Types">All Types</option>
-              <option value="House">House</option>
-              <option value="Villa">Villa</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Commercial">Commercial</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Maximum Price</label>
-
-            <select
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-            >
-              <option value="All Prices">All Prices</option>
-              <option value="10000000">Up to KSh 10M</option>
-              <option value="20000000">Up to KSh 20M</option>
-              <option value="30000000">Up to KSh 30M</option>
-              <option value="50000000">Up to KSh 50M</option>
-              <option value="100000000">Up to KSh 100M</option>
-              <option value="250000000">Up to KSh 250M</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Bedrooms</label>
-
-            <select
-              value={bedrooms}
-              onChange={(e) => setBedrooms(e.target.value)}
-            >
-              <option value="Any">Any</option>
-              <option value="2">2+ Bedrooms</option>
-              <option value="3">3+ Bedrooms</option>
-              <option value="4">4+ Bedrooms</option>
-              <option value="5">5+ Bedrooms</option>
-            </select>
-          </div>
-
-          <button className="clear-filters-btn" onClick={clearFilters}>
-            Clear Filters
-          </button>
-        </div>
-
-        {/* RESULTS HEADING */}
-
-        <div className="properties-results-heading">
-          <h2>Explore Properties</h2>
-
-          <span>{filteredProperties.length} Properties Found</span>
-        </div>
-
-        {/* PROPERTY CARDS */}
-
-        {filteredProperties.length > 0 && (
-          <div className="properties-grid">
-            {filteredProperties.map((property) => (
-              <article className="property-card" key={property.id}>
-                <div className="property-card-image">
-                  <img
-                    src={property.image}
-                    alt={property.name}
-                    loading="lazy"
-                    decoding="async"
-                  />
-
-                  <span className="property-status">FOR SALE</span>
-                </div>
-
-                <div className="property-card-details">
-                  <span className="property-type">{property.type}</span>
-
-                  <h3>{property.name}</h3>
-
-                  <p className="property-location">{property.location}</p>
-
-                  <div className="property-features">
-                    <span>{property.bedrooms} Bedrooms</span>
-                    <span>{property.bathrooms} Bathrooms</span>
-                  </div>
-
-                  <div className="property-card-bottom">
-                    <strong>{formatPrice(property.price)}</strong>
-
-                    <Link
-                      to={`/properties/${property.id}`}
-                      className="view-details-btn"
-                    >
-                      View Details <span>↗</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-
-        {/* EMPTY STATE */}
-
-        {filteredProperties.length === 0 && (
+      {!hasProperties ? (
+        <section className="properties-content">
           <div className="properties-empty">
-            {requestedLocation ? (
-              <>
-                <span>ÉLAN HOMES COLLECTION</span>
+            <span>ÉLAN HOMES COLLECTION</span>
 
-                <h3>Properties Coming Soon</h3>
+            <h3>Properties Coming Soon</h3>
 
-                <p>
-                  We are preparing our property collection for{" "}
-                  {requestedLocationName}. Beautiful homes, villas and
-                  apartments will be featured here soon.
-                </p>
+            <p>
+              We are carefully preparing our property collection. Soon, you will
+              be able to discover houses, luxury villas and modern apartments
+              for sale across Kenya.
+            </p>
 
-                <Link to="/destinations">Explore Other Destinations</Link>
-              </>
-            ) : (
-              <>
-                <h3>No properties found</h3>
-
-                <p>Try adjusting your filters to see more properties.</p>
-              </>
-            )}
+            <Link to="/stays">Explore Available Stays</Link>
           </div>
-        )}
+        </section>
+      ) : (
+        <section className="properties-content">
+          {/* FILTERS */}
+
+          <div className="properties-filters">
+            <div className="filter-group">
+              <label>Region</label>
+
+              <select
+                value={region}
+                onChange={(e) => {
+                  setRegion(e.target.value);
+                  setDestination("All Destinations");
+                }}
+              >
+                <option value="All Regions">All Regions</option>
+
+                {Object.keys(locations).map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>County / Destination</label>
+
+              <select
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                disabled={region === "All Regions"}
+              >
+                <option value="All Destinations">All Destinations</option>
+
+                {availableDestinations.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Property Type</label>
+
+              <select value={type} onChange={(e) => setType(e.target.value)}>
+                <option value="All Types">All Types</option>
+                <option value="House">House</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Maximum Price</label>
+
+              <select
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+              >
+                <option value="All Prices">All Prices</option>
+                <option value="10000000">Up to KSh 10M</option>
+                <option value="20000000">Up to KSh 20M</option>
+                <option value="30000000">Up to KSh 30M</option>
+                <option value="50000000">Up to KSh 50M</option>
+                <option value="100000000">Up to KSh 100M</option>
+                <option value="250000000">Up to KSh 250M</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Bedrooms</label>
+
+              <select
+                value={bedrooms}
+                onChange={(e) => setBedrooms(e.target.value)}
+              >
+                <option value="Any">Any</option>
+                <option value="2">2+ Bedrooms</option>
+                <option value="3">3+ Bedrooms</option>
+                <option value="4">4+ Bedrooms</option>
+                <option value="5">5+ Bedrooms</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              className="clear-filters-btn"
+              onClick={clearFilters}
+            >
+              Clear Filters
+            </button>
+          </div>
+
+          {/* RESULTS HEADING */}
+
+          <div className="properties-results-heading">
+            <h2>Explore Properties</h2>
+
+            <span>{filteredProperties.length} Properties Found</span>
+          </div>
+
+          {/* PROPERTY CARDS */}
+
+          {filteredProperties.length > 0 && (
+            <div className="properties-grid">
+              {filteredProperties.map((property) => (
+                <article className="property-card" key={property.id}>
+                  <div className="property-card-image">
+                    <img
+                      src={property.image}
+                      alt={property.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+
+                    <span className="property-status">FOR SALE</span>
+                  </div>
+
+                  <div className="property-card-details">
+                    <span className="property-type">{property.type}</span>
+
+                    <h3>{property.name}</h3>
+
+                    <p className="property-location">{property.location}</p>
+
+                    <div className="property-features">
+                      <span>{property.bedrooms} Bedrooms</span>
+                      <span>{property.bathrooms} Bathrooms</span>
+                    </div>
+
+                    <div className="property-card-bottom">
+                      <strong>{formatPrice(property.price)}</strong>
+
+                      <Link
+                        to={`/properties/${property.id}`}
+                        className="view-details-btn"
+                      >
+                        View Details <span>↗</span>
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* FILTERED EMPTY STATE */}
+
+          {filteredProperties.length === 0 && (
+            <div className="properties-empty">
+              <span>ÉLAN HOMES COLLECTION</span>
+
+              <h3>No Matching Properties</h3>
+
+              <p>
+                We couldn't find properties matching your selected filters. Try
+                changing your search criteria.
+              </p>
+
+              <button type="button" onClick={clearFilters}>
+                Clear Filters
+              </button>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* CLIENT TESTIMONIALS */}
+
+      <section className="property-testimonials">
+        <div className="testimonials-heading">
+          <span>CLIENT EXPERIENCES</span>
+
+          <h2>What Our Clients Say</h2>
+
+          <p>
+            We're building a community around better property experiences.
+            Genuine client feedback will appear here.
+          </p>
+        </div>
+
+        <div className="testimonial-demo-notice">
+          Verified client testimonials will be featured here as genuine customer
+          feedback becomes available.
+        </div>
       </section>
     </main>
   );

@@ -8,18 +8,20 @@ import "./PropertyDetails.css";
 export default function PropertyDetails() {
   const { id } = useParams();
 
-  const property = properties.find((item) => item.id === Number(id));
+  const property = properties.find(
+    (item) => item.id === id && item.status !== "demo",
+  );
 
   const gallery = property
     ? property.gallery?.length
       ? property.gallery
-      : [property.image]
+      : property.image
+        ? [property.image]
+        : []
     : [];
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-
-  // SAVED PROPERTY FUNCTIONALITY
   const [savedListings, setSavedListings] = useState(() => getSavedListings());
 
   const isSaved = savedListings.some(
@@ -38,18 +40,16 @@ export default function PropertyDetails() {
       maximumFractionDigits: 1,
     })}M`;
 
-  // DYNAMIC PROPERTY SEO
   const seoTitle = property
     ? `${property.name} for Sale in ${property.location} | ÉLAN HOMES`
-    : "Property Not Found | ÉLAN HOMES";
+    : "Property Coming Soon | ÉLAN HOMES";
 
   const seoDescription = property
-    ? `Explore ${property.name}, a ${property.type?.toLowerCase() || "property"} for sale in ${property.location}, Kenya. View property details, ${property.bedrooms || "available"} bedrooms, features and enquire with ÉLAN HOMES.`
-    : "The requested property could not be found. Explore available houses, villas and apartments for sale across Kenya with ÉLAN HOMES.";
+    ? `Explore ${property.name}, a ${property.type?.toLowerCase() || "property"} for sale in ${property.location}, Kenya. View property details and enquire with ÉLAN HOMES.`
+    : "Property listings are coming soon. Explore accommodation and discover property opportunities across Kenya with ÉLAN HOMES.";
 
-  // KEYBOARD NAVIGATION
   useEffect(() => {
-    if (!lightboxOpen) return;
+    if (!lightboxOpen || gallery.length === 0) return;
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -78,16 +78,23 @@ export default function PropertyDetails() {
     };
   }, [lightboxOpen, gallery.length]);
 
-  // PROPERTY NOT FOUND
   if (!property) {
     return (
       <>
         <SEO title={seoTitle} description={seoDescription} />
 
         <main className="property-not-found">
-          <h1>Property Not Found</h1>
-          <p>Sorry, this property may no longer be available.</p>
-          <Link to="/properties">Back to Properties</Link>
+          <span className="details-label">ÉLAN HOMES</span>
+
+          <h1>Properties Coming Soon</h1>
+
+          <p>
+            We are preparing our property collection. Soon, you will be able to
+            discover houses, apartments and villas for sale across Kenya.
+          </p>
+
+          <Link to="/properties">Explore Properties</Link>
+          <Link to="/stays">Explore Stays</Link>
         </main>
       </>
     );
@@ -98,8 +105,6 @@ export default function PropertyDetails() {
       <SEO title={seoTitle} description={seoDescription} />
 
       <main className="property-details-page">
-        {/* BREADCRUMB */}
-
         <div className="property-breadcrumb">
           <Link to="/">Home</Link>
           <span>/</span>
@@ -107,8 +112,6 @@ export default function PropertyDetails() {
           <span>/</span>
           <span>{property.name}</span>
         </div>
-
-        {/* PROPERTY GALLERY */}
 
         <section className="property-details-hero">
           <div className="property-details-image">
@@ -129,8 +132,6 @@ export default function PropertyDetails() {
 
             <span className="details-status">FOR SALE</span>
           </div>
-
-          {/* GALLERY THUMBNAILS */}
 
           <div className="property-gallery-thumbnails">
             {gallery.map((image, index) => (
@@ -154,22 +155,16 @@ export default function PropertyDetails() {
             ))}
           </div>
 
-          {/* PROPERTY HEADING */}
-
           <div className="property-details-heading">
             <div>
               <span className="details-category">{property.type}</span>
-
               <h1>{property.name}</h1>
-
               <p className="details-location">{property.location}</p>
             </div>
 
             <div className="details-price">
               <span>Asking Price</span>
               <strong>{formatPrice(property.price)}</strong>
-
-              {/* SAVE PROPERTY BUTTON */}
 
               <button
                 type="button"
@@ -183,21 +178,13 @@ export default function PropertyDetails() {
           </div>
         </section>
 
-        {/* PROPERTY INFORMATION */}
-
         <section className="property-details-content">
           <div className="property-main-information">
-            {/* OVERVIEW */}
-
             <div className="property-overview">
               <span className="details-label">PROPERTY OVERVIEW</span>
-
               <h2>About This Property</h2>
-
               <p>{property.description}</p>
             </div>
-
-            {/* SPECIFICATIONS */}
 
             <div className="property-specifications">
               <div className="specification-item">
@@ -221,11 +208,8 @@ export default function PropertyDetails() {
               </div>
             </div>
 
-            {/* AMENITIES */}
-
             <div className="property-amenities">
               <span className="details-label">PROPERTY FEATURES</span>
-
               <h2>Amenities & Features</h2>
 
               <div className="amenities-grid">
@@ -239,23 +223,33 @@ export default function PropertyDetails() {
             </div>
           </div>
 
-          {/* ENQUIRY PANEL */}
-
           <aside className="property-enquiry-panel">
             <span className="details-label">INTERESTED IN THIS PROPERTY?</span>
 
             <h3>Make This Property Yours</h3>
 
             <p>
-              Contact ELAN HOMES to enquire about this property or arrange a
+              Contact ÉLAN HOMES to enquire about this property or arrange a
               viewing.
             </p>
 
             <Link
-              to={`/contact?property=${encodeURIComponent(property.name)}`}
+              to={`/properties/${property.id}/request-viewing`}
               className="property-enquiry-btn"
             >
-              Enquire Now ↗
+              Request Viewing ↗
+            </Link>
+
+            <p className="viewing-fee-notice">
+              A non-refundable viewing and connection fee applies. The fee is
+              not part of the property purchase price.
+            </p>
+
+            <Link
+              to={`/enquiry/property/${property.id}`}
+              className="property-back-btn"
+            >
+              General Enquiry
             </Link>
 
             <Link to="/properties" className="property-back-btn">
@@ -264,9 +258,7 @@ export default function PropertyDetails() {
           </aside>
         </section>
 
-        {/* FULL-SCREEN IMAGE VIEWER */}
-
-        {lightboxOpen && (
+        {lightboxOpen && gallery.length > 0 && (
           <div
             className="property-lightbox"
             role="dialog"
@@ -288,7 +280,6 @@ export default function PropertyDetails() {
               className="lightbox-arrow lightbox-previous"
               onClick={(event) => {
                 event.stopPropagation();
-
                 setSelectedImage((current) =>
                   current === 0 ? gallery.length - 1 : current - 1,
                 );
@@ -318,7 +309,6 @@ export default function PropertyDetails() {
               className="lightbox-arrow lightbox-next"
               onClick={(event) => {
                 event.stopPropagation();
-
                 setSelectedImage((current) =>
                   current === gallery.length - 1 ? 0 : current + 1,
                 );

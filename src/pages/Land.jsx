@@ -1,5 +1,8 @@
+
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import landListings from "../data/land";
 import "./Land.css";
 
 /* =================================
@@ -39,6 +42,8 @@ const locations = {
     "Roysambu",
     "Runda",
     "Westlands",
+    "Waiyaki Way",
+    "Buruburu",
   ],
 
   "Nyanza & Western": [
@@ -67,6 +72,73 @@ export default function Land() {
   const [destination, setDestination] = useState("");
   const [type, setType] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [sortBy, setSortBy] = useState("recommended");
+
+  /* =================================
+     FILTER LAND LISTINGS
+     DEMO TEMPORARILY ENABLED
+  ================================= */
+
+  const filteredLandListings = landListings.filter((land) => {
+    const matchesRegion = !region || land.region === region;
+
+    const matchesDestination =
+      !destination || land.destination === destination;
+
+    const matchesType = !type || land.type === type;
+
+    const matchesPrice =
+      !maxPrice || Number(land.price) <= Number(maxPrice);
+
+    return (
+      matchesRegion &&
+      matchesDestination &&
+      matchesType &&
+      matchesPrice
+    );
+  });
+
+  /* =================================
+     SORT LAND LISTINGS
+  ================================= */
+
+  const sortedLandListings = [...filteredLandListings].sort((a, b) => {
+    if (sortBy === "price-low") {
+      return Number(a.price) - Number(b.price);
+    }
+
+    if (sortBy === "price-high") {
+      return Number(b.price) - Number(a.price);
+    }
+
+    return 0;
+  });
+
+  /* =================================
+     CLEAR FILTERS
+  ================================= */
+
+  const clearFilters = () => {
+    setRegion("");
+    setDestination("");
+    setType("");
+    setMaxPrice("");
+    setSortBy("recommended");
+  };
+
+  /* =================================
+     PRICE FORMAT
+  ================================= */
+
+  const formatPrice = (price) => {
+    const numericPrice = Number(price);
+
+    if (!Number.isFinite(numericPrice)) {
+      return "Price on request";
+    }
+
+    return `KSh ${numericPrice.toLocaleString("en-KE")}`;
+  };
 
   /* =================================
      SEO SETTINGS
@@ -121,15 +193,7 @@ export default function Land() {
           <div className="land-filter-heading">
             <h3>Find Your Land</h3>
 
-            <button
-              type="button"
-              onClick={() => {
-                setRegion("");
-                setDestination("");
-                setType("");
-                setMaxPrice("");
-              }}
-            >
+            <button type="button" onClick={clearFilters}>
               Clear filters
             </button>
           </div>
@@ -189,9 +253,69 @@ export default function Land() {
               <option value="5000000">Up to KSh 5M</option>
               <option value="10000000">Up to KSh 10M</option>
               <option value="20000000">Up to KSh 20M</option>
+              <option value="30000000">Up to KSh 30M</option>
+              <option value="50000000">Up to KSh 50M</option>
+              <option value="75000000">Up to KSh 75M</option>
+              <option value="100000000">Up to KSh 100M</option>
+              <option value="150000000">Up to KSh 150M</option>
+              <option value="200000000">Up to KSh 200M</option>
+              <option value="250000000">Up to KSh 250M</option>
+            </select>
+
+            {/* SORT BY */}
+
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="recommended">Recommended</option>
+              <option value="price-low">Price: Lowest to Highest</option>
+              <option value="price-high">Price: Highest to Lowest</option>
             </select>
           </div>
         </div>
+      </section>
+
+      {/* LAND RESULTS */}
+
+      <section className="land-results">
+        {sortedLandListings.length > 0 ? (
+          <div className="land-results-grid">
+            {sortedLandListings.map((land) => (
+              <article className="land-card" key={land.id}>
+                <div className="land-card-content">
+                  <span>{land.type} Land</span>
+
+                  <h3>{land.title}</h3>
+
+                  <p>
+                    {land.destination}, {land.region}
+                  </p>
+
+                  <strong>{formatPrice(land.price)}</strong>
+
+                  <p>{land.size}</p>
+
+                  <Link
+                    to={`/land/${land.id}`}
+                    className="land-card-link"
+                    aria-label={`View details for ${land.title}`}
+                  >
+                    View Land Details <span>↗</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="land-empty">
+            <span>ÉLAN HOMES LAND COLLECTION</span>
+
+            <h2>Land Opportunities Coming Soon</h2>
+
+            <p>
+              We're preparing carefully selected land opportunities across
+              Kenya. Please check back soon for available listings.
+            </p>
+          </div>
+        )}
       </section>
     </main>
   );

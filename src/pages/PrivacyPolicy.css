@@ -1,0 +1,164 @@
+.privacy-policy-page {
+  background: #f7f6f2;
+  color: #171717;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+
+.privacy-policy-hero {
+  background: #111;
+  padding: 75px 6%;
+  text-align: center;
+}
+
+.privacy-policy-hero span {
+  color: #c9a961;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+.privacy-policy-hero h1 {
+  color: #fff;
+  font-size: clamp(36px, 5vw, 52px);
+  margin: 17px 0;
+}
+
+.privacy-policy-hero p {
+  color: #ccc;
+  max-width: 680px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.privacy-policy-content {
+  width: min(900px, 90%);
+  margin: 65px auto 0;
+}
+
+.privacy-policy-intro {
+  margin-bottom: 35px;
+}
+
+.privacy-policy-intro h2 {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.privacy-policy-intro p,
+.privacy-policy-section p {
+  color: #626262;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.privacy-policy-section {
+  background: #fff;
+  border: 1px solid #e8e4dc;
+  border-radius: 7px;
+  padding: 25px;
+  margin-bottom: 16px;
+}
+
+.privacy-policy-section h3 {
+  font-size: 17px;
+  margin: 0 0 13px;
+  color: #171717;
+}
+
+.privacy-policy-section p {
+  margin: 0 0 12px;
+}
+
+.privacy-policy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-policy-section ul {
+  padding-left: 22px;
+  margin: 12px 0;
+}
+
+.privacy-policy-section li {
+  color: #626262;
+  font-size: 14px;
+  line-height: 1.9;
+  padding-left: 4px;
+}
+
+.privacy-policy-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #9a7839;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.privacy-policy-link:hover {
+  text-decoration: underline;
+}
+
+.privacy-policy-note {
+  background: #111;
+  color: #ddd;
+  padding: 24px;
+  border-left: 4px solid #c9a961;
+  border-radius: 5px;
+  line-height: 1.8;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.privacy-policy-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.privacy-policy-button {
+  display: inline-block;
+  padding: 14px 25px;
+  background: #c9a961;
+  color: #111;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.privacy-policy-button:hover {
+  background: #b18f48;
+}
+
+.privacy-policy-back {
+  color: #333;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.privacy-policy-back:hover {
+  color: #9a7839;
+}
+
+@media (max-width: 600px) {
+  .privacy-policy-hero {
+    padding: 60px 6%;
+  }
+
+  .privacy-policy-content {
+    margin-top: 40px;
+  }
+
+  .privacy-policy-section {
+    padding: 20px;
+  }
+
+  .privacy-policy-intro h2 {
+    font-size: 24px;
+  }
+}

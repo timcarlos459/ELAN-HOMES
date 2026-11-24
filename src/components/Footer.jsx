@@ -2,34 +2,28 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const regions = [
-  {
-    name: "Nairobi",
-    link: "/destinations/nairobi",
-  },
-  {
-    name: "Coastal Region",
-    link: "/destinations/coastal",
-  },
-  {
-    name: "Eastern Region",
-    link: "/destinations/eastern",
-  },
-  {
-    name: "Kajiado",
-    link: "/destinations/kajiado",
-  },
-  {
-    name: "Central Region",
-    link: "/destinations/central",
-  },
-  {
-    name: "Rift Valley",
-    link: "/destinations/rift-valley",
-  },
-  {
-    name: "Nyanza & Western",
-    link: "/destinations/nyanza-western",
-  },
+  { name: "Nairobi", link: "/destinations/nairobi" },
+  { name: "Coastal Region", link: "/destinations/coastal" },
+  { name: "Eastern Region", link: "/destinations/eastern" },
+  { name: "Kajiado", link: "/destinations/kajiado" },
+  { name: "Central Region", link: "/destinations/central" },
+  { name: "Rift Valley", link: "/destinations/rift-valley" },
+  { name: "Nyanza & Western", link: "/destinations/nyanza-western" },
+];
+
+const companyLinks = [
+  { name: "About ÉLAN", link: "/about" },
+  { name: "Contact Us", link: "/contact" },
+  { name: "List Your Property", link: "/list-property" },
+  { name: "Careers", link: "/careers" },
+  { name: "FAQs", link: "/help-centre" },
+];
+
+const supportLinks = [
+  { name: "Help Centre", link: "/help-centre" },
+  { name: "Booking Policy", link: "/booking-policy" },
+  { name: "Privacy Policy", link: "/privacy-policy" },
+  { name: "Terms & Conditions", link: "/terms-and-conditions" },
 ];
 
 export default function Footer() {
@@ -67,7 +61,6 @@ export default function Footer() {
         {/* QUICK LINKS */}
         <div className="footer-column">
           <h3>Explore</h3>
-
           <Link to="/">Home</Link>
           <Link to="/properties">Properties</Link>
           <Link to="/stays">Holiday Stays</Link>
@@ -78,7 +71,6 @@ export default function Footer() {
         {/* DESTINATIONS */}
         <div className="footer-column">
           <h3>Destinations</h3>
-
           {regions.map((region) => (
             <Link to={region.link} key={region.name}>
               {region.name}
@@ -89,29 +81,27 @@ export default function Footer() {
         {/* COMPANY */}
         <div className="footer-column">
           <h3>Company</h3>
-
-          <a href="#about">About ÉLAN</a>
-          <a href="#contact">Contact Us</a>
-          <a href="#list-property">List Your Property</a>
-          <a href="#careers">Careers</a>
-          <a href="#faq">FAQs</a>
+          {companyLinks.map((item) => (
+            <Link to={item.link} key={item.name}>
+              {item.name}
+            </Link>
+          ))}
         </div>
 
         {/* CUSTOMER SUPPORT */}
         <div className="footer-column">
           <h3>Support</h3>
-
-          <a href="#help">Help Centre</a>
-          <a href="#booking-policy">Booking Policy</a>
-          <a href="#privacy">Privacy Policy</a>
-          <a href="#terms">Terms & Conditions</a>
+          {supportLinks.map((item) => (
+            <Link to={item.link} key={item.name}>
+              {item.name}
+            </Link>
+          ))}
         </div>
       </div>
 
       {/* FOOTER BOTTOM */}
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} ÉLAN HOMES. All rights reserved.</p>
-
         <p>Designed for better living in Kenya.</p>
       </div>
     </footer>

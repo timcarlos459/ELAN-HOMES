@@ -112,6 +112,45 @@ const getToday = () => {
 };
 
 /* =================================
+   GUEST RATINGS
+================================= */
+
+const getStayRating = (stay) => {
+  const reviews = Array.isArray(stay.reviews) ? stay.reviews : [];
+
+  if (reviews.length === 0) {
+    return {
+      average: 0,
+      count: 0,
+    };
+  }
+
+  const validReviews = reviews.filter(
+    (review) =>
+      Number.isFinite(Number(review.rating)) &&
+      Number(review.rating) >= 1 &&
+      Number(review.rating) <= 5,
+  );
+
+  if (validReviews.length === 0) {
+    return {
+      average: 0,
+      count: 0,
+    };
+  }
+
+  const total = validReviews.reduce(
+    (sum, review) => sum + Number(review.rating),
+    0,
+  );
+
+  return {
+    average: total / validReviews.length,
+    count: validReviews.length,
+  };
+};
+
+/* =================================
    HOLIDAY STAYS PAGE
 ================================= */
 
@@ -523,6 +562,8 @@ export default function Stays() {
             {filteredStays.map((stay) => {
               const photoCount = stay.gallery?.length || (stay.image ? 1 : 0);
 
+              const { average, count } = getStayRating(stay);
+
               return (
                 <article className="stay-card" key={stay.id}>
                   {/* MAIN PHOTO */}
@@ -569,6 +610,30 @@ export default function Stays() {
                     <h3>{stay.name}</h3>
 
                     <p className="stay-card-location">{stay.location}</p>
+
+                    {/* GUEST RATING */}
+
+                    <div className="stay-card-rating">
+                      {count > 0 ? (
+                        <>
+                          <span
+                            className="stay-rating-stars"
+                            aria-label={`${average.toFixed(1)} out of 5 stars`}
+                          >
+                            {"★".repeat(Math.round(average))}
+                            {"☆".repeat(5 - Math.round(average))}
+                          </span>
+
+                          <strong>{average.toFixed(1)}</strong>
+
+                          <span>
+                            ({count} {count === 1 ? "review" : "reviews"})
+                          </span>
+                        </>
+                      ) : (
+                        <span className="stay-no-rating">No reviews yet</span>
+                      )}
+                    </div>
 
                     <div className="stay-card-features">
                       <span>

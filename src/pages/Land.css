@@ -1,10 +1,17 @@
+/* =================================
+   ELAN HOMES LAND PAGE
+================================= */
+
 .land-page {
   background: #f8f7f4;
   color: #171717;
   min-height: 100vh;
 }
 
-/* HERO */
+/* =================================
+   HERO
+================================= */
+
 .land-hero {
   min-height: 430px;
   display: flex;
@@ -42,7 +49,10 @@
   color: #e4e4e4;
 }
 
-/* INTRO */
+/* =================================
+   INTRODUCTION
+================================= */
+
 .land-intro {
   max-width: 850px;
   margin: auto;
@@ -61,62 +71,94 @@
   line-height: 1.8;
 }
 
-/* LISTINGS */
+/* =================================
+   LAND LISTINGS SECTION
+================================= */
+
 .land-listings-section {
   max-width: 1250px;
   margin: auto;
-  padding: 20px 25px 90px;
+  padding: 20px 25px 40px;
 }
 
+/* FILTER PANEL */
+
 .land-filter-panel {
-  background: #fff;
-  padding: 28px;
-  border: 1px solid #e8e5df;
-  margin-bottom: 65px;
+  background: #171717;
+  padding: 30px;
+  border: 1px solid #b18a45;
+  border-radius: 6px;
+  margin-bottom: 45px;
 }
 
 .land-filter-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
+  gap: 15px;
+  margin-bottom: 24px;
 }
 
 .land-filter-heading h3 {
-  font-size: 20px;
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
 }
 
 .land-filter-heading button {
-  border: none;
+  padding: 10px 16px;
+  border: 1px solid #b18a45;
+  border-radius: 4px;
   background: transparent;
-  color: #9a7b3f;
+  color: #d5b477;
   cursor: pointer;
   font-weight: 600;
+  transition: 0.3s ease;
 }
+
+.land-filter-heading button:hover {
+  background: #b18a45;
+  color: #171717;
+}
+
+/* FILTER INPUTS */
 
 .land-filters {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 15px;
 }
 
 .land-filters select {
   width: 100%;
-  padding: 14px;
-  border: 1px solid #ddd;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #ded7ca;
+  border-radius: 4px;
   background: #fff;
-  color: #333;
-  outline: none;
+  color: #222;
   font-size: 14px;
+  outline: none;
 }
 
 .land-filters select:focus {
-  border-color: #b89b5e;
+  border-color: #b18a45;
 }
 
 .land-filters select:disabled {
-  background: #f2f2f2;
+  background: #e9e9e9;
   cursor: not-allowed;
+}
+
+/* =================================
+   LAND RESULTS
+================================= */
+
+.land-results {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 6% 100px;
 }
 
 .land-results-heading {
@@ -131,136 +173,114 @@
   font-size: 14px;
 }
 
-.land-grid {
+/* RESULTS GRID */
+
+.land-results-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
 }
 
-/* LAND CARD */
-.land-card {
+/* =================================
+   LAND CARD
+================================= */
+
+.land-results .land-card {
   background: #fff;
-  border: 1px solid #eae7e1;
+  border: 1px solid #e8e2d8;
+  border-radius: 8px;
+  overflow: hidden;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-.land-card:hover {
+.land-results .land-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-.land-image {
-  height: 230px;
-  position: relative;
-  overflow: hidden;
+.land-results .land-card-content {
+  padding: 28px;
 }
 
-.land-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.land-card:hover .land-image img {
-  transform: scale(1.05);
-}
-
-.land-image > span {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #b89b5e;
-  color: #fff;
-  padding: 8px 13px;
+.land-results .land-card-content > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #a98242;
   font-size: 11px;
   font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.land-card-content {
-  padding: 22px;
-}
-
-.land-location {
-  color: #9a7b3f;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.land-card-content h3 {
-  font-size: 19px;
-  margin-bottom: 18px;
-}
-
-.land-details {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: #777;
-  font-size: 12px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
-.land-card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding-top: 18px;
-}
-
-.land-card-bottom small {
-  display: block;
-  color: #888;
-  font-size: 11px;
-  margin-bottom: 6px;
-}
-
-.land-card-bottom strong {
-  font-size: 16px;
+.land-results .land-card-content h3 {
+  margin: 0 0 12px;
   color: #171717;
+  font-size: 21px;
+  font-weight: 600;
 }
 
-.land-card-bottom button {
-  background: #171717;
-  color: #fff;
-  border: none;
-  padding: 12px 17px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background 0.3s ease;
-}
-
-.land-card-bottom button:hover {
-  background: #b89b5e;
-}
-
-.land-empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 55px 20px;
-  background: #fff;
-}
-
-.land-empty p {
+.land-results .land-card-content p {
+  margin: 0 0 14px;
   color: #777;
-  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-/* RESPONSIVE */
+.land-results .land-card-content strong {
+  display: block;
+  margin: 18px 0 12px;
+  color: #a98242;
+  font-size: 20px;
+}
+
+/* =================================
+   EMPTY STATE
+================================= */
+
+.land-results .land-empty {
+  max-width: 760px;
+  margin: 30px auto;
+  padding: 75px 30px;
+  text-align: center;
+  background: #f7f5f0;
+  border: 1px solid #e8e2d8;
+}
+
+.land-results .land-empty > span {
+  color: #a98242;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.land-results .land-empty h2 {
+  margin: 20px 0 15px;
+  color: #171717;
+  font-size: clamp(25px, 4vw, 36px);
+  font-weight: 600;
+}
+
+.land-results .land-empty p {
+  max-width: 550px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
 @media (max-width: 900px) {
-  .land-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .land-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .land-filters {
-    grid-template-columns: repeat(2, 1fr);
+  .land-results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -280,16 +300,28 @@
   }
 
   .land-listings-section {
-    padding: 15px 16px 60px;
+    padding: 15px 16px 30px;
   }
 
   .land-filter-panel {
     padding: 20px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
   }
 
-  .land-filters,
-  .land-grid {
+  .land-filter-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .land-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .land-results {
+    padding: 20px 5% 65px;
+  }
+
+  .land-results-grid {
     grid-template-columns: 1fr;
   }
 
@@ -299,7 +331,7 @@
     gap: 8px;
   }
 
-  .land-image {
-    height: 220px;
+  .land-results .land-empty {
+    padding: 55px 20px;
   }
 }

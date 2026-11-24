@@ -548,3 +548,293 @@
   background: #111111;
   color: #c9a45c;
 }
+
+/* =================================
+   ELAN HOMES - STAY REVIEWS & RATINGS
+================================= */
+
+.stay-reviews-section {
+  margin-top: 10px;
+  padding: 35px 0;
+}
+
+.stay-reviews-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 28px;
+}
+
+.stay-reviews-eyebrow {
+  display: block;
+  color: #a17d3f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.stay-reviews-heading h3 {
+  font-size: 25px;
+  margin: 0 0 10px;
+  color: #171717;
+}
+
+.stay-reviews-heading p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+/* AVERAGE RATING */
+
+.stay-average-rating {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 19px;
+  background: #f1eadc;
+  border: 1px solid #e5d8bf;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.stay-average-rating > strong {
+  font-size: 32px;
+  color: #171717;
+}
+
+.stay-average-rating > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stay-average-rating > div > span {
+  color: #777;
+  font-size: 11px;
+}
+
+/* STARS */
+
+.stay-review-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.review-star {
+  color: #d8d1c5;
+  font-size: 17px;
+}
+
+.review-star.filled {
+  color: #b18a45;
+}
+
+/* REVIEW GRID */
+
+.stay-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stay-review-card {
+  background: #fff;
+  border: 1px solid #e9e3d9;
+  border-radius: 7px;
+  padding: 22px;
+  transition: 0.3s ease;
+}
+
+.stay-review-card:hover {
+  border-color: #c9a45c;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+/* REVIEW AUTHOR */
+
+.stay-review-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.stay-review-avatar {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #171717;
+  color: #d6b36a;
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.stay-review-card-top > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stay-review-card-top strong {
+  color: #171717;
+  font-size: 14px;
+}
+
+.stay-review-card-top span {
+  color: #888;
+  font-size: 11px;
+}
+
+/* REVIEW CONTENT */
+
+.stay-review-card > h4 {
+  color: #171717;
+  font-size: 15px;
+  margin: 13px 0 8px;
+}
+
+.stay-review-card > p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 12px 0;
+}
+
+/* VERIFIED REVIEW */
+
+.stay-verified-review {
+  display: inline-block;
+  color: #8a6a34;
+  background: #f5efe3;
+  border-radius: 3px;
+  padding: 6px 9px;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* NO REVIEWS */
+
+.stay-no-reviews {
+  background: #fff;
+  border: 1px dashed #d8cbb5;
+  border-radius: 7px;
+  padding: 38px 25px;
+  text-align: center;
+}
+
+.stay-no-reviews-icon {
+  font-size: 38px;
+  color: #b18a45;
+  margin-bottom: 10px;
+}
+
+.stay-no-reviews h4 {
+  color: #171717;
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+
+.stay-no-reviews p {
+  max-width: 480px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* REVIEWS RESPONSIVE */
+
+@media (max-width: 700px) {
+  .stay-reviews-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .stay-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stay-average-rating {
+    width: fit-content;
+  }
+
+  .stay-reviews-heading h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .stay-review-card {
+    padding: 17px;
+  }
+
+  .stay-no-reviews {
+    padding: 30px 17px;
+  }
+}
+
+/* =================================
+   STAY PROPERTY VIDEO TOUR
+================================= */
+
+.stay-video-section {
+  width: min(1200px, 92%);
+  margin: 45px auto;
+  padding: 35px;
+  background: #111;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 12px;
+}
+
+.stay-video-heading {
+  margin-bottom: 22px;
+}
+
+.stay-video-heading span {
+  color: #c9a961;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.stay-video-heading h2 {
+  color: #fff;
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+.stay-video-heading p {
+  color: #bbb;
+  line-height: 1.7;
+}
+
+.stay-video-player {
+  display: block;
+  width: 100%;
+  max-height: 650px;
+  background: #000;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+@media (max-width: 600px) {
+  .stay-video-section {
+    padding: 18px;
+    margin: 30px auto;
+  }
+
+  .stay-video-heading h2 {
+    font-size: 22px;
+  }
+}

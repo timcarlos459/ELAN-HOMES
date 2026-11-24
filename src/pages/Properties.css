@@ -513,3 +513,149 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ==========================================
+   PROPERTY TESTIMONIALS
+========================================== */
+
+.property-testimonials {
+  padding: 85px 8% 100px;
+  background: #171717;
+  color: #fff;
+}
+
+.testimonials-heading {
+  max-width: 700px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.testimonials-heading > span {
+  display: block;
+  color: #c6a15b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.testimonials-heading h2 {
+  color: #fff;
+  font-size: clamp(30px, 4vw, 43px);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.testimonials-heading p {
+  color: #c2c2c2;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.testimonial-demo-notice {
+  max-width: 800px;
+  margin: 0 auto 35px;
+  padding: 13px 18px;
+  border: 1px solid rgba(198, 161, 91, 0.35);
+  color: #d4af72;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.testimonial-card {
+  min-width: 0;
+  padding: 30px 25px;
+  background: #222;
+  border: 1px solid #393939;
+  transition: 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  border-color: #b18a45;
+}
+
+.testimonial-stars {
+  color: #d4af72;
+  font-size: 19px;
+  letter-spacing: 4px;
+  margin-bottom: 22px;
+}
+
+.testimonial-card > p {
+  min-height: 110px;
+  color: #dedede;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 25px;
+}
+
+.testimonial-client {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-top: 20px;
+  border-top: 1px solid #414141;
+}
+
+.testimonial-avatar {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #d4af72;
+  color: #171717;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.testimonial-client h3 {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.testimonial-client span {
+  color: #b9b9b9;
+  font-size: 11px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .property-testimonials {
+    padding: 65px 6% 75px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .testimonial-card {
+    padding: 25px 20px;
+  }
+
+  .testimonial-card > p {
+    min-height: auto;
+  }
+}

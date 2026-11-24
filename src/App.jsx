@@ -19,16 +19,31 @@ const About = lazy(() => import("./pages/About"));
 
 const Properties = lazy(() => import("./pages/Properties"));
 const PropertyDetails = lazy(() => import("./pages/PropertyDetails"));
+const RequestViewing = lazy(() => import("./pages/RequestViewing"));
 
 const Stays = lazy(() => import("./pages/Stays"));
 const StayDetails = lazy(() => import("./pages/StayDetails"));
 
 const Land = lazy(() => import("./pages/Land"));
+const LandDetails = lazy(() => import("./pages/LandDetails"));
+const RequestLandViewing = lazy(() => import("./pages/RequestLandViewing"));
+
+// CENTRAL ENQUIRY SYSTEM
+const Enquiry = lazy(() => import("./pages/Enquiry"));
+
 const Contact = lazy(() => import("./pages/Contact"));
 const Search = lazy(() => import("./pages/Search"));
 const ListProperty = lazy(() => import("./pages/ListProperty"));
 const Destination = lazy(() => import("./pages/Destination"));
 
+// SUPPORT PAGES
+const HelpCentre = lazy(() => import("./pages/HelpCentre"));
+const BookingPolicy = lazy(() => import("./pages/BookingPolicy"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsConditions = lazy(() => import("./pages/TermsConditions"));
+const Careers = lazy(() => import("./pages/Careers"));
+
+// ACCOUNT PAGES
 const SignIn = lazy(() => import("./pages/SignIn"));
 const Register = lazy(() => import("./pages/Register"));
 const Account = lazy(() => import("./pages/Account"));
@@ -81,14 +96,28 @@ function App() {
 
           {/* PROPERTIES */}
           <Route path="/properties" element={<Properties />} />
+          <Route
+            path="/properties/:id/request-viewing"
+            element={<RequestViewing />}
+          />
           <Route path="/properties/:id" element={<PropertyDetails />} />
 
           {/* STAYS */}
           <Route path="/stays" element={<Stays />} />
           <Route path="/stays/:id" element={<StayDetails />} />
 
-          {/* OTHER PAGES */}
+          {/* LAND */}
           <Route path="/land" element={<Land />} />
+          <Route
+            path="/land/:id/request-viewing"
+            element={<RequestLandViewing />}
+          />
+          <Route path="/land/:id" element={<LandDetails />} />
+
+          {/* CENTRAL ENQUIRY SYSTEM */}
+          <Route path="/enquiry/:category/:id" element={<Enquiry />} />
+
+          {/* OTHER PAGES */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
           <Route path="/list-property" element={<ListProperty />} />
@@ -96,18 +125,21 @@ function App() {
           {/* DESTINATIONS */}
           <Route path="/destinations" element={<ExploreDestinations />} />
           <Route path="/destinations/:slug" element={<Destination />} />
-
-          {/* DESTINATION LOCATIONS */}
           <Route
             path="/destinations/:slug/:locationSlug"
             element={<Destination />}
           />
-
-          {/* COASTAL COUNTY LOCATIONS */}
           <Route
             path="/destinations/:slug/:countySlug/:locationSlug"
             element={<Destination />}
           />
+
+          {/* SUPPORT PAGES */}
+          <Route path="/help-centre" element={<HelpCentre />} />
+          <Route path="/booking-policy" element={<BookingPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsConditions />} />
+          <Route path="/careers" element={<Careers />} />
 
           {/* ACCOUNT PAGES */}
           <Route path="/signin" element={<SignIn />} />

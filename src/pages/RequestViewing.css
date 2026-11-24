@@ -1,0 +1,263 @@
+.viewing-page {
+  min-height: 80vh;
+  padding: 45px 0 80px;
+  background: #f8f7f4;
+  color: #171717;
+}
+
+.viewing-container {
+  width: min(1150px, 92%);
+  margin: 0 auto;
+}
+
+.viewing-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 35px;
+  color: #777;
+  font-size: 13px;
+}
+
+.viewing-breadcrumb a {
+  color: #9b7a3c;
+  text-decoration: none;
+}
+
+.viewing-heading {
+  margin-bottom: 35px;
+}
+
+.viewing-heading .details-label {
+  color: #a18348;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.viewing-heading h1 {
+  margin: 12px 0;
+  font-size: clamp(30px, 5vw, 44px);
+}
+
+.viewing-heading p {
+  color: #777;
+  line-height: 1.7;
+}
+
+.viewing-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 0.8fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.viewing-form-section,
+.viewing-property-card {
+  background: #fff;
+  border: 1px solid #e8e3d9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.viewing-form-section {
+  padding: 32px;
+}
+
+.viewing-form-section h2 {
+  margin: 0 0 25px;
+  font-size: 21px;
+}
+
+.viewing-section-title {
+  margin-top: 35px !important;
+}
+
+.viewing-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 22px;
+  flex: 1;
+}
+
+.viewing-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.viewing-form-group input,
+.viewing-form-group select,
+.viewing-form-group textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd8cf;
+  border-radius: 6px;
+  background: #fff;
+  color: #171717;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.viewing-form-group input:focus,
+.viewing-form-group select:focus,
+.viewing-form-group textarea:focus {
+  border-color: #b39455;
+  box-shadow: 0 0 0 2px rgba(179, 148, 85, 0.12);
+}
+
+.viewing-form-group textarea {
+  resize: vertical;
+}
+
+.viewing-form-row {
+  display: flex;
+  gap: 18px;
+}
+
+.viewing-policy {
+  margin: 30px 0;
+  padding: 22px;
+  background: #f8f6f0;
+  border: 1px solid #e8dfcb;
+  border-radius: 8px;
+}
+
+.viewing-policy h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+
+.viewing-policy p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.viewing-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.viewing-checkbox input {
+  margin-top: 3px;
+  accent-color: #a18348;
+}
+
+.viewing-submit-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 6px;
+  background: #171717;
+  color: #d5b779;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.viewing-submit-btn:hover {
+  background: #34302a;
+}
+
+.viewing-security-note {
+  margin-top: 16px;
+  color: #888;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.viewing-property-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.viewing-property-info {
+  padding: 22px;
+}
+
+.viewing-property-info > span {
+  color: #a18348;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.viewing-property-info h3 {
+  margin: 12px 0 7px;
+  font-size: 19px;
+}
+
+.viewing-property-info p {
+  color: #777;
+  font-size: 13px;
+}
+
+.viewing-property-info strong {
+  display: block;
+  margin: 18px 0;
+  font-size: 21px;
+}
+
+.viewing-property-info a {
+  color: #9b7a3c;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.viewing-success,
+.viewing-not-found {
+  padding: 30px;
+  text-align: center;
+}
+
+.viewing-success p,
+.viewing-not-found p {
+  color: #777;
+  line-height: 1.7;
+}
+
+.viewing-success button,
+.viewing-not-found a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 5px;
+  background: #171717;
+  color: #d5b779;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .viewing-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .viewing-form-section {
+    padding: 20px;
+  }
+
+  .viewing-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .viewing-page {
+    padding-top: 25px;
+  }
+}

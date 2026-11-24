@@ -4,7 +4,20 @@ const STORAGE_KEY = "elanSavedListings";
 export const getSavedListings = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
+
+    if (!saved) return [];
+
+    const parsed = JSON.parse(saved);
+
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.filter(
+      (item) =>
+        item &&
+        ["property", "stay"].includes(item.type) &&
+        typeof item.id === "string" &&
+        item.id.trim() !== "",
+    );
   } catch (error) {
     console.error("Could not read saved listings:", error);
     return [];
@@ -13,6 +26,8 @@ export const getSavedListings = () => {
 
 // CHECK WHETHER A LISTING IS SAVED
 export const isListingSaved = (type, id) => {
+  if (typeof id !== "string" || !id.trim()) return false;
+
   const savedListings = getSavedListings();
 
   return savedListings.some((item) => item.type === type && item.id === id);
@@ -20,6 +35,14 @@ export const isListingSaved = (type, id) => {
 
 // ADD OR REMOVE A SAVED LISTING
 export const toggleSavedListing = (type, id) => {
+  if (
+    !["property", "stay"].includes(type) ||
+    typeof id !== "string" ||
+    !id.trim()
+  ) {
+    return getSavedListings();
+  }
+
   const savedListings = getSavedListings();
 
   const alreadySaved = savedListings.some(
@@ -30,7 +53,12 @@ export const toggleSavedListing = (type, id) => {
     ? savedListings.filter((item) => !(item.type === type && item.id === id))
     : [...savedListings, { type, id }];
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedListings));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedListings));
+  } catch (error) {
+    console.error("Could not save listings:", error);
+    return savedListings;
+  }
 
   return updatedListings;
 };

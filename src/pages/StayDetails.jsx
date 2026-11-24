@@ -5,10 +5,54 @@ import { getSavedListings, toggleSavedListing } from "../utils/savedListings";
 import SEO from "../components/SEO";
 import "./StayDetails.css";
 
+/* =================================
+   GUEST REVIEWS & RATINGS
+================================= */
+
+const getStayReviews = (stay) => {
+  const reviews = Array.isArray(stay.reviews) ? stay.reviews : [];
+
+  const validReviews = reviews.filter((review) => {
+    const rating = Number(review.rating);
+
+    return Number.isFinite(rating) && rating >= 1 && rating <= 5;
+  });
+
+  const averageRating =
+    validReviews.length > 0
+      ? validReviews.reduce(
+          (total, review) => total + Number(review.rating),
+          0,
+        ) / validReviews.length
+      : 0;
+
+  return {
+    reviews: validReviews,
+    averageRating,
+    reviewCount: validReviews.length,
+  };
+};
+
+const renderStars = (rating) =>
+  Array.from({ length: 5 }, (_, index) => (
+    <span
+      key={index}
+      className={
+        index < Math.round(rating) ? "review-star filled" : "review-star"
+      }
+    >
+      ★
+    </span>
+  ));
+
+/* =================================
+   STAY DETAILS PAGE
+================================= */
+
 export default function StayDetails() {
   const { id } = useParams();
 
-  const stay = stays.find((item) => item.id === Number(id));
+  const stay = stays.find((item) => item.id === id);
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
@@ -32,7 +76,9 @@ export default function StayDetails() {
     : "Stay Not Found | ÉLAN HOMES";
 
   const seoDescription = stay
-    ? `Discover ${stay.name}, a ${stay.accommodation || stay.type || "holiday accommodation"} in ${stay.location}, Kenya. Explore photos, amenities, accommodation details and nightly rates with ÉLAN HOMES.`
+    ? `Discover ${stay.name}, a ${
+        stay.accommodation || stay.type || "holiday accommodation"
+      } in ${stay.location}, Kenya. Explore photos, amenities, accommodation details and nightly rates with ÉLAN HOMES.`
     : "The requested accommodation could not be found. Explore furnished apartments, B&Bs and holiday stays across Kenya with ÉLAN HOMES.";
 
   if (!stay) {
@@ -49,9 +95,20 @@ export default function StayDetails() {
     );
   }
 
-  const formatPrice = (price) => `KSh ${price.toLocaleString("en-KE")}`;
+  /* =================================
+     STAY INFORMATION
+  ================================= */
 
-  const today = new Date().toISOString().split("T")[0];
+  const formatPrice = (price) => `KSh ${Number(price).toLocaleString("en-KE")}`;
+
+  const today = (() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  })();
 
   const hasGuestLimit =
     stay.guests !== null &&
@@ -65,6 +122,16 @@ export default function StayDetails() {
 
   const accommodationType = stay.accommodation || stay.type;
 
+  /* =================================
+     REVIEWS
+  ================================= */
+
+  const { reviews, averageRating, reviewCount } = getStayReviews(stay);
+
+  /* =================================
+     BOOKING CALCULATIONS
+  ================================= */
+
   const nights =
     checkIn && checkOut
       ? Math.round(
@@ -75,17 +142,17 @@ export default function StayDetails() {
 
   const totalPrice = nights > 0 ? nights * stay.price : 0;
 
-  const enquiryLink = `/contact?property=${encodeURIComponent(
-    stay.name,
-  )}&checkIn=${encodeURIComponent(checkIn)}&checkOut=${encodeURIComponent(
-    checkOut,
-  )}&guests=${guests}&nights=${nights}&total=${totalPrice}`;
+  const enquiryLink = `/enquiry/stay/${stay.id}?checkIn=${encodeURIComponent(
+    checkIn,
+  )}&checkOut=${encodeURIComponent(checkOut)}&guests=${guests}&nights=${nights}&total=${totalPrice}`;
 
   return (
     <>
       <SEO title={seoTitle} description={seoDescription} />
 
       <main className="stay-details-page">
+        {/* HERO */}
+
         <section className="stay-details-hero">
           <div className="stay-details-hero-content">
             <span>ELAN HOMES EXPERIENCES</span>
@@ -93,6 +160,8 @@ export default function StayDetails() {
             <p>{stay.location}</p>
           </div>
         </section>
+
+        {/* BREADCRUMB */}
 
         <div className="stay-details-breadcrumb">
           <Link to="/">Home</Link>
@@ -122,8 +191,40 @@ export default function StayDetails() {
           </div>
         </section>
 
+        {/* PROPERTY VIDEO TOUR */}
+
+        {stay.video && (
+          <section className="stay-video-section">
+            <div className="stay-video-heading">
+              <span>EXPLORE THE SPACE</span>
+
+              <h2>Property Video Tour</h2>
+
+              <p>
+                Take a closer look at {stay.name} and experience the
+                accommodation before your visit.
+              </p>
+            </div>
+
+            <video
+              className="stay-video-player"
+              controls
+              playsInline
+              preload="metadata"
+              poster={stay.image}
+            >
+              <source src={stay.video} type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+          </section>
+        )}
+
+        {/* DETAILS AND BOOKING */}
+
         <section className="stay-details-container">
           <div className="stay-details-main">
+            {/* ACCOMMODATION HEADING */}
+
             <div className="stay-details-heading">
               <span>{accommodationType}</span>
 
@@ -224,6 +325,86 @@ export default function StayDetails() {
                 </div>
               </div>
             </div>
+
+            {/* GUEST REVIEWS & RATINGS */}
+
+            <section className="stay-details-section stay-reviews-section">
+              <div className="stay-reviews-heading">
+                <div>
+                  <span className="stay-reviews-eyebrow">
+                    GUEST EXPERIENCES
+                  </span>
+
+                  <h3>Reviews & Ratings</h3>
+
+                  <p>Discover what guests have to say about this stay.</p>
+                </div>
+
+                {reviewCount > 0 && (
+                  <div className="stay-average-rating">
+                    <strong>{averageRating.toFixed(1)}</strong>
+
+                    <div>
+                      <div className="stay-review-stars">
+                        {renderStars(averageRating)}
+                      </div>
+
+                      <span>
+                        {reviewCount} {reviewCount === 1 ? "Review" : "Reviews"}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {reviewCount > 0 ? (
+                <div className="stay-reviews-grid">
+                  {reviews.map((review, index) => (
+                    <article
+                      className="stay-review-card"
+                      key={review.id || index}
+                    >
+                      <div className="stay-review-card-top">
+                        <div className="stay-review-avatar">
+                          {(review.name || "Guest").charAt(0).toUpperCase()}
+                        </div>
+
+                        <div>
+                          <strong>{review.name || "Guest"}</strong>
+                          <span>{review.date || "Guest review"}</span>
+                        </div>
+                      </div>
+
+                      <div className="stay-review-stars">
+                        {renderStars(Number(review.rating))}
+                      </div>
+
+                      {review.title && <h4>{review.title}</h4>}
+
+                      <p>{review.comment || "No written comment provided."}</p>
+
+                      {review.verified && (
+                        <span className="stay-verified-review">
+                          ✓ Verified Stay
+                        </span>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="stay-no-reviews">
+                  <div className="stay-no-reviews-icon">☆</div>
+
+                  <h4>No Guest Reviews Yet</h4>
+
+                  <p>
+                    This accommodation is waiting for its first guest review.
+                    Guest ratings and feedback will appear here as they become
+                    available.
+                  </p>
+                </div>
+              )}
+            </section>
           </div>
 
           {/* BOOKING CARD */}
@@ -236,6 +417,8 @@ export default function StayDetails() {
             <p>Accommodation rate per night</p>
 
             <div className="stay-booking-divider"></div>
+
+            {/* GUESTS */}
 
             <div className="stay-booking-field">
               <label htmlFor="stay-guests">Number of Guests</label>
@@ -252,6 +435,8 @@ export default function StayDetails() {
                 ))}
               </select>
             </div>
+
+            {/* CHECK-IN */}
 
             <div className="stay-booking-field">
               <label htmlFor="stay-checkin">Check-in Date</label>
@@ -270,6 +455,8 @@ export default function StayDetails() {
                 }}
               />
             </div>
+
+            {/* CHECK-OUT */}
 
             <div className="stay-booking-field">
               <label htmlFor="stay-checkout">Check-out Date</label>
@@ -347,6 +534,8 @@ export default function StayDetails() {
               </div>
             )}
 
+            {/* CENTRAL ENQUIRY BUTTON */}
+
             <Link
               to={enquiryLink}
               className="stay-booking-btn"
@@ -366,6 +555,8 @@ export default function StayDetails() {
             </p>
           </aside>
         </section>
+
+        {/* BACK TO STAYS */}
 
         <div className="stay-details-back">
           <Link to="/stays">← Back to Holiday Stays</Link>

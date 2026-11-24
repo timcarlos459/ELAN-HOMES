@@ -1,0 +1,406 @@
+.land-details-page {
+  min-height: 100vh;
+  background: #f8f7f3;
+  color: #171717;
+  padding: 35px 0 80px;
+}
+
+.land-details-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+/* BREADCRUMB */
+
+.land-details-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 35px;
+  color: #777;
+  font-size: 13px;
+}
+
+.land-details-breadcrumb a {
+  color: #777;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.land-details-breadcrumb a:hover {
+  color: #a88345;
+}
+
+/* HEADING */
+
+.land-details-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.land-details-eyebrow,
+.land-details-section > span,
+.land-details-enquiry-card > span,
+.land-details-not-found > span {
+  display: block;
+  color: #a88345;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.land-details-heading h1 {
+  font-size: clamp(30px, 4vw, 46px);
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.land-details-heading p {
+  color: #777;
+  margin: 0;
+  font-size: 15px;
+}
+
+.land-details-price {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.land-details-price small {
+  display: block;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.land-details-price strong {
+  font-size: 23px;
+  color: #a88345;
+}
+
+/* MAIN LAYOUT */
+
+.land-details-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 35px;
+  align-items: start;
+}
+
+.land-details-main {
+  min-width: 0;
+}
+
+/* IMAGE GALLERY */
+
+.land-details-gallery {
+  width: 100%;
+  background: #e9e6df;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.land-details-main-image {
+  display: block;
+  width: 100%;
+  height: 490px;
+  object-fit: cover;
+}
+
+.land-details-thumbnails {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.land-details-thumbnails button {
+  width: 90px;
+  height: 65px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+}
+
+.land-details-thumbnails button.active {
+  border-color: #a88345;
+}
+
+.land-details-thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.land-details-no-image {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+  text-align: center;
+}
+
+.land-details-no-image span {
+  color: #a88345;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 20px;
+}
+
+/* LAND SECTIONS */
+
+.land-details-section {
+  padding: 35px 0;
+  border-bottom: 1px solid #e5e1d8;
+}
+
+.land-details-section h2 {
+  font-size: 25px;
+  margin: 0 0 18px;
+}
+
+.land-details-section > p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* LAND SPECIFICATIONS */
+
+.land-details-specifications {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.land-details-specifications div {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ece8df;
+  border-radius: 8px;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.land-details-specifications div:hover {
+  border-color: #c4a878;
+  transform: translateY(-2px);
+}
+
+.land-details-specifications small {
+  display: block;
+  color: #888;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.land-details-specifications strong {
+  font-size: 15px;
+  color: #222;
+  overflow-wrap: anywhere;
+}
+
+/* OWNER / AGENT INFORMATION NOTICE */
+
+.land-details-information-notice {
+  margin-top: 25px;
+  padding: 22px;
+  background: #f1eee7;
+  border: 1px solid #e3dccd;
+  border-left: 3px solid #a88345;
+  border-radius: 6px;
+}
+
+.land-details-information-notice strong {
+  display: block;
+  color: #8e6c36;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.land-details-information-notice p {
+  color: #666;
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ENQUIRY SIDEBAR */
+
+.land-details-sidebar {
+  position: sticky;
+  top: 110px;
+}
+
+.land-details-enquiry-card {
+  background: #fff;
+  padding: 27px;
+  border: 1px solid #e8e3d9;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.land-details-enquiry-card h2 {
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.land-details-enquiry-card > p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.land-details-viewing-button,
+.land-details-contact-button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.land-details-viewing-button {
+  background: #a88345;
+  color: #fff;
+  margin: 22px 0 15px;
+}
+
+.land-details-viewing-button:hover {
+  background: #8e6c36;
+}
+
+.land-details-contact-button {
+  border: 1px solid #222;
+  color: #222;
+  margin-top: 15px;
+}
+
+.land-details-contact-button:hover {
+  background: #171717;
+  color: #fff;
+}
+
+.land-details-enquiry-card .land-details-fee-notice {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.7;
+}
+
+.land-details-back-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: #777;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.land-details-back-link:hover {
+  color: #a88345;
+}
+
+/* NOT FOUND */
+
+.land-details-not-found {
+  width: min(700px, 92%);
+  margin: 100px auto;
+  text-align: center;
+  background: #fff;
+  padding: 55px 25px;
+  border-radius: 10px;
+}
+
+.land-details-not-found h1 {
+  font-size: 30px;
+}
+
+.land-details-not-found p {
+  color: #777;
+  line-height: 1.7;
+}
+
+.land-details-not-found a {
+  display: inline-block;
+  margin-top: 20px;
+  background: #a88345;
+  color: #fff;
+  padding: 13px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.land-details-not-found a:hover {
+  background: #8e6c36;
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+  .land-details-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .land-details-sidebar {
+    position: static;
+  }
+
+  .land-details-main-image {
+    height: 380px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+  .land-details-page {
+    padding-top: 22px;
+    padding-bottom: 50px;
+  }
+
+  .land-details-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .land-details-price {
+    text-align: left;
+  }
+
+  .land-details-main-image {
+    height: 260px;
+  }
+
+  .land-details-specifications {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .land-details-specifications div {
+    padding: 17px;
+  }
+
+  .land-details-information-notice {
+    padding: 18px;
+  }
+
+  .land-details-enquiry-card {
+    padding: 22px;
+  }
+}
