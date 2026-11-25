@@ -23,10 +23,27 @@ export default function PropertyDetails() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [savedListings, setSavedListings] = useState(() => getSavedListings());
+  const [showAccountOptions, setShowAccountOptions] = useState(false);
 
   const isSaved = savedListings.some(
     (item) => item.type === "property" && item.id === property?.id,
   );
+
+  const isSold = String(property?.status || "").toLowerCase() === "sold";
+
+  const isFeatured = property?.promotion?.status === "active" && !isSold;
+
+  const viewingRequestPath = property
+    ? `/properties/${property.id}/request-viewing`
+    : "/properties";
+
+  const signInLink = `/signin?redirect=${encodeURIComponent(
+    viewingRequestPath,
+  )}`;
+
+  const registerLink = `/register?redirect=${encodeURIComponent(
+    viewingRequestPath,
+  )}`;
 
   const handleSaveProperty = () => {
     if (!property) return;
@@ -35,17 +52,24 @@ export default function PropertyDetails() {
     setSavedListings(updatedListings);
   };
 
-  const formatPrice = (price) =>
-    `KSh ${(price / 1000000).toLocaleString("en-KE", {
+  const formatPrice = (price) => {
+    if (typeof price !== "number") return "Price on Request";
+
+    return `KSh ${(price / 1000000).toLocaleString("en-KE", {
       maximumFractionDigits: 1,
     })}M`;
+  };
 
   const seoTitle = property
-    ? `${property.name} for Sale in ${property.location} | ÉLAN HOMES`
+    ? `${property.name} ${
+        isSold ? "Sold" : "for Sale"
+      } in ${property.location} | ÉLAN HOMES`
     : "Property Coming Soon | ÉLAN HOMES";
 
   const seoDescription = property
-    ? `Explore ${property.name}, a ${property.type?.toLowerCase() || "property"} for sale in ${property.location}, Kenya. View property details and enquire with ÉLAN HOMES.`
+    ? `Explore ${property.name}, a ${
+        property.type?.toLowerCase() || "property"
+      } in ${property.location}, Kenya. View property details and enquire with ÉLAN HOMES.`
     : "Property listings are coming soon. Explore accommodation and discover property opportunities across Kenya with ÉLAN HOMES.";
 
   useEffect(() => {
@@ -78,6 +102,22 @@ export default function PropertyDetails() {
     };
   }, [lightboxOpen, gallery.length]);
 
+  useEffect(() => {
+    if (!showAccountOptions) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowAccountOptions(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showAccountOptions]);
+
   if (!property) {
     return (
       <>
@@ -94,6 +134,7 @@ export default function PropertyDetails() {
           </p>
 
           <Link to="/properties">Explore Properties</Link>
+
           <Link to="/stays">Explore Stays</Link>
         </main>
       </>
@@ -115,55 +156,72 @@ export default function PropertyDetails() {
 
         <section className="property-details-hero">
           <div className="property-details-image">
-            <button
-              type="button"
-              className="main-gallery-image"
-              onClick={() => setLightboxOpen(true)}
-              aria-label="Open full-screen property gallery"
-            >
-              <img
-                src={gallery[selectedImage]}
-                alt={`${property.name} - Photo ${selectedImage + 1}`}
-                decoding="async"
-              />
-
-              <span className="gallery-expand-label">View Gallery ↗</span>
-            </button>
-
-            <span className="details-status">FOR SALE</span>
-          </div>
-
-          <div className="property-gallery-thumbnails">
-            {gallery.map((image, index) => (
+            {gallery.length > 0 ? (
               <button
                 type="button"
-                key={image + index}
-                className={`gallery-thumbnail ${
-                  selectedImage === index ? "active" : ""
-                }`}
-                onClick={() => setSelectedImage(index)}
-                aria-label={`View property photo ${index + 1}`}
-                aria-pressed={selectedImage === index}
+                className="main-gallery-image"
+                onClick={() => setLightboxOpen(true)}
+                aria-label="Open full-screen property gallery"
               >
                 <img
-                  src={image}
-                  alt={`${property.name} thumbnail ${index + 1}`}
-                  loading="lazy"
+                  src={gallery[selectedImage]}
+                  alt={`${property.name} - Photo ${selectedImage + 1}`}
                   decoding="async"
                 />
+
+                <span className="gallery-expand-label">View Gallery ↗</span>
               </button>
-            ))}
+            ) : (
+              <div className="main-gallery-image gallery-empty">
+                Property image coming soon
+              </div>
+            )}
+
+            <span className={`details-status ${isSold ? "sold" : "available"}`}>
+              {isSold ? "SOLD" : "FOR SALE"}
+            </span>
+
+            {isFeatured && (
+              <span className="details-featured-badge">FEATURED</span>
+            )}
           </div>
+
+          {gallery.length > 1 && (
+            <div className="property-gallery-thumbnails">
+              {gallery.map((image, index) => (
+                <button
+                  type="button"
+                  key={image + index}
+                  className={`gallery-thumbnail ${
+                    selectedImage === index ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedImage(index)}
+                  aria-label={`View property photo ${index + 1}`}
+                  aria-pressed={selectedImage === index}
+                >
+                  <img
+                    src={image}
+                    alt={`${property.name} thumbnail ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="property-details-heading">
             <div>
               <span className="details-category">{property.type}</span>
+
               <h1>{property.name}</h1>
+
               <p className="details-location">{property.location}</p>
             </div>
 
             <div className="details-price">
               <span>Asking Price</span>
+
               <strong>{formatPrice(property.price)}</strong>
 
               <button
@@ -182,34 +240,44 @@ export default function PropertyDetails() {
           <div className="property-main-information">
             <div className="property-overview">
               <span className="details-label">PROPERTY OVERVIEW</span>
+
               <h2>About This Property</h2>
+
               <p>{property.description}</p>
             </div>
 
             <div className="property-specifications">
               <div className="specification-item">
                 <span>Bedrooms</span>
-                <strong>{property.bedrooms}</strong>
+                <strong>{property.bedrooms ?? "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Bathrooms</span>
-                <strong>{property.bathrooms}</strong>
+                <strong>{property.bathrooms ?? "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Property Type</span>
-                <strong>{property.type}</strong>
+                <strong>{property.type || "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Location</span>
-                <strong>{property.location}</strong>
+                <strong>{property.location || "N/A"}</strong>
               </div>
+
+              {property.area && (
+                <div className="specification-item">
+                  <span>Area</span>
+                  <strong>{property.area}</strong>
+                </div>
+              )}
             </div>
 
             <div className="property-amenities">
               <span className="details-label">PROPERTY FEATURES</span>
+
               <h2>Amenities & Features</h2>
 
               <div className="amenities-grid">
@@ -224,33 +292,56 @@ export default function PropertyDetails() {
           </div>
 
           <aside className="property-enquiry-panel">
-            <span className="details-label">INTERESTED IN THIS PROPERTY?</span>
+            <span className="details-label">
+              {isSold ? "PROPERTY STATUS" : "INTERESTED IN THIS PROPERTY?"}
+            </span>
 
-            <h3>Make This Property Yours</h3>
+            {isSold ? (
+              <>
+                <h3>This Property Has Been Sold</h3>
 
-            <p>
-              Contact ÉLAN HOMES to enquire about this property or arrange a
-              viewing.
-            </p>
+                <p>
+                  This listing is no longer available for viewing. Contact ÉLAN
+                  HOMES if you would like assistance finding a similar property.
+                </p>
 
-            <Link
-              to={`/properties/${property.id}/request-viewing`}
-              className="property-enquiry-btn"
-            >
-              Request Viewing ↗
-            </Link>
+                <Link
+                  to={`/enquiry/property/${property.id}`}
+                  className="property-enquiry-btn"
+                >
+                  Enquire About Similar Properties
+                </Link>
+              </>
+            ) : (
+              <>
+                <h3>Make This Property Yours</h3>
 
-            <p className="viewing-fee-notice">
-              A non-refundable viewing and connection fee applies. The fee is
-              not part of the property purchase price.
-            </p>
+                <p>
+                  Contact ÉLAN HOMES to enquire about this property or arrange a
+                  viewing.
+                </p>
 
-            <Link
-              to={`/enquiry/property/${property.id}`}
-              className="property-back-btn"
-            >
-              General Enquiry
-            </Link>
+                <button
+                  type="button"
+                  className="property-enquiry-btn"
+                  onClick={() => setShowAccountOptions(true)}
+                >
+                  Request Viewing ↗
+                </button>
+
+                <p className="viewing-fee-notice">
+                  A non-refundable viewing and connection fee applies. The fee
+                  is not part of the property purchase price.
+                </p>
+
+                <Link
+                  to={`/enquiry/property/${property.id}`}
+                  className="property-back-btn"
+                >
+                  General Enquiry
+                </Link>
+              </>
+            )}
 
             <Link to="/properties" className="property-back-btn">
               ← Back to Properties
@@ -280,6 +371,7 @@ export default function PropertyDetails() {
               className="lightbox-arrow lightbox-previous"
               onClick={(event) => {
                 event.stopPropagation();
+
                 setSelectedImage((current) =>
                   current === 0 ? gallery.length - 1 : current - 1,
                 );
@@ -309,6 +401,7 @@ export default function PropertyDetails() {
               className="lightbox-arrow lightbox-next"
               onClick={(event) => {
                 event.stopPropagation();
+
                 setSelectedImage((current) =>
                   current === gallery.length - 1 ? 0 : current + 1,
                 );
@@ -317,6 +410,58 @@ export default function PropertyDetails() {
             >
               ›
             </button>
+          </div>
+        )}
+
+        {showAccountOptions && (
+          <div
+            className="stay-account-overlay"
+            role="presentation"
+            onClick={() => setShowAccountOptions(false)}
+          >
+            <div
+              className="stay-account-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="property-account-modal-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="stay-account-close"
+                onClick={() => setShowAccountOptions(false)}
+                aria-label="Close account options"
+              >
+                ×
+              </button>
+
+              <span>ÉLAN HOMES</span>
+
+              <h2 id="property-account-modal-title">
+                Continue to Request a Viewing
+              </h2>
+
+              <p>
+                Sign in to your existing account or create an ÉLAN HOMES account
+                to continue with this property viewing request.
+              </p>
+
+              <Link to={signInLink} className="stay-account-signin">
+                Sign In to Continue
+              </Link>
+
+              <Link to={registerLink} className="stay-account-register">
+                Create Account to Continue
+              </Link>
+
+              <button
+                type="button"
+                className="stay-account-cancel"
+                onClick={() => setShowAccountOptions(false)}
+              >
+                Go Back
+              </button>
+            </div>
           </div>
         )}
       </main>

@@ -1,0 +1,150 @@
+.track-enquiry-page {
+  min-height: 75vh;
+  padding: 80px 20px;
+  background: #f7f5f0;
+}
+
+.track-enquiry-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.track-enquiry-heading {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.track-enquiry-heading > span {
+  color: #a88648;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.track-enquiry-heading h1 {
+  margin: 15px 0;
+  color: #171717;
+  font-size: 36px;
+}
+
+.track-enquiry-heading p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.track-enquiry-card {
+  padding: 38px;
+  background: #fff;
+  border: 1px solid #e9e3d8;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.track-enquiry-card h2 {
+  margin: 0 0 25px;
+  color: #171717;
+  font-size: 21px;
+}
+
+.track-enquiry-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.track-enquiry-card label {
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.track-enquiry-card input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dedbd4;
+  border-radius: 4px;
+  outline: none;
+  font-size: 13px;
+  transition: border-color 0.3s ease;
+}
+
+.track-enquiry-card input:focus {
+  border-color: #b89655;
+}
+
+.track-enquiry-card button {
+  margin-top: 10px;
+  padding: 15px 20px;
+  background: #171717;
+  color: #d4b16a;
+  border: 1px solid #171717;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.track-enquiry-card button:hover {
+  background: #d4b16a;
+  color: #171717;
+  border-color: #d4b16a;
+}
+
+.track-enquiry-message {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f5ee;
+  border-left: 3px solid #b89655;
+  border-radius: 3px;
+}
+
+.track-enquiry-message p {
+  margin: 0;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.track-enquiry-help {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.track-enquiry-help p {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.track-enquiry-help a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #98743b;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.track-enquiry-help a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .track-enquiry-page {
+    padding: 55px 16px;
+  }
+
+  .track-enquiry-heading h1 {
+    font-size: 28px;
+  }
+
+  .track-enquiry-card {
+    padding: 25px 20px;
+  }
+}

@@ -1,0 +1,105 @@
+.enquiry-timeline {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #e8e3d9;
+  border-radius: 8px;
+}
+
+.enquiry-timeline-heading {
+  margin-bottom: 30px;
+}
+
+.enquiry-timeline-heading > span {
+  color: #a88648;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.enquiry-timeline-heading h2 {
+  margin: 10px 0;
+  color: #171717;
+  font-size: 23px;
+}
+
+.enquiry-timeline-heading p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.enquiry-timeline-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.enquiry-timeline-item {
+  display: flex;
+  gap: 18px;
+  min-height: 95px;
+}
+
+.enquiry-timeline-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 18px;
+  flex-shrink: 0;
+}
+
+.enquiry-timeline-marker > span {
+  position: relative;
+  z-index: 2;
+  width: 13px;
+  height: 13px;
+  margin-top: 4px;
+  background: #c5a15e;
+  border: 3px solid #f2e9d7;
+  border-radius: 50%;
+}
+
+.enquiry-timeline-line {
+  position: absolute;
+  top: 17px;
+  bottom: 0;
+  width: 2px;
+  background: #e5dccb;
+}
+
+.enquiry-timeline-content {
+  padding-bottom: 25px;
+}
+
+.enquiry-timeline-content h3 {
+  margin: 0 0 7px;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.enquiry-timeline-content time {
+  color: #888;
+  font-size: 12px;
+}
+
+.enquiry-timeline-content p {
+  margin-top: 8px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .enquiry-timeline {
+    padding: 22px 18px;
+  }
+
+  .enquiry-timeline-heading h2 {
+    font-size: 20px;
+  }
+
+  .enquiry-timeline-content h3 {
+    font-size: 14px;
+  }
+}

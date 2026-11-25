@@ -11,33 +11,76 @@ export default function Account() {
     phone: "",
   });
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleChange = (e) => {
-    setProfile({
-      ...profile,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setProfile((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+
+    setError("");
+    setSuccess("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      "Profile saving will be activated when account authentication is connected.",
-    );
+
+    setError("");
+    setSuccess("");
+
+    const firstName = profile.firstName.trim();
+    const lastName = profile.lastName.trim();
+    const email = profile.email.trim().toLowerCase();
+    const phone = profile.phone.replace(/[\s()-]/g, "");
+
+    if (!firstName || !lastName || !email || !phone) {
+      setError("Please complete all your personal information.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+      setError(
+        "Please enter your phone number with the international country code, for example +254712345678.",
+      );
+      return;
+    }
+
+    setProfile((previous) => ({
+      ...previous,
+      firstName,
+      lastName,
+      email,
+      phone,
+    }));
+
+    setSuccess("Your profile details have been validated successfully.");
   };
+
+  const displayName =
+    `${profile.firstName} ${profile.lastName}`.trim() || "Welcome";
 
   return (
     <main className="account-page">
       <SEO
-        title="My Account | ÉLAN HOMES"
-        description="Manage your ÉLAN HOMES profile, personal information, saved properties, favourite holiday stays and booking enquiries."
+        title="Customer Dashboard | ÉLAN HOMES"
+        description="Manage your ÉLAN HOMES profile, saved listings, bookings and customer support."
         noindex={true}
       />
 
       <section className="account-header">
         <div>
-          <p className="account-eyebrow">YOUR ELAN HOMES</p>
-          <h1>My Account</h1>
-          <p>Manage your profile, saved properties and holiday stays.</p>
+          <p className="account-eyebrow">ÉLAN HOMES EXPLORER</p>
+          <h1>Customer Dashboard</h1>
+          <p>Manage your property journey and accommodation bookings.</p>
         </div>
 
         <Link to="/" className="account-home-link">
@@ -47,34 +90,50 @@ export default function Account() {
 
       <section className="account-layout">
         <aside className="account-sidebar">
-          <div className="account-avatar">EH</div>
-          <h2>Welcome</h2>
-          <p>ELAN HOMES Member</p>
+          <div className="account-avatar">ÉH</div>
+
+          <h2>{displayName}</h2>
+          <p>ÉLAN EXPLORER</p>
 
           <nav className="account-side-nav">
-            <a href="#profile" className="active">
-              Personal Information
+            <a href="#overview" className="active">
+              Dashboard Overview
             </a>
+
+            <a href="#profile">Personal Information</a>
+
             <Link to="/saved">Saved Listings</Link>
+
             <Link to="/bookings">My Bookings</Link>
-            <a href="#settings">Account Settings</a>
+
+            <a href="#viewing-requests">Viewing Requests</a>
+
+            <a href="#support">Customer Support</a>
+
+            <a href="#settings">Account Security</a>
           </nav>
 
           <Link to="/signin" className="account-signout">
-            Sign In / Sign Out ↗
+            ACCOUNT SIGN IN ↗
           </Link>
         </aside>
 
         <div className="account-content">
-          <section className="account-welcome-card">
+          <section className="account-welcome-card" id="overview">
             <div>
-              <span>ACCOUNT OVERVIEW</span>
-              <h2>Your property journey starts here.</h2>
+              <span>YOUR ACCOUNT OVERVIEW</span>
+
+              <h2>{displayName}, welcome to ÉLAN HOMES.</h2>
+
               <p>
-                Keep your details updated and manage your favourite properties
-                and holiday stay enquiries in one place.
+                Your personal space to discover properties, explore holiday
+                stays, manage bookings and keep track of your property
+                enquiries.
               </p>
+
+              <Link to="/properties">EXPLORE PROPERTIES ↗</Link>
             </div>
+
             <div className="account-welcome-mark">É</div>
           </section>
 
@@ -83,7 +142,7 @@ export default function Account() {
               <span className="account-shortcut-icon">♡</span>
               <div>
                 <h3>Saved Listings</h3>
-                <p>View properties and stays you have saved.</p>
+                <p>Access your favourite properties, land and stays.</p>
               </div>
               <span className="account-shortcut-arrow">↗</span>
             </Link>
@@ -92,10 +151,50 @@ export default function Account() {
               <span className="account-shortcut-icon">▤</span>
               <div>
                 <h3>My Bookings</h3>
-                <p>Keep track of your holiday stay enquiries.</p>
+                <p>View your accommodation booking records.</p>
               </div>
               <span className="account-shortcut-arrow">↗</span>
             </Link>
+
+            <Link to="/properties" className="account-shortcut">
+              <span className="account-shortcut-icon">⌂</span>
+              <div>
+                <h3>Explore Properties</h3>
+                <p>Discover available properties across Kenya.</p>
+              </div>
+              <span className="account-shortcut-arrow">↗</span>
+            </Link>
+
+            <Link to="/stays" className="account-shortcut">
+              <span className="account-shortcut-icon">⌑</span>
+              <div>
+                <h3>Explore Stays</h3>
+                <p>Find accommodation for your next trip.</p>
+              </div>
+              <span className="account-shortcut-arrow">↗</span>
+            </Link>
+          </section>
+
+          <section className="account-profile-section" id="viewing-requests">
+            <div className="account-section-heading">
+              <div>
+                <span>PROPERTY SERVICES</span>
+                <h2>My Viewing Requests</h2>
+              </div>
+            </div>
+
+            <div className="account-dashboard-notice">
+              <div>
+                <h3>Property and Land Viewings</h3>
+                <p>
+                  Your property and land viewing requests, scheduled
+                  appointments and updates will appear here once customer
+                  account services are connected.
+                </p>
+              </div>
+
+              <Link to="/properties">EXPLORE PROPERTIES ↗</Link>
+            </div>
           </section>
 
           <section className="account-profile-section" id="profile">
@@ -104,7 +203,8 @@ export default function Account() {
                 <span>PROFILE DETAILS</span>
                 <h2>Personal Information</h2>
               </div>
-              <p>Update your contact details below.</p>
+
+              <p>Manage your account contact information.</p>
             </div>
 
             <form className="account-profile-form" onSubmit={handleSubmit}>
@@ -118,6 +218,8 @@ export default function Account() {
                     placeholder="Enter first name"
                     value={profile.firstName}
                     onChange={handleChange}
+                    autoComplete="given-name"
+                    required
                   />
                 </div>
 
@@ -130,6 +232,8 @@ export default function Account() {
                     placeholder="Enter last name"
                     value={profile.lastName}
                     onChange={handleChange}
+                    autoComplete="family-name"
+                    required
                   />
                 </div>
 
@@ -142,6 +246,8 @@ export default function Account() {
                     placeholder="Enter email address"
                     value={profile.email}
                     onChange={handleChange}
+                    autoComplete="email"
+                    required
                   />
                 </div>
 
@@ -151,12 +257,26 @@ export default function Account() {
                     id="accountPhone"
                     name="phone"
                     type="tel"
-                    placeholder="Enter phone number"
+                    placeholder="+254712345678"
                     value={profile.phone}
                     onChange={handleChange}
+                    autoComplete="tel"
+                    required
                   />
                 </div>
               </div>
+
+              {error && (
+                <p role="alert" className="account-form-error">
+                  {error}
+                </p>
+              )}
+
+              {success && (
+                <p role="status" className="account-form-success">
+                  {success}
+                </p>
+              )}
 
               <button type="submit" className="account-save-btn">
                 SAVE CHANGES
@@ -164,16 +284,30 @@ export default function Account() {
             </form>
           </section>
 
+          <section className="account-settings-section" id="support">
+            <div>
+              <span>ÉLAN HOMES ASSISTANCE</span>
+              <h2>Customer Support</h2>
+              <p>
+                Get assistance with general questions or contact our team about
+                your bookings, enquiries and viewing requests.
+              </p>
+            </div>
+
+            <Link to="/contact">CONTACT ÉLAN HOMES ↗</Link>
+          </section>
+
           <section className="account-settings-section" id="settings">
             <div>
               <span>ACCOUNT SETTINGS</span>
               <h2>Account Security</h2>
               <p>
-                Password management and account security will be available when
-                authentication is connected.
+                Keep your account secure by managing your password and email
+                verification settings.
               </p>
             </div>
-            <Link to="/signin">Sign In ↗</Link>
+
+            <Link to="/account/security">MANAGE ACCOUNT SECURITY ↗</Link>
           </section>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import properties from "../data/properties";
+import landListings from "../data/land";
 import stays from "../data/stays";
 import { getSavedListings, toggleSavedListing } from "../utils/savedListings";
 import SEO from "../components/SEO";
@@ -17,14 +18,25 @@ export default function Saved() {
     .map((item) => properties.find((property) => property.id === item.id))
     .filter(Boolean);
 
+  // GET SAVED LAND
+  const savedLand = savedListings
+    .filter((item) => item.type === "land")
+    .map((item) => landListings.find((land) => land.id === item.id))
+    .filter(Boolean);
+
   // GET SAVED HOLIDAY STAYS
   const savedStays = savedListings
     .filter((item) => item.type === "stay")
     .map((item) => stays.find((stay) => stay.id === item.id))
     .filter(Boolean);
 
+  // SELECT ACTIVE CATEGORY
   const currentListings =
-    activeTab === "properties" ? savedProperties : savedStays;
+    activeTab === "properties"
+      ? savedProperties
+      : activeTab === "land"
+        ? savedLand
+        : savedStays;
 
   // REMOVE SAVED LISTING
   const handleRemove = (type, id) => {
@@ -34,40 +46,133 @@ export default function Saved() {
 
   // FORMAT PROPERTY PRICE
   const formatPropertyPrice = (price) =>
-    `KSh ${(price / 1000000).toLocaleString("en-KE", {
+    `KSh ${(Number(price) / 1000000).toLocaleString("en-KE", {
       maximumFractionDigits: 1,
     })}M`;
 
+  // FORMAT LAND PRICE
+  const formatLandPrice = (price) => {
+    const amount = Number(price);
+
+    if (!Number.isFinite(amount)) return "Price on request";
+
+    if (amount >= 1000000) {
+      return `KSh ${(amount / 1000000).toLocaleString("en-KE", {
+        maximumFractionDigits: 2,
+      })}M`;
+    }
+
+    return `KSh ${amount.toLocaleString("en-KE")}`;
+  };
+
   // FORMAT STAY PRICE
   const formatStayPrice = (price) =>
-    `KSh ${price.toLocaleString("en-KE")} / night`;
+    `KSh ${Number(price).toLocaleString("en-KE")} / night`;
+
+  // CATEGORY DETAILS
+  const getListingDetails = (listing) => {
+    if (activeTab === "properties") {
+      return {
+        name: listing.name,
+        category: "PROPERTY",
+        type: listing.type || "Property",
+        location: listing.location,
+        image: listing.image || listing.gallery?.[0],
+        features: [
+          listing.bedrooms ? `${listing.bedrooms} Bedrooms` : null,
+          listing.bathrooms ? `${listing.bathrooms} Bathrooms` : null,
+        ].filter(Boolean),
+        price: formatPropertyPrice(listing.price),
+        link: `/properties/${listing.id}`,
+        savedType: "property",
+      };
+    }
+
+    if (activeTab === "land") {
+      return {
+        name: listing.name || listing.title,
+        category: "LAND",
+        type: listing.type || listing.landType || "Land",
+        location: listing.location,
+        image: listing.image || listing.gallery?.[0],
+        features: [
+          listing.size || listing.area || listing.landSize || null,
+          listing.zoning || listing.landUse || null,
+        ].filter(Boolean),
+        price: formatLandPrice(listing.price),
+        link: `/land/${listing.id}`,
+        savedType: "land",
+      };
+    }
+
+    return {
+      name: listing.name,
+      category: "HOLIDAY STAY",
+      type: listing.type || "Stay",
+      location: listing.location,
+      image: listing.image || listing.gallery?.[0],
+      features: [
+        listing.guests ? `${listing.guests} Guests` : null,
+        listing.bedrooms ? `${listing.bedrooms} Bedrooms` : null,
+      ].filter(Boolean),
+      price: formatStayPrice(listing.price),
+      link: `/stays/${listing.id}`,
+      savedType: "stay",
+    };
+  };
+
+  const emptyState = {
+    properties: {
+      title: "No Saved Properties Yet",
+      description:
+        "Explore our property collection and save the homes you love.",
+      link: "/properties",
+      button: "Explore Properties",
+    },
+    land: {
+      title: "No Saved Land Yet",
+      description:
+        "Explore available land listings and save the plots that interest you.",
+      link: "/land",
+      button: "Explore Land",
+    },
+    stays: {
+      title: "No Saved Holiday Stays Yet",
+      description:
+        "Discover beautiful holiday destinations and save your favourite stays.",
+      link: "/stays",
+      button: "Explore Holiday Stays",
+    },
+  };
+
+  const empty = emptyState[activeTab];
 
   return (
     <main className="saved-page">
       <SEO
         title="My Saved Listings | ÉLAN HOMES"
-        description="Keep your favourite Kenyan properties for sale and holiday stays together. View and manage your saved ÉLAN HOMES listings."
+        description="Keep your favourite Kenyan properties, land listings and holiday stays together. View and manage your saved ÉLAN HOMES listings."
         noindex={true}
       />
 
       {/* PAGE HEADER */}
       <section className="saved-hero">
         <div className="saved-hero-content">
-          <span>YOUR ELAN HOMES COLLECTION</span>
+          <span>YOUR ÉLAN HOMES COLLECTION</span>
           <h1>Saved Listings</h1>
-          <p>Keep track of the properties and holiday stays you love.</p>
+          <p>Keep track of the properties, land and holiday stays you love.</p>
         </div>
       </section>
 
       {/* PAGE CONTENT */}
       <section className="saved-container">
-        {/* PAGE INTRO */}
         <div className="saved-heading">
           <div>
             <span className="saved-label">YOUR COLLECTION</span>
             <h2>Your Favourite Listings</h2>
             <p>
-              All your saved properties and holiday accommodation in one place.
+              Your saved properties, land and holiday accommodation in one
+              place.
             </p>
           </div>
 
@@ -77,7 +182,7 @@ export default function Saved() {
           </div>
         </div>
 
-        {/* TABS */}
+        {/* CATEGORY TABS */}
         <div className="saved-tabs">
           <button
             type="button"
@@ -89,6 +194,14 @@ export default function Saved() {
 
           <button
             type="button"
+            className={activeTab === "land" ? "active" : ""}
+            onClick={() => setActiveTab("land")}
+          >
+            Land ({savedLand.length})
+          </button>
+
+          <button
+            type="button"
             className={activeTab === "stays" ? "active" : ""}
             onClick={() => setActiveTab("stays")}
           >
@@ -96,84 +209,73 @@ export default function Saved() {
           </button>
         </div>
 
-        {/* LISTINGS */}
+        {/* SAVED LISTINGS */}
         {currentListings.length > 0 ? (
           <div className="saved-grid">
             {currentListings.map((listing) => {
-              const isProperty = activeTab === "properties";
-
-              const listingType = isProperty ? "property" : "stay";
-
-              const detailsLink = isProperty
-                ? `/properties/${listing.id}`
-                : `/stays/${listing.id}`;
-
-              const image = listing.image || listing.gallery?.[0];
+              const details = getListingDetails(listing);
 
               return (
                 <article
                   className="saved-card"
-                  key={`${listingType}-${listing.id}`}
+                  key={`${details.savedType}-${listing.id}`}
                 >
-                  {/* IMAGE */}
                   <div className="saved-card-image">
-                    <img
-                      src={image}
-                      alt={listing.name}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    {details.image ? (
+                      <img
+                        src={details.image}
+                        alt={details.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="saved-card-no-image">
+                        Image unavailable
+                      </div>
+                    )}
 
                     <span className="saved-card-category">
-                      {isProperty ? "PROPERTY" : "HOLIDAY STAY"}
+                      {details.category}
                     </span>
                   </div>
 
-                  {/* DETAILS */}
                   <div className="saved-card-content">
-                    <span className="saved-card-type">{listing.type}</span>
+                    <span className="saved-card-type">{details.type}</span>
 
-                    <h3>{listing.name}</h3>
+                    <h3>{details.name}</h3>
 
                     <p className="saved-card-location">
-                      <span>⌖</span> {listing.location}
+                      <span>⌖</span> {details.location}
                     </p>
 
-                    {/* FEATURES */}
                     <div className="saved-card-features">
-                      {isProperty ? (
-                        <>
-                          <span>{listing.bedrooms} Bedrooms</span>
-                          <span>{listing.bathrooms} Bathrooms</span>
-                        </>
+                      {details.features.length > 0 ? (
+                        details.features.map((feature, index) => (
+                          <span key={`${listing.id}-${index}`}>{feature}</span>
+                        ))
                       ) : (
-                        <>
-                          <span>{listing.guests} Guests</span>
-                          <span>{listing.bedrooms} Bedrooms</span>
-                        </>
+                        <span>Listing details available</span>
                       )}
                     </div>
 
-                    {/* PRICE */}
                     <div className="saved-card-bottom">
                       <strong className="saved-card-price">
-                        {isProperty
-                          ? formatPropertyPrice(listing.price)
-                          : formatStayPrice(listing.price)}
+                        {details.price}
                       </strong>
 
                       <button
                         type="button"
                         className="saved-remove-btn"
-                        onClick={() => handleRemove(listingType, listing.id)}
-                        aria-label={`Remove ${listing.name} from saved listings`}
+                        onClick={() =>
+                          handleRemove(details.savedType, listing.id)
+                        }
+                        aria-label={`Remove ${details.name} from saved listings`}
                       >
                         ♥ Remove
                       </button>
                     </div>
 
-                    {/* VIEW DETAILS */}
-                    <Link to={detailsLink} className="saved-view-btn">
+                    <Link to={details.link} className="saved-view-btn">
                       View Details ↗
                     </Link>
                   </div>
@@ -182,29 +284,15 @@ export default function Saved() {
             })}
           </div>
         ) : (
-          /* EMPTY STATE */
           <div className="saved-empty">
             <div className="saved-empty-icon">♡</div>
 
-            <h3>
-              {activeTab === "properties"
-                ? "No Saved Properties Yet"
-                : "No Saved Holiday Stays Yet"}
-            </h3>
+            <h3>{empty.title}</h3>
 
-            <p>
-              {activeTab === "properties"
-                ? "Explore our property collection and save the homes you love."
-                : "Discover beautiful holiday destinations and save your favourite stays."}
-            </p>
+            <p>{empty.description}</p>
 
-            <Link
-              to={activeTab === "properties" ? "/properties" : "/stays"}
-              className="saved-explore-btn"
-            >
-              {activeTab === "properties"
-                ? "Explore Properties"
-                : "Explore Holiday Stays"}
+            <Link to={empty.link} className="saved-explore-btn">
+              {empty.button}
             </Link>
           </div>
         )}

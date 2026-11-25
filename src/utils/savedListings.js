@@ -1,5 +1,7 @@
 const STORAGE_KEY = "elanSavedListings";
 
+const VALID_TYPES = ["property", "land", "stay"];
+
 // GET ALL SAVED LISTINGS
 export const getSavedListings = () => {
   try {
@@ -14,7 +16,7 @@ export const getSavedListings = () => {
     return parsed.filter(
       (item) =>
         item &&
-        ["property", "stay"].includes(item.type) &&
+        VALID_TYPES.includes(item.type) &&
         typeof item.id === "string" &&
         item.id.trim() !== "",
     );
@@ -26,7 +28,9 @@ export const getSavedListings = () => {
 
 // CHECK WHETHER A LISTING IS SAVED
 export const isListingSaved = (type, id) => {
-  if (typeof id !== "string" || !id.trim()) return false;
+  if (!VALID_TYPES.includes(type) || typeof id !== "string" || !id.trim()) {
+    return false;
+  }
 
   const savedListings = getSavedListings();
 
@@ -35,11 +39,7 @@ export const isListingSaved = (type, id) => {
 
 // ADD OR REMOVE A SAVED LISTING
 export const toggleSavedListing = (type, id) => {
-  if (
-    !["property", "stay"].includes(type) ||
-    typeof id !== "string" ||
-    !id.trim()
-  ) {
+  if (!VALID_TYPES.includes(type) || typeof id !== "string" || !id.trim()) {
     return getSavedListings();
   }
 

@@ -21,6 +21,7 @@ const companyLinks = [
 
 const supportLinks = [
   { name: "Help Centre", link: "/help-centre" },
+  { name: "Track Your Enquiry", link: "/track-enquiry" },
   { name: "Booking Policy", link: "/booking-policy" },
   { name: "Privacy Policy", link: "/privacy-policy" },
   { name: "Terms & Conditions", link: "/terms-and-conditions" },

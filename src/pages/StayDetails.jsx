@@ -14,7 +14,6 @@ const getStayReviews = (stay) => {
 
   const validReviews = reviews.filter((review) => {
     const rating = Number(review.rating);
-
     return Number.isFinite(rating) && rating >= 1 && rating <= 5;
   });
 
@@ -59,6 +58,8 @@ export default function StayDetails() {
   const [guests, setGuests] = useState(1);
 
   const [savedListings, setSavedListings] = useState(() => getSavedListings());
+
+  const [showAccountOptions, setShowAccountOptions] = useState(false);
 
   const isSaved = savedListings.some(
     (item) => item.type === "stay" && item.id === stay?.id,
@@ -144,7 +145,13 @@ export default function StayDetails() {
 
   const enquiryLink = `/enquiry/stay/${stay.id}?checkIn=${encodeURIComponent(
     checkIn,
-  )}&checkOut=${encodeURIComponent(checkOut)}&guests=${guests}&nights=${nights}&total=${totalPrice}`;
+  )}&checkOut=${encodeURIComponent(
+    checkOut,
+  )}&guests=${guests}&nights=${nights}&total=${totalPrice}`;
+
+  const signInLink = `/signin?redirect=${encodeURIComponent(enquiryLink)}`;
+
+  const registerLink = `/register?redirect=${encodeURIComponent(enquiryLink)}`;
 
   return (
     <>
@@ -534,27 +541,81 @@ export default function StayDetails() {
               </div>
             )}
 
-            {/* CENTRAL ENQUIRY BUTTON */}
+            {/* BOOK NOW */}
 
-            <Link
-              to={enquiryLink}
+            <button
+              type="button"
               className="stay-booking-btn"
-              onClick={(e) => {
+              onClick={() => {
                 if (!checkIn || !checkOut || nights <= 0) {
-                  e.preventDefault();
                   alert("Please select valid check-in and check-out dates.");
+                  return;
                 }
+
+                setShowAccountOptions(true);
               }}
             >
-              Enquire About This Stay
-            </Link>
+              BOOK NOW
+            </button>
 
             <p className="stay-booking-note">
-              Your dates and booking estimate will be included in your enquiry.
-              Final pricing and availability will be confirmed by ELAN HOMES.
+              Your selected dates and booking estimate will be included in your
+              booking request. Final pricing and availability will be confirmed
+              by ÉLAN HOMES.
             </p>
           </aside>
         </section>
+
+        {/* ACCOUNT OPTIONS MODAL */}
+
+        {showAccountOptions && (
+          <div
+            className="stay-account-overlay"
+            onClick={() => setShowAccountOptions(false)}
+          >
+            <div
+              className="stay-account-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="stay-account-title"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="stay-account-close"
+                onClick={() => setShowAccountOptions(false)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+
+              <span>ÉLAN HOMES BOOKING</span>
+
+              <h2 id="stay-account-title">Continue with Your Booking</h2>
+
+              <p>
+                Sign in to your existing account or create an account to
+                continue with your booking.
+              </p>
+
+              <Link to={signInLink} className="stay-account-signin">
+                SIGN IN TO CONTINUE BOOKING
+              </Link>
+
+              <Link to={registerLink} className="stay-account-register">
+                CREATE ACCOUNT TO CONTINUE
+              </Link>
+
+              <button
+                type="button"
+                className="stay-account-cancel"
+                onClick={() => setShowAccountOptions(false)}
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* BACK TO STAYS */}
 

@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import "./SignIn.css";
 
 export default function SignIn() {
+  const [searchParams] = useSearchParams();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -11,20 +13,43 @@ export default function SignIn() {
     password: "",
   });
 
+  // Preserve the page the customer wanted to visit.
+  const requestedRedirect = searchParams.get("redirect");
+
+  // Only allow internal website paths.
+  const redirectTo =
+    requestedRedirect &&
+    requestedRedirect.startsWith("/") &&
+    !requestedRedirect.startsWith("//")
+      ? requestedRedirect
+      : "/account";
+
+  const registrationLink = `/register?redirect=${encodeURIComponent(
+    redirectTo,
+  )}`;
+
+  const forgotPasswordLink = `/forgot-password?redirect=${encodeURIComponent(
+    redirectTo,
+  )}`;
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: name === "email" ? value.trimStart().toLowerCase() : value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Frontend demonstration only.
-    // Real authentication will be connected later.
+    // Secure authentication, account verification and role-based
+    // redirection will be connected through the backend later.
+
     alert(
-      "Sign-in functionality will be activated when authentication is connected.",
+      "Secure sign-in is not yet activated. Your selected destination will be preserved when authentication is connected.",
     );
   };
 
@@ -37,9 +62,10 @@ export default function SignIn() {
       />
 
       <div className="signin-container">
+        {/* BRAND SECTION */}
         <div className="signin-brand">
           <Link to="/" className="signin-logo">
-            ELAN <span>HOMES</span>
+            ÉLAN <span>HOMES</span>
           </Link>
 
           <p>WELCOME BACK</p>
@@ -52,6 +78,7 @@ export default function SignIn() {
           </p>
         </div>
 
+        {/* UNIFIED SIGN-IN FORM */}
         <form className="signin-form" onSubmit={handleSubmit}>
           <div className="signin-field">
             <label htmlFor="email">Email Address</label>
@@ -63,6 +90,7 @@ export default function SignIn() {
               placeholder="Enter your email address"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               required
             />
           </div>
@@ -78,6 +106,7 @@ export default function SignIn() {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
+                autoComplete="current-password"
                 required
               />
 
@@ -85,6 +114,7 @@ export default function SignIn() {
                 type="button"
                 className="signin-show-password"
                 onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
@@ -97,7 +127,7 @@ export default function SignIn() {
               Remember me
             </label>
 
-            <Link to="/forgot-password">Forgot password?</Link>
+            <Link to={forgotPasswordLink}>Forgot password?</Link>
           </div>
 
           <button type="submit" className="signin-submit">
@@ -105,11 +135,12 @@ export default function SignIn() {
           </button>
         </form>
 
+        {/* REGISTRATION LINK */}
         <div className="signin-divider">
-          <span>NEW TO ELAN HOMES?</span>
+          <span>NEW TO ÉLAN HOMES?</span>
         </div>
 
-        <Link to="/register" className="signin-register">
+        <Link to={registrationLink} className="signin-register">
           CREATE AN ACCOUNT
         </Link>
 

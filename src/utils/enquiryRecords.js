@@ -1,3 +1,5 @@
+import { ENQUIRY_STATUSES } from "./enquiryStatus";
+
 export const createEnquiryRecord = ({
   category,
   listing,
@@ -5,16 +7,19 @@ export const createEnquiryRecord = ({
   message = "",
   bookingDetails = null,
 }) => {
+  // VALIDATE CATEGORY
   const validCategories = ["property", "land", "stay"];
 
   if (!validCategories.includes(category)) {
     throw new Error("Invalid enquiry category.");
   }
 
+  // VALIDATE LISTING
   if (!listing?.id) {
     throw new Error("A valid listing ID is required.");
   }
 
+  // VALIDATE CUSTOMER DETAILS
   if (
     !customer?.fullName?.trim() ||
     !customer?.email?.trim() ||
@@ -23,6 +28,7 @@ export const createEnquiryRecord = ({
     throw new Error("Customer details are incomplete.");
   }
 
+  // NORMALISE AND VALIDATE PHONE NUMBER
   const normalizedPhone = customer.phone.replace(/[\s()-]/g, "");
 
   const internationalPhonePattern = /^\+[1-9]\d{7,14}$/;
@@ -33,14 +39,20 @@ export const createEnquiryRecord = ({
     );
   }
 
-  const listingTitle = listing.name || listing.title;
+  // LISTING INFORMATION
+  const listingTitle = listing.name || listing.title || "Untitled Listing";
 
   const listingLocation =
     listing.location ||
     [listing.destination, listing.region].filter(Boolean).join(", ");
 
+  // TIMESTAMPS
   const now = new Date().toISOString();
 
+  // INITIAL STATUS
+  const initialStatus = ENQUIRY_STATUSES.NEW;
+
+  // CREATE ENQUIRY RECORD
   return {
     id: crypto.randomUUID(),
 
@@ -65,11 +77,22 @@ export const createEnquiryRecord = ({
 
     bookingDetails: category === "stay" ? bookingDetails : null,
 
-    status: "new",
+    status: initialStatus,
 
+    // STATUS TRACKING HISTORY
+    statusHistory: [
+      {
+        status: initialStatus,
+        timestamp: now,
+        note: "Enquiry created.",
+      },
+    ],
+
+    // CENTRAL COMMUNICATION TRACKING
     communication: {
       ownerNotified: false,
       customerNotified: false,
+      notificationHistory: [],
       messages: [],
     },
 

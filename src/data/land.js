@@ -10,10 +10,14 @@ const landListings = [
     price: 3500000,
     size: "50 × 100 ft",
 
-    // Owner / agent supplied information
+    status: "demo",
+    availabilityStatus: "available",
+
+    // Viewing dates blocked by the owner or authorised agent
+    blockedViewingDates: [],
+
     titleDeed: "Available",
     ownershipDocuments: "Available",
-
     accessRoad: "Available",
     water: "Available",
     electricity: "Available",
@@ -30,8 +34,6 @@ const landListings = [
 
     description:
       "A temporary demo listing for testing the ÉLAN HOMES land details and viewing-request experience. This is not an actual property available for sale.",
-
-    status: "demo",
   },
 ];
 

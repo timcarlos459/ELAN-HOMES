@@ -31,6 +31,12 @@ const RequestLandViewing = lazy(() => import("./pages/RequestLandViewing"));
 // CENTRAL ENQUIRY SYSTEM
 const Enquiry = lazy(() => import("./pages/Enquiry"));
 
+// CUSTOMER ENQUIRY TRACKING
+const TrackEnquiry = lazy(() => import("./pages/TrackEnquiry"));
+
+// LIVE CUSTOMER SUPPORT
+const SupportChat = lazy(() => import("./components/SupportChat"));
+
 const Contact = lazy(() => import("./pages/Contact"));
 const Search = lazy(() => import("./pages/Search"));
 const ListProperty = lazy(() => import("./pages/ListProperty"));
@@ -46,6 +52,9 @@ const Careers = lazy(() => import("./pages/Careers"));
 // ACCOUNT PAGES
 const SignIn = lazy(() => import("./pages/SignIn"));
 const Register = lazy(() => import("./pages/Register"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const VerifyOTP = lazy(() => import("./pages/VerifyOTP"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Account = lazy(() => import("./pages/Account"));
 const Saved = lazy(() => import("./pages/Saved"));
 const MyBookings = lazy(() => import("./pages/MyBookings"));
@@ -117,6 +126,9 @@ function App() {
           {/* CENTRAL ENQUIRY SYSTEM */}
           <Route path="/enquiry/:category/:id" element={<Enquiry />} />
 
+          {/* CUSTOMER ENQUIRY TRACKING */}
+          <Route path="/track-enquiry" element={<TrackEnquiry />} />
+
           {/* OTHER PAGES */}
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
@@ -144,10 +156,16 @@ function App() {
           {/* ACCOUNT PAGES */}
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/account/reset-password" element={<ResetPassword />} />
           <Route path="/account" element={<Account />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/bookings" element={<MyBookings />} />
         </Routes>
+
+        {/* FLOATING LIVE SUPPORT ON ALL PAGES */}
+        <SupportChat />
       </Suspense>
 
       <Footer />

@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import landListings from "../data/land";
+import { createEnquiryRecord } from "../utils/enquiryRecords";
 import "./RequestLandViewing.css";
 
 export default function RequestLandViewing() {
   const { id } = useParams();
 
-  // TEMPORARILY ALLOW DEMO LISTINGS FOR TESTING
   const land = landListings.find((item) => item.id === id);
 
   const today = new Date().toLocaleDateString("en-CA");
@@ -23,6 +23,9 @@ export default function RequestLandViewing() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const [createdReference, setCreatedReference] = useState("");
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -35,12 +38,76 @@ export default function RequestLandViewing() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setError("");
 
-    if (!formData.acceptFeePolicy) return;
+    if (!formData.acceptFeePolicy) {
+      setError("Please accept the viewing and connection fee policy.");
+      return;
+    }
 
-    // LOCAL FORM VALIDATION ONLY.
-    // No request is sent and no payment is processed.
-    setSubmitted(true);
+    if (!formData.preferredDate || formData.preferredDate < today) {
+      setError("Please select a valid viewing date.");
+      return;
+    }
+
+    try {
+      const record = createEnquiryRecord({
+        category: "land",
+        listing: land,
+        customer: {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+        },
+        message: formData.message,
+      });
+
+      const viewingRecord = {
+        ...record,
+
+        // Identifies this as a land viewing request in My Bookings.
+        enquiryType: "land_viewing",
+
+        // Viewing schedule.
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        viewingDate: formData.preferredDate,
+        viewingTime: formData.preferredTime,
+
+        // Viewing fee has not been paid through this form.
+        paid: false,
+        paymentStatus: "unpaid",
+
+        // Policy acknowledgement.
+        feePolicyAccepted: true,
+        feePolicyAcceptedAt: new Date().toISOString(),
+
+        status: "new",
+      };
+
+      const existingRecords = JSON.parse(
+        localStorage.getItem("elanEnquiries") || "[]",
+      );
+
+      if (!Array.isArray(existingRecords)) {
+        throw new Error("Your enquiry records could not be accessed.");
+      }
+
+      localStorage.setItem(
+        "elanEnquiries",
+        JSON.stringify([...existingRecords, viewingRecord]),
+      );
+
+      setCreatedReference(`ELAN-${record.id.toUpperCase()}`);
+      setSubmitted(true);
+    } catch (submissionError) {
+      console.error("Land viewing request error:", submissionError);
+
+      setError(
+        submissionError.message ||
+          "We could not save your viewing request. Please try again.",
+      );
+    }
   };
 
   if (!land) {
@@ -78,8 +145,6 @@ export default function RequestLandViewing() {
       />
 
       <div className="land-viewing-container">
-        {/* BREADCRUMB */}
-
         <nav className="land-viewing-breadcrumb">
           <Link to="/">Home</Link>
           <span>/</span>
@@ -90,13 +155,9 @@ export default function RequestLandViewing() {
           <span>Request Viewing</span>
         </nav>
 
-        {/* PAGE HEADING */}
-
         <header className="land-viewing-heading">
           <span>ÉLAN HOMES • LAND COLLECTION</span>
-
           <h1>Request a Land Viewing</h1>
-
           <p>
             Provide your details and preferred viewing schedule. Our team will
             review your request and coordinate the next steps.
@@ -104,22 +165,31 @@ export default function RequestLandViewing() {
         </header>
 
         <div className="land-viewing-layout">
-          {/* VIEWING FORM */}
-
           <section className="land-viewing-form-section">
             {submitted ? (
               <div className="land-viewing-success">
                 <div className="land-viewing-success-icon">✓</div>
 
-                <h2>Details Validated Successfully</h2>
+                <h2>Viewing Request Recorded</h2>
 
                 <p>
-                  Your details have been successfully validated. Your viewing
-                  request has not yet been submitted, and no payment has been
-                  processed.
+                  Your land viewing request has been saved to your ÉLAN HOMES
+                  enquiry records. Our team will review the request and
+                  coordinate the next steps.
                 </p>
 
-                <Link to={`/land/${land.id}`}>Return to Land Details</Link>
+                <p>
+                  <strong>Enquiry Reference:</strong>
+                </p>
+
+                <p>{createdReference}</p>
+
+                <Link to="/account/bookings">View My Bookings & Enquiries</Link>
+
+                <p>
+                  No viewing fee has been paid through this form. Payment and
+                  viewing arrangements will be communicated separately.
+                </p>
               </div>
             ) : (
               <>
@@ -130,11 +200,8 @@ export default function RequestLandViewing() {
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                  {/* FULL NAME */}
-
                   <div className="land-viewing-form-group">
                     <label htmlFor="fullName">Full Name</label>
-
                     <input
                       id="fullName"
                       type="text"
@@ -146,12 +213,9 @@ export default function RequestLandViewing() {
                     />
                   </div>
 
-                  {/* EMAIL AND PHONE */}
-
                   <div className="land-viewing-form-row">
                     <div className="land-viewing-form-group">
                       <label htmlFor="email">Email Address</label>
-
                       <input
                         id="email"
                         type="email"
@@ -165,7 +229,6 @@ export default function RequestLandViewing() {
 
                     <div className="land-viewing-form-group">
                       <label htmlFor="phone">Phone Number</label>
-
                       <input
                         id="phone"
                         type="tel"
@@ -178,8 +241,6 @@ export default function RequestLandViewing() {
                     </div>
                   </div>
 
-                  {/* VIEWING SCHEDULE */}
-
                   <h2 className="land-viewing-schedule-title">
                     Preferred Viewing Schedule
                   </h2>
@@ -187,7 +248,6 @@ export default function RequestLandViewing() {
                   <div className="land-viewing-form-row">
                     <div className="land-viewing-form-group">
                       <label htmlFor="preferredDate">Preferred Date</label>
-
                       <input
                         id="preferredDate"
                         type="date"
@@ -201,7 +261,6 @@ export default function RequestLandViewing() {
 
                     <div className="land-viewing-form-group">
                       <label htmlFor="preferredTime">Preferred Time</label>
-
                       <select
                         id="preferredTime"
                         name="preferredTime"
@@ -217,13 +276,10 @@ export default function RequestLandViewing() {
                     </div>
                   </div>
 
-                  {/* ADDITIONAL INFORMATION */}
-
                   <div className="land-viewing-form-group">
                     <label htmlFor="message">
                       Additional Information (Optional)
                     </label>
-
                     <textarea
                       id="message"
                       name="message"
@@ -233,8 +289,6 @@ export default function RequestLandViewing() {
                       onChange={handleChange}
                     />
                   </div>
-
-                  {/* FEE POLICY */}
 
                   <div className="land-viewing-policy">
                     <h3>Viewing & Connection Fee Policy</h3>
@@ -256,7 +310,6 @@ export default function RequestLandViewing() {
                         onChange={handleChange}
                         required
                       />
-
                       <span>
                         I have read and agree to the viewing and connection fee
                         policy.
@@ -264,10 +317,14 @@ export default function RequestLandViewing() {
                     </label>
                   </div>
 
-                  {/* SUBMIT */}
+                  {error && (
+                    <p role="alert" className="land-viewing-error">
+                      {error}
+                    </p>
+                  )}
 
                   <button type="submit" className="land-viewing-submit-btn">
-                    Review Viewing Request
+                    Submit Viewing Request
                   </button>
 
                   <p className="land-viewing-security-note">
@@ -279,11 +336,8 @@ export default function RequestLandViewing() {
             )}
           </section>
 
-          {/* SELECTED LAND SUMMARY */}
-
           <aside className="land-viewing-property-card">
             <span>YOUR SELECTED LAND</span>
-
             <h2>{land.title}</h2>
 
             <p>

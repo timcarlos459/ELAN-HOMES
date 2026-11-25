@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import landListings from "../data/land";
@@ -7,10 +7,40 @@ import "./LandDetails.css";
 export default function LandDetails() {
   const { id } = useParams();
 
-  // TEMPORARILY ALLOW DEMO LISTINGS FOR TESTING
-  const land = landListings.find((item) => item.id === id);
+  const land =
+    landListings.find((item) => item.id === id && item.status !== "demo") ||
+    landListings.find((item) => item.id === id);
 
   const [imageIndex, setImageIndex] = useState(0);
+  const [showAccountOptions, setShowAccountOptions] = useState(false);
+
+  const viewingRequestPath = land
+    ? `/land/${land.id}/request-viewing`
+    : "/land";
+
+  const signInLink = `/signin?redirect=${encodeURIComponent(
+    viewingRequestPath,
+  )}`;
+
+  const registerLink = `/register?redirect=${encodeURIComponent(
+    viewingRequestPath,
+  )}`;
+
+  useEffect(() => {
+    if (!showAccountOptions) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowAccountOptions(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showAccountOptions]);
 
   if (!land) {
     return (
@@ -33,6 +63,9 @@ export default function LandDetails() {
       ? [land.image]
       : [];
 
+  const isSold = land.availabilityStatus === "sold";
+  const isAvailable = !isSold && land.availabilityStatus !== "unavailable";
+
   const formatPrice = (price) => {
     if (typeof price === "number" && Number.isFinite(price)) {
       return `KSh ${price.toLocaleString("en-KE")}`;
@@ -45,7 +78,6 @@ export default function LandDetails() {
     return "Price on request";
   };
 
-  // Only display information supplied by the owner or authorised agent.
   const availabilityLabel = (value) => {
     if (value === true || value === "Available") return "Available";
     if (value === false || value === "Not Available") return "Not Available";
@@ -60,10 +92,7 @@ export default function LandDetails() {
     { label: "Land Use", value: land.landUse },
     { label: "Access Road", value: availabilityLabel(land.accessRoad) },
     { label: "Water Availability", value: availabilityLabel(land.water) },
-    {
-      label: "Electricity",
-      value: availabilityLabel(land.electricity),
-    },
+    { label: "Electricity", value: availabilityLabel(land.electricity) },
     { label: "Title Deed", value: availabilityLabel(land.titleDeed) },
     {
       label: "Ownership Documents",
@@ -76,16 +105,15 @@ export default function LandDetails() {
     (item) => item.value && item.value !== "Not specified",
   );
 
+  const seoTitle = `${land.title} | Land for Sale | ÉLAN HOMES`;
+
+  const seoDescription = `Explore ${land.title} in ${land.destination}, ${land.region}, Kenya. Contact ÉLAN HOMES for further information.`;
+
   return (
     <main className="land-details-page">
-      <SEO
-        title={`${land.title} | Land for Sale | ÉLAN HOMES`}
-        description={`Explore ${land.title} in ${land.destination}, ${land.region}, Kenya. Contact ÉLAN HOMES to arrange a viewing.`}
-      />
+      <SEO title={seoTitle} description={seoDescription} />
 
       <div className="land-details-container">
-        {/* BREADCRUMB */}
-
         <nav className="land-details-breadcrumb">
           <Link to="/">Home</Link>
           <span>/</span>
@@ -93,8 +121,6 @@ export default function LandDetails() {
           <span>/</span>
           <span>{land.title}</span>
         </nav>
-
-        {/* HEADING */}
 
         <div className="land-details-heading">
           <div>
@@ -106,21 +132,24 @@ export default function LandDetails() {
 
             <p>
               {land.destination}, {land.region}, Kenya
+              <span
+                className={`land-details-availability ${
+                  isSold ? "sold" : isAvailable ? "available" : "unavailable"
+                }`}
+              >
+                {isSold ? "SOLD" : isAvailable ? "AVAILABLE" : "UNAVAILABLE"}
+              </span>
             </p>
           </div>
 
           <div className="land-details-price">
-            <small>Asking Price</small>
+            <small>{isSold ? "Last Asking Price" : "Asking Price"}</small>
             <strong>{formatPrice(land.price)}</strong>
           </div>
         </div>
 
-        {/* MAIN LAYOUT */}
-
         <div className="land-details-layout">
           <section className="land-details-main">
-            {/* IMAGE GALLERY */}
-
             <div className="land-details-gallery">
               {images.length > 0 ? (
                 <>
@@ -149,12 +178,10 @@ export default function LandDetails() {
               ) : (
                 <div className="land-details-no-image">
                   <span>ÉLAN HOMES</span>
-                  <p>Property images coming soon</p>
+                  <p>Land images coming soon</p>
                 </div>
               )}
             </div>
-
-            {/* LAND OVERVIEW */}
 
             <section className="land-details-section">
               <span>LAND OVERVIEW</span>
@@ -165,8 +192,6 @@ export default function LandDetails() {
                   "Contact ÉLAN HOMES for further information about this land opportunity."}
               </p>
             </section>
-
-            {/* LAND SPECIFICATIONS */}
 
             <section className="land-details-section">
               <span>OWNER / AGENT PROVIDED INFORMATION</span>
@@ -201,36 +226,48 @@ export default function LandDetails() {
             </section>
           </section>
 
-          {/* ENQUIRY SIDEBAR */}
-
           <aside className="land-details-sidebar">
             <div className="land-details-enquiry-card">
-              <span>INTERESTED IN THIS LAND?</span>
+              <span>LAND AVAILABILITY</span>
 
-              <h2>Arrange a Viewing</h2>
+              <h2>
+                {isSold
+                  ? "This Land Has Been Sold"
+                  : isAvailable
+                    ? "Land Available"
+                    : "Currently Unavailable"}
+              </h2>
 
               <p>
-                Request a viewing and let ÉLAN HOMES coordinate the next steps
-                with you.
+                {isSold
+                  ? "This land is no longer available for purchase or viewing. Contact ÉLAN HOMES for assistance finding similar land."
+                  : isAvailable
+                    ? "Contact ÉLAN HOMES to enquire about this land or arrange a viewing."
+                    : "This land is temporarily unavailable for new viewing requests. Contact ÉLAN HOMES for more information."}
               </p>
 
-              <Link
-                to={`/land/${land.id}/request-viewing`}
-                className="land-details-viewing-button"
-              >
-                Request Land Viewing ↗
-              </Link>
+              {isAvailable && (
+                <>
+                  <button
+                    type="button"
+                    className="land-details-viewing-button"
+                    onClick={() => setShowAccountOptions(true)}
+                  >
+                    Request Land Viewing ↗
+                  </button>
 
-              <p className="land-details-fee-notice">
-                A non-refundable viewing and connection fee applies. This fee is
-                separate from the land purchase price.
-              </p>
+                  <p className="land-details-fee-notice">
+                    A non-refundable viewing and connection fee applies. This
+                    fee is separate from the land purchase price.
+                  </p>
+                </>
+              )}
 
               <Link
                 to={`/enquiry/land/${land.id}`}
                 className="land-details-contact-button"
               >
-                General Enquiry
+                {isSold ? "Enquire About Similar Land" : "General Enquiry"}
               </Link>
             </div>
 
@@ -240,6 +277,58 @@ export default function LandDetails() {
           </aside>
         </div>
       </div>
+
+      {showAccountOptions && (
+        <div
+          className="stay-account-overlay"
+          role="presentation"
+          onClick={() => setShowAccountOptions(false)}
+        >
+          <div
+            className="stay-account-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="land-account-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="stay-account-close"
+              onClick={() => setShowAccountOptions(false)}
+              aria-label="Close account options"
+            >
+              ×
+            </button>
+
+            <span>ÉLAN HOMES</span>
+
+            <h2 id="land-account-modal-title">
+              Continue to Request Land Viewing
+            </h2>
+
+            <p>
+              Sign in to your existing account or create an ÉLAN HOMES account
+              to continue with this land viewing request.
+            </p>
+
+            <Link to={signInLink} className="stay-account-signin">
+              Sign In to Continue
+            </Link>
+
+            <Link to={registerLink} className="stay-account-register">
+              Create Account to Continue
+            </Link>
+
+            <button
+              type="button"
+              className="stay-account-cancel"
+              onClick={() => setShowAccountOptions(false)}
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

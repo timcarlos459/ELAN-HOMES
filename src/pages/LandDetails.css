@@ -404,3 +404,209 @@
     padding: 22px;
   }
 }
+/* LAND AVAILABILITY STATUS */
+
+.land-details-availability {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.land-details-availability.available {
+  background: #e5f1e7;
+  color: #28633a;
+  border: 1px solid #b9d7bf;
+}
+
+.land-details-availability.sold {
+  background: #e5e5e5;
+  color: #555;
+  border: 1px solid #ccc;
+}
+
+.land-details-availability.unavailable {
+  background: #f8e9e7;
+  color: #963f35;
+  border: 1px solid #e5c1bc;
+}
+
+/* SOLD AND UNAVAILABLE ENQUIRY CARDS */
+
+.land-details-enquiry-card.sold {
+  border-top: 3px solid #777;
+}
+
+.land-details-enquiry-card.unavailable {
+  border-top: 3px solid #b76a5d;
+}
+
+.land-details-enquiry-card.available {
+  border-top: 3px solid #a88345;
+}
+
+/* MOBILE STATUS */
+
+@media (max-width: 550px) {
+  .land-details-availability {
+    margin-top: 12px;
+    padding: 9px 14px;
+    font-size: 10px;
+  }
+}
+
+/* ==========================================
+   LAND VIEWING ACCOUNT OPTIONS MODAL
+========================================== */
+
+.stay-account-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.stay-account-modal {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  padding: 42px 35px 35px;
+  background: #faf9f6;
+  border: 1px solid #c9a45c;
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: stayAccountAppear 0.25s ease;
+}
+
+@keyframes stayAccountAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stay-account-modal > span {
+  display: block;
+  color: #a17d3f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+}
+
+.stay-account-modal h2 {
+  color: #171717;
+  font-size: 25px;
+  line-height: 1.4;
+  margin: 0 0 13px;
+}
+
+.stay-account-modal > p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 27px;
+}
+
+.stay-account-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 29px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.stay-account-close:hover {
+  color: #b18a45;
+}
+
+.stay-account-signin,
+.stay-account-register {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.stay-account-signin {
+  background: #171717;
+  color: #d6b36a;
+  border: 1px solid #171717;
+}
+
+.stay-account-signin:hover {
+  background: #c5a15b;
+  color: #171717;
+  border-color: #c5a15b;
+}
+
+.stay-account-register {
+  background: transparent;
+  color: #171717;
+  border: 1px solid #c9a45c;
+}
+
+.stay-account-register:hover {
+  background: #f1eadc;
+}
+
+.stay-account-cancel {
+  margin-top: 22px;
+  padding: 9px 18px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stay-account-cancel:hover {
+  color: #a17d3f;
+}
+
+@media (max-width: 500px) {
+  .stay-account-modal {
+    padding: 40px 22px 27px;
+  }
+
+  .stay-account-modal h2 {
+    font-size: 22px;
+  }
+
+  .stay-account-modal > p {
+    font-size: 13px;
+  }
+
+  .stay-account-signin,
+  .stay-account-register {
+    font-size: 11px;
+  }
+}

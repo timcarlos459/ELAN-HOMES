@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import properties from "../data/properties";
 import SEO from "../components/SEO";
+import { createEnquiryRecord } from "../utils/enquiryRecords";
 import "./RequestViewing.css";
 
 export default function RequestViewing() {
@@ -22,6 +23,8 @@ export default function RequestViewing() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [createdReference, setCreatedReference] = useState("");
 
   const today = new Date().toLocaleDateString("en-CA");
 
@@ -36,8 +39,78 @@ export default function RequestViewing() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setError("");
 
-    setSubmitted(true);
+    if (!property) return;
+
+    if (!formData.acceptFeePolicy) {
+      setError("Please accept the viewing connection fee policy.");
+      return;
+    }
+
+    if (!formData.preferredDate || formData.preferredDate < today) {
+      setError("Please select a valid viewing date.");
+      return;
+    }
+
+    try {
+      const record = createEnquiryRecord({
+        category: "property",
+        listing: property,
+        customer: {
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+        },
+        message: formData.message,
+      });
+
+      const viewingRecord = {
+        ...record,
+
+        // Identifies this as a property viewing request.
+        enquiryType: "property_viewing",
+
+        // Preferred viewing schedule.
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        viewingDate: formData.preferredDate,
+        viewingTime: formData.preferredTime,
+
+        // No payment has been made through this form.
+        paid: false,
+        paymentStatus: "unpaid",
+
+        // Customer policy acknowledgement.
+        feePolicyAccepted: true,
+        feePolicyAcceptedAt: new Date().toISOString(),
+
+        status: "new",
+      };
+
+      const existingRecords = JSON.parse(
+        localStorage.getItem("elanEnquiries") || "[]",
+      );
+
+      if (!Array.isArray(existingRecords)) {
+        throw new Error("Your enquiry records could not be accessed.");
+      }
+
+      localStorage.setItem(
+        "elanEnquiries",
+        JSON.stringify([...existingRecords, viewingRecord]),
+      );
+
+      setCreatedReference(`ELAN-${record.id.toUpperCase()}`);
+      setSubmitted(true);
+    } catch (submissionError) {
+      console.error("Property viewing request error:", submissionError);
+
+      setError(
+        submissionError.message ||
+          "We could not save your viewing request. Please try again.",
+      );
+    }
   };
 
   if (!property) {
@@ -91,13 +164,28 @@ export default function RequestViewing() {
             <section className="viewing-form-section">
               {submitted ? (
                 <div className="viewing-success">
-                  <h2>Form Preview Complete</h2>
-                  Your details have been successfully validated. Your viewing
-                  request has not yet been submitted, and no payment has been
-                  processed.
-                  <button type="button" onClick={() => setSubmitted(false)}>
-                    Review Details
-                  </button>
+                  <h2>Viewing Request Recorded</h2>
+
+                  <p>
+                    Your property viewing request has been saved to your ÉLAN
+                    HOMES enquiry records. Our team will review your request and
+                    coordinate the next steps.
+                  </p>
+
+                  <p>
+                    <strong>Enquiry Reference:</strong>
+                  </p>
+
+                  <p>{createdReference}</p>
+
+                  <Link to="/account/bookings">
+                    View My Bookings & Enquiries
+                  </Link>
+
+                  <p>
+                    No viewing fee has been paid through this form. Payment
+                    arrangements will be communicated separately.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
@@ -195,6 +283,7 @@ export default function RequestViewing() {
 
                   <div className="viewing-policy">
                     <h3>Viewing Connection Fee</h3>
+
                     <p>
                       A connection fee will be payable to ÉLAN HOMES before your
                       viewing request is processed. The amount will be displayed
@@ -203,8 +292,9 @@ export default function RequestViewing() {
 
                     <p>
                       The viewing connection fee is non-refundable once the
-                      request has been submitted and processed. It is not part
-                      of the property's purchase price.
+                      request has been submitted and processed, subject to the
+                      applicable cancellation and service-resolution policy. It
+                      is not part of the property's purchase price.
                     </p>
 
                     <label className="viewing-checkbox">
@@ -222,8 +312,14 @@ export default function RequestViewing() {
                     </label>
                   </div>
 
+                  {error && (
+                    <p role="alert" className="viewing-error">
+                      {error}
+                    </p>
+                  )}
+
                   <button type="submit" className="viewing-submit-btn">
-                    Review Viewing Request
+                    Submit Viewing Request
                   </button>
 
                   <p className="viewing-security-note">

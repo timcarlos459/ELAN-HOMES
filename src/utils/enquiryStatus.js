@@ -20,21 +20,75 @@ export const ENQUIRY_STATUS_LABELS = {
   [ENQUIRY_STATUSES.CANCELLED]: "Cancelled",
 };
 
+export const ALLOWED_ENQUIRY_TRANSITIONS = {
+  [ENQUIRY_STATUSES.NEW]: [
+    ENQUIRY_STATUSES.UNDER_REVIEW,
+    ENQUIRY_STATUSES.CANCELLED,
+  ],
+
+  [ENQUIRY_STATUSES.UNDER_REVIEW]: [
+    ENQUIRY_STATUSES.OWNER_CONTACTED,
+    ENQUIRY_STATUSES.CANCELLED,
+  ],
+
+  [ENQUIRY_STATUSES.OWNER_CONTACTED]: [
+    ENQUIRY_STATUSES.AWAITING_OWNER,
+    ENQUIRY_STATUSES.RESPONSE_RECEIVED,
+  ],
+
+  [ENQUIRY_STATUSES.AWAITING_OWNER]: [
+    ENQUIRY_STATUSES.RESPONSE_RECEIVED,
+    ENQUIRY_STATUSES.CANCELLED,
+  ],
+
+  [ENQUIRY_STATUSES.RESPONSE_RECEIVED]: [ENQUIRY_STATUSES.CUSTOMER_CONTACTED],
+
+  [ENQUIRY_STATUSES.CUSTOMER_CONTACTED]: [
+    ENQUIRY_STATUSES.COMPLETED,
+    ENQUIRY_STATUSES.CANCELLED,
+  ],
+
+  [ENQUIRY_STATUSES.COMPLETED]: [],
+  [ENQUIRY_STATUSES.CANCELLED]: [],
+};
+
 export const getEnquiryStatusLabel = (status) => {
   return ENQUIRY_STATUS_LABELS[status] || "Unknown Status";
 };
 
-export const canUpdateEnquiryStatus = (currentStatus, nextStatus) => {
-  const allowedTransitions = {
-    new: ["under_review", "cancelled"],
-    under_review: ["owner_contacted", "cancelled"],
-    owner_contacted: ["awaiting_owner", "response_received"],
-    awaiting_owner: ["response_received", "cancelled"],
-    response_received: ["customer_contacted"],
-    customer_contacted: ["completed", "cancelled"],
-    completed: [],
-    cancelled: [],
-  };
+export const getNextEnquiryStatuses = (currentStatus) => {
+  return ALLOWED_ENQUIRY_TRANSITIONS[currentStatus] || [];
+};
 
-  return allowedTransitions[currentStatus]?.includes(nextStatus) || false;
+export const canUpdateEnquiryStatus = (currentStatus, nextStatus) => {
+  return getNextEnquiryStatuses(currentStatus).includes(nextStatus);
+};
+
+// UPDATE ENQUIRY STATUS AND RECORD HISTORY
+export const updateEnquiryRecordStatus = (record, nextStatus, note = "") => {
+  if (!record || !record.status) {
+    throw new Error("A valid enquiry record is required.");
+  }
+
+  if (!canUpdateEnquiryStatus(record.status, nextStatus)) {
+    throw new Error("This enquiry status change is not allowed.");
+  }
+
+  const now = new Date().toISOString();
+
+  return {
+    ...record,
+    status: nextStatus,
+
+    statusHistory: [
+      ...(record.statusHistory || []),
+      {
+        status: nextStatus,
+        timestamp: now,
+        note: note.trim(),
+      },
+    ],
+
+    updatedAt: now,
+  };
 };

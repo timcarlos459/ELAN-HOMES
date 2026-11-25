@@ -343,3 +343,42 @@
     height: 220px;
   }
 }
+
+/* =================================
+   SAVED LISTING IMAGE FALLBACK
+================================= */
+
+.saved-card-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9e5dc;
+  color: #777;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* =================================
+   THREE CATEGORY TABS
+================================= */
+
+.saved-tabs {
+  flex-wrap: wrap;
+}
+
+.saved-tabs button {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .saved-tabs {
+    gap: 10px 18px;
+  }
+
+  .saved-tabs button {
+    font-size: 11px;
+    padding: 13px 2px;
+  }
+}

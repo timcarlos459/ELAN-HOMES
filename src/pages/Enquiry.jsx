@@ -3,6 +3,7 @@ import { Link, useParams, useSearchParams } from "react-router-dom";
 
 import { getListingById } from "../utils/listingLookup";
 import createEnquiryRecord from "../utils/enquiryRecords";
+import generateEnquiryReference from "../utils/enquiryReference";
 
 import "./Enquiry.css";
 
@@ -120,11 +121,16 @@ function Enquiry() {
     }));
   };
 
-  // CREATE CENTRAL ENQUIRY RECORD
+  // CREATE AND SAVE ALL ENQUIRIES
   const handleSubmit = (event) => {
     event.preventDefault();
 
     try {
+      if (!listing) {
+        throw new Error("The selected listing could not be found.");
+      }
+
+      // CREATE CENTRAL ENQUIRY RECORD
       const record = createEnquiryRecord({
         category: categoryKey,
         listing,
@@ -142,25 +148,92 @@ function Enquiry() {
             : null,
       });
 
-      setCreatedRecord(record);
+      // ENSURE SUBMISSION DATE IS RECORDED
+      const enquiryRecord = {
+        ...record,
+        createdAt: record.createdAt || new Date().toISOString(),
+      };
+
+      // SAVE ALL CATEGORIES TO CENTRAL ENQUIRY COLLECTION
+      const existingEnquiries = JSON.parse(
+        localStorage.getItem("elanEnquiries") || "[]",
+      );
+
+      if (!Array.isArray(existingEnquiries)) {
+        throw new Error("Stored enquiry records are invalid.");
+      }
+
+      localStorage.setItem(
+        "elanEnquiries",
+        JSON.stringify([...existingEnquiries, enquiryRecord]),
+      );
+
+      // SAVE STAY BOOKING ENQUIRIES TO MY BOOKINGS
+      if (categoryKey === "stay" && validStayBooking) {
+        const existingBookings = JSON.parse(
+          localStorage.getItem("elanBookings") || "[]",
+        );
+
+        if (!Array.isArray(existingBookings)) {
+          throw new Error("Stored booking records are invalid.");
+        }
+
+        const bookingRecord = {
+          ...enquiryRecord,
+
+          // LISTING INFORMATION
+          stayName: listingName,
+          location: listingLocation,
+          image: listing.image || "",
+
+          // BOOKING INFORMATION
+          checkIn,
+          checkOut,
+          guests,
+          nights,
+          total,
+
+          // CUSTOMER INFORMATION
+          customerName: formData.fullName.trim(),
+          customerEmail: formData.email.trim().toLowerCase(),
+          customerPhone: formData.phone,
+
+          // INITIAL BOOKING STATUS
+          status: "pending",
+        };
+
+        localStorage.setItem(
+          "elanBookings",
+          JSON.stringify([...existingBookings, bookingRecord]),
+        );
+      }
+
+      setCreatedRecord(enquiryRecord);
       setSubmitted(true);
     } catch (error) {
       console.error("Enquiry record creation failed:", error);
-      alert("We could not prepare your enquiry. Please check your details.");
+
+      alert(
+        "We could not prepare your enquiry. Please check your details and try again.",
+      );
     }
   };
 
-  // COPY ELAN REFERENCE NUMBER
-  const handleCopyReference = async () => {
-    if (!createdRecord) return;
+  // GENERATE STANDARD REFERENCE NUMBER
+  const referenceNumber = createdRecord
+    ? generateEnquiryReference(createdRecord.id)
+    : "";
 
-    const referenceNumber = `ELAN-${createdRecord.id.toUpperCase()}`;
+  // COPY REFERENCE NUMBER
+  const handleCopyReference = async () => {
+    if (!referenceNumber) return;
 
     try {
       await navigator.clipboard.writeText(referenceNumber);
       setCopied(true);
     } catch (error) {
       console.error("Could not copy reference number:", error);
+
       alert(
         "Unable to copy automatically. Please select and copy the reference number.",
       );
@@ -210,7 +283,6 @@ function Enquiry() {
         </div>
 
         <div className="enquiry-layout">
-          {/* SELECTED LISTING */}
           <aside className="enquiry-listing-card">
             {listing.image && (
               <img
@@ -240,7 +312,6 @@ function Enquiry() {
             </div>
           </aside>
 
-          {/* CUSTOMER ENQUIRY FORM */}
           <section className="enquiry-form-section">
             {submitted ? (
               <div className="enquiry-success">
@@ -258,7 +329,7 @@ function Enquiry() {
                   <div className="enquiry-reference">
                     <span>ÉLAN HOMES REFERENCE NUMBER</span>
 
-                    <strong>ELAN-{createdRecord.id.toUpperCase()}</strong>
+                    <strong>{referenceNumber}</strong>
 
                     <button
                       type="button"
@@ -286,7 +357,6 @@ function Enquiry() {
                   </p>
                 </div>
 
-                {/* STAY BOOKING SUMMARY */}
                 {validStayBooking && (
                   <div className="enquiry-booking-summary">
                     <h3>Your Stay Request</h3>

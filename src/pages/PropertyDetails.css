@@ -662,3 +662,220 @@
   background: #111111;
   color: #c9a45c;
 }
+
+/* ==========================================
+   PROPERTY LISTING STATUS
+========================================== */
+
+.details-status.available {
+  background: #171717;
+  color: #d4af72;
+}
+
+.details-status.sold {
+  background: #777777;
+  color: #ffffff;
+}
+
+/* ==========================================
+   ÉLAN FEATURED BADGE
+========================================== */
+
+.details-featured-badge {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 2;
+  background: #d4af72;
+  color: #171717;
+  padding: 11px 18px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border: 1px solid #171717;
+}
+
+/* ==========================================
+   EMPTY GALLERY PLACEHOLDER
+========================================== */
+
+.main-gallery-image.gallery-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e3d9;
+  color: #777777;
+  font-size: 14px;
+  cursor: default;
+}
+
+/* MOBILE FEATURED BADGE */
+@media (max-width: 700px) {
+  .details-status,
+  .details-featured-badge {
+    top: 15px;
+    padding: 9px 12px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .details-featured-badge {
+    right: 15px;
+  }
+
+  .details-status {
+    left: 15px;
+  }
+}
+
+/* ==========================================
+   PROPERTY VIEWING ACCOUNT OPTIONS
+========================================== */
+
+.stay-account-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(5px);
+}
+
+.stay-account-modal {
+  position: relative;
+  width: 100%;
+  max-width: 470px;
+  padding: 42px 35px 35px;
+  background: #faf9f6;
+  border: 1px solid #c9a45c;
+  border-radius: 8px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: stayAccountAppear 0.25s ease;
+}
+
+@keyframes stayAccountAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stay-account-modal > span {
+  display: block;
+  color: #a17d3f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+}
+
+.stay-account-modal h2 {
+  color: #171717;
+  font-size: 25px;
+  line-height: 1.4;
+  margin: 0 0 13px;
+}
+
+.stay-account-modal > p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 27px;
+}
+
+.stay-account-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 29px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.stay-account-close:hover {
+  color: #b18a45;
+}
+
+.stay-account-signin,
+.stay-account-register {
+  display: block;
+  width: 100%;
+  padding: 16px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.stay-account-signin {
+  background: #171717;
+  color: #d6b36a;
+  border: 1px solid #171717;
+}
+
+.stay-account-signin:hover {
+  background: #c5a15b;
+  color: #171717;
+  border-color: #c5a15b;
+}
+
+.stay-account-register {
+  background: transparent;
+  color: #171717;
+  border: 1px solid #c9a45c;
+}
+
+.stay-account-register:hover {
+  background: #f1eadc;
+}
+
+.stay-account-cancel {
+  margin-top: 22px;
+  padding: 9px 18px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stay-account-cancel:hover {
+  color: #a17d3f;
+}
+
+@media (max-width: 500px) {
+  .stay-account-modal {
+    padding: 40px 22px 27px;
+  }
+
+  .stay-account-modal h2 {
+    font-size: 22px;
+  }
+
+  .stay-account-modal > p {
+    font-size: 13px;
+  }
+
+  .stay-account-signin,
+  .stay-account-register {
+    font-size: 11px;
+  }
+}

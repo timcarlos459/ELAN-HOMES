@@ -1,13 +1,49 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import "./Register.css";
 
+const CURATOR_CATEGORIES = [
+  {
+    value: "land",
+    number: "01",
+    title: "LAND",
+    description: "Residential, commercial and agricultural land listings.",
+  },
+  {
+    value: "properties",
+    number: "02",
+    title: "PROPERTIES",
+    description: "Houses, apartments, villas and homes for sale.",
+  },
+  {
+    value: "stays",
+    number: "03",
+    title: "STAYS",
+    description: "B&Bs, holiday homes and short-stay accommodation.",
+  },
+];
+
 export default function Register() {
+  const [searchParams] = useSearchParams();
+
+  const requestedRedirect = searchParams.get("redirect");
+
+  const redirectTo =
+    requestedRedirect &&
+    requestedRedirect.startsWith("/") &&
+    !requestedRedirect.startsWith("//")
+      ? requestedRedirect
+      : "/account";
+
+  const signInLink = `/signin?redirect=${encodeURIComponent(redirectTo)}`;
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
+    accountType: "",
+    curatorCategories: [],
     firstName: "",
     lastName: "",
     email: "",
@@ -17,14 +53,53 @@ export default function Register() {
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+  };
+
+  const handleAccountTypeChange = (e) => {
+    const accountType = e.target.value;
+
+    setFormData((previous) => ({
+      ...previous,
+      accountType,
+      curatorCategories:
+        accountType === "curator" ? previous.curatorCategories : [],
+    }));
+  };
+
+  const handleCategoryChange = (category) => {
+    setFormData((previous) => {
+      const alreadySelected = previous.curatorCategories.includes(category);
+
+      return {
+        ...previous,
+        curatorCategories: alreadySelected
+          ? previous.curatorCategories.filter((item) => item !== category)
+          : [...previous.curatorCategories, category],
+      };
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.accountType) {
+      alert("Please select your ÉLAN HOMES account type.");
+      return;
+    }
+
+    if (
+      formData.accountType === "curator" &&
+      formData.curatorCategories.length === 0
+    ) {
+      alert("Please select at least one listing category.");
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       alert("Your passwords do not match.");
@@ -36,8 +111,23 @@ export default function Register() {
       return;
     }
 
+    const accountLabel =
+      formData.accountType === "explorer" ? "ÉLAN EXPLORER" : "ÉLAN CURATOR";
+
+    const selectedCategories = formData.curatorCategories
+      .map(
+        (category) =>
+          CURATOR_CATEGORIES.find((item) => item.value === category)?.title,
+      )
+      .filter(Boolean);
+
+    const categoryMessage =
+      formData.accountType === "curator"
+        ? `\nSelected categories: ${selectedCategories.join(", ")}`
+        : "";
+
     alert(
-      "Registration form completed. Account creation will be activated when authentication is connected.",
+      `Registration form completed as ${accountLabel}.${categoryMessage}\n\nAccount creation and email verification will be activated when secure authentication is connected.`,
     );
   };
 
@@ -45,11 +135,12 @@ export default function Register() {
     <main className="register-page">
       <SEO
         title="Create an Account | Join ÉLAN HOMES"
-        description="Create your ÉLAN HOMES account to explore exceptional properties for sale, save your favourite homes and manage your holiday stay enquiries across Kenya."
+        description="Create your ÉLAN HOMES account to discover properties, land and exceptional holiday stays across Kenya."
         noindex={true}
       />
 
       <div className="register-container">
+        {/* BRAND SECTION */}
         <div className="register-brand">
           <Link to="/" className="register-logo">
             ÉLAN <span>HOMES</span>
@@ -60,16 +151,154 @@ export default function Register() {
           <h1>Create your account</h1>
 
           <p className="register-subtitle">
-            Create an account to discover exceptional properties, save your
-            favourites and manage your holiday stay enquiries.
+            Begin your journey with ÉLAN HOMES. Choose how you would like to
+            experience our platform.
           </p>
         </div>
 
         <form className="register-form" onSubmit={handleSubmit}>
+          {/* ACCOUNT TYPE SELECTION */}
+          <div className="register-account-section">
+            <div className="register-account-heading">
+              <h2>Choose Your Account</h2>
+              <p>Select the account type that best describes you.</p>
+            </div>
+
+            <div className="register-account-options">
+              {/* EXPLORER */}
+              <label
+                className={`register-account-option ${
+                  formData.accountType === "explorer" ? "selected" : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="explorer"
+                  checked={formData.accountType === "explorer"}
+                  onChange={handleAccountTypeChange}
+                  required
+                />
+
+                <span className="register-account-content">
+                  <span className="register-account-icon">
+                    <span>01</span>
+                  </span>
+
+                  <strong>ÉLAN EXPLORER</strong>
+
+                  <span className="register-account-description">
+                    Discover properties, land and exceptional holiday stays
+                    across Kenya.
+                  </span>
+
+                  <span className="register-account-action">
+                    EXPLORE ÉLAN HOMES
+                  </span>
+                </span>
+              </label>
+
+              {/* CURATOR */}
+              <label
+                className={`register-account-option ${
+                  formData.accountType === "curator" ? "selected" : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="curator"
+                  checked={formData.accountType === "curator"}
+                  onChange={handleAccountTypeChange}
+                  required
+                />
+
+                <span className="register-account-content">
+                  <span className="register-account-icon">
+                    <span>02</span>
+                  </span>
+
+                  <strong>ÉLAN CURATOR</strong>
+
+                  <span className="register-account-description">
+                    Showcase and manage your properties, land and accommodation
+                    listings.
+                  </span>
+
+                  <span className="register-account-action">
+                    JOIN AS A CURATOR
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          {/* CURATOR CATEGORY SELECTION */}
+          {formData.accountType === "curator" && (
+            <section className="register-category-section">
+              <div className="register-section-heading">
+                <h2>Choose Your Listing Categories</h2>
+                <p>
+                  Select one or more categories you want to manage on ÉLAN
+                  HOMES.
+                </p>
+              </div>
+
+              <div className="register-category-options">
+                {CURATOR_CATEGORIES.map((category) => {
+                  const selected = formData.curatorCategories.includes(
+                    category.value,
+                  );
+
+                  return (
+                    <label
+                      key={category.value}
+                      className={`register-category-option ${
+                        selected ? "selected" : ""
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selected}
+                        onChange={() => handleCategoryChange(category.value)}
+                      />
+
+                      <span className="register-category-number">
+                        {category.number}
+                      </span>
+
+                      <span className="register-category-content">
+                        <strong>{category.title}</strong>
+                        <span>{category.description}</span>
+                      </span>
+
+                      <span className="register-category-check">
+                        {selected ? "✓" : "+"}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+
+              <p className="register-category-note">
+                You can select one, two or all three categories. You will manage
+                all selected categories from one Curator Dashboard.
+              </p>
+
+              <p className="register-category-selected">
+                {formData.curatorCategories.length} of 3 categories selected
+              </p>
+            </section>
+          )}
+
+          {/* PERSONAL DETAILS */}
+          <div className="register-section-heading">
+            <h2>Personal Information</h2>
+          </div>
+
           <div className="register-name-fields">
             <div className="register-field">
               <label htmlFor="firstName">First Name</label>
-
               <input
                 type="text"
                 id="firstName"
@@ -77,13 +306,13 @@ export default function Register() {
                 placeholder="First name"
                 value={formData.firstName}
                 onChange={handleChange}
+                autoComplete="given-name"
                 required
               />
             </div>
 
             <div className="register-field">
               <label htmlFor="lastName">Last Name</label>
-
               <input
                 type="text"
                 id="lastName"
@@ -91,6 +320,7 @@ export default function Register() {
                 placeholder="Last name"
                 value={formData.lastName}
                 onChange={handleChange}
+                autoComplete="family-name"
                 required
               />
             </div>
@@ -98,7 +328,6 @@ export default function Register() {
 
           <div className="register-field">
             <label htmlFor="email">Email Address</label>
-
             <input
               type="email"
               id="email"
@@ -106,13 +335,13 @@ export default function Register() {
               placeholder="Enter your email address"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
               required
             />
           </div>
 
           <div className="register-field">
             <label htmlFor="phone">Phone Number</label>
-
             <input
               type="tel"
               id="phone"
@@ -120,8 +349,14 @@ export default function Register() {
               placeholder="e.g. 0712 345 678"
               value={formData.phone}
               onChange={handleChange}
+              autoComplete="tel"
               required
             />
+          </div>
+
+          {/* PASSWORD */}
+          <div className="register-section-heading">
+            <h2>Account Security</h2>
           </div>
 
           <div className="register-field">
@@ -136,6 +371,7 @@ export default function Register() {
                 value={formData.password}
                 onChange={handleChange}
                 minLength={8}
+                autoComplete="new-password"
                 required
               />
 
@@ -161,6 +397,7 @@ export default function Register() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 minLength={8}
+                autoComplete="new-password"
                 required
               />
 
@@ -174,21 +411,24 @@ export default function Register() {
             </div>
           </div>
 
+          {/* TERMS */}
           <label className="register-terms">
             <input type="checkbox" required />
             <span>I agree to the Terms of Service and Privacy Policy.</span>
           </label>
 
+          {/* SUBMIT */}
           <button type="submit" className="register-submit">
             CREATE ACCOUNT
           </button>
         </form>
 
+        {/* SIGN IN */}
         <div className="register-divider">
           <span>ALREADY HAVE AN ACCOUNT?</span>
         </div>
 
-        <Link to="/signin" className="register-signin">
+        <Link to={signInLink} className="register-signin">
           SIGN IN
         </Link>
 
