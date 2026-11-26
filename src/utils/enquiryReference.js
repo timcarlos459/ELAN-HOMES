@@ -1,7 +1,10 @@
 const REFERENCE_PREFIX = "ELAN";
 
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export const generateEnquiryReference = (enquiryId) => {
-  if (!enquiryId || typeof enquiryId !== "string") {
+  if (typeof enquiryId !== "string" || !UUID_PATTERN.test(enquiryId)) {
     throw new Error("A valid enquiry UUID is required.");
   }
 
@@ -13,10 +16,10 @@ export const isValidEnquiryReference = (reference) => {
     return false;
   }
 
-  const uuidPattern =
-    /^ELAN-[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/;
+  const referencePattern =
+    /^ELAN-[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i;
 
-  return uuidPattern.test(reference);
+  return referencePattern.test(reference);
 };
 
 export default generateEnquiryReference;

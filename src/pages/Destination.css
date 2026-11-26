@@ -3,11 +3,23 @@
 ===================================== */
 
 .destination-page {
+  width: 100%;
+  min-height: 100vh;
   background: #fff;
   color: #171717;
+  overflow-x: clip;
+  box-sizing: border-box;
 }
 
-/* HERO */
+.destination-page *,
+.destination-page *::before,
+.destination-page *::after {
+  box-sizing: border-box;
+}
+
+/* =====================================
+   HERO
+===================================== */
 
 .destination-hero {
   min-height: 520px;
@@ -21,6 +33,7 @@
 }
 
 .destination-hero-content {
+  width: 100%;
   max-width: 760px;
 }
 
@@ -34,9 +47,10 @@
 
 .destination-hero h1 {
   margin: 22px 0;
-  font-size: clamp(42px, 6vw, 68px);
+  font-size: clamp(36px, 6vw, 68px);
   line-height: 1.1;
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .destination-hero-content > p {
@@ -60,7 +74,10 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  text-align: center;
 }
 
 .destination-primary-btn {
@@ -82,7 +99,9 @@
   color: #111;
 }
 
-/* INTRODUCTION */
+/* =====================================
+   INTRODUCTION
+===================================== */
 
 .destination-introduction {
   padding: 85px 8%;
@@ -94,14 +113,16 @@
 }
 
 .destination-introduction-content {
+  width: 100%;
   max-width: 650px;
 }
 
 .destination-introduction h2,
 .destination-section-heading h2 {
   margin: 15px 0;
-  font-size: clamp(28px, 4vw, 38px);
+  font-size: clamp(27px, 4vw, 38px);
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .destination-introduction p {
@@ -132,7 +153,9 @@
   font-size: 12px;
 }
 
-/* POPULAR LOCATIONS */
+/* =====================================
+   POPULAR LOCATIONS
+===================================== */
 
 .destination-locations,
 .destination-listings {
@@ -160,15 +183,22 @@
 
 .destination-location-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 .destination-location-card {
+  display: block;
+  min-width: 0;
   padding: 30px;
   border: 1px solid #e8e4dc;
   background: #fff;
-  transition: 0.3s ease;
+  color: #171717;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .destination-location-card:hover {
@@ -185,6 +215,7 @@
 .destination-location-card h3 {
   margin: 18px 0 10px;
   font-size: 21px;
+  overflow-wrap: anywhere;
 }
 
 .destination-location-card p {
@@ -193,7 +224,24 @@
   line-height: 1.7;
 }
 
-/* LISTINGS */
+.destination-location-card strong {
+  display: inline-block;
+  margin-top: 18px;
+  color: #a3844e;
+  font-size: 12px;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.destination-location-card:hover strong {
+  color: #171717;
+  transform: translateX(5px);
+}
+
+/* =====================================
+   LISTINGS
+===================================== */
 
 .destination-listings {
   background: #f8f7f4;
@@ -206,9 +254,12 @@
 }
 
 .destination-listing-card {
+  min-width: 0;
   background: #fff;
   overflow: hidden;
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .destination-listing-card:hover {
@@ -217,6 +268,7 @@
 }
 
 .destination-listing-card > a {
+  display: block;
   color: inherit;
   text-decoration: none;
 }
@@ -228,10 +280,11 @@
 }
 
 .destination-listing-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: transform 0.4s ease;
 }
 
 .destination-listing-card:hover img {
@@ -253,6 +306,7 @@
 .destination-listing-info h3 {
   margin: 12px 0;
   font-size: 19px;
+  overflow-wrap: anywhere;
 }
 
 .destination-listing-price {
@@ -278,7 +332,9 @@
   font-size: 12px;
 }
 
-/* EMPTY STATE */
+/* =====================================
+   EMPTY STATE
+===================================== */
 
 .destination-empty {
   padding: 55px 25px;
@@ -307,7 +363,9 @@
   text-decoration: none;
 }
 
-/* CTA */
+/* =====================================
+   CTA
+===================================== */
 
 .destination-cta {
   padding: 75px 8%;
@@ -333,6 +391,7 @@
 .destination-cta h2 {
   margin: 15px 0;
   font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.3;
 }
 
 .destination-cta p {
@@ -349,14 +408,17 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  text-align: center;
+  transition: background 0.3s ease;
 }
 
 .destination-cta > a:hover {
   background: #fff;
 }
 
-/* NOT FOUND */
+/* =====================================
+   NOT FOUND
+===================================== */
 
 .destination-not-found {
   min-height: 500px;
@@ -366,77 +428,6 @@
 
 .destination-not-found a {
   color: #a3844e;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .destination-introduction {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .destination-location-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .destination-listings-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .destination-hero {
-    min-height: 480px;
-    padding: 75px 6%;
-  }
-
-  .destination-hero-content > p {
-    font-size: 14px;
-  }
-
-  .destination-hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .destination-hero-buttons a {
-    text-align: center;
-  }
-
-  .destination-introduction,
-  .destination-locations,
-  .destination-listings {
-    padding: 60px 6%;
-  }
-
-  .destination-stats {
-    gap: 25px;
-  }
-
-  .destination-section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .destination-location-grid,
-  .destination-listings-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .destination-location-card {
-    padding: 25px;
-  }
-
-  .destination-listing-image {
-    height: 230px;
-  }
-
-  .destination-cta {
-    padding: 60px 6%;
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 
 /* =====================================
@@ -458,7 +449,7 @@
 .destination-breadcrumb a {
   color: #a3844e;
   text-decoration: none;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .destination-breadcrumb a:hover {
@@ -470,46 +461,182 @@
   font-weight: 600;
 }
 
-/* =====================================
-   CLICKABLE LOCATION CARDS
-===================================== */
-
-.destination-location-card {
-  display: block;
-  color: #171717;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.destination-location-card strong {
-  display: inline-block;
-  margin-top: 18px;
-  color: #a3844e;
-  font-size: 12px;
-  transition: 0.3s ease;
-}
-
-.destination-location-card:hover strong {
-  color: #171717;
-  transform: translateX(5px);
-}
-
-/* =====================================
-   LOCATION PAGE IMPROVEMENTS
-===================================== */
-
 .destination-breadcrumb + .destination-introduction {
   border-top: 1px solid #eee;
 }
 
 /* =====================================
-   LOCATION RESPONSIVE DESIGN
+   TABLET RESPONSIVENESS
+===================================== */
+
+@media (max-width: 1000px) {
+  .destination-introduction {
+    gap: 35px;
+  }
+
+  .destination-location-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .destination-listings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .destination-introduction {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
 ===================================== */
 
 @media (max-width: 600px) {
+  .destination-hero {
+    min-height: 460px;
+    padding: 70px 6%;
+  }
+
+  .destination-hero h1 {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+
+  .destination-hero-content > p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .destination-eyebrow,
+  .destination-section-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .destination-hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .destination-hero-buttons a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .destination-introduction,
+  .destination-locations,
+  .destination-listings {
+    padding: 60px 6%;
+  }
+
+  .destination-introduction h2,
+  .destination-section-heading h2 {
+    font-size: 28px;
+  }
+
+  .destination-introduction p {
+    font-size: 14px;
+  }
+
+  .destination-stats {
+    gap: 25px;
+  }
+
+  .destination-stats strong {
+    font-size: 27px;
+  }
+
+  .destination-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .destination-location-grid,
+  .destination-listings-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .destination-location-card {
+    padding: 25px;
+  }
+
+  .destination-listing-image {
+    height: 230px;
+  }
+
+  .destination-cta {
+    padding: 60px 6%;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .destination-cta > a {
+    width: 100%;
+  }
+
   .destination-breadcrumb {
     padding: 17px 6%;
     gap: 8px;
     font-size: 11px;
+  }
+
+  .destination-empty {
+    padding: 40px 18px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 380px) {
+  .destination-hero {
+    padding: 55px 6%;
+  }
+
+  .destination-introduction,
+  .destination-locations,
+  .destination-listings {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .destination-location-card {
+    padding: 20px;
+  }
+
+  .destination-listing-info {
+    padding: 18px;
+  }
+
+  .destination-stats {
+    gap: 18px;
+  }
+
+  .destination-breadcrumb {
+    gap: 6px;
+    font-size: 10px;
+  }
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+.destination-page a:focus-visible {
+  outline: 2px solid #b99a62;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .destination-page *,
+  .destination-page *::before,
+  .destination-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

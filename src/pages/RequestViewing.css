@@ -3,12 +3,23 @@
   padding: 45px 0 80px;
   background: #f8f7f4;
   color: #171717;
+  box-sizing: border-box;
 }
+
+.viewing-page *,
+.viewing-page *::before,
+.viewing-page *::after {
+  box-sizing: border-box;
+}
+
+/* CONTAINER */
 
 .viewing-container {
   width: min(1150px, 92%);
   margin: 0 auto;
 }
+
+/* BREADCRUMB */
 
 .viewing-breadcrumb {
   display: flex;
@@ -22,7 +33,14 @@
 .viewing-breadcrumb a {
   color: #9b7a3c;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
+
+.viewing-breadcrumb a:hover {
+  color: #76572b;
+}
+
+/* PAGE HEADING */
 
 .viewing-heading {
   margin-bottom: 35px;
@@ -38,26 +56,33 @@
 .viewing-heading h1 {
   margin: 12px 0;
   font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .viewing-heading p {
+  max-width: 650px;
   color: #777;
+  font-size: 15px;
   line-height: 1.7;
 }
 
+/* MAIN LAYOUT */
+
 .viewing-layout {
   display: grid;
-  grid-template-columns: 1.5fr 0.8fr;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
   gap: 30px;
   align-items: start;
 }
 
 .viewing-form-section,
 .viewing-property-card {
+  min-width: 0;
+  overflow: hidden;
   background: #fff;
   border: 1px solid #e8e3d9;
   border-radius: 12px;
-  overflow: hidden;
 }
 
 .viewing-form-section {
@@ -73,12 +98,15 @@
   margin-top: 35px !important;
 }
 
+/* FORM */
+
 .viewing-form-group {
   display: flex;
+  min-width: 0;
+  flex: 1;
   flex-direction: column;
   gap: 9px;
   margin-bottom: 22px;
-  flex: 1;
 }
 
 .viewing-form-group label {
@@ -90,6 +118,8 @@
 .viewing-form-group select,
 .viewing-form-group textarea {
   width: 100%;
+  min-width: 0;
+  min-height: 46px;
   padding: 14px;
   border: 1px solid #ddd8cf;
   border-radius: 6px;
@@ -98,16 +128,20 @@
   font: inherit;
   font-size: 14px;
   outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .viewing-form-group input:focus,
 .viewing-form-group select:focus,
 .viewing-form-group textarea:focus {
   border-color: #b39455;
-  box-shadow: 0 0 0 2px rgba(179, 148, 85, 0.12);
+  box-shadow: 0 0 0 3px rgba(179, 148, 85, 0.12);
 }
 
 .viewing-form-group textarea {
+  min-height: 110px;
   resize: vertical;
 }
 
@@ -115,6 +149,8 @@
   display: flex;
   gap: 18px;
 }
+
+/* VIEWING POLICY */
 
 .viewing-policy {
   margin: 30px 0;
@@ -146,12 +182,31 @@
 }
 
 .viewing-checkbox input {
+  width: auto;
+  min-height: auto;
+  flex-shrink: 0;
   margin-top: 3px;
   accent-color: #a18348;
 }
 
+/* ERROR MESSAGE */
+
+.viewing-error {
+  margin: 15px 0;
+  padding: 12px 14px;
+  background: #fbefed;
+  border: 1px solid #e6c0ba;
+  border-radius: 5px;
+  color: #a33327;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* SUBMIT BUTTON */
+
 .viewing-submit-btn {
   width: 100%;
+  min-height: 48px;
   padding: 16px;
   border: none;
   border-radius: 6px;
@@ -160,11 +215,29 @@
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.viewing-submit-btn:hover {
+.viewing-submit-btn:hover:not(:disabled) {
   background: #34302a;
+  transform: translateY(-1px);
+}
+
+.viewing-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.viewing-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.viewing-submit-btn:focus-visible {
+  outline: 3px solid rgba(177, 148, 85, 0.4);
+  outline-offset: 3px;
 }
 
 .viewing-security-note {
@@ -174,6 +247,8 @@
   line-height: 1.6;
   text-align: center;
 }
+
+/* PROPERTY SUMMARY */
 
 .viewing-property-card img {
   display: block;
@@ -196,17 +271,20 @@
 .viewing-property-info h3 {
   margin: 12px 0 7px;
   font-size: 19px;
+  overflow-wrap: anywhere;
 }
 
 .viewing-property-info p {
   color: #777;
   font-size: 13px;
+  line-height: 1.6;
 }
 
-.viewing-property-info strong {
+.viewing-property-info > strong {
   display: block;
   margin: 18px 0;
   font-size: 21px;
+  overflow-wrap: anywhere;
 }
 
 .viewing-property-info a {
@@ -215,6 +293,12 @@
   font-weight: 600;
   text-decoration: none;
 }
+
+.viewing-property-info a:hover {
+  color: #76572b;
+}
+
+/* SUCCESS AND NOT FOUND */
 
 .viewing-success,
 .viewing-not-found {
@@ -228,7 +312,7 @@
   line-height: 1.7;
 }
 
-.viewing-success button,
+.viewing-success > a,
 .viewing-not-found a {
   display: inline-block;
   margin-top: 15px;
@@ -239,15 +323,250 @@
   color: #d5b779;
   text-decoration: none;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
+
+.viewing-success > a:hover,
+.viewing-not-found a:hover {
+  background: #34302a;
+}
+
+/* DATE AVAILABILITY */
+
+.viewing-date-available,
+.viewing-date-unavailable {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.viewing-date-available {
+  color: #286b35;
+  background: #edf5ed;
+  border: 1px solid #b8d6b8;
+}
+
+.viewing-date-unavailable {
+  color: #a33327;
+  background: #fbefed;
+  border: 1px solid #e6c0ba;
+}
+
+/* CONFIRMATION REFERENCE AND DETAILS */
+
+.viewing-confirmation-reference,
+.viewing-confirmation-details,
+.viewing-invoice,
+.viewing-next-steps {
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid #ded8ca;
+  border-radius: 5px;
+}
+
+.viewing-confirmation-reference {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: #f7f4ed;
+}
+
+.viewing-confirmation-reference span,
+.viewing-confirmation-details span,
+.viewing-next-steps > span {
+  color: #817765;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.viewing-confirmation-reference strong {
+  color: #9a7739;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.viewing-confirmation-details h3 {
+  margin: 0 0 15px;
+}
+
+.viewing-confirmation-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee9df;
+}
+
+.viewing-confirmation-details > div:last-child {
+  border-bottom: none;
+}
+
+.viewing-confirmation-details strong {
+  min-width: 0;
+  font-size: 13px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* PROVISIONAL VIEWING INVOICE */
+
+.viewing-invoice {
+  background: #fff;
+  color: #25231f;
+}
+
+.viewing-invoice-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.viewing-invoice-heading > div > span {
+  color: #a17b37;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.viewing-invoice-heading h3 {
+  margin: 7px 0 0;
+  font-size: 19px;
+}
+
+.viewing-invoice-badge {
+  flex-shrink: 0;
+  padding: 7px 9px;
+  background: #f6f0e3;
+  color: #856526;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.viewing-invoice-reference,
+.viewing-invoice-line,
+.viewing-invoice-total,
+.viewing-invoice-payment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee9df;
+}
+
+.viewing-invoice-reference span,
+.viewing-invoice-line span,
+.viewing-invoice-total span,
+.viewing-invoice-payment span {
+  color: #68645c;
+  font-size: 12px;
+}
+
+.viewing-invoice-reference strong,
+.viewing-invoice-line strong,
+.viewing-invoice-total strong,
+.viewing-invoice-payment strong {
+  min-width: 0;
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.viewing-invoice-total strong,
+.viewing-invoice-payment strong {
+  color: #98702b;
+}
+
+.viewing-invoice-payment strong {
+  font-size: 11px;
+}
+
+.viewing-invoice > p {
+  margin: 14px 0 0;
+  padding: 12px;
+  background: #f7f5f0;
+  color: #68645c;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* NEXT STEPS */
+
+.viewing-next-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: #f6f0e3;
+  border-left: 3px solid #a17b37;
+}
+
+.viewing-next-steps strong {
+  color: #856526;
+  font-size: 13px;
+}
+
+.viewing-next-steps p,
+.viewing-confirmation-note {
+  color: #68645c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.viewing-confirmation-note {
+  margin-top: 20px;
+}
+
+/* TABLET */
 
 @media (max-width: 800px) {
   .viewing-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .viewing-property-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .viewing-property-card img {
+    height: 100%;
+    min-height: 220px;
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 550px) {
+  .viewing-page {
+    padding-top: 25px;
+    padding-bottom: 50px;
+  }
+
+  .viewing-container {
+    width: 94%;
+  }
+
+  .viewing-breadcrumb {
+    gap: 7px;
+    margin-bottom: 25px;
+    font-size: 12px;
+  }
+
+  .viewing-heading {
+    margin-bottom: 25px;
+  }
+
+  .viewing-heading p {
+    font-size: 14px;
+  }
+
   .viewing-form-section {
     padding: 20px;
   }
@@ -257,7 +576,79 @@
     gap: 0;
   }
 
-  .viewing-page {
-    padding-top: 25px;
+  .viewing-property-card {
+    display: block;
+  }
+
+  .viewing-property-card img {
+    height: 210px;
+  }
+
+  .viewing-success,
+  .viewing-not-found {
+    padding: 22px 12px;
+  }
+
+  .viewing-confirmation-reference,
+  .viewing-confirmation-details,
+  .viewing-invoice,
+  .viewing-next-steps {
+    padding: 15px;
+  }
+
+  .viewing-invoice-heading h3 {
+    font-size: 16px;
+  }
+
+  .viewing-confirmation-details > div,
+  .viewing-invoice-reference,
+  .viewing-invoice-line,
+  .viewing-invoice-total,
+  .viewing-invoice-payment {
+    gap: 9px;
+  }
+
+  .viewing-date-available,
+  .viewing-date-unavailable {
+    padding: 10px;
+    font-size: 11px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .viewing-form-section {
+    padding: 15px;
+  }
+
+  .viewing-property-info {
+    padding: 17px;
+  }
+
+  .viewing-heading h1 {
+    font-size: 28px;
+  }
+
+  .viewing-invoice-heading {
+    flex-direction: column;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.viewing-page a:focus-visible {
+  outline: 3px solid rgba(177, 148, 85, 0.4);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewing-page *,
+  .viewing-page *::before,
+  .viewing-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

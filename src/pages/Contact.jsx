@@ -1,4 +1,4 @@
-import { useState, useId } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import contactDetails from "../data/contact";
@@ -7,9 +7,7 @@ import "./Contact.css";
 export default function Contact() {
   const [searchParams] = useSearchParams();
 
-  // STABLE COMPONENT ID
-  const componentId = useId().replace(/:/g, "").toUpperCase();
-
+  // SELECTED PROPERTY
   const propertyName = searchParams.get("property") || "";
 
   // HOLIDAY STAY BOOKING DETAILS
@@ -23,7 +21,7 @@ export default function Contact() {
 
   // SEO SETTINGS
   const seoTitle = isStayEnquiry
-    ? `Holiday Stay Booking Enquiry | ÉLAN HOMES`
+    ? "Holiday Stay Booking Enquiry | ÉLAN HOMES"
     : propertyName
       ? `Enquire About ${propertyName} | ÉLAN HOMES`
       : "Contact ÉLAN HOMES | Property & Holiday Stay Enquiries";
@@ -39,7 +37,13 @@ export default function Contact() {
   const formatDate = (date) => {
     if (!date) return "Not selected";
 
-    return new Date(`${date}T00:00:00`).toLocaleDateString("en-KE", {
+    const parsedDate = new Date(`${date}T00:00:00`);
+
+    if (Number.isNaN(parsedDate.getTime())) {
+      return "Not selected";
+    }
+
+    return parsedDate.toLocaleDateString("en-KE", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -99,16 +103,15 @@ Please confirm availability and provide further booking information.`
           ? existingBookings
           : [];
 
-        // GENERATE BOOKING REFERENCE
-        const bookingNumber = bookings.length + 1;
+        // GENERATE PERMANENT UUID
+        const bookingId = crypto.randomUUID();
 
-        const bookingReference = `ELAN-${componentId}-${String(
-          bookingNumber,
-        ).padStart(4, "0")}`;
+        // GENERATE CUSTOMER-FRIENDLY REFERENCE
+        const bookingReference = `ELAN-${bookingId.slice(0, 8).toUpperCase()}`;
 
         // CREATE BOOKING RECORD
         const newBooking = {
-          id: bookingReference,
+          id: bookingId,
           bookingReference,
           type: "stay",
           stayName: propertyName,
@@ -303,7 +306,7 @@ ${formData.message}`;
             </div>
           )}
 
-          {/* FORM */}
+          {/* CONTACT FORM */}
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="contact-form-row">
               <input
@@ -312,6 +315,7 @@ ${formData.message}`;
                 placeholder="Your Full Name"
                 value={formData.name}
                 onChange={handleChange}
+                autoComplete="name"
                 required
               />
 
@@ -321,6 +325,7 @@ ${formData.message}`;
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete="email"
                 required
               />
             </div>
@@ -331,6 +336,7 @@ ${formData.message}`;
               placeholder="Phone Number"
               value={formData.phone}
               onChange={handleChange}
+              autoComplete="tel"
               required
             />
 

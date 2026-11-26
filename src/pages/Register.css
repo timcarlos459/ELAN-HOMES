@@ -10,6 +10,652 @@
 .register-container {
   width: 100%;
   max-width: 620px;
+  /* =========================================
+   ÉLAN HOMES — REGISTRATION PAGE
+========================================= */
+
+  .register-page {
+    min-height: 85vh;
+    padding: 70px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f6f2;
+  }
+
+  .register-container {
+    width: 100%;
+    max-width: 620px;
+    padding: 45px;
+    background: #fff;
+    border: 1px solid #eee9df;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+  }
+
+  .register-brand {
+    margin-bottom: 35px;
+    text-align: center;
+  }
+
+  .register-logo {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #171717;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-decoration: none;
+  }
+
+  .register-logo span {
+    color: #98743b;
+  }
+
+  .register-eyebrow {
+    color: #98743b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .register-brand h1 {
+    margin: 12px 0;
+    color: #171717;
+    font-size: 29px;
+    font-weight: 600;
+  }
+
+  .register-subtitle {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* REGISTRATION FORM */
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+  }
+
+  /* ACCOUNT TYPE */
+
+  .register-account-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+
+  .register-account-heading {
+    text-align: center;
+  }
+
+  .register-account-heading h2 {
+    margin: 0 0 8px;
+    color: #171717;
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  .register-account-heading p {
+    margin: 0;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .register-account-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .register-account-option {
+    position: relative;
+    display: block;
+    min-width: 0;
+    padding: 22px 17px;
+    background: #fbfaf7;
+    border: 1px solid #e7e1d6;
+    cursor: pointer;
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .register-account-option:hover {
+    border-color: #98743b;
+    transform: translateY(-2px);
+  }
+
+  .register-account-option.selected {
+    background: #f8f5ee;
+    border-color: #98743b;
+    box-shadow: 0 5px 18px rgba(152, 116, 59, 0.1);
+  }
+
+  .register-account-option input {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 16px;
+    height: 16px;
+    accent-color: #98743b;
+    cursor: pointer;
+  }
+
+  .register-account-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+  }
+
+  .register-account-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    background: #171717;
+    color: #d4b16a;
+    border: 1px solid #98743b;
+  }
+
+  .register-account-icon span {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .register-account-content strong {
+    color: #171717;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+  }
+
+  .register-account-description {
+    min-height: 58px;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  .register-account-action {
+    width: 100%;
+    padding-top: 10px;
+    color: #98743b;
+    border-top: 1px solid #e7e1d6;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  /* CURATOR CATEGORY SELECTION */
+
+  .register-category-section {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding: 22px;
+    margin-bottom: 5px;
+    background: #fbfaf7;
+    border: 1px solid #e7e1d6;
+    animation: registerCategoryFade 0.3s ease;
+  }
+
+  @keyframes registerCategoryFade {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .register-category-section .register-section-heading {
+    padding-bottom: 12px;
+  }
+
+  .register-category-section .register-section-heading h2 {
+    font-size: 17px;
+  }
+
+  .register-category-section .register-section-heading p {
+    margin-top: 7px;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .register-category-options {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .register-category-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e7e1d6;
+    cursor: pointer;
+    transition:
+      border-color 0.3s ease,
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .register-category-option:hover {
+    border-color: #98743b;
+    transform: translateY(-1px);
+  }
+
+  .register-category-option.selected {
+    background: #f8f5ee;
+    border-color: #98743b;
+    box-shadow: 0 3px 12px rgba(152, 116, 59, 0.08);
+  }
+
+  .register-category-option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .register-category-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background: #171717;
+    color: #d4b16a;
+    border: 1px solid #98743b;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .register-category-content {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .register-category-content strong {
+    color: #171717;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .register-category-content > span {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .register-category-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #c9c2b6;
+    color: #999;
+    font-size: 16px;
+    font-weight: 600;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .register-category-option.selected .register-category-check {
+    background: #98743b;
+    border-color: #98743b;
+    color: #fff;
+  }
+
+  .register-category-note {
+    margin: 0;
+    color: #888;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .register-category-selected {
+    margin: 0;
+    padding-top: 12px;
+    color: #98743b;
+    border-top: 1px solid #e7e1d6;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTION HEADINGS */
+
+  .register-section-heading {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee9df;
+  }
+
+  .register-section-heading h2 {
+    margin: 0;
+    color: #171717;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* NAME FIELDS */
+
+  .register-name-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  /* FORM FIELDS */
+
+  .register-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .register-field label {
+    color: #222;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .register-field input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 14px;
+    border: 1px solid #dedbd4;
+    border-radius: 0;
+    background: #fff;
+    color: #171717;
+    outline: none;
+    font-size: 13px;
+    transition: border-color 0.2s ease;
+  }
+
+  .register-field input:focus {
+    border-color: #98743b;
+  }
+
+  .register-password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .register-password-wrapper input {
+    padding-right: 65px;
+  }
+
+  .register-show-password {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #98743b;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  /* TERMS */
+
+  .register-terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
+    cursor: pointer;
+  }
+
+  .register-terms input {
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: #98743b;
+  }
+
+  /* SUBMIT BUTTON */
+
+  .register-submit {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #171717;
+    background: #171717;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .register-submit:hover {
+    background: #98743b;
+    border-color: #98743b;
+  }
+
+  /* SIGN IN */
+
+  .register-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0 20px;
+    color: #999;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .register-divider::before,
+  .register-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee9df;
+  }
+
+  .register-signin {
+    display: block;
+    padding: 15px;
+    border: 1px solid #98743b;
+    color: #98743b;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .register-signin:hover {
+    background: #98743b;
+    color: #fff;
+  }
+
+  /* FOOTER */
+
+  .register-footer {
+    margin-top: 25px;
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .register-back-home {
+    display: block;
+    margin-top: 20px;
+    color: #555;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .register-back-home:hover {
+    color: #98743b;
+  }
+
+  /* ACCESSIBILITY */
+
+  .register-account-option:focus-within,
+  .register-category-option:focus-within {
+    outline: 2px solid #98743b;
+    outline-offset: 3px;
+  }
+
+  .register-field input:focus-visible,
+  .register-submit:focus-visible,
+  .register-show-password:focus-visible,
+  .register-signin:focus-visible,
+  .register-back-home:focus-visible {
+    outline: 2px solid #98743b;
+    outline-offset: 3px;
+  }
+
+  .register-category-option input:focus-visible + .register-category-number {
+    outline: 2px solid #98743b;
+    outline-offset: 3px;
+  }
+
+  /* TABLET */
+
+  @media (max-width: 768px) {
+    .register-page {
+      padding: 50px 18px;
+    }
+
+    .register-container {
+      padding: 35px 28px;
+    }
+  }
+
+  /* MOBILE */
+
+  @media (max-width: 600px) {
+    .register-page {
+      min-height: auto;
+      padding: 35px 14px 50px;
+    }
+
+    .register-container {
+      padding: 30px 20px;
+    }
+
+    .register-name-fields,
+    .register-account-options {
+      grid-template-columns: 1fr;
+    }
+
+    .register-account-description {
+      min-height: auto;
+    }
+
+    .register-brand h1 {
+      font-size: 25px;
+    }
+
+    .register-category-section {
+      padding: 17px;
+    }
+
+    .register-category-option {
+      padding: 13px;
+      gap: 10px;
+    }
+
+    .register-category-number {
+      width: 33px;
+      height: 33px;
+    }
+
+    .register-divider {
+      gap: 9px;
+      font-size: 9px;
+    }
+  }
+
+  /* SMALL MOBILE */
+
+  @media (max-width: 380px) {
+    .register-container {
+      padding: 25px 15px;
+    }
+
+    .register-logo {
+      font-size: 23px;
+    }
+
+    .register-brand h1 {
+      font-size: 22px;
+    }
+
+    .register-category-section {
+      padding: 13px;
+    }
+
+    .register-category-option {
+      gap: 8px;
+      padding: 11px;
+    }
+
+    .register-category-content strong {
+      font-size: 11px;
+    }
+
+    .register-category-content > span {
+      font-size: 10px;
+    }
+  }
+
+  /* REDUCED MOTION */
+
+  @media (prefers-reduced-motion: reduce) {
+    .register-page *,
+    .register-page *::before,
+    .register-page *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   padding: 45px;
   background: #fff;
   border: 1px solid #eee9df;

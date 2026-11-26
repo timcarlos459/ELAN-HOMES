@@ -1,10 +1,15 @@
+/* MANDA ISLAND DESTINATION PAGE */
+
 .manda-island-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
 }
 
 /* HERO */
+
 .manda-island-hero {
   min-height: 560px;
   padding: 110px 8%;
@@ -12,49 +17,56 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.28)),
-    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21")
+    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .manda-island-hero-content {
+  width: 100%;
   max-width: 750px;
 }
 
 .manda-island-hero-content > span {
   display: inline-block;
+  margin-bottom: 22px;
   color: #d5b36a;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 22px;
+  line-height: 1.6;
 }
 
 .manda-island-hero h1 {
+  margin: 0 0 24px;
   font-size: clamp(45px, 7vw, 82px);
   line-height: 1.05;
-  margin: 0 0 24px;
   font-weight: 700;
 }
 
 .manda-island-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #e5e5e5;
   font-size: 17px;
   line-height: 1.9;
-  margin-bottom: 32px;
 }
 
 .manda-island-button {
-  display: inline-block;
-  padding: 16px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .manda-island-button:hover {
@@ -62,91 +74,55 @@
   transform: translateY(-3px);
 }
 
-/* INTRO */
+/* INTRODUCTION */
+
 .manda-island-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 100px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
 }
 
-.manda-island-intro > span,
-.manda-island-collection-heading > span {
+.manda-island-intro > span {
+  display: block;
   color: #ad8845;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .manda-island-intro h2 {
+  margin: 18px 0;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
-  margin: 18px 0;
+  font-weight: 600;
 }
 
 .manda-island-intro p {
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 2;
 }
 
-/* COLLECTION */
-.manda-island-collection {
-  padding: 90px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.manda-island-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.manda-island-collection-heading h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  margin: 16px 0;
-}
-
-.manda-island-collection-heading p {
-  color: #666;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.manda-island-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.manda-island-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.manda-island-empty-state h3 {
-  font-size: 25px;
-  margin: 18px 0 12px;
-}
-
-.manda-island-empty-state p {
-  color: #777;
-  font-size: 14px;
-  line-height: 1.8;
+.manda-island-page .location-marketplace,
+.manda-island-page #manda-island-marketplace {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .manda-island-navigation {
   padding: 35px 7%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   border-top: 1px solid #e9e3d8;
@@ -157,50 +133,95 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .manda-island-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.manda-island-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .manda-island-hero {
     min-height: 460px;
     padding: 90px 7%;
   }
 
-  .manda-island-intro,
-  .manda-island-collection {
+  .manda-island-intro {
     padding: 70px 6%;
+  }
+
+  .manda-island-navigation {
+    padding: 30px 6%;
   }
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .manda-island-hero {
     min-height: 400px;
     padding: 75px 6%;
   }
 
+  .manda-island-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .manda-island-hero h1 {
+    font-size: clamp(36px, 9vw, 46px);
+  }
+
   .manda-island-hero p {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .manda-island-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
+  }
+
+  .manda-island-intro {
+    padding: 55px 6%;
+  }
+
+  .manda-island-intro h2 {
+    font-size: 28px;
   }
 
   .manda-island-intro p {
     font-size: 14px;
-  }
-
-  .manda-island-empty-state {
-    padding: 45px 20px;
-  }
-
-  .manda-island-empty-state h3 {
-    font-size: 21px;
+    line-height: 1.9;
   }
 
   .manda-island-navigation {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 6%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .manda-island-page *,
+  .manda-island-page *::before,
+  .manda-island-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

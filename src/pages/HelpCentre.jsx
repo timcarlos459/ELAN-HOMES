@@ -45,7 +45,7 @@ const faqs = [
   },
 ];
 
-function HelpCentre() {
+export default function HelpCentre() {
   return (
     <>
       <SEO
@@ -54,6 +54,7 @@ function HelpCentre() {
       />
 
       <main className="help-centre-page">
+        {/* HERO */}
         <section className="help-hero">
           <div className="help-hero-content">
             <span className="help-eyebrow">ÉLAN HOMES SUPPORT</span>
@@ -77,10 +78,13 @@ function HelpCentre() {
           </div>
         </section>
 
+        {/* FAQ SECTION */}
         <section className="help-faq-section">
           <div className="help-section-heading">
             <span>FREQUENTLY ASKED QUESTIONS</span>
+
             <h2>How can we assist you?</h2>
+
             <p>
               Browse the questions below to find useful information about using
               our platform.
@@ -88,11 +92,14 @@ function HelpCentre() {
           </div>
 
           <div className="help-faq-list">
-            {faqs.map((faq, index) => (
-              <details className="help-faq-item" key={index}>
+            {faqs.map((faq) => (
+              <details className="help-faq-item" key={faq.question}>
                 <summary>
                   <span>{faq.question}</span>
-                  <span className="help-faq-icon">+</span>
+
+                  <span className="help-faq-icon" aria-hidden="true">
+                    +
+                  </span>
                 </summary>
 
                 <div className="help-faq-answer">
@@ -103,10 +110,13 @@ function HelpCentre() {
           </div>
         </section>
 
+        {/* CONTACT SECTION */}
         <section className="help-contact-section">
           <div>
             <span>NEED MORE ASSISTANCE?</span>
+
             <h2>We're here to help.</h2>
+
             <p>
               If you cannot find the information you need, get in touch through
               our contact page.
@@ -121,5 +131,3 @@ function HelpCentre() {
     </>
   );
 }
-
-export default HelpCentre;

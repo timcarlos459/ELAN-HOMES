@@ -15,8 +15,9 @@ export default function PropertyOwnerCTA() {
           </h2>
 
           <p>
-            Connect with people looking for exceptional properties and holiday
-            stays. Showcase your property to a wider audience with ELAN HOMES.
+            Showcase your property, land or short-stay accommodation to people
+            looking for exceptional places across Kenya. Submit your listing for
+            free and let ELAN HOMES help connect you with potential clients.
           </p>
 
           <div className="owner-cta-actions">
@@ -31,7 +32,10 @@ export default function PropertyOwnerCTA() {
 
           <div className="owner-cta-note">
             <span>01</span>
-            <p>Property owners, landlords, developers and hosts are welcome.</p>
+            <p>
+              Property owners, landowners, developers, landlords and short-stay
+              hosts are welcome. All listings are subject to approval.
+            </p>
           </div>
         </div>
 
@@ -39,6 +43,8 @@ export default function PropertyOwnerCTA() {
           <img
             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200"
             alt="Luxury modern residential property"
+            loading="lazy"
+            decoding="async"
           />
 
           <div className="owner-image-caption">

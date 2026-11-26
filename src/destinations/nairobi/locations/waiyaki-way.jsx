@@ -37,10 +37,7 @@ export default function WaiyakiWay() {
       </section>
 
       <div id="waiyaki-marketplace" className="waiyaki-marketplace">
-        <LocationMarketplace
-          locationName="Waiyaki Way"
-          countyName="Nairobi County"
-        />
+        <LocationMarketplace locationName="Waiyaki Way" countyName="Nairobi" />
       </div>
     </main>
   );

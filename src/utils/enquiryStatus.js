@@ -34,6 +34,7 @@ export const ALLOWED_ENQUIRY_TRANSITIONS = {
   [ENQUIRY_STATUSES.OWNER_CONTACTED]: [
     ENQUIRY_STATUSES.AWAITING_OWNER,
     ENQUIRY_STATUSES.RESPONSE_RECEIVED,
+    ENQUIRY_STATUSES.CANCELLED,
   ],
 
   [ENQUIRY_STATUSES.AWAITING_OWNER]: [
@@ -41,7 +42,10 @@ export const ALLOWED_ENQUIRY_TRANSITIONS = {
     ENQUIRY_STATUSES.CANCELLED,
   ],
 
-  [ENQUIRY_STATUSES.RESPONSE_RECEIVED]: [ENQUIRY_STATUSES.CUSTOMER_CONTACTED],
+  [ENQUIRY_STATUSES.RESPONSE_RECEIVED]: [
+    ENQUIRY_STATUSES.CUSTOMER_CONTACTED,
+    ENQUIRY_STATUSES.CANCELLED,
+  ],
 
   [ENQUIRY_STATUSES.CUSTOMER_CONTACTED]: [
     ENQUIRY_STATUSES.COMPLETED,
@@ -66,7 +70,7 @@ export const canUpdateEnquiryStatus = (currentStatus, nextStatus) => {
 
 // UPDATE ENQUIRY STATUS AND RECORD HISTORY
 export const updateEnquiryRecordStatus = (record, nextStatus, note = "") => {
-  if (!record || !record.status) {
+  if (!record?.id || !record.status) {
     throw new Error("A valid enquiry record is required.");
   }
 
@@ -74,14 +78,23 @@ export const updateEnquiryRecordStatus = (record, nextStatus, note = "") => {
     throw new Error("This enquiry status change is not allowed.");
   }
 
+  if (typeof note !== "string") {
+    throw new Error("The status note must be text.");
+  }
+
   const now = new Date().toISOString();
+
+  const statusHistory = Array.isArray(record.statusHistory)
+    ? record.statusHistory
+    : [];
 
   return {
     ...record,
+
     status: nextStatus,
 
     statusHistory: [
-      ...(record.statusHistory || []),
+      ...statusHistory,
       {
         status: nextStatus,
         timestamp: now,

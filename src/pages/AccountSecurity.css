@@ -1,0 +1,395 @@
+.account-security-page {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 80vh;
+  padding: 65px 6%;
+  background: #f8f6f2;
+  overflow-x: clip;
+}
+
+.account-security-page *,
+.account-security-page *::before,
+.account-security-page *::after {
+  box-sizing: border-box;
+}
+
+.account-security-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.security-back-link {
+  display: inline-block;
+  margin-bottom: 35px;
+  color: #98743b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.security-back-link:hover {
+  color: #171717;
+}
+
+.security-header {
+  margin-bottom: 30px;
+}
+
+.security-header > span,
+.security-card-heading span,
+.security-otp-section > span {
+  color: #98743b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.security-header h1 {
+  margin: 12px 0;
+  color: #171717;
+  font-size: clamp(29px, 5vw, 35px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.security-header p {
+  max-width: 560px;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.security-card {
+  width: 100%;
+  padding: 35px;
+  background: #fff;
+  border: 1px solid #eee9df;
+}
+
+.security-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee9df;
+}
+
+.security-card-heading h2 {
+  margin-top: 9px;
+  color: #171717;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.security-lock {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #171717;
+  color: #c6a46a;
+  font-size: 25px;
+}
+
+.security-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 21px;
+}
+
+.security-field label,
+.security-otp-section label {
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.security-password-input {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border: 1px solid #dedbd4;
+  background: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.security-password-input:focus-within {
+  border-color: #98743b;
+}
+
+.security-password-input input {
+  width: 100%;
+  min-width: 0;
+  padding: 15px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #171717;
+  font-size: 13px;
+}
+
+.security-password-input button {
+  flex-shrink: 0;
+  min-width: 58px;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  color: #98743b;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.security-password-rules {
+  padding: 20px;
+  margin: 25px 0;
+  background: #faf9f6;
+  border: 1px solid #eee9df;
+}
+
+.security-password-rules h3 {
+  margin-bottom: 12px;
+  color: #171717;
+  font-size: 13px;
+}
+
+.security-password-rules ul {
+  padding-left: 19px;
+}
+
+.security-password-rules li {
+  margin: 8px 0;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.security-submit-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 15px 20px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.security-submit-btn:hover {
+  border-color: #98743b;
+  background: #98743b;
+}
+
+.security-otp-section {
+  padding: 23px;
+  margin-top: 25px;
+  background: #faf9f6;
+  border: 1px solid #eee9df;
+}
+
+.security-otp-section h3 {
+  margin: 10px 0;
+  color: #171717;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.security-otp-section p {
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.security-otp-section label {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.security-otp-section > input {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 15px;
+  margin-bottom: 18px;
+  border: 1px solid #dedbd4;
+  outline: none;
+  background: #fff;
+  color: #171717;
+  font-size: 18px;
+  letter-spacing: 8px;
+  text-align: center;
+}
+
+.security-otp-section > input:focus {
+  border-color: #98743b;
+}
+
+.security-edit-btn {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 15px;
+  margin-top: 12px;
+  border: 1px solid #dedbd4;
+  background: #fff;
+  color: #555;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.security-edit-btn:hover {
+  border-color: #98743b;
+  color: #98743b;
+}
+
+.security-error,
+.security-success {
+  padding: 13px 15px;
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.security-error {
+  border: 1px solid #f0cccc;
+  background: #fff1f1;
+  color: #a12626;
+}
+
+.security-success {
+  border: 1px solid #cfe5d2;
+  background: #f0f8f1;
+  color: #356b45;
+}
+
+.security-footer-note {
+  margin-top: 22px;
+  color: #888;
+  font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.security-back-link:focus-visible,
+.security-password-input button:focus-visible,
+.security-submit-btn:focus-visible,
+.security-edit-btn:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  .account-security-page {
+    padding: 50px 5%;
+  }
+
+  .security-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .account-security-page {
+    padding: 40px 15px;
+  }
+
+  .security-back-link {
+    margin-bottom: 25px;
+  }
+
+  .security-header {
+    margin-bottom: 24px;
+  }
+
+  .security-header h1 {
+    font-size: 29px;
+  }
+
+  .security-card {
+    padding: 22px;
+  }
+
+  .security-card-heading {
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+  }
+
+  .security-card-heading h2 {
+    font-size: 19px;
+  }
+
+  .security-lock {
+    width: 42px;
+    height: 42px;
+  }
+
+  .security-password-rules {
+    padding: 16px;
+  }
+
+  .security-otp-section {
+    padding: 18px;
+  }
+
+  .security-otp-section > input {
+    letter-spacing: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .account-security-page {
+    padding: 32px 12px;
+  }
+
+  .security-card {
+    padding: 17px;
+  }
+
+  .security-card-heading h2 {
+    font-size: 17px;
+  }
+
+  .security-password-input input {
+    padding: 13px 10px;
+    font-size: 12px;
+  }
+
+  .security-password-input button {
+    min-width: 50px;
+    padding: 10px 7px;
+  }
+
+  .security-otp-section {
+    padding: 14px;
+  }
+
+  .security-submit-btn {
+    padding: 13px 10px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .security-back-link,
+  .security-password-input,
+  .security-submit-btn,
+  .security-edit-btn {
+    transition: none;
+  }
+}

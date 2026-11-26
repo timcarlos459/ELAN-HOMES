@@ -9,10 +9,15 @@ export default function SEO({
   noindex = false,
 }) {
   const siteName = "ÉLAN HOMES";
+
   const robots = noindex ? "noindex, nofollow" : "index, follow";
+
+  const socialImage = image || undefined;
 
   return (
     <Helmet>
+      {/* BASIC SEO */}
+
       <title>{title}</title>
 
       <meta name="description" content={description} />
@@ -20,20 +25,31 @@ export default function SEO({
       <meta name="robots" content={robots} />
 
       {/* OPEN GRAPH */}
+
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content="en_KE" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
 
-      {image && <meta property="og:image" content={image} />}
+      {socialImage && (
+        <>
+          <meta property="og:image" content={socialImage} />
+          <meta property="og:image:alt" content={title} />
+        </>
+      )}
+
       {url && <meta property="og:url" content={url} />}
 
       {/* TWITTER / X */}
+
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
 
-      {image && <meta name="twitter:image" content={image} />}
+      {socialImage && <meta name="twitter:image" content={socialImage} />}
+
+      {/* CANONICAL URL */}
 
       {url && <link rel="canonical" href={url} />}
     </Helmet>

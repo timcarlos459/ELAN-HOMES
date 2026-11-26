@@ -1,10 +1,18 @@
 .signin-page {
   min-height: 85vh;
+  width: 100%;
   padding: 80px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f8f6f2;
+  box-sizing: border-box;
+}
+
+.signin-page *,
+.signin-page *::before,
+.signin-page *::after {
+  box-sizing: border-box;
 }
 
 .signin-container {
@@ -16,9 +24,11 @@
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
 }
 
+/* BRAND */
+
 .signin-brand {
-  text-align: center;
   margin-bottom: 35px;
+  text-align: center;
 }
 
 .signin-logo {
@@ -47,13 +57,16 @@
   color: #171717;
   font-size: 28px;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .signin-subtitle {
-  color: #777;
+  color: #777777;
   font-size: 13px;
   line-height: 1.8;
 }
+
+/* FORM */
 
 .signin-form {
   display: flex;
@@ -63,36 +76,55 @@
 
 .signin-field {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 9px;
 }
 
 .signin-field label {
-  color: #222;
+  color: #222222;
   font-size: 13px;
   font-weight: 600;
 }
 
 .signin-field input {
   width: 100%;
+  min-width: 0;
+  min-height: 48px;
   padding: 15px;
   border: 1px solid #dedbd4;
-  background: #fff;
-  outline: none;
+  border-radius: 0;
+  background: #ffffff;
+  color: #171717;
+  font-family: inherit;
   font-size: 13px;
-  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .signin-field input:focus {
   border-color: #98743b;
 }
 
+.signin-field input:focus-visible {
+  outline: 2px solid rgba(152, 116, 59, 0.2);
+  outline-offset: 2px;
+}
+
+.signin-field input::placeholder {
+  color: #999999;
+}
+
+/* PASSWORD */
+
 .signin-password-wrapper {
   position: relative;
+  width: 100%;
+  min-width: 0;
 }
 
 .signin-password-wrapper input {
-  padding-right: 65px;
+  padding-right: 75px;
 }
 
 .signin-show-password {
@@ -100,18 +132,28 @@
   top: 50%;
   right: 13px;
   transform: translateY(-50%);
+  padding: 8px 3px;
   border: none;
   background: transparent;
   color: #98743b;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
 }
 
+.signin-show-password:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 2px;
+}
+
+/* OPTIONS */
+
 .signin-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   font-size: 12px;
 }
@@ -120,25 +162,51 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #666;
+  color: #666666;
+  cursor: pointer;
+}
+
+.signin-remember input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #98743b;
+  cursor: pointer;
 }
 
 .signin-options a {
   color: #98743b;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
+
+.signin-options a:hover {
+  color: #171717;
+  text-decoration: underline;
+}
+
+.signin-options a:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 3px;
+}
+
+/* SIGN-IN BUTTON */
 
 .signin-submit {
   width: 100%;
+  min-height: 50px;
   padding: 16px;
   border: 1px solid #171717;
   background: #171717;
-  color: #fff;
+  color: #ffffff;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .signin-submit:hover {
@@ -146,14 +214,26 @@
   border-color: #98743b;
 }
 
+.signin-submit:focus-visible {
+  outline: 3px solid #98743b;
+  outline-offset: 3px;
+}
+
+/* DIVIDER */
+
 .signin-divider {
   display: flex;
   align-items: center;
   gap: 15px;
   margin: 30px 0 20px;
-  color: #999;
+  color: #999999;
   font-size: 10px;
   letter-spacing: 1px;
+  text-align: center;
+}
+
+.signin-divider span {
+  white-space: nowrap;
 }
 
 .signin-divider::before,
@@ -164,55 +244,142 @@
   background: #eee9df;
 }
 
+/* REGISTRATION */
+
 .signin-register {
   display: block;
+  width: 100%;
   padding: 15px;
   border: 1px solid #98743b;
   color: #98743b;
-  text-align: center;
-  text-decoration: none;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  transition: 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .signin-register:hover {
   background: #98743b;
-  color: #fff;
+  color: #ffffff;
 }
+
+.signin-register:focus-visible {
+  outline: 3px solid #98743b;
+  outline-offset: 3px;
+}
+
+/* FOOTER */
 
 .signin-footer {
   margin-top: 25px;
-  color: #999;
+  color: #999999;
   font-size: 10px;
   line-height: 1.8;
   text-align: center;
 }
 
+.signin-footer a {
+  color: #98743b;
+  text-decoration: none;
+}
+
+.signin-footer a:hover {
+  text-decoration: underline;
+}
+
 .signin-back-home {
   display: block;
   margin-top: 20px;
-  color: #555;
+  color: #555555;
   font-size: 12px;
   text-align: center;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .signin-back-home:hover {
   color: #98743b;
 }
 
+.signin-back-home:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 3px;
+}
+
+/* TABLET AND MOBILE */
+
 @media (max-width: 600px) {
   .signin-page {
+    min-height: 85vh;
     padding: 45px 15px;
+    align-items: flex-start;
   }
 
   .signin-container {
-    padding: 30px 22px;
+    max-width: 470px;
+    padding: 32px 22px;
+  }
+
+  .signin-brand {
+    margin-bottom: 28px;
+  }
+
+  .signin-logo {
+    margin-bottom: 28px;
+    font-size: 25px;
   }
 
   .signin-brand h1 {
     font-size: 24px;
+  }
+
+  .signin-form {
+    gap: 19px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .signin-page {
+    padding: 30px 12px;
+  }
+
+  .signin-container {
+    padding: 27px 17px;
+  }
+
+  .signin-brand h1 {
+    font-size: 22px;
+  }
+
+  .signin-subtitle {
+    font-size: 12px;
+  }
+
+  .signin-options {
+    font-size: 11px;
+  }
+
+  .signin-divider {
+    gap: 9px;
+    font-size: 9px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .signin-page *,
+  .signin-page *::before,
+  .signin-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

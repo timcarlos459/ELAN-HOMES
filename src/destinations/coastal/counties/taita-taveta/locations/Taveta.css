@@ -1,11 +1,12 @@
 .taveta-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO */
-
 .taveta-hero {
   min-height: 560px;
   display: flex;
@@ -18,13 +19,13 @@
 }
 
 .taveta-hero-content {
+  width: 100%;
   max-width: 720px;
   color: #fff;
 }
 
 .taveta-hero-content > span,
-.taveta-intro > span,
-.taveta-collection-heading > span {
+.taveta-intro > span {
   color: #b89552;
   font-size: 12px;
   font-weight: 700;
@@ -32,7 +33,7 @@
 }
 
 .taveta-hero h1 {
-  font-size: clamp(42px, 6vw, 76px);
+  font-size: clamp(36px, 6vw, 76px);
   line-height: 1.08;
   margin: 22px 0;
 }
@@ -42,7 +43,7 @@
   color: #e6e6e6;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
+  margin: 0 0 32px;
 }
 
 .taveta-button {
@@ -52,7 +53,7 @@
   color: #111;
   text-decoration: none;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .taveta-button:hover {
@@ -60,110 +61,122 @@
 }
 
 /* INTRODUCTION */
-
 .taveta-intro {
+  width: 100%;
   max-width: 950px;
   margin: auto;
   padding: 95px 25px;
   text-align: center;
 }
 
-.taveta-intro h2,
-.taveta-collection-heading h2 {
-  font-size: clamp(30px, 4vw, 43px);
+.taveta-intro h2 {
+  font-size: clamp(29px, 4vw, 43px);
   line-height: 1.2;
   margin: 20px 0;
 }
 
-.taveta-intro p,
-.taveta-collection-heading p {
+.taveta-intro p {
   color: #686868;
   font-size: 16px;
   line-height: 1.9;
-}
-
-/* COLLECTION */
-
-.taveta-collection {
-  padding: 85px 9%;
-  background: #fff;
-}
-
-.taveta-collection-heading {
-  max-width: 720px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.taveta-empty-state {
-  max-width: 750px;
-  margin: auto;
-  padding: 65px 25px;
-  text-align: center;
-  border: 1px solid #e7dfd0;
-  background: #f8f6f1;
-}
-
-.taveta-empty-state > span {
-  color: #b89552;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.taveta-empty-state h3 {
-  font-size: 26px;
-  margin: 18px 0 12px;
-}
-
-.taveta-empty-state p {
-  color: #686868;
-  line-height: 1.7;
+  margin: 0;
 }
 
 /* NAVIGATION */
-
 .taveta-navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   padding: 35px 9%;
+  border-top: 1px solid #e8e0d2;
 }
 
 .taveta-navigation a {
   color: #171717;
   text-decoration: none;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .taveta-navigation a:hover {
   color: #b89552;
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 768px) {
+/* TABLET */
+@media (max-width: 900px) {
   .taveta-hero {
-    min-height: 480px;
-    padding: 70px 7%;
+    padding: 80px 7%;
   }
 
   .taveta-intro {
-    padding: 70px 7%;
+    padding: 75px 7%;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .taveta-hero {
+    min-height: 460px;
+    padding: 65px 6%;
+    background-position: center;
   }
 
-  .taveta-collection {
-    padding: 70px 7%;
+  .taveta-hero-content > span,
+  .taveta-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 1.7;
   }
 
-  .taveta-empty-state {
-    padding: 45px 20px;
+  .taveta-hero h1 {
+    font-size: clamp(34px, 9vw, 44px);
+  }
+
+  .taveta-hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .taveta-button {
+    padding: 13px 22px;
+    font-size: 14px;
+  }
+
+  .taveta-intro {
+    padding: 60px 6%;
+  }
+
+  .taveta-intro h2 {
+    font-size: 28px;
+  }
+
+  .taveta-intro p {
+    font-size: 14px;
   }
 
   .taveta-navigation {
-    padding: 30px 7%;
+    padding: 28px 6%;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* ACCESSIBILITY */
+.taveta-page a:focus-visible {
+  outline: 2px solid #b89552;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taveta-page *,
+  .taveta-page *::before,
+  .taveta-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -71,7 +71,7 @@ const stays = [
     id: "308eccb9-20d9-47d9-938f-fa75cc887783",
     name: "Luxury Beachfront Villa",
     location: "Diani Beach, Kwale",
-    region: "Coastal Region",
+    region: "Coastal",
     destination: "Kwale",
     type: "Villa",
     price: 18000,
@@ -105,7 +105,7 @@ const stays = [
     id: "cef7afe7-7ba5-4b55-9bef-1860acb9bf8c",
     name: "Mombasa Luxury Apartment",
     location: "Nyali, Mombasa",
-    region: "Coastal Region",
+    region: "Coastal",
     destination: "Mombasa",
     type: "Apartment",
     price: 9500,
@@ -138,7 +138,7 @@ const stays = [
     id: "7e804cfe-97ce-4a2b-bed0-d81f4c30eda1",
     name: "Watamu Ocean Retreat",
     location: "Watamu, Kilifi",
-    region: "Coastal Region",
+    region: "Coastal",
     destination: "Kilifi",
     type: "Villa",
     price: 22000,
@@ -164,7 +164,7 @@ const stays = [
     id: "7eb8fe53-857e-41a5-a26c-2db085715aa7",
     name: "Lamu Heritage Villa",
     location: "Lamu Island, Lamu",
-    region: "Coastal Region",
+    region: "Coastal",
     destination: "Lamu",
     type: "Villa",
     price: 16000,
@@ -203,9 +203,7 @@ const stays = [
     guests: null,
     bedrooms: 2,
     bathrooms: null,
-
     image: buruburu2Bedroom1,
-
     gallery: [
       buruburu2Bedroom1,
       buruburu2Bedroom2,
@@ -216,12 +214,9 @@ const stays = [
       buruburu2Bedroom7,
       buruburu2Bedroom8,
     ],
-
     description:
       "Enjoy a comfortable and convenient stay at ÉLAN HOMES, located in Buruburu Phase 3, Nairobi. This welcoming two-bedroom apartment is ideal for families, friends, business visitors and guests seeking comfortable short-term accommodation. The property offers parking, convenient access to a nearby supermarket and 24/7 access, making it a practical choice for guests visiting Nairobi. Enjoy a relaxing stay in a convenient residential neighbourhood.",
-
     amenities: ["Parking", "Supermarket Nearby", "24/7 Access"],
-
     checkIn: "14:00",
     checkOut: "10:00",
     reviews: [],
@@ -240,9 +235,7 @@ const stays = [
     guests: null,
     bedrooms: 1,
     bathrooms: null,
-
     image: buruburu1Bedroom1,
-
     gallery: [
       buruburu1Bedroom1,
       buruburu1Bedroom2,
@@ -253,16 +246,14 @@ const stays = [
       buruburu1Bedroom7,
       buruburu1Bedroom8,
     ],
-
     description:
       "Enjoy a comfortable and convenient stay at ÉLAN HOMES, located in Buruburu Phase 3, Nairobi. This welcoming one-bedroom apartment is ideal for couples, solo travellers, business visitors and guests seeking comfortable short-term accommodation. The property offers parking, convenient access to a nearby supermarket and 24/7 access, making it a practical choice for guests visiting Nairobi. Enjoy a relaxing stay in a convenient residential neighbourhood.",
-
     amenities: ["Parking", "Supermarket Nearby", "24/7 Access"],
-
     checkIn: "14:00",
     checkOut: "10:00",
     reviews: [],
   },
+
   {
     id: "a88a64b6-c6c1-4a1c-a7b3-28d2a8d40aaa",
     name: "Sedera Homes",
@@ -332,6 +323,7 @@ const stays = [
     checkOut: "10:00",
     reviews: [],
   },
+
   {
     id: "2d51c064-e0d4-4abe-8d50-a02e64e84345",
     name: "Maasai Mara Safari Lodge",
@@ -544,6 +536,7 @@ const stays = [
     checkOut: "10:00",
     status: "demo",
   },
+
   // =====================================
   // EASTERN REGION - MACHAKOS
   // =====================================
@@ -554,16 +547,14 @@ const stays = [
     location: "Civil Servant, Machakos",
     region: "Eastern",
     destination: "Machakos",
-    type: "Stay",
+    type: "Apartment",
     accommodation: "3 Bedrooms",
     price: 8500,
     currency: "KES",
     guests: null,
     bedrooms: 3,
     bathrooms: null,
-
     image: machakos3Bedroom1,
-
     gallery: [
       machakos3Bedroom1,
       machakos3Bedroom2,
@@ -575,19 +566,13 @@ const stays = [
       machakos3Bedroom8,
       machakos3Bedroom9,
     ],
-
     description:
       "Experience comfort and convenience at ÉLAN HOMES, a spacious three-bedroom accommodation located in the Civil Servant area of Machakos. Ideal for families, groups and business travellers, this welcoming home offers a comfortable environment with a kitchen, Wi-Fi and convenient parking. With 24/7 guest support, guests can enjoy a relaxing and convenient stay in Machakos.",
-
     amenities: ["Wi-Fi", "24/7 Support", "Parking", "Kitchen"],
-
     checkIn: "12:00",
     checkOut: "09:30",
     reviews: [],
   },
-  // =====================================
-  // EASTERN REGION - MACHAKOS
-  // =====================================
 
   {
     id: "908b8291-6e92-4500-9472-61a0c1c2c4c4",
@@ -595,16 +580,14 @@ const stays = [
     location: "Civil Servant, Machakos",
     region: "Eastern",
     destination: "Machakos",
-    type: "Stay",
+    type: "Apartment",
     accommodation: "2 Bedrooms",
     price: 5400,
     currency: "KES",
     guests: null,
     bedrooms: 2,
     bathrooms: null,
-
     image: machakos2Bedroom1,
-
     gallery: [
       machakos2Bedroom1,
       machakos2Bedroom2,
@@ -616,10 +599,8 @@ const stays = [
       machakos2Bedroom8,
       machakos2Bedroom9,
     ],
-
     description:
       "Enjoy a comfortable stay at ÉLAN HOMES, a welcoming two-bedroom accommodation located in the Civil Servant area of Machakos. The property offers Wi-Fi, parking and a fully equipped kitchen for a convenient stay. Guests also benefit from 24/7 support and access to a nearby food market, making it suitable for families, business travellers and short-stay visitors.",
-
     amenities: [
       "Wi-Fi",
       "Parking",
@@ -627,15 +608,10 @@ const stays = [
       "24/7 Support",
       "Food Market Nearby",
     ],
-
     checkIn: "14:00",
     checkOut: "10:00",
     reviews: [],
   },
-
-  // =====================================
-  // EASTERN REGION - MACHAKOS
-  // =====================================
 
   {
     id: "6f8d5a21-9c43-4e72-a815-3b2c9d7e6041",
@@ -643,28 +619,23 @@ const stays = [
     location: "Boma Yangu, Machakos",
     region: "Eastern",
     destination: "Machakos",
-    type: "Stay",
+    type: "Studio",
     accommodation: "Studio",
     price: 2299,
     currency: "KES",
     guests: null,
     bedrooms: 0,
     bathrooms: null,
-
     image: bomaYanguMachakos1,
-
     gallery: [
       bomaYanguMachakos1,
       bomaYanguMachakos2,
       bomaYanguMachakos3,
       bomaYanguMachakos4,
     ],
-
     video: "/videos/machakos/boma-yangu-machakos.mp4",
-
     description:
       "Enjoy a comfortable, convenient and affordable stay at ÉLAN HOMES – Boma Yangu Studio in Machakos. This welcoming studio is ideal for solo travellers, couples, business visitors and guests looking for a relaxing short stay. It features a cosy living space and a convenient kitchenette for preparing simple meals. Stay connected with available Wi-Fi, enjoy convenient parking and benefit from reliable 24/7 guest support. With a food market nearby, accessing everyday essentials is easy. Whether visiting Machakos for business or leisure, enjoy comfort, convenience and excellent value at an affordable rate. Your comfort matters. Your stay starts here with ÉLAN HOMES.",
-
     amenities: [
       "Wi-Fi",
       "24/7 Guest Support",
@@ -672,7 +643,6 @@ const stays = [
       "Food Market Nearby",
       "Kitchenette",
     ],
-
     checkIn: "14:30",
     checkOut: "10:00",
     reviews: [],

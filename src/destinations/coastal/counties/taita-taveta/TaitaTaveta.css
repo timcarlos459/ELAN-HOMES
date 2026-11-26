@@ -1,11 +1,12 @@
 .taita-taveta-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO */
-
 .taita-taveta-hero {
   min-height: 580px;
   display: flex;
@@ -18,6 +19,7 @@
 }
 
 .taita-taveta-hero-content {
+  width: 100%;
   max-width: 750px;
   color: #fff;
 }
@@ -33,7 +35,7 @@
 }
 
 .taita-taveta-hero h1 {
-  font-size: clamp(42px, 6vw, 76px);
+  font-size: clamp(36px, 6vw, 76px);
   line-height: 1.08;
   margin: 22px 0;
 }
@@ -43,12 +45,12 @@
   color: #e6e6e6;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
+  margin: 0;
 }
 
 /* INTRODUCTION */
-
 .taita-taveta-intro {
+  width: 100%;
   max-width: 1000px;
   margin: auto;
   padding: 100px 25px;
@@ -57,7 +59,7 @@
 
 .taita-taveta-intro h2,
 .taita-taveta-locations-heading h2 {
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(29px, 4vw, 44px);
   line-height: 1.2;
   margin: 20px 0;
 }
@@ -67,10 +69,10 @@
   color: #686868;
   font-size: 16px;
   line-height: 1.9;
+  margin: 0;
 }
 
 /* DESTINATION LOCATIONS */
-
 .taita-taveta-locations {
   padding: 90px 9%;
   background: #fff;
@@ -89,9 +91,13 @@
 }
 
 .taita-taveta-card {
+  min-width: 0;
   background: #f8f6f1;
   border: 1px solid #e8e0d2;
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .taita-taveta-card:hover {
@@ -105,7 +111,8 @@
 }
 
 .taita-taveta-card h3 {
-  font-size: 24px;
+  font-size: 23px;
+  line-height: 1.3;
   margin: 25px 0 15px;
 }
 
@@ -123,7 +130,7 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .taita-taveta-card a:hover {
@@ -131,52 +138,119 @@
 }
 
 /* BACK NAVIGATION */
-
 .taita-taveta-back {
   padding: 35px 9%;
+  border-top: 1px solid #e8e0d2;
 }
 
 .taita-taveta-back a {
+  display: inline-block;
   color: #171717;
   text-decoration: none;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .taita-taveta-back a:hover {
   color: #b89552;
 }
 
-/* RESPONSIVE */
-
+/* TABLET */
 @media (max-width: 900px) {
   .taita-taveta-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .taita-taveta-locations {
+    padding: 75px 7%;
+  }
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
   .taita-taveta-hero {
-    min-height: 480px;
-    padding: 70px 7%;
+    min-height: 460px;
+    padding: 70px 6%;
+    background-position: center;
+  }
+
+  .taita-taveta-hero-content > span,
+  .taita-taveta-intro > span,
+  .taita-taveta-locations-heading > span,
+  .taita-taveta-card-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 1.7;
+  }
+
+  .taita-taveta-hero h1 {
+    font-size: clamp(34px, 9vw, 44px);
+  }
+
+  .taita-taveta-hero p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .taita-taveta-intro {
-    padding: 70px 7%;
+    padding: 60px 6%;
+  }
+
+  .taita-taveta-intro h2,
+  .taita-taveta-locations-heading h2 {
+    font-size: 28px;
+  }
+
+  .taita-taveta-intro p,
+  .taita-taveta-locations-heading p {
+    font-size: 14px;
   }
 
   .taita-taveta-locations {
-    padding: 70px 7%;
+    padding: 60px 6%;
+  }
+
+  .taita-taveta-locations-heading {
+    margin-bottom: 35px;
   }
 
   .taita-taveta-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .taita-taveta-card-content {
+    padding: 28px 23px;
+  }
+
+  .taita-taveta-card h3 {
+    font-size: 21px;
+    margin: 20px 0 12px;
   }
 
   .taita-taveta-card p {
     min-height: auto;
+    font-size: 13px;
   }
 
   .taita-taveta-back {
-    padding: 30px 7%;
+    padding: 28px 6%;
+  }
+}
+
+/* ACCESSIBILITY */
+.taita-taveta-page a:focus-visible {
+  outline: 2px solid #b89552;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taita-taveta-page *,
+  .taita-taveta-page *::before,
+  .taita-taveta-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

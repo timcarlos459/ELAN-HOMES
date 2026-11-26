@@ -1,12 +1,11 @@
-/* =========================================
-   MALINDI DESTINATION PAGE
-========================================= */
+/* MALINDI DESTINATION PAGE */
 
 .malindi-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
-  overflow: hidden;
 }
 
 /* HERO */
@@ -36,29 +35,30 @@
 }
 
 .malindi-hero-overlay > span {
-  display: inline-block;
+  display: block;
+  margin-bottom: 22px;
   color: #d6b46a;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 22px;
+  line-height: 1.6;
 }
 
 .malindi-hero-overlay h1 {
   max-width: 800px;
-  font-size: clamp(48px, 7vw, 88px);
+  margin: 0 0 25px;
+  font-size: clamp(42px, 7vw, 88px);
   line-height: 1.05;
   font-weight: 600;
-  margin: 0 0 25px;
   letter-spacing: -2px;
 }
 
 .malindi-hero-overlay p {
   max-width: 620px;
+  margin: 0 0 35px;
   color: rgba(255, 255, 255, 0.88);
   font-size: 17px;
   line-height: 1.9;
-  margin-bottom: 35px;
 }
 
 .malindi-hero-button {
@@ -73,7 +73,9 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .malindi-hero-button:hover {
@@ -84,27 +86,28 @@
 /* INTRODUCTION */
 
 .malindi-intro {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 110px 25px 90px;
   text-align: center;
 }
 
-.malindi-intro > span,
-.malindi-section-heading > span {
+.malindi-intro > span {
   display: block;
+  margin-bottom: 18px;
   color: #a9843e;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 18px;
 }
 
 .malindi-intro h2 {
+  margin: 0 0 22px;
   font-size: clamp(30px, 4vw, 46px);
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: -1px;
-  margin: 0 0 22px;
 }
 
 .malindi-intro p {
@@ -115,65 +118,22 @@
   line-height: 1.9;
 }
 
-/* COLLECTION */
+/* SHARED MARKETPLACE ANCHOR */
 
-.malindi-collection {
-  padding: 80px 7% 110px;
-  background: #fff;
-}
-
-.malindi-section-heading {
-  max-width: 750px;
-  margin: 0 auto 55px;
-  text-align: center;
-}
-
-.malindi-section-heading h2 {
-  font-size: clamp(30px, 4vw, 44px);
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin: 0 0 18px;
-}
-
-.malindi-section-heading p {
-  color: #777;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-/* EMPTY STATE */
-
-.malindi-empty-state {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 65px 25px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d7;
-}
-
-.malindi-empty-state h3 {
-  font-size: 25px;
-  font-weight: 600;
-  margin: 0 0 15px;
-}
-
-.malindi-empty-state p {
-  max-width: 550px;
-  margin: 0 auto;
-  color: #777;
-  font-size: 15px;
-  line-height: 1.8;
+#malindi-collection {
+  scroll-margin-top: 30px;
 }
 
 /* BACK LINKS */
 
 .malindi-back {
+  width: 100%;
   max-width: 1250px;
   margin: 0 auto;
   padding: 35px 7%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
 }
 
@@ -189,7 +149,14 @@
   color: #171717;
 }
 
-/* RESPONSIVE */
+/* ACCESSIBILITY */
+
+.malindi-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
+/* TABLET */
 
 @media (max-width: 768px) {
   .malindi-hero {
@@ -202,34 +169,37 @@
   }
 
   .malindi-hero-overlay h1 {
-    font-size: 52px;
+    font-size: clamp(42px, 8vw, 56px);
   }
 
   .malindi-hero-overlay p {
     font-size: 15px;
+    line-height: 1.8;
   }
 
   .malindi-intro {
-    padding: 75px 22px;
-  }
-
-  .malindi-collection {
-    padding: 65px 6% 75px;
+    padding: 75px 7%;
   }
 
   .malindi-back {
     padding: 30px 6%;
-    flex-direction: column;
   }
 }
+
+/* MOBILE */
 
 @media (max-width: 480px) {
   .malindi-hero {
     min-height: 460px;
   }
 
+  .malindi-hero-overlay {
+    padding: 65px 7%;
+  }
+
   .malindi-hero-overlay h1 {
-    font-size: 43px;
+    font-size: clamp(36px, 10vw, 46px);
+    letter-spacing: -1px;
   }
 
   .malindi-hero-overlay > span {
@@ -237,7 +207,46 @@
     letter-spacing: 2px;
   }
 
-  .malindi-empty-state {
-    padding: 45px 20px;
+  .malindi-hero-overlay p {
+    font-size: 14px;
+  }
+
+  .malindi-hero-button {
+    min-height: 48px;
+    padding: 0 22px;
+    font-size: 12px;
+  }
+
+  .malindi-intro {
+    padding: 65px 7%;
+  }
+
+  .malindi-intro h2 {
+    font-size: 29px;
+  }
+
+  .malindi-intro p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .malindi-back {
+    padding: 25px 7% 35px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .malindi-page *,
+  .malindi-page *::before,
+  .malindi-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

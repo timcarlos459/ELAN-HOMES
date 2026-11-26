@@ -27,6 +27,14 @@ const supportLinks = [
   { name: "Terms & Conditions", link: "/terms-and-conditions" },
 ];
 
+const accountLinks = [
+  { name: "Sign In", link: "/signin" },
+  { name: "Create Account", link: "/register" },
+  { name: "My Account", link: "/account" },
+  { name: "Saved Listings", link: "/saved" },
+  { name: "My Bookings", link: "/bookings" },
+];
+
 export default function Footer() {
   return (
     <footer className="elan-footer">
@@ -43,23 +51,16 @@ export default function Footer() {
             prime investment opportunities across Kenya.
           </p>
 
+          {/* SOCIAL MEDIA PLACEHOLDERS */}
           <div className="footer-socials">
-            <a href="#" aria-label="Facebook">
-              f
-            </a>
-            <a href="#" aria-label="Instagram">
-              ig
-            </a>
-            <a href="#" aria-label="TikTok">
-              tk
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              in
-            </a>
+            <span aria-label="Facebook">f</span>
+            <span aria-label="Instagram">ig</span>
+            <span aria-label="TikTok">tk</span>
+            <span aria-label="LinkedIn">in</span>
           </div>
         </div>
 
-        {/* QUICK LINKS */}
+        {/* EXPLORE */}
         <div className="footer-column">
           <h3>Explore</h3>
           <Link to="/">Home</Link>
@@ -72,6 +73,7 @@ export default function Footer() {
         {/* DESTINATIONS */}
         <div className="footer-column">
           <h3>Destinations</h3>
+
           {regions.map((region) => (
             <Link to={region.link} key={region.name}>
               {region.name}
@@ -82,6 +84,7 @@ export default function Footer() {
         {/* COMPANY */}
         <div className="footer-column">
           <h3>Company</h3>
+
           {companyLinks.map((item) => (
             <Link to={item.link} key={item.name}>
               {item.name}
@@ -89,10 +92,22 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* CUSTOMER SUPPORT */}
+        {/* SUPPORT */}
         <div className="footer-column">
           <h3>Support</h3>
+
           {supportLinks.map((item) => (
+            <Link to={item.link} key={item.name}>
+              {item.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* ACCOUNT */}
+        <div className="footer-column">
+          <h3>My Account</h3>
+
+          {accountLinks.map((item) => (
             <Link to={item.link} key={item.name}>
               {item.name}
             </Link>
@@ -103,6 +118,7 @@ export default function Footer() {
       {/* FOOTER BOTTOM */}
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} ÉLAN HOMES. All rights reserved.</p>
+
         <p>Designed for better living in Kenya.</p>
       </div>
     </footer>

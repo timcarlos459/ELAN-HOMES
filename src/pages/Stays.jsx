@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import stays from "../data/stays";
+import { isStayDateRangeAvailable } from "../utils/stayAvailability";
 import SEO from "../components/SEO";
 import "./Stays.css";
 
@@ -59,6 +60,7 @@ const locations = {
     "Sekenani",
     "Talek",
     "Mara Triangle",
+    "Narok / Maasai Mara",
     "Eldoret",
     "Naivasha",
     "Nakuru",
@@ -88,27 +90,43 @@ const matchesLocation = (stay, requestedLocation) => {
 
   if (!search) return true;
 
-  const destination = normalizeLocation(stay.destination || "");
-  const location = normalizeLocation(stay.location || "");
+  const destination = normalizeLocation(stay.destination);
+  const location = normalizeLocation(stay.location);
 
   return (
-    destination.includes(search) ||
-    search.includes(destination) ||
-    location.includes(search)
+    (destination &&
+      (destination.includes(search) || search.includes(destination))) ||
+    (location && location.includes(search))
   );
 };
 
 /* =================================
-   DATE HELPER
+   DATE HELPERS
 ================================= */
 
 const getToday = () => {
   const today = new Date();
+
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0");
   const day = String(today.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+};
+
+const isValidDate = (value) => {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  return (
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+  );
 };
 
 /* =================================
@@ -118,19 +136,11 @@ const getToday = () => {
 const getStayRating = (stay) => {
   const reviews = Array.isArray(stay.reviews) ? stay.reviews : [];
 
-  if (reviews.length === 0) {
-    return {
-      average: 0,
-      count: 0,
-    };
-  }
+  const validReviews = reviews.filter((review) => {
+    const rating = Number(review.rating);
 
-  const validReviews = reviews.filter(
-    (review) =>
-      Number.isFinite(Number(review.rating)) &&
-      Number(review.rating) >= 1 &&
-      Number(review.rating) <= 5,
-  );
+    return Number.isFinite(rating) && rating >= 1 && rating <= 5;
+  });
 
   if (validReviews.length === 0) {
     return {
@@ -151,6 +161,20 @@ const getStayRating = (stay) => {
 };
 
 /* =================================
+   PRICE FORMATTER
+================================= */
+
+const formatPrice = (price) => {
+  const amount = Number(price);
+
+  if (!Number.isFinite(amount) || amount < 0) {
+    return "Price unavailable";
+  }
+
+  return `KSh ${amount.toLocaleString("en-KE")}`;
+};
+
+/* =================================
    HOLIDAY STAYS PAGE
 ================================= */
 
@@ -158,12 +182,16 @@ export default function Stays() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const requestedLocation = searchParams.get("location") || "";
+
   const requestedLocationName = formatLocationName(requestedLocation);
 
   const initialRegion = searchParams.get("region") || "All Regions";
+
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
+
   const initialType = searchParams.get("type") || "All Types";
+
   const initialBudget = searchParams.get("budget") || "All Prices";
 
   /* =================================
@@ -200,6 +228,23 @@ export default function Stays() {
 
   const availableDestinations =
     region === "All Regions" ? [] : locations[region] || [];
+
+  /* =================================
+     DATE VALIDATION
+  ================================= */
+
+  const hasCheckIn = Boolean(checkIn);
+  const hasCheckOut = Boolean(checkOut);
+
+  const hasValidDateRange =
+    hasCheckIn &&
+    hasCheckOut &&
+    isValidDate(checkIn) &&
+    isValidDate(checkOut) &&
+    checkIn >= getToday() &&
+    checkOut > checkIn;
+
+  const hasIncompleteDates = hasCheckIn !== hasCheckOut;
 
   /* =================================
      SEO SETTINGS
@@ -268,19 +313,13 @@ export default function Stays() {
   ================================= */
 
   useEffect(() => {
-    if (!selectedStay) return;
+    if (!selectedStay) return undefined;
 
-    const photoCount =
-      selectedStay.gallery?.length > 0
-        ? selectedStay.gallery.length
-        : selectedStay.image
-          ? 1
-          : 0;
+    const photoCount = currentGallery.length;
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setSelectedStay(null);
-        setActivePhoto(0);
+        closeGallery();
       }
 
       if (event.key === "ArrowRight") {
@@ -301,7 +340,7 @@ export default function Stays() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedStay]);
+  }, [selectedStay, currentGallery.length]);
 
   /* =================================
      FILTER HOLIDAY STAYS
@@ -317,17 +356,27 @@ export default function Stays() {
 
     const matchesRequestedLocation = matchesLocation(stay, requestedLocation);
 
+    const stayGuestLimit = stay.guests == null ? null : Number(stay.guests);
+
     const matchesGuests =
       guests === "" ||
-      stay.guests == null ||
-      Number(stay.guests) >= Number(guests);
+      stayGuestLimit === null ||
+      (Number.isFinite(stayGuestLimit) && stayGuestLimit >= Number(guests));
 
-    const matchesType = type === "All Types" || stay.type === type;
+    const stayType = String(stay.type || "").toLowerCase();
+
+    const matchesType = type === "All Types" || stayType === type.toLowerCase();
+
+    const stayPrice = Number(stay.price);
 
     const matchesPrice =
-      maxPrice === "All Prices" || Number(stay.price) <= Number(maxPrice);
+      maxPrice === "All Prices" ||
+      (Number.isFinite(stayPrice) && stayPrice <= Number(maxPrice));
 
-    const isNotHotel = (stay.type || "").toLowerCase() !== "hotel";
+    const isNotHotel = stayType !== "hotel";
+
+    const matchesAvailability =
+      !hasValidDateRange || isStayDateRangeAvailable(stay, checkIn, checkOut);
 
     return (
       matchesRegion &&
@@ -336,15 +385,10 @@ export default function Stays() {
       matchesGuests &&
       matchesType &&
       matchesPrice &&
+      matchesAvailability &&
       isNotHotel
     );
   });
-
-  /* =================================
-     FORMAT PRICE
-  ================================= */
-
-  const formatPrice = (price) => `KSh ${Number(price).toLocaleString("en-KE")}`;
 
   /* =================================
      CLEAR FILTERS
@@ -374,7 +418,7 @@ export default function Stays() {
 
       <section className="stays-hero">
         <div className="stays-hero-content">
-          <span>ELAN HOMES EXPERIENCES</span>
+          <span>ÉLAN HOMES EXPERIENCES</span>
 
           <h1>Find Your Perfect Holiday Stay</h1>
 
@@ -405,12 +449,13 @@ export default function Stays() {
           {/* REGION */}
 
           <div className="stay-filter-group">
-            <label>Region</label>
+            <label htmlFor="stay-region">Region</label>
 
             <select
+              id="stay-region"
               value={region}
-              onChange={(e) => {
-                setRegion(e.target.value);
+              onChange={(event) => {
+                setRegion(event.target.value);
                 setDestination("All Destinations");
               }}
             >
@@ -427,12 +472,13 @@ export default function Stays() {
           {/* DESTINATION */}
 
           <div className="stay-filter-group">
-            <label>County / Destination</label>
+            <label htmlFor="stay-destination">County / Destination</label>
 
             <select
+              id="stay-destination"
               value={destination}
               disabled={region === "All Regions"}
-              onChange={(e) => setDestination(e.target.value)}
+              onChange={(event) => setDestination(event.target.value)}
             >
               <option value="All Destinations">All Destinations</option>
 
@@ -447,16 +493,19 @@ export default function Stays() {
           {/* CHECK-IN */}
 
           <div className="stay-filter-group">
-            <label>Check-in</label>
+            <label htmlFor="stays-checkin">Check-in</label>
 
             <input
+              id="stays-checkin"
               type="date"
               value={checkIn}
               min={getToday()}
-              onChange={(e) => {
-                setCheckIn(e.target.value);
+              onChange={(event) => {
+                const selectedDate = event.target.value;
 
-                if (checkOut && e.target.value >= checkOut) {
+                setCheckIn(selectedDate);
+
+                if (checkOut && selectedDate >= checkOut) {
                   setCheckOut("");
                 }
               }}
@@ -466,22 +515,28 @@ export default function Stays() {
           {/* CHECK-OUT */}
 
           <div className="stay-filter-group">
-            <label>Check-out</label>
+            <label htmlFor="stays-checkout">Check-out</label>
 
             <input
+              id="stays-checkout"
               type="date"
               value={checkOut}
               min={checkIn || getToday()}
-              onChange={(e) => setCheckOut(e.target.value)}
+              disabled={!checkIn}
+              onChange={(event) => setCheckOut(event.target.value)}
             />
           </div>
 
           {/* GUESTS */}
 
           <div className="stay-filter-group">
-            <label>Number of Guests</label>
+            <label htmlFor="stays-guests">Number of Guests</label>
 
-            <select value={guests} onChange={(e) => setGuests(e.target.value)}>
+            <select
+              id="stays-guests"
+              value={guests}
+              onChange={(event) => setGuests(event.target.value)}
+            >
               <option value="">Any number of guests</option>
 
               {Array.from({ length: 12 }, (_, index) => index + 1).map(
@@ -501,10 +556,15 @@ export default function Stays() {
           {/* ACCOMMODATION TYPE */}
 
           <div className="stay-filter-group">
-            <label>Accommodation Type</label>
+            <label htmlFor="stays-type">Accommodation Type</label>
 
-            <select value={type} onChange={(e) => setType(e.target.value)}>
+            <select
+              id="stays-type"
+              value={type}
+              onChange={(event) => setType(event.target.value)}
+            >
               <option value="All Types">All Types</option>
+
               <option value="Studio">Studio</option>
               <option value="Villa">Villa</option>
               <option value="Apartment">Apartment</option>
@@ -517,17 +577,23 @@ export default function Stays() {
           {/* NIGHTLY BUDGET */}
 
           <div className="stay-filter-group">
-            <label>Maximum Price / Night</label>
+            <label htmlFor="stays-budget">Maximum Price / Night</label>
 
             <select
+              id="stays-budget"
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
+              onChange={(event) => setMaxPrice(event.target.value)}
             >
               <option value="All Prices">All Prices</option>
+
               <option value="5000">Up to KSh 5,000</option>
+
               <option value="10000">Up to KSh 10,000</option>
+
               <option value="20000">Up to KSh 20,000</option>
+
               <option value="30000">Up to KSh 30,000</option>
+
               <option value="50000">Up to KSh 50,000</option>
             </select>
           </div>
@@ -543,6 +609,22 @@ export default function Stays() {
           </button>
         </div>
 
+        {/* DATE VALIDATION MESSAGE */}
+
+        {hasIncompleteDates && (
+          <p className="stays-date-warning" role="status">
+            Please select both check-in and check-out dates to filter available
+            stays.
+          </p>
+        )}
+
+        {hasCheckIn && hasCheckOut && !hasValidDateRange && (
+          <p className="stays-date-warning" role="status">
+            Please select valid dates. Check-out must be after check-in and
+            check-in cannot be in the past.
+          </p>
+        )}
+
         {/* RESULTS HEADING */}
 
         <div className="stays-results-heading">
@@ -552,7 +634,10 @@ export default function Stays() {
               : "Available Holiday Stays"}
           </h2>
 
-          <span>{filteredStays.length} Stays Found</span>
+          <span>
+            {filteredStays.length}{" "}
+            {filteredStays.length === 1 ? "Stay" : "Stays"} Found
+          </span>
         </div>
 
         {/* STAY CARDS */}
@@ -574,27 +659,33 @@ export default function Stays() {
                     role="button"
                     tabIndex={0}
                     aria-label={`Open ${stay.name} photo gallery`}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
                         openGallery(stay);
                       }
                     }}
                   >
-                    <img
-                      src={stay.image}
-                      alt={stay.name}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    {stay.image ? (
+                      <img
+                        src={stay.image}
+                        alt={stay.name}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="saved-card-no-image">
+                        Image unavailable
+                      </div>
+                    )}
 
                     <span className="stay-card-badge">HOLIDAY STAY</span>
 
                     <button
                       type="button"
                       className="stay-photo-count"
-                      onClick={(e) => {
-                        e.stopPropagation();
+                      onClick={(event) => {
+                        event.stopPropagation();
                         openGallery(stay);
                       }}
                     >
@@ -605,7 +696,9 @@ export default function Stays() {
                   {/* DETAILS */}
 
                   <div className="stay-card-details">
-                    <span className="stay-card-type">{stay.type}</span>
+                    <span className="stay-card-type">
+                      {stay.accommodation || stay.type}
+                    </span>
 
                     <h3>{stay.name}</h3>
 
@@ -635,6 +728,8 @@ export default function Stays() {
                       )}
                     </div>
 
+                    {/* FEATURES */}
+
                     <div className="stay-card-features">
                       <span>
                         {stay.guests == null
@@ -642,13 +737,9 @@ export default function Stays() {
                           : `${stay.guests} Guests`}
                       </span>
 
-                      {stay.accommodation && (
-                        <span>Accommodation: {stay.accommodation}</span>
-                      )}
-
                       <span>
-                        {stay.bedrooms === 0
-                          ? "0 Bedrooms"
+                        {Number(stay.bedrooms) === 0
+                          ? "Studio"
                           : `${stay.bedrooms} Bedrooms`}
                       </span>
 
@@ -661,9 +752,12 @@ export default function Stays() {
                       )}
                     </div>
 
+                    {/* PRICE AND DETAILS LINK */}
+
                     <div className="stay-card-bottom">
                       <div>
                         <strong>{formatPrice(stay.price)}</strong>
+
                         <span> / night</span>
                       </div>
 
@@ -678,7 +772,7 @@ export default function Stays() {
           </div>
         )}
 
-        {/* NO RESULTS / COMING SOON */}
+        {/* NO RESULTS */}
 
         {filteredStays.length === 0 && (
           <div className="stays-empty">
@@ -700,7 +794,10 @@ export default function Stays() {
               <>
                 <h3>No holiday stays found</h3>
 
-                <p>Try adjusting your filters to explore other destinations.</p>
+                <p>
+                  Try adjusting your filters to explore other destinations or
+                  date ranges.
+                </p>
               </>
             )}
           </div>
@@ -720,13 +817,14 @@ export default function Stays() {
             role="dialog"
             aria-modal="true"
             aria-label={`${selectedStay.name} photo gallery`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
           >
             {/* GALLERY HEADER */}
 
             <div className="stay-gallery-header">
               <div>
                 <span>ÉLAN HOMES COLLECTION</span>
+
                 <h2>{selectedStay.name}</h2>
               </div>
 

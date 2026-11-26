@@ -1,5 +1,5 @@
 import properties from "../data/properties";
-import landListings from "../data/land";
+import landListings from "../data/landListings";
 import stays from "../data/stays";
 
 const listingCollections = {
@@ -11,7 +11,7 @@ const listingCollections = {
 export const getListingById = (category, id) => {
   const collection = listingCollections[category];
 
-  if (!collection || !id) {
+  if (!collection || typeof id !== "string" || !id.trim()) {
     return null;
   }
 

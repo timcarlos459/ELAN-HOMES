@@ -54,8 +54,33 @@ export default function MyBookings() {
 
         return dateB - dateA;
       });
-    } catch (error) {
-      console.error("Could not load customer records:", error);
+    } catch {
+      return [];
+    }
+  });
+
+  // LOAD INVOICES
+  const [invoices] = useState(() => {
+    try {
+      const savedInvoices = JSON.parse(
+        localStorage.getItem("elanInvoices") || "[]",
+      );
+
+      return Array.isArray(savedInvoices) ? savedInvoices : [];
+    } catch {
+      return [];
+    }
+  });
+
+  // LOAD VERIFIED PAYMENT RECEIPTS
+  const [receipts] = useState(() => {
+    try {
+      const savedReceipts = JSON.parse(
+        localStorage.getItem("elanReceipts") || "[]",
+      );
+
+      return Array.isArray(savedReceipts) ? savedReceipts : [];
+    } catch {
       return [];
     }
   });
@@ -133,6 +158,55 @@ export default function MyBookings() {
   // GET THE LISTING UUID
   const getListingId = (record) =>
     record.listing?.id || record.listingId || record.listing?.listingId || "";
+
+  // FIND THE INVOICE LINKED TO A BOOKING OR VIEWING REQUEST
+  const getInvoiceForRecord = (record) => {
+    const linkedInvoiceId =
+      record.invoiceId || record.invoice?.invoiceId || record.invoice?.id || "";
+
+    return invoices.find((invoice) => {
+      if (
+        linkedInvoiceId &&
+        (invoice.invoiceId === linkedInvoiceId ||
+          invoice.id === linkedInvoiceId)
+      ) {
+        return true;
+      }
+
+      return (
+        invoice.bookingId === record.id ||
+        invoice.enquiryId === record.id ||
+        invoice.recordId === record.id
+      );
+    });
+  };
+
+  // FIND THE RECEIPT LINKED TO A BOOKING OR INVOICE
+  const getReceiptForRecord = (record, invoice) => {
+    const linkedReceiptId =
+      record.receiptId ||
+      invoice?.receiptId ||
+      invoice?.receipt?.receiptId ||
+      "";
+
+    return receipts.find((receipt) => {
+      if (
+        linkedReceiptId &&
+        (receipt.receiptId === linkedReceiptId ||
+          receipt.id === linkedReceiptId ||
+          receipt.reference === linkedReceiptId)
+      ) {
+        return true;
+      }
+
+      return (
+        receipt.bookingId === record.id ||
+        receipt.enquiryId === record.id ||
+        (invoice?.invoiceId && receipt.invoiceId === invoice.invoiceId) ||
+        (invoice?.id && receipt.invoiceId === invoice.id)
+      );
+    });
+  };
 
   // CHECK WHETHER A VIEWING REQUEST HAS BEEN PAID
   const isViewingFeePaid = (record) => {
@@ -522,6 +596,25 @@ export default function MyBookings() {
               const category = getCategory(record);
               const status = getStatus(record);
 
+              const invoice = getInvoiceForRecord(record);
+              const invoiceId = invoice?.invoiceId || invoice?.id;
+
+              const invoiceIsOfficial =
+                invoice?.invoiceStatus === "issued" &&
+                Number.isFinite(Number(invoice?.amount)) &&
+                Number(invoice.amount) > 0;
+
+              const invoiceIsPaid =
+                invoice?.paymentStatus === "paid" || invoice?.paid === true;
+
+              const receipt = getReceiptForRecord(record, invoice);
+
+              const receiptIsVerified =
+                receipt?.paymentStatus === "paid" && receipt?.verified === true;
+
+              const receiptId =
+                receipt?.receiptId || receipt?.id || receipt?.reference;
+
               const isStay = record.category === "stay";
               const isProperty = record.category === "property";
               const isLand = record.category === "land";
@@ -543,6 +636,9 @@ export default function MyBookings() {
                 record.enquiryType === "land_viewing" ||
                 Boolean(viewingDate) ||
                 Boolean(viewingTime);
+
+              const requiresInvoice =
+                isStay || (isViewingRequest && (isProperty || isLand));
 
               const viewingFeePaid = isViewingFeePaid(record);
 
@@ -731,6 +827,58 @@ export default function MyBookings() {
 
                     <p>{status.message}</p>
                   </div>
+
+                  {/* INVOICE, PAYMENT AND RECEIPT ACCESS */}
+                  {requiresInvoice && (
+                    <div className="booking-invoice-section">
+                      <div className="booking-invoice-information">
+                        <span>INVOICE & PAYMENT</span>
+
+                        {invoiceIsPaid ? (
+                          <strong className="booking-invoice-paid">
+                            Payment Confirmed
+                          </strong>
+                        ) : invoiceIsOfficial ? (
+                          <strong className="booking-invoice-issued">
+                            Official Invoice Issued
+                          </strong>
+                        ) : (
+                          <strong className="booking-invoice-pending">
+                            Awaiting Booking Confirmation
+                          </strong>
+                        )}
+
+                        {invoice?.invoiceReference && (
+                          <small>Invoice: {invoice.invoiceReference}</small>
+                        )}
+                      </div>
+
+                      {invoiceIsOfficial && invoiceId ? (
+                        <Link
+                          to={`/payment/${encodeURIComponent(invoiceId)}`}
+                          className="booking-invoice-button"
+                        >
+                          {invoiceIsPaid
+                            ? "View Paid Invoice"
+                            : "View Invoice / Pay"}
+                        </Link>
+                      ) : (
+                        <p className="booking-invoice-note">
+                          Your official invoice will become available once ÉLAN
+                          HOMES confirms your booking or viewing request.
+                        </p>
+                      )}
+
+                      {receiptIsVerified && receiptId && (
+                        <Link
+                          to={`/receipt/${encodeURIComponent(receiptId)}`}
+                          className="booking-invoice-button"
+                        >
+                          VIEW OFFICIAL RECEIPT ↗
+                        </Link>
+                      )}
+                    </div>
+                  )}
 
                   {/* VIEW LISTING */}
                   <div className="booking-cancellation-action">

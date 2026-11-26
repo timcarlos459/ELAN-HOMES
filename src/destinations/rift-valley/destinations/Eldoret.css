@@ -1,62 +1,82 @@
+/* ================================
+   RIFT VALLEY DESTINATION PAGES
+================================ */
+
 .rift-destination-page {
+  width: 100%;
   min-height: 100vh;
+  overflow: hidden;
   background: #f8f6f1;
+  color: #171717;
 }
 
+/* HERO */
+
 .rift-destination-hero {
-  min-height: 480px;
+  position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-height: 480px;
   padding: 80px 8%;
-  position: relative;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  background-repeat: no-repeat;
 }
+
+/* ELDORET HERO */
 
 .eldoret-hero {
   background-image:
     linear-gradient(90deg, rgba(10, 10, 10, 0.82), rgba(10, 10, 10, 0.35)),
     url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8");
+  background-position: center;
 }
 
+/* HERO CONTENT */
+
 .rift-destination-hero-content {
-  max-width: 700px;
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 700px;
 }
 
 .rift-destination-eyebrow {
   display: inline-block;
+  margin-bottom: 20px;
   color: #d4b36a;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 20px;
 }
 
 .rift-destination-hero h1 {
-  color: #fff;
-  font-size: clamp(45px, 7vw, 76px);
-  font-weight: 700;
   margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(42px, 7vw, 76px);
+  font-weight: 600;
   letter-spacing: -2px;
+  line-height: 1.1;
 }
 
 .rift-destination-hero p {
+  max-width: 580px;
+  margin: 0 0 30px;
   color: #eee;
   font-size: 17px;
   line-height: 1.8;
-  max-width: 580px;
-  margin-bottom: 30px;
 }
+
+/* BACK LINK */
 
 .rift-back-link {
   display: inline-block;
   color: #d4b36a;
-  text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
@@ -64,13 +84,72 @@
   color: #fff;
 }
 
+.rift-back-link:focus-visible {
+  outline: 2px solid #d4b36a;
+  outline-offset: 5px;
+}
+
+/* TABLET */
+
 @media (max-width: 768px) {
   .rift-destination-hero {
-    min-height: 400px;
+    min-height: 420px;
     padding: 70px 6%;
   }
 
   .rift-destination-hero p {
     font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .rift-destination-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .rift-destination-hero {
+    min-height: 390px;
+    padding: 55px 5%;
+    background-position: center;
+  }
+
+  .rift-destination-hero h1 {
+    font-size: clamp(38px, 11vw, 52px);
+    letter-spacing: -1px;
+  }
+
+  .rift-destination-hero p {
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+
+  .rift-back-link {
+    font-size: 13px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 360px) {
+  .rift-destination-hero {
+    min-height: 360px;
+    padding: 45px 5%;
+  }
+
+  .rift-destination-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .rift-back-link {
+    transition: none;
   }
 }

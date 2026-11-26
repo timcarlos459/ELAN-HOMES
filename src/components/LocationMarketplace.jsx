@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./LocationMarketplace.css";
 
-export default function LocationMarketplace({ locationName, countyName }) {
+export default function LocationMarketplace({
+  locationName = "",
+  countyName = "",
+}) {
   const locationSlug = locationName
     .toLowerCase()
     .normalize("NFD")
@@ -9,21 +12,26 @@ export default function LocationMarketplace({ locationName, countyName }) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
+  const displayLocation = locationName || "this destination";
+  const displayCounty = countyName || "";
+
   return (
     <section className="location-marketplace">
       <div className="location-marketplace-heading">
         <span>THE ÉLAN HOMES COLLECTION</span>
 
-        <h2>Discover Properties & Stays</h2>
+        <h2>Discover Properties &amp; Stays</h2>
 
         <p>
           Discover beautiful properties for sale and exceptional places to stay
-          in {locationName}, {countyName}.
+          in {displayLocation}
+          {displayCounty ? `, ${displayCounty}` : ""}.
         </p>
       </div>
 
       <div className="location-marketplace-grid">
-        {/* PROPERTIES */}
+        {/* PROPERTIES FOR SALE */}
+
         <article className="location-marketplace-card">
           <div className="location-marketplace-card-content">
             <span className="location-marketplace-category">REAL ESTATE</span>
@@ -32,19 +40,21 @@ export default function LocationMarketplace({ locationName, countyName }) {
 
             <p>
               Discover exceptional homes, villas, apartments and residential
-              properties available for sale in {locationName}.
+              properties available for sale in {displayLocation}.
             </p>
 
             <Link
-              to={`/properties?location=${locationSlug}`}
+              to={`/properties?location=${encodeURIComponent(locationSlug)}`}
               className="location-marketplace-status"
+              aria-label={`Explore properties for sale in ${displayLocation}`}
             >
               EXPLORE PROPERTIES →
             </Link>
           </div>
         </article>
 
-        {/* STAYS */}
+        {/* B&B AND SHORT STAYS */}
+
         <article className="location-marketplace-card">
           <div className="location-marketplace-card-content">
             <span className="location-marketplace-category">ACCOMMODATION</span>
@@ -52,13 +62,14 @@ export default function LocationMarketplace({ locationName, countyName }) {
             <h3>Stays</h3>
 
             <p>
-              Discover beautiful B&Bs, holiday homes, furnished accommodation
-              and memorable places to stay in {locationName}.
+              Discover beautiful B&amp;Bs, holiday homes, furnished
+              accommodation and memorable places to stay in {displayLocation}.
             </p>
 
             <Link
-              to={`/stays?location=${locationSlug}`}
+              to={`/stays?location=${encodeURIComponent(locationSlug)}`}
               className="location-marketplace-status"
+              aria-label={`Explore short stays in ${displayLocation}`}
             >
               EXPLORE STAYS →
             </Link>

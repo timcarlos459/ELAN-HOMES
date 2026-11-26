@@ -5,7 +5,16 @@
   justify-content: center;
   padding: 50px 20px;
   background: #f7f5f0;
+  box-sizing: border-box;
 }
+
+.verify-otp-page *,
+.verify-otp-page *::before,
+.verify-otp-page *::after {
+  box-sizing: border-box;
+}
+
+/* MAIN CONTAINER */
 
 .verify-otp-container {
   width: 100%;
@@ -16,6 +25,8 @@
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
+
+/* LOGO */
 
 .verify-otp-logo {
   display: block;
@@ -30,6 +41,8 @@
 .verify-otp-logo span {
   color: #b18a45;
 }
+
+/* HEADING */
 
 .verify-otp-heading > span {
   color: #b18a45;
@@ -51,6 +64,8 @@
   line-height: 1.8;
 }
 
+/* EMAIL ADDRESS */
+
 .verify-otp-email {
   display: block;
   margin: 18px 0;
@@ -61,6 +76,8 @@
   font-size: 14px;
   overflow-wrap: anywhere;
 }
+
+/* OTP INPUT */
 
 .verify-otp-field {
   margin: 30px 0 22px;
@@ -75,18 +92,22 @@
 }
 
 .verify-otp-field input {
+  display: block;
   width: 100%;
+  min-width: 0;
   min-height: 58px;
   padding: 12px;
   border: 1px solid #dcd8cf;
   border-radius: 6px;
   outline: none;
-  background: #fff;
+  background: #ffffff;
   color: #171717;
+  font-family: inherit;
   font-size: 25px;
   font-weight: 700;
   letter-spacing: 12px;
   text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .verify-otp-field input:focus {
@@ -94,37 +115,67 @@
   box-shadow: 0 0 0 3px rgba(177, 138, 69, 0.12);
 }
 
+.verify-otp-field input:focus-visible {
+  outline: 2px solid rgba(177, 138, 69, 0.3);
+  outline-offset: 3px;
+}
+
+/* VERIFY BUTTON */
+
 .verify-otp-submit {
   width: 100%;
   min-height: 50px;
-  border: none;
+  padding: 14px 20px;
+  border: 1px solid #171717;
   border-radius: 6px;
   background: #171717;
-  color: #fff;
+  color: #ffffff;
+  font-family: inherit;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .verify-otp-submit:hover {
   background: #b18a45;
+  border-color: #b18a45;
+  color: #171717;
 }
+
+.verify-otp-submit:focus-visible {
+  outline: 3px solid rgba(177, 138, 69, 0.4);
+  outline-offset: 3px;
+}
+
+/* ERROR MESSAGE */
 
 .verify-otp-error {
   margin: 0 0 15px;
   color: #c0392b;
   font-size: 13px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
+
+/* RESEND MESSAGE */
 
 .verify-otp-message {
   margin: 0 0 15px;
+  padding: 12px;
+  border-left: 3px solid #b18a45;
+  border-radius: 3px;
+  background: #f7f5f0;
   color: #547547;
   font-size: 13px;
   line-height: 1.6;
 }
+
+/* RESEND SECTION */
 
 .verify-otp-resend {
   margin-top: 28px;
@@ -138,26 +189,41 @@
 }
 
 .verify-otp-resend button {
-  padding: 5px;
+  padding: 8px 5px;
   border: none;
   background: transparent;
   color: #8d6c32;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
 }
 
+.verify-otp-resend button:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.verify-otp-resend button:focus-visible {
+  outline: 2px solid #b18a45;
+  outline-offset: 3px;
+}
+
 .verify-otp-resend button:disabled {
-  color: #999;
+  color: #999999;
   cursor: not-allowed;
 }
 
+/* EXPIRY NOTICE */
+
 .verify-otp-expiry {
   margin-top: 20px;
-  color: #888;
+  color: #888888;
   font-size: 12px;
+  line-height: 1.6;
   text-align: center;
 }
+
+/* OPTIONAL CONTINUE BUTTON */
 
 .verify-otp-continue {
   width: 100%;
@@ -165,23 +231,28 @@
   margin-top: 20px;
   border: 1px solid #b18a45;
   border-radius: 6px;
-  background: #fff;
+  background: #ffffff;
   color: #8d6c32;
+  font-family: inherit;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .verify-otp-continue:hover {
   background: #f7f5f0;
 }
 
+/* BACK LINK */
+
 .verify-otp-back {
   display: block;
   margin-top: 25px;
   color: #8d6c32;
   font-size: 13px;
+  line-height: 1.6;
   text-align: center;
   text-decoration: none;
 }
@@ -189,6 +260,13 @@
 .verify-otp-back:hover {
   text-decoration: underline;
 }
+
+.verify-otp-back:focus-visible {
+  outline: 2px solid #b18a45;
+  outline-offset: 4px;
+}
+
+/* TABLET AND MOBILE */
 
 @media (max-width: 600px) {
   .verify-otp-page {
@@ -210,5 +288,36 @@
 
   .verify-otp-field input {
     letter-spacing: 8px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .verify-otp-container {
+    padding: 25px 17px;
+  }
+
+  .verify-otp-heading h1 {
+    font-size: 24px;
+  }
+
+  .verify-otp-field input {
+    min-height: 54px;
+    font-size: 22px;
+    letter-spacing: 6px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .verify-otp-page *,
+  .verify-otp-page *::before,
+  .verify-otp-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

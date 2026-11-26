@@ -1,16 +1,25 @@
+/* =================================
+   ELAN HOMES - ENQUIRY TIMELINE
+================================= */
+
 .enquiry-timeline {
   width: 100%;
+  min-width: 0;
   padding: 30px;
   background: #fff;
   border: 1px solid #e8e3d9;
   border-radius: 8px;
+  overflow: hidden;
 }
+
+/* HEADING */
 
 .enquiry-timeline-heading {
   margin-bottom: 30px;
 }
 
 .enquiry-timeline-heading > span {
+  display: inline-block;
   color: #a88648;
   font-size: 11px;
   font-weight: 700;
@@ -21,6 +30,7 @@
   margin: 10px 0;
   color: #171717;
   font-size: 23px;
+  line-height: 1.3;
 }
 
 .enquiry-timeline-heading p {
@@ -29,16 +39,22 @@
   line-height: 1.6;
 }
 
+/* TIMELINE LIST */
+
 .enquiry-timeline-list {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .enquiry-timeline-item {
   display: flex;
   gap: 18px;
   min-height: 95px;
+  min-width: 0;
 }
+
+/* MARKERS AND CONNECTING LINES */
 
 .enquiry-timeline-marker {
   position: relative;
@@ -67,7 +83,11 @@
   background: #e5dccb;
 }
 
+/* TIMELINE CONTENT */
+
 .enquiry-timeline-content {
+  flex: 1;
+  min-width: 0;
   padding-bottom: 25px;
 }
 
@@ -76,11 +96,15 @@
   color: #202020;
   font-size: 15px;
   font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .enquiry-timeline-content time {
+  display: block;
   color: #888;
   font-size: 12px;
+  line-height: 1.6;
 }
 
 .enquiry-timeline-content p {
@@ -88,18 +112,94 @@
   color: #666;
   font-size: 13px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
+
+/* EMPTY HISTORY */
+
+.enquiry-timeline-empty {
+  padding: 22px;
+  background: #faf8f3;
+  border: 1px solid #eee8dc;
+  border-radius: 6px;
+}
+
+.enquiry-timeline-empty p {
+  margin-bottom: 7px;
+  color: #292929;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.enquiry-timeline-empty span {
+  display: block;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .enquiry-timeline {
+    padding: 26px;
+  }
+}
+
+/* MOBILE */
 
 @media (max-width: 600px) {
   .enquiry-timeline {
     padding: 22px 18px;
+    border-radius: 7px;
+  }
+
+  .enquiry-timeline-heading {
+    margin-bottom: 25px;
   }
 
   .enquiry-timeline-heading h2 {
     font-size: 20px;
   }
 
+  .enquiry-timeline-heading p {
+    font-size: 13px;
+  }
+
+  .enquiry-timeline-item {
+    gap: 14px;
+    min-height: 90px;
+  }
+
+  .enquiry-timeline-content {
+    padding-bottom: 22px;
+  }
+
   .enquiry-timeline-content h3 {
     font-size: 14px;
+  }
+
+  .enquiry-timeline-content p {
+    font-size: 12px;
+  }
+
+  .enquiry-timeline-empty {
+    padding: 18px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 350px) {
+  .enquiry-timeline {
+    padding: 18px 14px;
+  }
+
+  .enquiry-timeline-item {
+    gap: 11px;
+  }
+
+  .enquiry-timeline-heading h2 {
+    font-size: 19px;
   }
 }

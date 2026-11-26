@@ -877,3 +877,94 @@
     width: 100%;
   }
 }
+
+/* INVOICE AND PAYMENT ACCESS */
+
+.booking-invoice-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 18px;
+  background: #f8f6f1;
+  border: 1px solid #e5dfd2;
+}
+
+.booking-invoice-information {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.booking-invoice-information > span {
+  color: #98702b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.booking-invoice-information strong {
+  font-size: 13px;
+}
+
+.booking-invoice-information small {
+  color: #777166;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.booking-invoice-paid {
+  color: #286b35;
+}
+
+.booking-invoice-issued {
+  color: #98702b;
+}
+
+.booking-invoice-pending {
+  color: #777166;
+}
+
+.booking-invoice-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 43px;
+  padding: 11px 18px;
+  background: #a17b37;
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.booking-invoice-button:hover {
+  background: #806128;
+}
+
+.booking-invoice-note {
+  max-width: 300px;
+  margin: 0;
+  color: #777166;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .booking-invoice-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .booking-invoice-button {
+    width: 100%;
+  }
+
+  .booking-invoice-note {
+    max-width: none;
+  }
+}

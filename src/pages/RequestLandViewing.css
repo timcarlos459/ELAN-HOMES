@@ -1,8 +1,15 @@
 .land-viewing-page {
   min-height: 100vh;
+  padding: 35px 0 80px;
   background: #f8f7f3;
   color: #171717;
-  padding: 35px 0 80px;
+  box-sizing: border-box;
+}
+
+.land-viewing-page *,
+.land-viewing-page *::before,
+.land-viewing-page *::after {
+  box-sizing: border-box;
 }
 
 .land-viewing-container {
@@ -40,24 +47,24 @@
 .land-viewing-heading > span,
 .land-viewing-property-card > span {
   display: block;
+  margin-bottom: 12px;
   color: #a88345;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 12px;
 }
 
 .land-viewing-heading h1 {
-  font-size: clamp(30px, 4vw, 43px);
   margin: 0 0 12px;
+  font-size: clamp(30px, 4vw, 43px);
   line-height: 1.2;
 }
 
 .land-viewing-heading p {
   max-width: 650px;
   color: #777;
-  line-height: 1.8;
   font-size: 15px;
+  line-height: 1.8;
 }
 
 /* MAIN LAYOUT */
@@ -72,22 +79,23 @@
 /* FORM SECTION */
 
 .land-viewing-form-section {
+  min-width: 0;
+  padding: 35px;
   background: #fff;
   border: 1px solid #ece8df;
   border-radius: 10px;
-  padding: 35px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.025);
 }
 
 .land-viewing-form-section h2 {
-  font-size: 23px;
   margin: 0 0 10px;
+  font-size: 23px;
 }
 
 .land-viewing-form-intro {
+  margin-bottom: 28px;
   color: #888;
   font-size: 14px;
-  margin-bottom: 28px;
   line-height: 1.7;
 }
 
@@ -101,10 +109,10 @@
 
 .land-viewing-form-group {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 9px;
   margin-bottom: 20px;
-  min-width: 0;
 }
 
 .land-viewing-form-group label {
@@ -116,7 +124,8 @@
 .land-viewing-form-group select,
 .land-viewing-form-group textarea {
   width: 100%;
-  box-sizing: border-box;
+  min-width: 0;
+  min-height: 46px;
   padding: 14px;
   border: 1px solid #dedbd4;
   border-radius: 5px;
@@ -138,8 +147,8 @@
 }
 
 .land-viewing-form-group textarea {
-  resize: vertical;
   min-height: 110px;
+  resize: vertical;
 }
 
 /* SCHEDULING */
@@ -154,16 +163,16 @@
 /* VIEWING POLICY */
 
 .land-viewing-policy {
+  margin: 12px 0 24px;
+  padding: 22px;
   background: #f8f6f1;
   border: 1px solid #e9e3d8;
   border-radius: 7px;
-  padding: 22px;
-  margin: 12px 0 24px;
 }
 
 .land-viewing-policy h3 {
-  font-size: 15px;
   margin: 0 0 10px;
+  font-size: 15px;
 }
 
 .land-viewing-policy > p {
@@ -183,15 +192,18 @@
 }
 
 .land-viewing-checkbox input {
+  flex-shrink: 0;
+  width: auto;
+  min-height: auto;
   margin-top: 3px;
   accent-color: #a88345;
-  flex-shrink: 0;
 }
 
 /* SUBMIT BUTTON */
 
 .land-viewing-submit-btn {
   width: 100%;
+  min-height: 48px;
   padding: 16px;
   border: none;
   border-radius: 5px;
@@ -205,13 +217,18 @@
     transform 0.2s ease;
 }
 
-.land-viewing-submit-btn:hover {
+.land-viewing-submit-btn:hover:not(:disabled) {
   background: #8e6c36;
   transform: translateY(-1px);
 }
 
-.land-viewing-submit-btn:active {
+.land-viewing-submit-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.land-viewing-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .land-viewing-submit-btn:focus-visible {
@@ -220,28 +237,30 @@
 }
 
 .land-viewing-security-note {
-  text-align: center;
+  margin-top: 16px;
   color: #999;
   font-size: 11px;
   line-height: 1.6;
-  margin-top: 16px;
+  text-align: center;
 }
 
-/* PROPERTY SUMMARY CARD */
+/* LAND SUMMARY CARD */
 
 .land-viewing-property-card {
   position: sticky;
   top: 110px;
-  background: #fff;
+  min-width: 0;
   padding: 27px;
+  background: #fff;
   border: 1px solid #e8e3d9;
   border-radius: 10px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
 
 .land-viewing-property-card h2 {
-  font-size: 23px;
   margin: 0 0 10px;
+  font-size: 23px;
+  overflow-wrap: anywhere;
 }
 
 .land-viewing-property-card > p {
@@ -262,22 +281,23 @@
 
 .land-viewing-property-info small {
   display: block;
+  margin-bottom: 7px;
   color: #999;
   font-size: 11px;
-  margin-bottom: 7px;
 }
 
 .land-viewing-property-info strong {
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .land-viewing-property-card > a {
   display: block;
-  text-align: center;
   margin-top: 22px;
   color: #a88345;
   font-size: 13px;
   font-weight: 700;
+  text-align: center;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -289,45 +309,56 @@
 /* SUCCESS MESSAGE */
 
 .land-viewing-success {
-  text-align: center;
   padding: 35px 10px;
+  text-align: center;
+}
+
+.land-viewing-success > span {
+  color: #a88345;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
 
 .land-viewing-success-icon {
+  display: flex;
   width: 55px;
   height: 55px;
-  margin: 0 auto 20px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
   background: #f1eadc;
   color: #a88345;
   border-radius: 50%;
   font-size: 25px;
 }
 
+.land-viewing-success h2 {
+  margin-top: 15px;
+}
+
 .land-viewing-success p {
+  max-width: 520px;
+  margin: 15px auto 25px;
   color: #777;
   font-size: 14px;
   line-height: 1.8;
-  max-width: 520px;
-  margin: 15px auto 25px;
 }
 
-.land-viewing-success a,
+.land-viewing-success > a,
 .land-viewing-not-found a {
   display: inline-block;
   padding: 13px 24px;
   background: #a88345;
   color: #fff;
   border-radius: 5px;
-  text-decoration: none;
   font-size: 13px;
   font-weight: 700;
+  text-decoration: none;
   transition: background 0.2s ease;
 }
 
-.land-viewing-success a:hover,
+.land-viewing-success > a:hover,
 .land-viewing-not-found a:hover {
   background: #8e6c36;
 }
@@ -362,11 +393,203 @@
   margin-top: 20px;
 }
 
+/* DATE AVAILABILITY */
+
+.land-viewing-date-available,
+.land-viewing-date-unavailable {
+  margin-top: 10px;
+  padding: 11px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.land-viewing-date-available {
+  background: #edf5ed;
+  border: 1px solid #b8d6b8;
+  color: #286b35;
+}
+
+.land-viewing-date-unavailable {
+  background: #fbefed;
+  border: 1px solid #e6c0ba;
+  color: #a33327;
+}
+
+/* CONFIRMATION DETAILS */
+
+.land-viewing-confirmation-reference,
+.land-viewing-confirmation-details,
+.land-viewing-invoice,
+.land-viewing-next-steps {
+  min-width: 0;
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid #ded8ca;
+  border-radius: 5px;
+}
+
+.land-viewing-confirmation-reference {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: #f7f4ed;
+}
+
+.land-viewing-confirmation-reference span,
+.land-viewing-confirmation-details span,
+.land-viewing-next-steps > span {
+  color: #817765;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.land-viewing-confirmation-reference strong {
+  color: #9a7739;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.land-viewing-confirmation-details h3 {
+  margin: 0 0 15px;
+}
+
+.land-viewing-confirmation-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee9df;
+}
+
+.land-viewing-confirmation-details > div:last-child {
+  border-bottom: none;
+}
+
+.land-viewing-confirmation-details strong {
+  font-size: 13px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* PROVISIONAL INVOICE */
+
+.land-viewing-invoice {
+  background: #fff;
+  color: #25231f;
+}
+
+.land-viewing-invoice-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.land-viewing-invoice-heading > div > span {
+  color: #a17b37;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.land-viewing-invoice-heading h3 {
+  margin: 7px 0 0;
+  font-size: 19px;
+}
+
+.land-viewing-invoice-badge {
+  flex-shrink: 0;
+  padding: 7px 9px;
+  background: #f6f0e3;
+  color: #856526;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.land-viewing-invoice-reference,
+.land-viewing-invoice-line,
+.land-viewing-invoice-total,
+.land-viewing-invoice-payment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee9df;
+}
+
+.land-viewing-invoice-reference span,
+.land-viewing-invoice-line span,
+.land-viewing-invoice-total span,
+.land-viewing-invoice-payment span {
+  color: #68645c;
+  font-size: 12px;
+}
+
+.land-viewing-invoice-reference strong,
+.land-viewing-invoice-line strong,
+.land-viewing-invoice-total strong,
+.land-viewing-invoice-payment strong {
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.land-viewing-invoice-total strong,
+.land-viewing-invoice-payment strong {
+  color: #98702b;
+}
+
+.land-viewing-invoice-payment strong {
+  font-size: 11px;
+}
+
+.land-viewing-invoice > p {
+  margin: 14px 0 0;
+  padding: 12px;
+  background: #f7f5f0;
+  color: #68645c;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* NEXT STEPS */
+
+.land-viewing-next-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: #f6f0e3;
+  border-left: 3px solid #a17b37;
+}
+
+.land-viewing-next-steps strong {
+  color: #856526;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.land-viewing-next-steps p,
+.land-viewing-confirmation-note {
+  color: #68645c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.land-viewing-confirmation-note {
+  margin-top: 20px;
+}
+
 /* TABLET */
 
 @media (max-width: 850px) {
   .land-viewing-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 25px;
   }
 
@@ -377,13 +600,14 @@
 
 /* MOBILE */
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .land-viewing-page {
     padding-top: 22px;
     padding-bottom: 50px;
   }
 
   .land-viewing-breadcrumb {
+    gap: 7px;
     margin-bottom: 25px;
     font-size: 12px;
   }
@@ -401,7 +625,7 @@
   }
 
   .land-viewing-form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
 
@@ -412,5 +636,75 @@
   .land-viewing-not-found {
     margin: 60px auto;
     padding: 40px 20px;
+  }
+
+  .land-viewing-date-available,
+  .land-viewing-date-unavailable {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .land-viewing-confirmation-reference,
+  .land-viewing-confirmation-details,
+  .land-viewing-invoice,
+  .land-viewing-next-steps {
+    padding: 15px;
+  }
+
+  .land-viewing-invoice-heading h3 {
+    font-size: 16px;
+  }
+
+  .land-viewing-confirmation-details > div,
+  .land-viewing-invoice-reference,
+  .land-viewing-invoice-line,
+  .land-viewing-invoice-total,
+  .land-viewing-invoice-payment {
+    gap: 9px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .land-viewing-container {
+    width: 94%;
+  }
+
+  .land-viewing-form-section {
+    padding: 16px;
+  }
+
+  .land-viewing-property-card {
+    padding: 17px;
+  }
+
+  .land-viewing-heading h1 {
+    font-size: 28px;
+  }
+
+  .land-viewing-invoice-heading {
+    flex-direction: column;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.land-viewing-page a:focus-visible,
+.land-viewing-page input:focus-visible,
+.land-viewing-page select:focus-visible,
+.land-viewing-page textarea:focus-visible {
+  outline: 3px solid rgba(168, 131, 69, 0.4);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .land-viewing-page *,
+  .land-viewing-page *::before,
+  .land-viewing-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

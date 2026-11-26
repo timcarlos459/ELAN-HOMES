@@ -32,7 +32,8 @@ export default function Register() {
   const redirectTo =
     requestedRedirect &&
     requestedRedirect.startsWith("/") &&
-    !requestedRedirect.startsWith("//")
+    !requestedRedirect.startsWith("//") &&
+    !requestedRedirect.includes("\\")
       ? requestedRedirect
       : "/account";
 
@@ -50,6 +51,7 @@ export default function Register() {
     phone: "",
     password: "",
     confirmPassword: "",
+    acceptedTerms: false,
   });
 
   const handleChange = (e) => {
@@ -85,6 +87,15 @@ export default function Register() {
     });
   };
 
+  const validatePassword = (password) => {
+    return (
+      password.length >= 8 &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password)
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -101,33 +112,48 @@ export default function Register() {
       return;
     }
 
+    if (!formData.firstName.trim() || !formData.lastName.trim()) {
+      alert("Please enter your first and last name.");
+      return;
+    }
+
+    const email = formData.email.trim().toLowerCase();
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    const normalizedPhone = formData.phone.replace(/[\s-]/g, "");
+
+    const phonePattern = /^(?:\+254|254|0)(?:7\d{8}|1\d{8})$/;
+
+    if (!phonePattern.test(normalizedPhone)) {
+      alert("Please enter a valid Kenyan phone number.");
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      alert(
+        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number.",
+      );
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       alert("Your passwords do not match.");
       return;
     }
 
-    if (formData.password.length < 8) {
-      alert("Password must contain at least 8 characters.");
+    if (!formData.acceptedTerms) {
+      alert("Please accept the Terms of Service and Privacy Policy.");
       return;
     }
 
-    const accountLabel =
-      formData.accountType === "explorer" ? "ÉLAN EXPLORER" : "ÉLAN CURATOR";
-
-    const selectedCategories = formData.curatorCategories
-      .map(
-        (category) =>
-          CURATOR_CATEGORIES.find((item) => item.value === category)?.title,
-      )
-      .filter(Boolean);
-
-    const categoryMessage =
-      formData.accountType === "curator"
-        ? `\nSelected categories: ${selectedCategories.join(", ")}`
-        : "";
-
     alert(
-      `Registration form completed as ${accountLabel}.${categoryMessage}\n\nAccount creation and email verification will be activated when secure authentication is connected.`,
+      "Your registration details have passed frontend validation.\n\nAccount creation and email OTP verification will become available when secure authentication is connected.",
     );
   };
 
@@ -141,6 +167,7 @@ export default function Register() {
 
       <div className="register-container">
         {/* BRAND SECTION */}
+
         <div className="register-brand">
           <Link to="/" className="register-logo">
             ÉLAN <span>HOMES</span>
@@ -158,6 +185,7 @@ export default function Register() {
 
         <form className="register-form" onSubmit={handleSubmit}>
           {/* ACCOUNT TYPE SELECTION */}
+
           <div className="register-account-section">
             <div className="register-account-heading">
               <h2>Choose Your Account</h2>
@@ -166,6 +194,7 @@ export default function Register() {
 
             <div className="register-account-options">
               {/* EXPLORER */}
+
               <label
                 className={`register-account-option ${
                   formData.accountType === "explorer" ? "selected" : ""
@@ -199,6 +228,7 @@ export default function Register() {
               </label>
 
               {/* CURATOR */}
+
               <label
                 className={`register-account-option ${
                   formData.accountType === "curator" ? "selected" : ""
@@ -234,10 +264,12 @@ export default function Register() {
           </div>
 
           {/* CURATOR CATEGORY SELECTION */}
+
           {formData.accountType === "curator" && (
             <section className="register-category-section">
               <div className="register-section-heading">
                 <h2>Choose Your Listing Categories</h2>
+
                 <p>
                   Select one or more categories you want to manage on ÉLAN
                   HOMES.
@@ -269,6 +301,7 @@ export default function Register() {
 
                       <span className="register-category-content">
                         <strong>{category.title}</strong>
+
                         <span>{category.description}</span>
                       </span>
 
@@ -292,6 +325,7 @@ export default function Register() {
           )}
 
           {/* PERSONAL DETAILS */}
+
           <div className="register-section-heading">
             <h2>Personal Information</h2>
           </div>
@@ -299,6 +333,7 @@ export default function Register() {
           <div className="register-name-fields">
             <div className="register-field">
               <label htmlFor="firstName">First Name</label>
+
               <input
                 type="text"
                 id="firstName"
@@ -313,6 +348,7 @@ export default function Register() {
 
             <div className="register-field">
               <label htmlFor="lastName">Last Name</label>
+
               <input
                 type="text"
                 id="lastName"
@@ -328,6 +364,7 @@ export default function Register() {
 
           <div className="register-field">
             <label htmlFor="email">Email Address</label>
+
             <input
               type="email"
               id="email"
@@ -342,6 +379,7 @@ export default function Register() {
 
           <div className="register-field">
             <label htmlFor="phone">Phone Number</label>
+
             <input
               type="tel"
               id="phone"
@@ -355,6 +393,7 @@ export default function Register() {
           </div>
 
           {/* PASSWORD */}
+
           <div className="register-section-heading">
             <h2>Account Security</h2>
           </div>
@@ -378,11 +417,18 @@ export default function Register() {
               <button
                 type="button"
                 className="register-show-password"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((previous) => !previous)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
+
+            <small className="register-password-hint">
+              Use at least 8 characters, including uppercase, lowercase and a
+              number.
+            </small>
           </div>
 
           <div className="register-field">
@@ -404,7 +450,13 @@ export default function Register() {
               <button
                 type="button"
                 className="register-show-password"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                onClick={() => setShowConfirmPassword((previous) => !previous)}
+                aria-label={
+                  showConfirmPassword
+                    ? "Hide confirmation password"
+                    : "Show confirmation password"
+                }
+                aria-pressed={showConfirmPassword}
               >
                 {showConfirmPassword ? "Hide" : "Show"}
               </button>
@@ -412,18 +464,49 @@ export default function Register() {
           </div>
 
           {/* TERMS */}
+
           <label className="register-terms">
-            <input type="checkbox" required />
-            <span>I agree to the Terms of Service and Privacy Policy.</span>
+            <input
+              type="checkbox"
+              checked={formData.acceptedTerms}
+              onChange={(e) =>
+                setFormData((previous) => ({
+                  ...previous,
+                  acceptedTerms: e.target.checked,
+                }))
+              }
+              required
+            />
+
+            <span>
+              I agree to the{" "}
+              <Link to="/terms" target="_blank">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link to="/privacy-policy" target="_blank">
+                Privacy Policy
+              </Link>
+              .
+            </span>
           </label>
 
+          {/* FRONTEND NOTICE */}
+
+          <p className="register-category-note">
+            Registration and email verification will be activated when secure
+            account services are connected.
+          </p>
+
           {/* SUBMIT */}
+
           <button type="submit" className="register-submit">
             CREATE ACCOUNT
           </button>
         </form>
 
         {/* SIGN IN */}
+
         <div className="register-divider">
           <span>ALREADY HAVE AN ACCOUNT?</span>
         </div>

@@ -37,7 +37,7 @@ export default function WundanyiTaitaHills() {
       </section>
 
       <LocationMarketplace
-        locationName="Wundanyi–Taita Hills"
+        locationName="Wundanyi – Taita Hills"
         countyName="Taita Taveta County"
       />
 

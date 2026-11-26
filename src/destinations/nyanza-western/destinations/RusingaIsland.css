@@ -1,6 +1,11 @@
 .rusinga-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f7f4;
 }
+
+/* HERO */
 
 .rusinga-hero {
   background:
@@ -8,16 +13,31 @@
     linear-gradient(135deg, #174b58, #111111);
 }
 
+.rusinga-page .nyanza-destination-hero-content {
+  width: 100%;
+  max-width: 850px;
+}
+
 .rusinga-page .nyanza-destination-hero-content span {
   color: #d4af65;
 }
 
 .rusinga-page .nyanza-destination-hero-content h1 {
-  color: #ffffff;
+  color: #fff;
 }
 
 .rusinga-page .nyanza-destination-hero-content p {
   color: #eeeeee;
+}
+
+/* INTRO */
+
+.rusinga-page .nyanza-destination-intro {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 75px 25px 25px;
+  text-align: center;
 }
 
 .rusinga-page .nyanza-destination-intro span {
@@ -29,12 +49,77 @@
 }
 
 .rusinga-page .nyanza-destination-intro p {
+  max-width: 720px;
+  margin: 0 auto;
   color: #666666;
+  font-size: 15px;
+  line-height: 1.8;
 }
+
+/* MARKETPLACE */
+
+.rusinga-page .location-marketplace {
+  width: 100%;
+}
+
+/* TABLET */
 
 @media (max-width: 768px) {
   .rusinga-page .nyanza-destination-hero {
     min-height: 360px;
     padding: 65px 6%;
+  }
+
+  .rusinga-page .nyanza-destination-intro {
+    padding: 60px 22px 20px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .rusinga-page .nyanza-destination-hero {
+    min-height: 340px;
+    padding: 55px 20px;
+  }
+
+  .rusinga-page .nyanza-destination-hero-content span,
+  .rusinga-page .nyanza-destination-intro span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .rusinga-page .nyanza-destination-hero-content h1 {
+    font-size: clamp(32px, 8vw, 42px);
+  }
+
+  .rusinga-page .nyanza-destination-hero-content p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .rusinga-page .nyanza-destination-intro {
+    padding: 50px 20px 20px;
+  }
+
+  .rusinga-page .nyanza-destination-intro h2 {
+    font-size: 29px;
+  }
+
+  .rusinga-page .nyanza-destination-intro p {
+    font-size: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .rusinga-page .nyanza-destination-hero {
+    padding: 45px 16px;
+  }
+
+  .rusinga-page .nyanza-destination-intro {
+    padding-right: 16px;
+    padding-left: 16px;
   }
 }

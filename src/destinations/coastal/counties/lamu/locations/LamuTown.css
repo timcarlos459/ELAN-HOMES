@@ -1,10 +1,15 @@
+/* LAMU TOWN DESTINATION PAGE */
+
 .lamu-town-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
 }
 
 /* HERO */
+
 .lamu-town-hero {
   min-height: 560px;
   padding: 110px 8%;
@@ -12,49 +17,56 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.28)),
-    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57")
+    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .lamu-town-hero-content {
+  width: 100%;
   max-width: 750px;
 }
 
 .lamu-town-hero-content > span {
   display: inline-block;
+  margin-bottom: 22px;
   color: #d5b36a;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 22px;
+  line-height: 1.6;
 }
 
 .lamu-town-hero h1 {
+  margin: 0 0 24px;
   font-size: clamp(45px, 7vw, 82px);
   line-height: 1.05;
-  margin: 0 0 24px;
   font-weight: 700;
 }
 
 .lamu-town-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #e5e5e5;
   font-size: 17px;
   line-height: 1.9;
-  margin-bottom: 32px;
 }
 
 .lamu-town-button {
-  display: inline-block;
-  padding: 16px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .lamu-town-button:hover {
@@ -62,91 +74,55 @@
   transform: translateY(-3px);
 }
 
-/* INTRO */
+/* INTRODUCTION */
+
 .lamu-town-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 100px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
 }
 
-.lamu-town-intro > span,
-.lamu-town-collection-heading > span {
+.lamu-town-intro > span {
+  display: block;
   color: #ad8845;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .lamu-town-intro h2 {
+  margin: 18px 0;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
-  margin: 18px 0;
+  font-weight: 600;
 }
 
 .lamu-town-intro p {
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 2;
 }
 
-/* COLLECTION */
-.lamu-town-collection {
-  padding: 90px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.lamu-town-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.lamu-town-collection-heading h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  margin: 16px 0;
-}
-
-.lamu-town-collection-heading p {
-  color: #666;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.lamu-town-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.lamu-town-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.lamu-town-empty-state h3 {
-  font-size: 25px;
-  margin: 18px 0 12px;
-}
-
-.lamu-town-empty-state p {
-  color: #777;
-  font-size: 14px;
-  line-height: 1.8;
+.lamu-town-page .location-marketplace,
+.lamu-town-page #lamu-town-marketplace {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .lamu-town-navigation {
   padding: 35px 7%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   border-top: 1px solid #e9e3d8;
@@ -157,50 +133,95 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .lamu-town-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.lamu-town-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .lamu-town-hero {
     min-height: 460px;
     padding: 90px 7%;
   }
 
-  .lamu-town-intro,
-  .lamu-town-collection {
+  .lamu-town-intro {
     padding: 70px 6%;
+  }
+
+  .lamu-town-navigation {
+    padding: 30px 6%;
   }
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .lamu-town-hero {
     min-height: 400px;
     padding: 75px 6%;
   }
 
+  .lamu-town-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .lamu-town-hero h1 {
+    font-size: clamp(36px, 9vw, 46px);
+  }
+
   .lamu-town-hero p {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .lamu-town-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
+  }
+
+  .lamu-town-intro {
+    padding: 55px 6%;
+  }
+
+  .lamu-town-intro h2 {
+    font-size: 28px;
   }
 
   .lamu-town-intro p {
     font-size: 14px;
-  }
-
-  .lamu-town-empty-state {
-    padding: 45px 20px;
-  }
-
-  .lamu-town-empty-state h3 {
-    font-size: 21px;
+    line-height: 1.9;
   }
 
   .lamu-town-navigation {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 6%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .lamu-town-page *,
+  .lamu-town-page *::before,
+  .lamu-town-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

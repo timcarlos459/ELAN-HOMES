@@ -60,7 +60,28 @@ const locations = [
   },
 ];
 
-export default function Kajiado() {
+export default function Kajiado({ locationSlug }) {
+  const selectedLocation = locations.find(
+    (location) => location.slug === locationSlug,
+  );
+
+  if (selectedLocation) {
+    const LocationComponent = selectedLocation.component;
+    return <LocationComponent />;
+  }
+
+  if (locationSlug) {
+    return (
+      <main className="kajiado-page">
+        <section className="kajiado-intro">
+          <h2>Location Not Found</h2>
+          <p>The Kajiado destination you are looking for does not exist.</p>
+          <Link to="/destinations/kajiado">Back to Kajiado</Link>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className="kajiado-page">
       <section className="kajiado-hero">
@@ -118,6 +139,9 @@ export default function Kajiado() {
                   alt={`${location.name}, Kajiado`}
                   loading="lazy"
                   decoding="async"
+                  onError={(event) => {
+                    event.currentTarget.style.display = "none";
+                  }}
                 />
               </div>
 

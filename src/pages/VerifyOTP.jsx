@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+
 import SEO from "../components/SEO";
 import "./VerifyOTP.css";
 
@@ -12,7 +13,8 @@ export default function VerifyOTP() {
   const redirectTo =
     requestedRedirect &&
     requestedRedirect.startsWith("/") &&
-    !requestedRedirect.startsWith("//")
+    !requestedRedirect.startsWith("//") &&
+    !requestedRedirect.includes("\\")
       ? requestedRedirect
       : "/account";
 
@@ -20,13 +22,12 @@ export default function VerifyOTP() {
   const [error, setError] = useState("");
   const [resendMessage, setResendMessage] = useState("");
   const [countdown, setCountdown] = useState(60);
-  const [attempts, setAttempts] = useState(0);
 
   useEffect(() => {
     if (countdown <= 0) return;
 
     const timer = setTimeout(() => {
-      setCountdown((previous) => previous - 1);
+      setCountdown((previous) => Math.max(0, previous - 1));
     }, 1000);
 
     return () => clearTimeout(timer);
@@ -37,14 +38,16 @@ export default function VerifyOTP() {
 
     setOtp(value);
     setError("");
+    setResendMessage("");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     setError("");
     setResendMessage("");
 
-    if (!email) {
+    if (!email.trim()) {
       setError(
         "Your email address is missing. Please restart the password reset process.",
       );
@@ -56,33 +59,25 @@ export default function VerifyOTP() {
       return;
     }
 
-    if (attempts >= 5) {
-      setError(
-        "You have reached the maximum verification attempts. Please request a new code.",
-      );
-      return;
-    }
-
-    // Backend OTP verification will be connected later.
-    // No password reset navigation is allowed before verification.
-
-    setAttempts((previous) => previous + 1);
+    // Actual OTP verification must be performed by the backend.
+    // Do not allow password reset navigation before successful verification.
 
     setError(
-      "OTP verification is not yet connected. Backend verification will be activated later.",
+      "OTP verification is not yet connected. Please try again when ÉLAN HOMES account verification is available.",
     );
   };
 
   const handleResend = () => {
     if (countdown > 0) return;
 
-    // Backend will generate and send a new OTP through Resend.
-    setCountdown(60);
     setOtp("");
     setError("");
 
+    // Actual OTP generation and email delivery will be handled by the backend.
+    // This frontend action does not send an email.
+
     setResendMessage(
-      "A new verification request has been prepared. Email delivery will be activated when the backend is connected.",
+      "Email delivery is not yet connected. You will be able to request a new verification code once account services are activated.",
     );
   };
 
@@ -95,12 +90,17 @@ export default function VerifyOTP() {
       />
 
       <div className="verify-otp-container">
+        {/* LOGO */}
+
         <Link to="/" className="verify-otp-logo">
           ÉLAN <span>HOMES</span>
         </Link>
 
+        {/* HEADING */}
+
         <div className="verify-otp-heading">
           <span>ACCOUNT SECURITY</span>
+
           <h1>Email Verification</h1>
 
           <p>
@@ -111,12 +111,15 @@ export default function VerifyOTP() {
           {email && <strong className="verify-otp-email">{email}</strong>}
         </div>
 
+        {/* OTP FORM */}
+
         <form onSubmit={handleSubmit}>
           <div className="verify-otp-field">
             <label htmlFor="otp">Verification Code</label>
 
             <input
               id="otp"
+              name="otp"
               type="text"
               inputMode="numeric"
               autoComplete="one-time-code"
@@ -124,18 +127,20 @@ export default function VerifyOTP() {
               value={otp}
               onChange={handleOTPChange}
               maxLength={6}
+              pattern="[0-9]{6}"
+              aria-describedby="otp-error"
               required
             />
           </div>
 
           {error && (
-            <p className="verify-otp-error" role="alert">
+            <p id="otp-error" className="verify-otp-error" role="alert">
               {error}
             </p>
           )}
 
           {resendMessage && (
-            <p className="verify-otp-message" role="status">
+            <p className="verify-otp-message" role="status" aria-live="polite">
               {resendMessage}
             </p>
           )}
@@ -144,6 +149,8 @@ export default function VerifyOTP() {
             VERIFY CODE
           </button>
         </form>
+
+        {/* RESEND CODE */}
 
         <div className="verify-otp-resend">
           <p>Didn't receive a code?</p>
@@ -155,9 +162,13 @@ export default function VerifyOTP() {
           </button>
         </div>
 
+        {/* EXPIRY NOTICE */}
+
         <p className="verify-otp-expiry">
           Verification codes expire after 10 minutes.
         </p>
+
+        {/* BACK LINK */}
 
         <Link
           to={`/forgot-password?redirect=${encodeURIComponent(redirectTo)}`}

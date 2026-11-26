@@ -10,17 +10,20 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
+  // REDIRECT PROTECTION
   const requestedRedirect = searchParams.get("redirect");
 
   const redirectTo =
     requestedRedirect &&
     requestedRedirect.startsWith("/") &&
-    !requestedRedirect.startsWith("//")
+    !requestedRedirect.startsWith("//") &&
+    !requestedRedirect.includes("\\")
       ? requestedRedirect
       : "/account";
 
   const signInLink = `/signin?redirect=${encodeURIComponent(redirectTo)}`;
 
+  // HANDLE FORM SUBMISSION
   const handleSubmit = (event) => {
     event.preventDefault();
     setError("");
@@ -32,12 +35,13 @@ export default function ForgotPassword() {
       return;
     }
 
+    // EMAIL VALIDATION
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
       setError("Please enter a valid email address.");
       return;
     }
 
-    // Frontend demonstration only.
+    // FRONTEND DEMONSTRATION ONLY.
     // The backend will verify the account and send the OTP through Resend.
 
     navigate(
@@ -60,7 +64,9 @@ export default function ForgotPassword() {
 
         <div className="forgot-password-heading">
           <span>ACCOUNT SECURITY</span>
+
           <h1>Forgot your password?</h1>
+
           <p>
             Enter the email address associated with your ÉLAN HOMES account. We
             will send you a verification code to help you reset your password.

@@ -1,10 +1,15 @@
+/* DIANI DESTINATION PAGE */
+
 .diani-page {
   width: 100%;
+  min-height: 100vh;
   background: #f8f6f1;
   color: #171717;
+  overflow-x: clip;
 }
 
 /* HERO */
+
 .diani-hero {
   min-height: 590px;
   padding: 100px 8%;
@@ -12,48 +17,55 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.2)),
-    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21")
+    url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .diani-hero-content {
+  width: 100%;
   max-width: 760px;
 }
 
-.diani-hero-content > span,
-.diani-intro > span,
-.diani-collection-heading > span {
+.diani-hero-content > span {
+  display: block;
   color: #c5a15d;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .diani-hero h1 {
+  margin: 22px 0;
   font-size: clamp(42px, 6vw, 76px);
   line-height: 1.08;
-  margin: 22px 0;
+  font-weight: 600;
 }
 
 .diani-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #eee;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
 }
 
 .diani-button {
-  display: inline-block;
-  padding: 15px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .diani-button:hover {
@@ -62,11 +74,23 @@
 }
 
 /* INTRODUCTION */
+
 .diani-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 95px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
+}
+
+.diani-intro > span {
+  display: block;
+  color: #c5a15d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .diani-intro h2 {
@@ -74,68 +98,28 @@
   margin: 20px auto;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
+  font-weight: 600;
 }
 
 .diani-intro p {
   max-width: 780px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 1.9;
 }
 
-/* COLLECTION */
-.diani-collection {
-  padding: 85px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.diani-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.diani-collection-heading h2 {
-  margin: 18px 0;
-  font-size: clamp(28px, 4vw, 42px);
-}
-
-.diani-collection-heading p {
-  color: #666;
-  line-height: 1.8;
-}
-
-.diani-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.diani-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.diani-empty-state h3 {
-  margin: 18px 0 12px;
-  font-size: 27px;
-}
-
-.diani-empty-state p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.8;
+.diani-intro + * {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .diani-navigation {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 35px 7%;
@@ -147,23 +131,36 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .diani-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.diani-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .diani-hero {
     min-height: 480px;
     padding: 80px 7%;
+    background-position: center;
   }
 
-  .diani-intro,
-  .diani-collection {
+  .diani-intro {
     padding: 65px 6%;
+  }
+
+  .diani-hero p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 
   .diani-navigation {
@@ -172,25 +169,62 @@
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .diani-hero {
     min-height: 420px;
     padding: 65px 6%;
   }
 
+  .diani-hero h1 {
+    font-size: 40px;
+  }
+
+  .diani-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
   .diani-hero p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
-  .diani-empty-state {
-    padding: 45px 20px;
+  .diani-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
   }
 
-  .diani-empty-state h3 {
-    font-size: 23px;
+  .diani-intro {
+    padding: 60px 6%;
+  }
+
+  .diani-intro h2 {
+    font-size: 28px;
+  }
+
+  .diani-intro p {
+    font-size: 14px;
+    line-height: 1.8;
   }
 
   .diani-navigation {
+    padding: 25px 6% 35px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .diani-page *,
+  .diani-page *::before,
+  .diani-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

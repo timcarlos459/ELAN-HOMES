@@ -1,23 +1,33 @@
+/* =====================================
+   CENTRAL REGION DESTINATION PAGE
+===================================== */
+
 .central-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO SECTION */
 
 .central-hero {
-  min-height: 580px;
+  position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-height: 580px;
   padding: 90px 9%;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.3)),
-    url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8")
-      center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8") center /
+      cover no-repeat;
 }
 
 .central-hero-content {
+  width: 100%;
   max-width: 750px;
   color: #fff;
 }
@@ -25,6 +35,7 @@
 .central-hero-content > span,
 .central-intro > span,
 .central-heading > span {
+  display: block;
   color: #b89552;
   font-size: 12px;
   font-weight: 700;
@@ -32,17 +43,18 @@
 }
 
 .central-hero h1 {
-  font-size: clamp(42px, 6vw, 76px);
-  line-height: 1.08;
   margin: 22px 0;
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 1.08;
+  overflow-wrap: break-word;
 }
 
 .central-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #e6e6e6;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
 }
 
 .central-button {
@@ -52,27 +64,38 @@
   color: #111;
   text-decoration: none;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .central-button:hover {
   background: #fff;
+  transform: translateY(-2px);
+}
+
+.central-button:focus-visible,
+.central-card a:focus-visible,
+.central-back a:focus-visible {
+  outline: 2px solid #b89552;
+  outline-offset: 4px;
 }
 
 /* INTRODUCTION */
 
 .central-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 100px 25px;
   text-align: center;
 }
 
 .central-intro h2,
 .central-heading h2 {
-  font-size: clamp(30px, 4vw, 44px);
-  line-height: 1.2;
   margin: 20px 0;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.2;
 }
 
 .central-intro p,
@@ -85,6 +108,7 @@
 /* DESTINATION GRID */
 
 .central-destinations {
+  width: 100%;
   padding: 90px 9%;
   background: #fff;
 }
@@ -102,9 +126,13 @@
 }
 
 .central-card {
+  min-width: 0;
   background: #f8f6f1;
   border: 1px solid #e8e0d2;
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .central-card:hover {
@@ -125,8 +153,9 @@
 }
 
 .central-card h3 {
-  font-size: 27px;
   margin: 25px 0 15px;
+  font-size: 27px;
+  overflow-wrap: break-word;
 }
 
 .central-card p {
@@ -143,7 +172,7 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .central-card a:hover {
@@ -153,6 +182,7 @@
 /* BACK NAVIGATION */
 
 .central-back {
+  width: 100%;
   padding: 35px 9%;
 }
 
@@ -160,41 +190,137 @@
   color: #171717;
   text-decoration: none;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
 .central-back a:hover {
   color: #b89552;
 }
 
-/* RESPONSIVE */
+/* TABLET */
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .central-hero {
-    min-height: 480px;
-    padding: 70px 7%;
-  }
-
-  .central-intro {
-    padding: 70px 7%;
+    min-height: 500px;
+    padding: 75px 7%;
   }
 
   .central-destinations {
-    padding: 70px 7%;
+    padding: 75px 7%;
+  }
+
+  .central-grid {
+    gap: 20px;
+  }
+
+  .central-card-content {
+    padding: 32px 25px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .central-hero {
+    min-height: 440px;
+    padding: 65px 7%;
+    background-position: center;
+  }
+
+  .central-hero-content > span,
+  .central-intro > span,
+  .central-heading > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .central-hero h1 {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+
+  .central-hero p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .central-button {
+    padding: 14px 22px;
+    font-size: 13px;
+  }
+
+  .central-intro {
+    padding: 65px 7%;
+  }
+
+  .central-intro h2,
+  .central-heading h2 {
+    font-size: 29px;
+  }
+
+  .central-intro p,
+  .central-heading p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .central-destinations {
+    padding: 60px 7%;
+  }
+
+  .central-heading {
+    margin-bottom: 35px;
   }
 
   .central-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .central-card-content {
-    padding: 30px 25px;
+    padding: 28px 23px;
+  }
+
+  .central-card h3 {
+    margin: 18px 0 12px;
+    font-size: 24px;
   }
 
   .central-card p {
     min-height: auto;
   }
 
+  .central-card a {
+    margin-top: 15px;
+  }
+
   .central-back {
-    padding: 30px 7%;
+    padding: 28px 7% 45px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 350px) {
+  .central-hero {
+    min-height: 400px;
+  }
+
+  .central-hero h1 {
+    font-size: 34px;
+  }
+
+  .central-card-content {
+    padding: 24px 19px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .central-button,
+  .central-card,
+  .central-card a,
+  .central-back a {
+    transition: none;
   }
 }

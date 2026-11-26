@@ -3,6 +3,11 @@ import SEO from "../components/SEO";
 import contactDetails from "../data/contact";
 import "./ListProperty.css";
 
+const MAX_IMAGES = 10;
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
+
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
 export default function ListProperty() {
   const [formData, setFormData] = useState({
     ownerName: "",
@@ -18,32 +23,40 @@ export default function ListProperty() {
   });
 
   const [images, setImages] = useState([]);
+  const [imageError, setImageError] = useState("");
 
   // HANDLE FORM INPUTS
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((previousData) => ({
+      ...previousData,
+      [name]: value,
+    }));
   };
 
   // SELECT PROPERTY PHOTOS
   const handleImageChange = async (e) => {
-    const selectedFiles = Array.from(e.target.files);
+    const selectedFiles = Array.from(e.target.files || []);
+
+    setImageError("");
 
     const validImages = selectedFiles.filter(
-      (file) => file.type.startsWith("image/") && file.size <= 5 * 1024 * 1024,
+      (file) =>
+        ALLOWED_IMAGE_TYPES.includes(file.type) && file.size <= MAX_IMAGE_SIZE,
     );
 
     if (selectedFiles.length !== validImages.length) {
-      alert("Only images up to 5MB each are accepted.");
+      setImageError(
+        "Some files were rejected. Please select JPG, PNG or WEBP images up to 5MB each.",
+      );
     }
 
-    const remainingSlots = Math.max(0, 10 - images.length);
+    const remainingSlots = Math.max(0, MAX_IMAGES - images.length);
     const filesToRead = validImages.slice(0, remainingSlots);
 
     if (validImages.length > remainingSlots) {
-      alert("You can select a maximum of 10 photos.");
+      setImageError("You can select a maximum of 10 property photos.");
     }
 
     const imagePreviews = await Promise.all(
@@ -67,9 +80,13 @@ export default function ListProperty() {
     );
 
     setImages((previousImages) =>
-      [...previousImages, ...imagePreviews.filter(Boolean)].slice(0, 10),
+      [...previousImages, ...imagePreviews.filter(Boolean)].slice(
+        0,
+        MAX_IMAGES,
+      ),
     );
 
+    // Allow the same file to be selected again later.
     e.target.value = "";
   };
 
@@ -78,52 +95,62 @@ export default function ListProperty() {
     setImages((previousImages) =>
       previousImages.filter((_, index) => index !== indexToRemove),
     );
+
+    setImageError("");
   };
 
   // SUBMIT PROPERTY ENQUIRY
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const message = `ELAN HOMES - NEW PROPERTY LISTING
+    if (!contactDetails.whatsappNumber) {
+      alert("Our WhatsApp contact is currently unavailable.");
+      return;
+    }
 
-PROPERTY OWNER DETAILS
+    const message = `ELAN HOMES - NEW PROPERTY LISTING ENQUIRY
+
+OWNER INFORMATION
 
 Name: ${formData.ownerName}
 Phone: ${formData.phone}
 Email: ${formData.email}
 
-PROPERTY DETAILS
+PROPERTY INFORMATION
 
 Property Name: ${formData.propertyName}
 Location: ${formData.location}
 Property Type: ${formData.propertyType}
-Asking Price: ${formData.price}
-Bedrooms: ${formData.bedrooms}
-Bathrooms: ${formData.bathrooms}
+Asking Price: KSh ${formData.price}
+Bedrooms: ${formData.bedrooms || "Not specified"}
+Bathrooms: ${formData.bathrooms || "Not specified"}
 
 PROPERTY PHOTOS
 
 Number of photos selected: ${images.length}
-Photos will be shared separately during the listing process.
 
-DESCRIPTION:
+Note: Photos will be shared separately during the listing review process.
+
+PROPERTY DESCRIPTION
 
 ${formData.description}
 
-I would like to list this property with ELAN HOMES. Please contact me regarding the listing process.`;
+LISTING POLICY
 
-    window.open(
-      `https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(message)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+I understand that submitting a property listing is free. My property will be reviewed by ELAN HOMES and will only appear publicly after approval.
+
+I would like to begin the property listing process. Please contact me with the next steps.`;
+
+    const whatsappUrl = `https://wa.me/${contactDetails.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
     <main className="list-property-page">
       <SEO
         title="List Your Property in Kenya | Partner with ÉLAN HOMES"
-        description="List your house, apartment, villa, commercial property, land or holiday accommodation with ÉLAN HOMES. Submit your property details and connect with potential buyers and guests across Kenya."
+        description="Submit your house, apartment, villa, townhouse or commercial property for sale with ÉLAN HOMES. Property listing submissions are free and subject to approval."
       />
 
       {/* HERO */}
@@ -134,8 +161,8 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
           <h1>List Your Property With Us.</h1>
 
           <p>
-            Connect your property with buyers, tenants and travellers through
-            ELAN HOMES.
+            Showcase your property to buyers searching for real estate
+            opportunities across Kenya.
           </p>
         </div>
       </section>
@@ -147,10 +174,19 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
         <h2>Let's Showcase Your Property</h2>
 
         <p>
-          Whether you own a residential home, apartment, land, commercial
-          property or holiday accommodation, ELAN HOMES welcomes property
-          listing enquiries.
+          Whether you own a residential house, apartment, villa, townhouse or
+          commercial property, ELAN HOMES welcomes property listing submissions.
         </p>
+
+        <div className="list-property-policy-notice">
+          <strong>FREE PROPERTY LISTING SUBMISSION</strong>
+
+          <p>
+            Submitting your property is free. Every listing is reviewed and must
+            be approved by ELAN HOMES before appearing publicly. Optional paid
+            promotion may be available for approved properties.
+          </p>
+        </div>
       </section>
 
       {/* LISTING FORM */}
@@ -163,7 +199,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
           <p>
             We help property owners showcase their properties to potential
-            buyers, renters and holiday guests.
+            buyers through a professionally presented property marketplace.
           </p>
 
           <div className="listing-benefit">
@@ -171,9 +207,10 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
             <div>
               <h3>Property Exposure</h3>
+
               <p>
-                Showcase your property to people searching for real estate and
-                accommodation.
+                Showcase your property to people searching for homes and real
+                estate opportunities.
               </p>
             </div>
           </div>
@@ -183,9 +220,10 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
             <div>
               <h3>Professional Presentation</h3>
+
               <p>
-                Present your property with detailed information and professional
-                listing presentation.
+                Present your property with detailed descriptions, photographs
+                and important specifications.
               </p>
             </div>
           </div>
@@ -195,9 +233,22 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
             <div>
               <h3>Enquiry Management</h3>
+
               <p>
-                Connect with potential buyers, tenants and holiday accommodation
-                customers.
+                Receive enquiries through the ELAN HOMES communication system.
+              </p>
+            </div>
+          </div>
+
+          <div className="listing-benefit">
+            <span>04</span>
+
+            <div>
+              <h3>Optional Property Promotion</h3>
+
+              <p>
+                Approved property listings may qualify for optional paid
+                promotional placement.
               </p>
             </div>
           </div>
@@ -209,7 +260,10 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
 
           <h2>Property Listing Enquiry</h2>
 
-          <p>Complete the details below to begin your listing enquiry.</p>
+          <p>
+            Complete the details below to begin your property listing
+            submission.
+          </p>
 
           <form className="list-property-form" onSubmit={handleSubmit}>
             {/* OWNER INFORMATION */}
@@ -221,6 +275,8 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
               placeholder="Full Name"
               value={formData.ownerName}
               onChange={handleChange}
+              autoComplete="name"
+              maxLength={100}
               required
             />
 
@@ -231,6 +287,8 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={handleChange}
+                autoComplete="tel"
+                maxLength={20}
                 required
               />
 
@@ -240,6 +298,8 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete="email"
+                maxLength={150}
                 required
               />
             </div>
@@ -253,6 +313,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
               placeholder="Property Name"
               value={formData.propertyName}
               onChange={handleChange}
+              maxLength={120}
               required
             />
 
@@ -262,6 +323,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
               placeholder="Property Location (Town / Area)"
               value={formData.location}
               onChange={handleChange}
+              maxLength={150}
               required
             />
 
@@ -272,25 +334,24 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
               required
             >
               <option value="">Select Property Type</option>
+
               <option value="Apartment">Apartment</option>
               <option value="House">House</option>
               <option value="Villa">Villa</option>
               <option value="Townhouse">Townhouse</option>
               <option value="Maisonette">Maisonette</option>
               <option value="Commercial Property">Commercial Property</option>
-              <option value="Land">Land</option>
-              <option value="Holiday Accommodation">
-                Holiday Accommodation
-              </option>
               <option value="Other">Other</option>
             </select>
 
             <input
-              type="text"
+              type="number"
               name="price"
-              placeholder="Asking Price / Rental Price (KSh)"
+              placeholder="Asking Price (KSh)"
               value={formData.price}
               onChange={handleChange}
+              min="1"
+              step="1"
               required
             />
 
@@ -300,6 +361,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
                 name="bedrooms"
                 placeholder="Bedrooms"
                 min="0"
+                step="1"
                 value={formData.bedrooms}
                 onChange={handleChange}
               />
@@ -309,6 +371,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
                 name="bathrooms"
                 placeholder="Bathrooms"
                 min="0"
+                step="1"
                 value={formData.bathrooms}
                 onChange={handleChange}
               />
@@ -331,7 +394,7 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
               <input
                 id="property-images"
                 type="file"
-                accept="image/*"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                 multiple
                 onChange={handleImageChange}
               />
@@ -340,13 +403,19 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
                 {images.length} of 10 photos selected
               </p>
 
+              {imageError && (
+                <p className="image-error" role="alert">
+                  {imageError}
+                </p>
+              )}
+
               {/* IMAGE PREVIEWS */}
               {images.length > 0 && (
                 <div className="property-image-previews">
                   {images.map((image, index) => (
                     <div
                       className="property-image-preview"
-                      key={`${image.file.name}-${index}`}
+                      key={`${image.file.name}-${image.file.lastModified}-${index}`}
                     >
                       <img
                         src={image.preview}
@@ -367,21 +436,36 @@ I would like to list this property with ELAN HOMES. Please contact me regarding 
             </div>
 
             {/* PROPERTY DESCRIPTION */}
+            <h3>Property Description</h3>
+
             <textarea
               name="description"
-              placeholder="Describe your property, its features, amenities and other important details..."
+              placeholder="Describe your property, its features, amenities, condition and other important details..."
               rows="6"
               value={formData.description}
               onChange={handleChange}
+              maxLength={3000}
               required
             />
+
+            {/* LISTING POLICY */}
+            <div className="list-property-submission-notice">
+              <strong>Before submitting</strong>
+
+              <p>
+                Property listing submission is free. Your details will be
+                reviewed by ELAN HOMES. Submission does not guarantee
+                publication. Only approved listings will appear on the website.
+              </p>
+            </div>
 
             {/* SUBMIT */}
             <button type="submit">Submit Property Enquiry ↗</button>
 
             <small>
-              Your submission will open WhatsApp with your property details
-              ready to send. Selected photos are not attached automatically.
+              This currently opens WhatsApp with your property details. Selected
+              photos are not attached automatically. A secure owner listing
+              portal and photo upload system will be introduced separately.
             </small>
           </form>
         </div>

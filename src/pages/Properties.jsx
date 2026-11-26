@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import properties from "../data/properties";
 import SEO from "../components/SEO";
 import "./Properties.css";
 
-/* ELAN HOMES LOCATIONS */
+/* =========================================
+   ÉLAN HOMES — LOCATIONS
+========================================= */
 
 const locations = {
   Central: ["Kiambu", "Limuru", "Nyeri", "Thika", "Tigoni"],
@@ -53,7 +55,7 @@ const locations = {
   ],
 
   "Rift Valley": [
-    "Nyanyuki",
+    "Nanyuki",
     "Sekenani",
     "Talek",
     "Mara Triangle",
@@ -63,7 +65,9 @@ const locations = {
   ],
 };
 
-/* NORMALIZE LOCATION NAMES */
+/* =========================================
+   LOCATION HELPERS
+========================================= */
 
 const normalizeLocation = (value = "") =>
   String(value)
@@ -72,8 +76,6 @@ const normalizeLocation = (value = "") =>
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]/g, "");
 
-/* FORMAT DESTINATION NAME */
-
 const formatLocationName = (value = "") =>
   value
     .split("-")
@@ -81,7 +83,9 @@ const formatLocationName = (value = "") =>
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-/* CHECK LOCATION MATCH */
+/* =========================================
+   LOCATION MATCHING
+========================================= */
 
 const matchesLocation = (property, requestedLocation) => {
   const search = normalizeLocation(requestedLocation);
@@ -91,25 +95,73 @@ const matchesLocation = (property, requestedLocation) => {
   const destination = normalizeLocation(property.destination);
   const location = normalizeLocation(property.location);
 
-  return (
-    destination.includes(search) ||
-    search.includes(destination) ||
-    location.includes(search)
+  return Boolean(
+    (destination &&
+      (destination.includes(search) || search.includes(destination))) ||
+    (location && location.includes(search)),
   );
 };
 
-/* PROPERTIES PAGE */
+/* =========================================
+   PROPERTY STATUS
+========================================= */
+
+const isDemoProperty = (property) =>
+  String(property.status || "").toLowerCase() === "demo";
+
+const isSoldProperty = (property) => {
+  const status = String(
+    property.availabilityStatus || property.status || "",
+  ).toLowerCase();
+
+  return (
+    status === "sold" || status === "unavailable" || property.isSold === true
+  );
+};
+
+const isPublicProperty = (property) =>
+  !isDemoProperty(property) && !isSoldProperty(property);
+
+/* =========================================
+   PRICE FORMATTER
+========================================= */
+
+const formatPrice = (price) => {
+  const amount = Number(price);
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return "Price on request";
+  }
+
+  if (amount >= 1000000) {
+    return `KSh ${(amount / 1000000).toLocaleString("en-KE", {
+      maximumFractionDigits: 1,
+    })}M`;
+  }
+
+  return `KSh ${amount.toLocaleString("en-KE")}`;
+};
+
+/* =========================================
+   PROPERTIES PAGE
+========================================= */
 
 export default function Properties() {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  /* URL FILTERS */
+
   const requestedLocation = searchParams.get("location") || "";
+
   const requestedLocationName = formatLocationName(requestedLocation);
 
   const initialRegion = searchParams.get("region") || "All Regions";
+
   const initialDestination =
     searchParams.get("destination") || "All Destinations";
+
   const initialType = searchParams.get("type") || "All Types";
+
   const initialBudget = searchParams.get("budget") || "All Prices";
 
   /* FILTER STATES */
@@ -141,48 +193,60 @@ export default function Properties() {
   const availableDestinations =
     region !== "All Regions" ? locations[region] || [] : [];
 
-  /* FILTER PROPERTIES - HIDE DEMOS */
+  /* PUBLIC PROPERTY RECORDS */
 
-  const filteredProperties = properties.filter((property) => {
-    if (property.status === "demo") return false;
+  const publicProperties = useMemo(
+    () => properties.filter(isPublicProperty),
+    [],
+  );
 
-    const matchesRegion =
-      region === "All Regions" || property.region === region;
+  /* FILTER PROPERTIES */
 
-    const matchesDestination =
-      destination === "All Destinations" ||
-      normalizeLocation(property.destination) ===
-        normalizeLocation(destination);
+  const filteredProperties = useMemo(() => {
+    return publicProperties.filter((property) => {
+      const matchesRegion =
+        region === "All Regions" || property.region === region;
 
-    const matchesRequestedLocation = matchesLocation(
-      property,
-      requestedLocation,
-    );
+      const matchesDestination =
+        destination === "All Destinations" ||
+        normalizeLocation(property.destination) ===
+          normalizeLocation(destination);
 
-    const matchesType = type === "All Types" || property.type === type;
+      const matchesRequestedLocation = matchesLocation(
+        property,
+        requestedLocation,
+      );
 
-    const matchesPrice =
-      maxPrice === "All Prices" || Number(property.price) <= Number(maxPrice);
+      const matchesType = type === "All Types" || property.type === type;
 
-    const matchesBedrooms =
-      bedrooms === "Any" || Number(property.bedrooms || 0) >= Number(bedrooms);
+      const price = Number(property.price);
 
-    return (
-      matchesRegion &&
-      matchesDestination &&
-      matchesRequestedLocation &&
-      matchesType &&
-      matchesPrice &&
-      matchesBedrooms
-    );
-  });
+      const matchesPrice =
+        maxPrice === "All Prices" ||
+        (Number.isFinite(price) && price <= Number(maxPrice));
 
-  /* FORMAT PRICE */
+      const matchesBedrooms =
+        bedrooms === "Any" ||
+        Number(property.bedrooms || 0) >= Number(bedrooms);
 
-  const formatPrice = (price) =>
-    `KSh ${(Number(price) / 1000000).toLocaleString("en-KE", {
-      maximumFractionDigits: 1,
-    })}M`;
+      return (
+        matchesRegion &&
+        matchesDestination &&
+        matchesRequestedLocation &&
+        matchesType &&
+        matchesPrice &&
+        matchesBedrooms
+      );
+    });
+  }, [
+    publicProperties,
+    region,
+    destination,
+    requestedLocation,
+    type,
+    maxPrice,
+    bedrooms,
+  ]);
 
   /* CLEAR FILTERS */
 
@@ -195,11 +259,9 @@ export default function Properties() {
     setSearchParams({});
   };
 
-  /* CHECK WHETHER REAL PROPERTIES EXIST */
+  /* PROPERTY AVAILABILITY */
 
-  const hasProperties = properties.some(
-    (property) => property.status !== "demo",
-  );
+  const hasProperties = publicProperties.length > 0;
 
   return (
     <main className="properties-page">
@@ -216,11 +278,13 @@ export default function Properties() {
         }
       />
 
-      {/* PAGE HERO */}
+      {/* =====================================
+          PAGE HERO
+      ===================================== */}
 
       <section className="properties-hero">
         <div className="properties-hero-content">
-          <span>ELAN HOMES COLLECTION</span>
+          <span>ÉLAN HOMES COLLECTION</span>
 
           <h1>
             {requestedLocationName
@@ -235,7 +299,9 @@ export default function Properties() {
         </div>
       </section>
 
-      {/* PAGE INTRO */}
+      {/* =====================================
+          PAGE INTRO
+      ===================================== */}
 
       <section className="properties-intro">
         <div>
@@ -250,7 +316,9 @@ export default function Properties() {
         </div>
       </section>
 
-      {/* PROPERTY COLLECTION */}
+      {/* =====================================
+          PROPERTY COLLECTION
+      ===================================== */}
 
       {!hasProperties ? (
         <section className="properties-content">
@@ -274,12 +342,13 @@ export default function Properties() {
 
           <div className="properties-filters">
             <div className="filter-group">
-              <label>Region</label>
+              <label htmlFor="property-region">Region</label>
 
               <select
+                id="property-region"
                 value={region}
-                onChange={(e) => {
-                  setRegion(e.target.value);
+                onChange={(event) => {
+                  setRegion(event.target.value);
                   setDestination("All Destinations");
                 }}
               >
@@ -294,11 +363,12 @@ export default function Properties() {
             </div>
 
             <div className="filter-group">
-              <label>County / Destination</label>
+              <label htmlFor="property-destination">County / Destination</label>
 
               <select
+                id="property-destination"
                 value={destination}
-                onChange={(e) => setDestination(e.target.value)}
+                onChange={(event) => setDestination(event.target.value)}
                 disabled={region === "All Regions"}
               >
                 <option value="All Destinations">All Destinations</option>
@@ -312,9 +382,13 @@ export default function Properties() {
             </div>
 
             <div className="filter-group">
-              <label>Property Type</label>
+              <label htmlFor="property-type">Property Type</label>
 
-              <select value={type} onChange={(e) => setType(e.target.value)}>
+              <select
+                id="property-type"
+                value={type}
+                onChange={(event) => setType(event.target.value)}
+              >
                 <option value="All Types">All Types</option>
                 <option value="House">House</option>
                 <option value="Villa">Villa</option>
@@ -324,11 +398,12 @@ export default function Properties() {
             </div>
 
             <div className="filter-group">
-              <label>Maximum Price</label>
+              <label htmlFor="property-budget">Maximum Price</label>
 
               <select
+                id="property-budget"
                 value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
+                onChange={(event) => setMaxPrice(event.target.value)}
               >
                 <option value="All Prices">All Prices</option>
                 <option value="10000000">Up to KSh 10M</option>
@@ -341,11 +416,12 @@ export default function Properties() {
             </div>
 
             <div className="filter-group">
-              <label>Bedrooms</label>
+              <label htmlFor="property-bedrooms">Bedrooms</label>
 
               <select
+                id="property-bedrooms"
                 value={bedrooms}
-                onChange={(e) => setBedrooms(e.target.value)}
+                onChange={(event) => setBedrooms(event.target.value)}
               >
                 <option value="Any">Any</option>
                 <option value="2">2+ Bedrooms</option>
@@ -381,7 +457,7 @@ export default function Properties() {
                   <div className="property-card-image">
                     <img
                       src={property.image}
-                      alt={property.name}
+                      alt={`${property.name} for sale in ${property.location || "Kenya"}`}
                       loading="lazy"
                       decoding="async"
                     />
@@ -397,8 +473,9 @@ export default function Properties() {
                     <p className="property-location">{property.location}</p>
 
                     <div className="property-features">
-                      <span>{property.bedrooms} Bedrooms</span>
-                      <span>{property.bathrooms} Bathrooms</span>
+                      <span>{property.bedrooms ?? "—"} Bedrooms</span>
+
+                      <span>{property.bathrooms ?? "—"} Bathrooms</span>
                     </div>
 
                     <div className="property-card-bottom">
@@ -407,6 +484,7 @@ export default function Properties() {
                       <Link
                         to={`/properties/${property.id}`}
                         className="view-details-btn"
+                        aria-label={`View details for ${property.name}`}
                       >
                         View Details <span>↗</span>
                       </Link>
@@ -438,7 +516,9 @@ export default function Properties() {
         </section>
       )}
 
-      {/* CLIENT TESTIMONIALS */}
+      {/* =====================================
+          CLIENT TESTIMONIALS
+      ===================================== */}
 
       <section className="property-testimonials">
         <div className="testimonials-heading">

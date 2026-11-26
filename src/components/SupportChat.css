@@ -1,3 +1,7 @@
+/* =================================
+   ELAN HOMES - SUPPORT CHAT
+================================= */
+
 .elan-support-widget {
   position: fixed;
   right: 25px;
@@ -7,6 +11,7 @@
 }
 
 /* FLOATING SUPPORT BUTTON */
+
 .elan-support-launcher {
   display: flex;
   align-items: center;
@@ -23,7 +28,11 @@
   letter-spacing: 1.6px;
   cursor: pointer;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .elan-support-launcher:hover {
@@ -51,15 +60,16 @@
 }
 
 /* SUPPORT WINDOW */
+
 .elan-support-panel {
   position: absolute;
   right: 0;
   bottom: 76px;
-  width: 390px;
-  max-width: calc(100vw - 30px);
-  max-height: min(700px, calc(100vh - 120px));
   display: flex;
   flex-direction: column;
+  width: 390px;
+  max-width: calc(100vw - 30px);
+  max-height: min(700px, calc(100dvh - 120px));
   overflow: hidden;
   background: #fff;
   border: 1px solid #e8e1d5;
@@ -81,11 +91,13 @@
 }
 
 /* HEADER */
+
 .elan-support-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 15px;
+  flex-shrink: 0;
   padding: 25px;
   background: linear-gradient(135deg, #222, #101010);
   color: #fff;
@@ -114,8 +126,12 @@
 }
 
 .elan-support-close {
-  width: 34px;
-  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
   border: 1px solid #665a47;
   border-radius: 50%;
   background: transparent;
@@ -132,9 +148,12 @@
 }
 
 /* CONTENT */
+
 .elan-support-content {
+  min-height: 0;
   padding: 24px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: #d4af72 #f5f2ec;
 }
@@ -156,10 +175,79 @@
   line-height: 1.8;
 }
 
-/* FORM */
+/* CHAT MESSAGES */
+
+.elan-support-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 260px;
+  min-height: 100px;
+  overflow-y: auto;
+  padding: 5px 2px 15px;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #d4af72 #f5f2ec;
+}
+
+.elan-support-message {
+  max-width: 88%;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 9px;
+  overflow-wrap: anywhere;
+}
+
+.elan-support-message.assistant {
+  align-self: flex-start;
+  background: #f6f3ed;
+  border: 1px solid #eee6d8;
+  border-bottom-left-radius: 2px;
+}
+
+.elan-support-message.customer {
+  align-self: flex-end;
+  background: #202020;
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+
+.elan-support-message span {
+  display: block;
+  margin-bottom: 7px;
+  color: #a88345;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.elan-support-message.customer span {
+  color: #d4af72;
+  text-align: right;
+}
+
+.elan-support-message p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.elan-support-message.assistant p {
+  color: #555;
+}
+
+.elan-support-message.customer p {
+  color: #fff;
+}
+
+/* MESSAGE FORM */
+
 .elan-support-form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 
 .elan-support-form label {
@@ -170,9 +258,11 @@
   letter-spacing: 0.3px;
 }
 
-.elan-support-form input,
 .elan-support-form textarea {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  min-height: 100px;
   box-sizing: border-box;
   padding: 13px 14px;
   border: 1px solid #e4dfd6;
@@ -182,31 +272,27 @@
   color: #171717;
   font-family: inherit;
   font-size: 12px;
+  line-height: 1.7;
+  resize: vertical;
   transition: all 0.25s ease;
 }
 
-.elan-support-form input::placeholder,
 .elan-support-form textarea::placeholder {
   color: #aaa49a;
 }
 
-.elan-support-form input:focus,
 .elan-support-form textarea:focus {
   border-color: #b18a4d;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(168, 131, 69, 0.1);
 }
 
-.elan-support-form textarea {
-  resize: vertical;
-  min-height: 110px;
-  line-height: 1.7;
-}
-
 /* SUBMIT BUTTON */
+
 .elan-support-submit {
   display: block;
   width: 100%;
+  min-height: 46px;
   box-sizing: border-box;
   margin-top: 22px;
   padding: 15px;
@@ -223,14 +309,58 @@
   transition: all 0.25s ease;
 }
 
-.elan-support-submit:hover {
+.elan-support-submit:hover:not(:disabled) {
   background: #d4af72;
   border-color: #d4af72;
   color: #171717;
   transform: translateY(-2px);
 }
 
-/* LOGIN PROMPT */
+.elan-support-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* HUMAN SUPPORT OPTION */
+
+.elan-support-human-option {
+  margin-top: 20px;
+  padding: 17px;
+  background: #faf7f0;
+  border: 1px solid #eee4d2;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.elan-support-human-option p {
+  margin: 0 0 12px;
+  color: #666;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.elan-support-human-option button {
+  width: 100%;
+  min-height: 44px;
+  padding: 13px;
+  background: #fff;
+  color: #171717;
+  border: 1px solid #b18a4d;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.elan-support-human-option button:hover {
+  background: #d4af72;
+  border-color: #d4af72;
+}
+
+/* HUMAN SUPPORT SCREEN */
+
 .elan-support-login {
   padding: 12px 2px;
   text-align: center;
@@ -263,10 +393,6 @@
   line-height: 1.9;
 }
 
-.elan-support-login-link {
-  margin-top: 22px;
-}
-
 .elan-support-register-text {
   margin-top: 19px;
 }
@@ -281,194 +407,15 @@
   text-decoration: underline;
 }
 
-/* PRIVACY */
-.elan-support-privacy {
-  margin: 18px 0 0;
-  color: #999;
-  font-size: 10px;
-  line-height: 1.8;
-}
+/* RETURN TO AI BUTTON */
 
-/* FOOTER */
-.elan-support-footer {
-  padding: 14px;
-  background: #f7f5f0;
-  border-top: 1px solid #eee9df;
-  color: #888;
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: 1.2px;
-}
-
-/* SUCCESS MESSAGE */
-.elan-support-success {
-  padding: 20px 0;
-  text-align: center;
-}
-
-.elan-support-success-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 55px;
-  height: 55px;
-  margin: 0 auto 17px;
-  border-radius: 50%;
-  background: #e7f2e8;
-  color: #347343;
-  font-size: 25px;
-}
-
-.elan-support-success h3 {
-  color: #171717;
-  font-size: 20px;
-}
-
-.elan-support-success p {
-  color: #777;
-  font-size: 12px;
-  line-height: 1.9;
-}
-
-.elan-support-reference {
-  padding: 16px;
-  margin-top: 20px;
-  background: #faf7f0;
-  border-left: 3px solid #d4af72;
-  border-radius: 4px;
-  text-align: left;
-  overflow-wrap: anywhere;
-}
-
-.elan-support-reference small {
+.elan-support-back {
   display: block;
-  margin-bottom: 8px;
-  color: #888;
-  font-size: 10px;
-}
-
-.elan-support-reference strong {
-  color: #171717;
-  font-size: 12px;
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  .elan-support-widget {
-    right: 15px;
-    bottom: 15px;
-  }
-
-  .elan-support-launcher {
-    min-height: 52px;
-    padding: 0 19px;
-    font-size: 10px;
-  }
-
-  .elan-support-panel {
-    width: calc(100vw - 30px);
-    right: -5px;
-    bottom: 68px;
-    max-height: calc(100vh - 95px);
-    border-radius: 12px;
-  }
-
-  .elan-support-header {
-    padding: 20px;
-  }
-
-  .elan-support-content {
-    padding: 19px;
-  }
-}
-/* =================================
-   AI CHAT MESSAGES
-================================= */
-
-.elan-support-messages {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-height: 260px;
-  overflow-y: auto;
-  padding: 5px 2px 15px;
-  scrollbar-width: thin;
-  scrollbar-color: #d4af72 #f5f2ec;
-}
-
-.elan-support-message {
-  max-width: 88%;
-  padding: 12px 14px;
-  border-radius: 9px;
-  overflow-wrap: anywhere;
-}
-
-.elan-support-message.assistant {
-  align-self: flex-start;
-  background: #f6f3ed;
-  border: 1px solid #eee6d8;
-  border-bottom-left-radius: 2px;
-}
-
-.elan-support-message.customer {
-  align-self: flex-end;
-  background: #202020;
-  color: #ffffff;
-  border-bottom-right-radius: 2px;
-}
-
-.elan-support-message span {
-  display: block;
-  margin-bottom: 7px;
-  color: #a88345;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.elan-support-message.customer span {
-  color: #d4af72;
-  text-align: right;
-}
-
-.elan-support-message p {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.8;
-}
-
-.elan-support-message.assistant p {
-  color: #555;
-}
-
-.elan-support-message.customer p {
-  color: #ffffff;
-}
-
-/* =================================
-   HUMAN SUPPORT OPTION
-================================= */
-
-.elan-support-human-option {
-  margin-top: 20px;
-  padding: 17px;
-  background: #faf7f0;
-  border: 1px solid #eee4d2;
-  border-radius: 7px;
-  text-align: center;
-}
-
-.elan-support-human-option p {
-  margin: 0 0 12px;
-  color: #666;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-.elan-support-human-option button {
   width: 100%;
-  padding: 13px;
-  background: #ffffff;
+  min-height: 44px;
+  margin-top: 15px;
+  padding: 12px;
+  background: #fff;
   color: #171717;
   border: 1px solid #b18a4d;
   border-radius: 5px;
@@ -479,14 +426,20 @@
   transition: 0.25s ease;
 }
 
-.elan-support-human-option button:hover {
+.elan-support-back:hover {
   background: #d4af72;
-  border-color: #d4af72;
 }
 
-/* =================================
-   BOOKING POLICY LINK
-================================= */
+/* PRIVACY */
+
+.elan-support-privacy {
+  margin: 18px 0 0;
+  color: #999;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+/* BOOKING POLICY LINK */
 
 .elan-support-policy-link {
   margin: 12px 0 0;
@@ -504,11 +457,80 @@
   text-decoration: underline;
 }
 
-/* =================================
-   MOBILE CHAT MESSAGES
-================================= */
+/* FOOTER */
+
+.elan-support-footer {
+  flex-shrink: 0;
+  padding: 14px;
+  background: #f7f5f0;
+  border-top: 1px solid #eee9df;
+  color: #888;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+}
+
+/* KEYBOARD ACCESSIBILITY */
+
+.elan-support-widget button:focus-visible,
+.elan-support-widget a:focus-visible {
+  outline: 2px solid #b18a4d;
+  outline-offset: 3px;
+}
+
+/* TABLET */
+
+@media (max-width: 768px) {
+  .elan-support-widget {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .elan-support-panel {
+    max-height: min(650px, calc(100dvh - 105px));
+  }
+}
+
+/* MOBILE */
 
 @media (max-width: 480px) {
+  .elan-support-widget {
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .elan-support-launcher {
+    min-height: 52px;
+    padding: 0 19px;
+    font-size: 10px;
+  }
+
+  .elan-support-launcher.active {
+    width: 50px;
+    min-height: 50px;
+  }
+
+  .elan-support-panel {
+    width: calc(100vw - 30px);
+    max-width: none;
+    right: -5px;
+    bottom: 65px;
+    max-height: calc(100dvh - 95px);
+    border-radius: 12px;
+  }
+
+  .elan-support-header {
+    padding: 20px;
+  }
+
+  .elan-support-header h3 {
+    font-size: 19px;
+  }
+
+  .elan-support-content {
+    padding: 19px;
+  }
+
   .elan-support-messages {
     max-height: 230px;
   }
@@ -519,5 +541,54 @@
 
   .elan-support-human-option {
     padding: 14px;
+  }
+}
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 350px) {
+  .elan-support-widget {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .elan-support-panel {
+    width: calc(100vw - 20px);
+    right: -5px;
+    max-height: calc(100dvh - 85px);
+  }
+
+  .elan-support-header {
+    padding: 16px;
+  }
+
+  .elan-support-content {
+    padding: 15px;
+  }
+
+  .elan-support-message {
+    max-width: 97%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .elan-support-panel {
+    animation: none;
+  }
+
+  .elan-support-launcher,
+  .elan-support-close,
+  .elan-support-submit,
+  .elan-support-human-option button,
+  .elan-support-back {
+    transition: none;
+  }
+
+  .elan-support-launcher:hover,
+  .elan-support-close:hover,
+  .elan-support-submit:hover {
+    transform: none;
   }
 }

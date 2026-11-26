@@ -1,13 +1,16 @@
 .kilifi-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO */
+
 .kilifi-hero {
-  min-height: 460px;
-  padding: 100px 8%;
+  min-height: 500px;
+  padding: 90px 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,31 +23,36 @@
 }
 
 .kilifi-hero > span {
+  margin-bottom: 20px;
   color: #d6b36a;
   font-size: 12px;
-  letter-spacing: 3px;
   font-weight: 600;
-  margin-bottom: 20px;
+  letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .kilifi-hero h1 {
-  font-size: clamp(42px, 6vw, 76px);
   max-width: 750px;
-  line-height: 1.08;
   margin: 0 0 22px;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.08;
   font-weight: 600;
 }
 
 .kilifi-hero p {
+  max-width: 620px;
+  margin: 0;
+  color: #e8e8e8;
   font-size: 17px;
   line-height: 1.8;
-  max-width: 620px;
-  color: #e8e8e8;
 }
 
 .kilifi-button {
-  display: inline-block;
-  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 28px;
   padding: 15px 28px;
   background: #d6b36a;
   color: #171717;
@@ -52,7 +60,9 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .kilifi-button:hover {
@@ -61,38 +71,44 @@
 }
 
 /* CONTENT */
+
 .kilifi-content {
-  max-width: 1250px;
-  margin: auto;
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
   padding: 90px 6%;
+  scroll-margin-top: 30px;
 }
 
 .kilifi-heading {
-  text-align: center;
   max-width: 720px;
   margin: 0 auto 55px;
+  text-align: center;
 }
 
 .kilifi-heading > span {
   color: #a98642;
   font-size: 12px;
-  letter-spacing: 3px;
   font-weight: 700;
+  letter-spacing: 3px;
 }
 
 .kilifi-heading h2 {
-  font-size: clamp(30px, 4vw, 45px);
   margin: 18px 0;
+  font-size: clamp(30px, 4vw, 45px);
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .kilifi-heading p {
+  margin: 0;
   color: #777;
-  line-height: 1.8;
   font-size: 15px;
+  line-height: 1.8;
 }
 
 /* LOCATION GRID */
+
 .kilifi-location-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -100,14 +116,20 @@
 }
 
 .kilifi-location-card {
-  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
   padding: 35px 30px;
+  background: #fff;
   border: 1px solid #e9e4d9;
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .kilifi-location-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
@@ -118,26 +140,32 @@
 }
 
 .kilifi-location-card h3 {
-  font-size: 25px;
   margin: 22px 0 12px;
+  font-size: 25px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .kilifi-location-card p {
+  flex: 1;
+  width: 100%;
+  margin: 0;
   color: #777;
   font-size: 14px;
   line-height: 1.8;
-  min-height: 75px;
 }
 
 .kilifi-location-card a {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  min-height: 44px;
   margin-top: 20px;
   color: #9b783d;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .kilifi-location-card a:hover {
@@ -145,6 +173,7 @@
 }
 
 /* BACK LINK */
+
 .kilifi-back {
   padding: 30px 8% 60px;
   text-align: center;
@@ -156,34 +185,132 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-/* RESPONSIVE */
+.kilifi-back a:hover,
+.kilifi-content > a:hover {
+  color: #171717;
+}
+
+/* KEYBOARD ACCESSIBILITY */
+
+.kilifi-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
+/* TABLET */
+
 @media (max-width: 900px) {
+  .kilifi-hero {
+    min-height: 460px;
+    padding: 75px 7%;
+  }
+
+  .kilifi-content {
+    padding: 75px 6%;
+  }
+
   .kilifi-location-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .kilifi-location-card {
+    padding: 30px 25px;
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
   .kilifi-hero {
-    min-height: 400px;
-    padding: 75px 7%;
+    min-height: 420px;
+    padding: 65px 7%;
+    background-position: center;
+  }
+
+  .kilifi-hero > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .kilifi-hero h1 {
+    font-size: clamp(36px, 10vw, 50px);
   }
 
   .kilifi-hero p {
     font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .kilifi-button {
+    padding: 14px 22px;
+    font-size: 12px;
   }
 
   .kilifi-content {
-    padding: 65px 6%;
+    padding: 65px 7%;
+  }
+
+  .kilifi-heading {
+    margin-bottom: 35px;
+  }
+
+  .kilifi-heading h2 {
+    font-size: 29px;
+  }
+
+  .kilifi-heading p {
+    font-size: 14px;
   }
 
   .kilifi-location-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .kilifi-location-card {
-    padding: 28px 24px;
+    padding: 27px 23px;
+  }
+
+  .kilifi-location-card h3 {
+    font-size: 22px;
+    margin-top: 17px;
+  }
+
+  .kilifi-location-card p {
+    font-size: 13px;
+  }
+
+  .kilifi-back {
+    padding: 20px 7% 50px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .kilifi-hero {
+    min-height: 390px;
+    padding: 55px 6%;
+  }
+
+  .kilifi-location-card {
+    padding: 24px 19px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .kilifi-page *,
+  .kilifi-page *::before,
+  .kilifi-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

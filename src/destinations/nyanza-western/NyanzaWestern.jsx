@@ -9,84 +9,82 @@ import Siaya from "./destinations/Siaya";
 import Bungoma from "./destinations/Bungoma";
 import RusingaIsland from "./destinations/RusingaIsland";
 
+// DESTINATION DATA
 const destinations = [
   {
     name: "Kisumu",
     slug: "kisumu",
     description:
       "Explore lakeside living, modern homes and beautiful accommodation in Kenya's lakeside city.",
+    component: Kisumu,
   },
   {
     name: "Homa Bay",
     slug: "homa-bay",
     description:
       "Discover peaceful lakeside surroundings, residential properties and places to stay.",
+    component: HomaBay,
   },
   {
     name: "Kakamega",
     slug: "kakamega",
     description:
       "Explore green landscapes, residential communities and accommodation near Kakamega Forest.",
+    component: Kakamega,
   },
   {
     name: "Siaya",
     slug: "siaya",
     description:
       "Discover beautiful surroundings, homes and accommodation in Siaya County.",
+    component: Siaya,
   },
   {
     name: "Bungoma",
     slug: "bungoma",
     description:
       "Explore residential opportunities and comfortable places to stay in Bungoma.",
+    component: Bungoma,
   },
   {
     name: "Rusinga Island",
     slug: "rusinga-island",
     description:
       "Experience island living, scenic Lake Victoria views and unique holiday stays.",
+    component: RusingaIsland,
   },
 ];
 
 export default function NyanzaWestern() {
   const { locationSlug } = useParams();
 
-  // KISUMU DESTINATION
-  if (locationSlug === "kisumu") {
-    return <Kisumu />;
+  // DESTINATION ROUTING
+  if (locationSlug) {
+    const destination = destinations.find((item) => item.slug === locationSlug);
+
+    if (destination) {
+      const DestinationComponent = destination.component;
+      return <DestinationComponent />;
+    }
+
+    return (
+      <main className="nyanza-western-not-found">
+        <h2>Destination Not Found</h2>
+        <p>The destination you are looking for does not exist.</p>
+        <Link to="/destinations/nyanza-western">Back to Nyanza & Western</Link>
+      </main>
+    );
   }
 
-  // HOMA BAY DESTINATION
-  if (locationSlug === "homa-bay") {
-    return <HomaBay />;
-  }
-
-  // KAKAMEGA DESTINATION
-  if (locationSlug === "kakamega") {
-    return <Kakamega />;
-  }
-
-  // SIAYA DESTINATION
-  if (locationSlug === "siaya") {
-    return <Siaya />;
-  }
-
-  // BUNGOMA DESTINATION
-  if (locationSlug === "bungoma") {
-    return <Bungoma />;
-  }
-
-  // RUSINGA ISLAND DESTINATION
-  if (locationSlug === "rusinga-island") {
-    return <RusingaIsland />;
-  }
-
+  // REGION OVERVIEW
   return (
     <main className="nyanza-western-page">
       <section className="nyanza-western-hero">
         <div className="nyanza-western-hero-content">
           <span>THE ÉLAN HOMES COLLECTION</span>
+
           <h1>Discover Nyanza & Western Kenya</h1>
+
           <p>
             Explore beautiful destinations across western Kenya, from lakeside
             communities and island escapes to vibrant towns and peaceful
@@ -98,7 +96,9 @@ export default function NyanzaWestern() {
       <section className="nyanza-western-destinations">
         <div className="nyanza-western-section-heading">
           <span>EXPLORE THE REGION</span>
+
           <h2>Discover Our Destinations</h2>
+
           <p>
             Find exceptional properties for sale and memorable places to stay
             across Nyanza and Western Kenya.
@@ -110,7 +110,9 @@ export default function NyanzaWestern() {
             <article className="nyanza-western-card" key={destination.slug}>
               <div className="nyanza-western-card-content">
                 <span>NYANZA & WESTERN</span>
+
                 <h3>{destination.name}</h3>
+
                 <p>{destination.description}</p>
 
                 <Link

@@ -18,7 +18,7 @@ export default function Kitengela() {
             Kitengela.
           </p>
 
-          <a href="#kitengela-explore" className="kitengela-button">
+          <a to="#kitengela-explore" className="kitengela-button">
             Explore Kitengela
           </a>
         </div>

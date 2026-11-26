@@ -16,7 +16,7 @@ export default function MaraTriangle() {
             with exceptional safari experiences and exclusive places to stay.
           </p>
 
-          <a href="#mara-triangle-marketplace">EXPLORE MARA TRIANGLE →</a>
+          <Link to="#mara-triangle-marketplace">EXPLORE MARA TRIANGLE →</Link>
         </div>
       </section>
 

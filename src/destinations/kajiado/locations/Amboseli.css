@@ -1,10 +1,13 @@
 .amboseli-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO SECTION */
+
 .amboseli-hero {
   min-height: 590px;
   display: flex;
@@ -12,11 +15,12 @@
   padding: 100px 8%;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35)),
-    url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5")
-      center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5") center /
+      cover no-repeat;
 }
 
 .amboseli-hero-content {
+  width: 100%;
   max-width: 750px;
   color: #fff;
 }
@@ -30,8 +34,8 @@
 }
 
 .amboseli-hero-content h1 {
-  font-size: clamp(42px, 7vw, 76px);
-  line-height: 1.05;
+  font-size: clamp(38px, 7vw, 76px);
+  line-height: 1.08;
   margin: 22px 0;
   font-weight: 700;
 }
@@ -47,6 +51,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px;
   margin-top: 30px;
   padding: 15px 27px;
   background: #c5a15d;
@@ -56,7 +61,10 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .amboseli-button:hover {
@@ -65,7 +73,9 @@
 }
 
 /* INTRODUCTION */
+
 .amboseli-intro {
+  width: 100%;
   max-width: 850px;
   margin: auto;
   padding: 85px 20px 75px;
@@ -76,6 +86,7 @@
   font-size: clamp(28px, 4vw, 43px);
   margin: 18px 0;
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .amboseli-intro p {
@@ -86,25 +97,42 @@
   line-height: 1.9;
 }
 
+/* MARKETPLACE */
+
+.amboseli-page #amboseli-explore {
+  width: 100%;
+  scroll-margin-top: 90px;
+}
+
 /* BACK NAVIGATION */
+
 .amboseli-back {
   padding: 35px 8%;
   border-top: 1px solid #e9e4da;
 }
 
 .amboseli-back a {
+  display: inline-block;
   color: #a68143;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .amboseli-back a:hover {
   color: #171717;
 }
 
-/* RESPONSIVE */
+/* KEYBOARD ACCESSIBILITY */
+
+.amboseli-page a:focus-visible {
+  outline: 3px solid #bd9858;
+  outline-offset: 4px;
+}
+
+/* TABLET */
+
 @media (max-width: 768px) {
   .amboseli-hero {
     min-height: 500px;
@@ -121,5 +149,78 @@
 
   .amboseli-back {
     padding: 30px 7%;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .amboseli-hero {
+    min-height: 440px;
+    padding: 65px 6%;
+    background-position: center;
+  }
+
+  .amboseli-hero-content span,
+  .amboseli-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .amboseli-hero-content h1 {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+
+  .amboseli-hero-content p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .amboseli-button {
+    margin-top: 24px;
+    padding: 13px 21px;
+    font-size: 11px;
+  }
+
+  .amboseli-intro {
+    padding: 55px 20px;
+  }
+
+  .amboseli-intro h2 {
+    font-size: 29px;
+  }
+
+  .amboseli-intro p {
+    font-size: 14px;
+  }
+
+  .amboseli-back {
+    padding: 25px 6%;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .amboseli-hero {
+    padding: 55px 18px;
+  }
+
+  .amboseli-intro {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .amboseli-page *,
+  .amboseli-page *::before,
+  .amboseli-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

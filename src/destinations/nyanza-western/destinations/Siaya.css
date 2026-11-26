@@ -1,8 +1,12 @@
 .siaya-page {
   width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f7f4;
   color: #171717;
 }
+
+/* HERO */
 
 .siaya-hero {
   background:
@@ -11,6 +15,7 @@
 }
 
 .siaya-page .nyanza-destination-hero-content {
+  width: 100%;
   max-width: 850px;
 }
 
@@ -23,7 +28,8 @@
 
 .siaya-page .nyanza-destination-hero-content h1 {
   margin: 20px 0;
-  font-size: clamp(38px, 5vw, 60px);
+  color: #fff;
+  font-size: clamp(36px, 5vw, 60px);
   line-height: 1.15;
   font-weight: 600;
 }
@@ -36,15 +42,18 @@
   line-height: 1.8;
 }
 
+/* INTRO */
+
 .siaya-page .nyanza-destination-intro {
+  width: 100%;
   max-width: 850px;
   margin: 0 auto;
-  padding: 75px 25px 20px;
+  padding: 75px 25px 25px;
   text-align: center;
 }
 
 .siaya-page .nyanza-destination-intro > span {
-  color: #c6a76a;
+  color: #a88745;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -52,23 +61,85 @@
 
 .siaya-page .nyanza-destination-intro h2 {
   margin: 16px 0;
+  color: #171717;
   font-size: clamp(27px, 4vw, 39px);
   font-weight: 600;
+  line-height: 1.25;
 }
 
 .siaya-page .nyanza-destination-intro p {
+  max-width: 720px;
+  margin: 0 auto;
   color: #696969;
   font-size: 15px;
   line-height: 1.8;
 }
 
-@media (max-width: 600px) {
+/* MARKETPLACE */
+
+.siaya-page .location-marketplace {
+  width: 100%;
+}
+
+/* TABLET */
+
+@media (max-width: 768px) {
   .siaya-page .nyanza-destination-hero {
-    min-height: 350px;
-    padding: 60px 22px;
+    min-height: 380px;
+    padding: 60px 6%;
   }
 
   .siaya-page .nyanza-destination-intro {
-    padding: 55px 20px 10px;
+    padding: 60px 22px 20px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .siaya-page .nyanza-destination-hero {
+    min-height: 350px;
+    padding: 55px 20px;
+  }
+
+  .siaya-page .nyanza-destination-hero-content > span,
+  .siaya-page .nyanza-destination-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .siaya-page .nyanza-destination-hero-content h1 {
+    margin: 18px 0;
+    font-size: clamp(32px, 8vw, 42px);
+  }
+
+  .siaya-page .nyanza-destination-hero-content p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .siaya-page .nyanza-destination-intro {
+    padding: 50px 20px 20px;
+  }
+
+  .siaya-page .nyanza-destination-intro h2 {
+    font-size: 29px;
+  }
+
+  .siaya-page .nyanza-destination-intro p {
+    font-size: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .siaya-page .nyanza-destination-hero {
+    padding: 45px 16px;
+  }
+
+  .siaya-page .nyanza-destination-intro {
+    padding-right: 16px;
+    padding-left: 16px;
   }
 }

@@ -47,7 +47,7 @@ export default function ExploreDestinations() {
             </p>
           </div>
 
-          <Link to="/destinations/nairobi">
+          <Link to="/destinations">
             View Destinations <span>↗</span>
           </Link>
         </div>

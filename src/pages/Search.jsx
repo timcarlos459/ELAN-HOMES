@@ -3,6 +3,58 @@ import { useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
 import "./Search.css";
 
+const locations = {
+  Central: ["Kiambu", "Limuru", "Nyahururu", "Nyandarua", "Nyeri", "Thika"],
+
+  "Coastal Region": ["Kilifi", "Mombasa", "Lamu", "Kwale", "Taita Taveta"],
+
+  Eastern: ["Makueni / Wote", "Embu", "Machakos", "Meru"],
+
+  Kajiado: [
+    "Isinya",
+    "Kisaju",
+    "Ibisil",
+    "Rongai",
+    "Kitengela",
+    "Ngong",
+    "Kiserian",
+    "Kajiado Town",
+    "Oloitoktok",
+    "Amboseli",
+  ],
+
+  Nairobi: [
+    "Gigiri",
+    "Karen",
+    "Kileleshwa",
+    "Kilimani",
+    "Langata",
+    "Lavington",
+    "Nairobi West",
+    "Ngong Road",
+    "Riverside",
+    "Roysambu",
+    "Runda",
+    "Westlands",
+  ],
+
+  "Nyanza & Western": [
+    "Homa Bay / Rusinga Island",
+    "Siaya / Bondo",
+    "Kisumu",
+    "Kakamega",
+    "Bungoma",
+  ],
+
+  "Rift Valley": [
+    "Nyanyuki / Laikipia",
+    "Narok / Maasai Mara",
+    "Eldoret",
+    "Naivasha",
+    "Nakuru",
+  ],
+};
+
 export default function Search() {
   const navigate = useNavigate();
 
@@ -12,142 +64,126 @@ export default function Search() {
   const [type, setType] = useState("");
   const [budget, setBudget] = useState("");
 
-  const locations = {
-    Central: ["Kiambu", "Limuru", "Nyahururu", "Nyandarua", "Nyeri", "Thika"],
-    "Coastal Region": ["Kilifi", "Mombasa", "Lamu", "Kwale", "Taita Taveta"],
-    Eastern: ["Makueni / Wote", "Embu", "Machakos", "Meru"],
-    Kajiado: [
-      "Isinya",
-      "Kisaju",
-      "Ibisil",
-      "Rongai",
-      "Kitengela",
-      "Ngong",
-      "Kiserian",
-      "Kajiado Town",
-      "Oloitoktok",
-      "Amboseli",
-    ],
-    Nairobi: [
-      "Gigiri",
-      "Karen",
-      "Kileleshwa",
-      "Kilimani",
-      "Langata",
-      "Lavington",
-      "Nairobi West",
-      "Ngong Road",
-      "Riverside",
-      "Roysambu",
-      "Runda",
-      "Westlands",
-    ],
-    "Nyanza & Western": [
-      "Homa Bay / Rusinga Island",
-      "Siaya / Bondo",
-      "Kisumu",
-      "Kakamega",
-      "Bungoma",
-    ],
-    "Rift Valley": [
-      "Nyanyuki / Laikipia",
-      "Narok / Maasai Mara",
-      "Eldoret",
-      "Naivasha",
-      "Nakuru",
-    ],
-  };
-
   // SEO SETTINGS
   const seoLocation = destination || region;
 
   const seoTitle = seoLocation
-    ? `${category === "Properties" ? "Properties for Sale" : "Holiday Stays"} in ${seoLocation}, Kenya | ÉLAN HOMES`
+    ? `${
+        category === "Properties" ? "Properties for Sale" : "Holiday Stays"
+      } in ${seoLocation}, Kenya | ÉLAN HOMES`
     : category === "Properties"
       ? "Search Properties for Sale in Kenya | ÉLAN HOMES"
       : "Search Holiday Stays in Kenya | ÉLAN HOMES";
 
   const seoDescription =
     category === "Properties"
-      ? `Search houses, villas and apartments for sale in ${seoLocation ? `${seoLocation}, ` : ""}Kenya. Explore property opportunities with ÉLAN HOMES.`
-      : `Search holiday homes, furnished accommodation and beautiful short stays in ${seoLocation ? `${seoLocation}, ` : ""}Kenya with ÉLAN HOMES.`;
+      ? `Search houses, villas and apartments for sale in ${
+          seoLocation ? `${seoLocation}, ` : ""
+        }Kenya. Explore property opportunities with ÉLAN HOMES.`
+      : `Search holiday homes, furnished accommodation and beautiful short stays in ${
+          seoLocation ? `${seoLocation}, ` : ""
+        }Kenya with ÉLAN HOMES.`;
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  // CHANGE CATEGORY
+  const handleCategoryChange = (newCategory) => {
+    setCategory(newCategory);
+    setType("");
+    setBudget("");
+  };
 
-    const params = new URLSearchParams({
-      region,
-      destination,
-      type,
-      budget,
-    });
+  // CHANGE REGION
+  const handleRegionChange = (event) => {
+    setRegion(event.target.value);
+    setDestination("");
+  };
 
-    navigate(
-      `${category === "Properties" ? "/properties" : "/stays"}?${params.toString()}`,
-    );
+  // SEARCH LISTINGS
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    const params = new URLSearchParams();
+
+    params.set("region", region);
+    params.set("destination", destination);
+    params.set("type", type);
+    params.set("budget", budget);
+
+    const target = category === "Properties" ? "/properties" : "/stays";
+
+    navigate(`${target}?${params.toString()}`);
   };
 
   return (
     <main className="search-page">
       <SEO title={seoTitle} description={seoDescription} />
 
+      {/* HERO */}
       <section className="search-hero">
         <div className="search-hero-content">
           <span>DISCOVER YOUR NEXT PLACE</span>
+
           <h1>Find a Place That Feels Like Yours.</h1>
+
           <p>
             Explore exceptional properties and beautiful holiday stays across
-            Kenya with ELAN HOMES.
+            Kenya with ÉLAN HOMES.
           </p>
         </div>
       </section>
 
+      {/* SEARCH SECTION */}
       <section className="search-main">
         <div className="search-heading">
-          <span>ELAN HOMES SEARCH</span>
+          <span>ÉLAN HOMES SEARCH</span>
+
           <h2>What Are You Looking For?</h2>
+
           <p>Start exploring with a few simple selections.</p>
         </div>
 
         <div className="search-panel">
-          <div className="search-tabs">
+          {/* CATEGORY TABS */}
+          <div
+            className="search-tabs"
+            role="tablist"
+            aria-label="Choose listing category"
+          >
             <button
               type="button"
+              role="tab"
+              aria-selected={category === "Properties"}
               className={category === "Properties" ? "active" : ""}
-              onClick={() => {
-                setCategory("Properties");
-                setType("");
-                setBudget("");
-              }}
+              onClick={() => handleCategoryChange("Properties")}
             >
               Properties for Sale
             </button>
 
             <button
               type="button"
+              role="tab"
+              aria-selected={category === "Stays"}
               className={category === "Stays" ? "active" : ""}
-              onClick={() => {
-                setCategory("Stays");
-                setType("");
-                setBudget("");
-              }}
+              onClick={() => handleCategoryChange("Stays")}
             >
               Holiday Stays
             </button>
           </div>
 
+          {/* SEARCH FORM */}
           <form onSubmit={handleSearch}>
             <div className="search-fields">
+              {/* REGION */}
               <div className="search-field">
-                <label>Region</label>
+                <label htmlFor="search-region">Region</label>
+
                 <select
+                  id="search-region"
+                  name="region"
                   value={region}
-                  onChange={(e) => {
-                    setRegion(e.target.value);
-                    setDestination("");
-                  }}
+                  onChange={handleRegionChange}
                 >
                   <option value="">All Regions</option>
+
                   {Object.keys(locations).map((item) => (
                     <option key={item} value={item}>
                       {item}
@@ -156,15 +192,20 @@ export default function Search() {
                 </select>
               </div>
 
+              {/* DESTINATION */}
               <div className="search-field">
-                <label>Destination</label>
+                <label htmlFor="search-destination">Destination</label>
+
                 <select
+                  id="search-destination"
+                  name="destination"
                   value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
+                  onChange={(event) => setDestination(event.target.value)}
                   disabled={!region}
                 >
                   <option value="">All Destinations</option>
-                  {(region ? locations[region] : []).map((item) => (
+
+                  {(region ? locations[region] || [] : []).map((item) => (
                     <option key={item} value={item}>
                       {item}
                     </option>
@@ -172,12 +213,20 @@ export default function Search() {
                 </select>
               </div>
 
+              {/* PROPERTY OR STAY TYPE */}
               <div className="search-field">
-                <label>
+                <label htmlFor="search-type">
                   {category === "Properties" ? "Property Type" : "Stay Type"}
                 </label>
-                <select value={type} onChange={(e) => setType(e.target.value)}>
+
+                <select
+                  id="search-type"
+                  name="type"
+                  value={type}
+                  onChange={(event) => setType(event.target.value)}
+                >
                   <option value="">All Types</option>
+
                   {category === "Properties" ? (
                     <>
                       <option value="House">House</option>
@@ -195,25 +244,36 @@ export default function Search() {
                 </select>
               </div>
 
+              {/* BUDGET */}
               <div className="search-field">
-                <label>Budget</label>
+                <label htmlFor="search-budget">Budget</label>
+
                 <select
+                  id="search-budget"
+                  name="budget"
                   value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
+                  onChange={(event) => setBudget(event.target.value)}
                 >
                   <option value="">Any Budget</option>
+
                   {category === "Properties" ? (
                     <>
                       <option value="10000000">Up to KSh 10M</option>
+
                       <option value="30000000">Up to KSh 30M</option>
+
                       <option value="50000000">Up to KSh 50M</option>
+
                       <option value="100000000">Up to KSh 100M</option>
                     </>
                   ) : (
                     <>
                       <option value="5000">Up to KSh 5,000/night</option>
+
                       <option value="10000">Up to KSh 10,000/night</option>
+
                       <option value="20000">Up to KSh 20,000/night</option>
+
                       <option value="30000">Up to KSh 30,000/night</option>
                     </>
                   )}

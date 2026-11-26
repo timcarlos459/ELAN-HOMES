@@ -1,17 +1,27 @@
+/* =================================
+   ELAN HOMES - LOCATION MARKETPLACE
+================================= */
+
 .location-marketplace {
   width: 100%;
+  min-width: 0;
   padding: 90px 7%;
   background: #f8f6f1;
   color: #171717;
+  overflow: hidden;
 }
 
+/* HEADING */
+
 .location-marketplace-heading {
+  width: 100%;
   max-width: 760px;
   margin: 0 auto 45px;
   text-align: center;
 }
 
 .location-marketplace-heading > span {
+  display: inline-block;
   color: #a88746;
   font-size: 11px;
   font-weight: 700;
@@ -22,7 +32,9 @@
   margin: 15px 0;
   font-size: clamp(30px, 4vw, 44px);
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: -1.5px;
+  overflow-wrap: anywhere;
 }
 
 .location-marketplace-heading p {
@@ -31,18 +43,24 @@
   line-height: 1.8;
 }
 
+/* CATEGORY GRID */
+
 .location-marketplace-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 25px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* CATEGORY CARDS */
+
 .location-marketplace-card {
-  min-height: 300px;
   display: flex;
   align-items: flex-end;
+  min-width: 0;
+  min-height: 300px;
   padding: 38px;
   background: #171717;
   color: #fff;
@@ -58,10 +76,13 @@
 }
 
 .location-marketplace-card-content {
+  width: 100%;
   max-width: 450px;
+  min-width: 0;
 }
 
 .location-marketplace-category {
+  display: inline-block;
   color: #c5a66a;
   font-size: 10px;
   font-weight: 700;
@@ -72,13 +93,17 @@
   margin: 15px 0;
   font-size: 34px;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .location-marketplace-card p {
   color: #c4c4c4;
   font-size: 14px;
   line-height: 1.8;
+  overflow-wrap: anywhere;
 }
+
+/* CATEGORY LINKS */
 
 .location-marketplace-status {
   display: inline-block;
@@ -89,23 +114,128 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
+.location-marketplace-status:hover {
+  color: #fff;
+}
+
+.location-marketplace-status:focus-visible {
+  outline: 2px solid #d2b477;
+  outline-offset: 5px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .location-marketplace {
+    padding: 75px 5%;
+  }
+
+  .location-marketplace-grid {
+    gap: 18px;
+  }
+
+  .location-marketplace-card {
+    padding: 30px;
+    min-height: 280px;
+  }
+}
+
+/* MOBILE */
 
 @media (max-width: 768px) {
   .location-marketplace {
     padding: 65px 6%;
   }
 
+  .location-marketplace-heading {
+    margin-bottom: 35px;
+  }
+
+  .location-marketplace-heading h2 {
+    font-size: clamp(28px, 6vw, 36px);
+    letter-spacing: -1px;
+  }
+
+  .location-marketplace-heading p {
+    font-size: 14px;
+  }
+
   .location-marketplace-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
   }
 
   .location-marketplace-card {
-    min-height: 260px;
+    min-height: 250px;
     padding: 28px;
   }
 
   .location-marketplace-card h3 {
     font-size: 29px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 450px) {
+  .location-marketplace {
+    padding: 50px 5%;
+  }
+
+  .location-marketplace-heading > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .location-marketplace-heading h2 {
+    font-size: 28px;
+  }
+
+  .location-marketplace-card {
+    min-height: 235px;
+    padding: 24px;
+  }
+
+  .location-marketplace-card h3 {
+    font-size: 27px;
+  }
+
+  .location-marketplace-card p {
+    font-size: 13px;
+  }
+}
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 350px) {
+  .location-marketplace-card {
+    padding: 20px;
+  }
+
+  .location-marketplace-card h3 {
+    font-size: 25px;
+  }
+
+  .location-marketplace-status {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .location-marketplace-card,
+  .location-marketplace-status {
+    transition: none;
+  }
+
+  .location-marketplace-card:hover {
+    transform: none;
   }
 }

@@ -1,17 +1,26 @@
-/* GIGIRI PAGE */
+/* =====================================
+   GIGIRI — ÉLAN HOMES
+===================================== */
 
 .gigiri-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
   background: #fff;
   color: #171717;
+  overflow-x: clip;
 }
 
 /* HERO */
 
 .gigiri-hero {
+  width: 100%;
   min-height: 500px;
   display: flex;
   align-items: center;
   padding: 80px 8%;
+  position: relative;
+  overflow: hidden;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.25)),
     url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=2000")
@@ -19,22 +28,26 @@
 }
 
 .gigiri-hero-content {
+  width: 100%;
   max-width: 680px;
+  min-width: 0;
   color: #fff;
 }
 
 .gigiri-hero-content > span,
-.gigiri-intro > span,
-.gigiri-heading span {
+.gigiri-intro > span {
   color: #c5a36a;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.7;
 }
 
 .gigiri-hero-content h1 {
   margin: 20px 0;
-  font-size: clamp(42px, 6vw, 72px);
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .gigiri-hero-content p {
@@ -53,18 +66,25 @@
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .gigiri-hero-content a:hover {
   background: #fff;
 }
 
+.gigiri-hero-content a:focus-visible,
+.gigiri-back a:focus-visible {
+  outline: 3px solid #c5a36a;
+  outline-offset: 4px;
+}
+
 /* INTRODUCTION */
 
 .gigiri-intro {
+  width: 100%;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto;
   padding: 85px 25px;
   text-align: center;
 }
@@ -72,6 +92,7 @@
 .gigiri-intro h2 {
   margin: 18px 0;
   font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
 }
 
 .gigiri-intro p {
@@ -80,137 +101,117 @@
   line-height: 1.9;
 }
 
-/* LISTINGS */
+/* MARKETPLACE */
 
-.gigiri-listings {
-  padding: 65px 8%;
-  background: #f8f7f4;
-}
-
-.gigiri-heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 35px;
-}
-
-.gigiri-heading h2 {
-  margin: 15px 0 0;
-  font-size: clamp(25px, 3vw, 36px);
-}
-
-.gigiri-heading > a {
-  color: #a3844e;
-  font-size: 12px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.gigiri-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px;
-}
-
-.gigiri-listing-card {
-  display: block;
-  overflow: hidden;
-  background: #fff;
-  color: #171717;
-  text-decoration: none;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.gigiri-listing-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-.gigiri-listing-card img {
+.gigiri-page #gigiri-explore {
   width: 100%;
-  height: 230px;
-  object-fit: cover;
-  display: block;
-}
-
-.gigiri-listing-card > div {
-  padding: 22px;
-}
-
-.gigiri-listing-card h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-}
-
-.gigiri-listing-card p {
-  margin: 0 0 15px;
-  color: #888;
-  font-size: 13px;
-}
-
-.gigiri-listing-card strong {
-  color: #a3844e;
-  font-size: 14px;
-}
-
-.gigiri-empty {
-  padding: 35px 20px;
-  background: #fff;
-  color: #777;
-  text-align: center;
-  line-height: 1.8;
+  min-width: 0;
+  scroll-margin-top: 90px;
 }
 
 /* BACK LINK */
 
 .gigiri-back {
+  width: 100%;
   padding: 35px 8%;
   border-top: 1px solid #eee;
 }
 
 .gigiri-back a {
+  display: inline-block;
   color: #a3844e;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
 }
 
-/* RESPONSIVE */
+.gigiri-back a:hover {
+  color: #171717;
+}
+
+/* TABLET */
 
 @media (max-width: 900px) {
-  .gigiri-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .gigiri-hero {
+    min-height: 460px;
+    padding: 75px 7%;
+  }
+
+  .gigiri-intro {
+    padding: 75px 25px;
   }
 }
+
+/* MOBILE */
 
 @media (max-width: 600px) {
   .gigiri-hero {
     min-height: 420px;
     padding: 60px 6%;
+    background-position: center;
+  }
+
+  .gigiri-hero-content > span,
+  .gigiri-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .gigiri-hero-content h1 {
+    font-size: clamp(36px, 9vw, 48px);
+  }
+
+  .gigiri-hero-content p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .gigiri-hero-content a {
+    padding: 14px 23px;
   }
 
   .gigiri-intro {
     padding: 65px 6%;
   }
 
-  .gigiri-listings {
-    padding: 50px 6%;
+  .gigiri-intro h2 {
+    font-size: 30px;
   }
 
-  .gigiri-heading {
-    align-items: flex-start;
-    flex-direction: column;
+  .gigiri-intro p {
+    font-size: 14px;
   }
 
-  .gigiri-grid {
-    grid-template-columns: 1fr;
+  .gigiri-back {
+    padding: 28px 6%;
   }
 
-  .gigiri-listing-card img {
-    height: 220px;
+  .gigiri-page #gigiri-explore {
+    scroll-margin-top: 75px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 350px) {
+  .gigiri-hero {
+    min-height: 380px;
+    padding: 55px 6%;
+  }
+
+  .gigiri-hero-content h1 {
+    font-size: 34px;
+  }
+
+  .gigiri-intro h2 {
+    font-size: 27px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .gigiri-hero-content a {
+    transition: none;
   }
 }

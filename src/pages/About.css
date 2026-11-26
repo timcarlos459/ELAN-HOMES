@@ -1,10 +1,25 @@
 /* ==========================================
-   ELAN HOMES - ABOUT PAGE
+   ÉLAN HOMES - ABOUT PAGE
 ========================================== */
 
 .about-page {
+  width: 100%;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
+}
+
+.about-page *,
+.about-page *::before,
+.about-page *::after {
+  box-sizing: border-box;
+}
+
+.about-page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ==========================================
@@ -13,6 +28,7 @@
 
 .about-hero {
   position: relative;
+  width: 100%;
   min-height: 520px;
   background-image: url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600");
   background-size: cover;
@@ -24,15 +40,15 @@
 .about-hero-overlay {
   width: 100%;
   min-height: 520px;
-  padding: 100px 8%;
+  padding: 90px 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: linear-gradient(
     90deg,
-    rgba(0, 0, 0, 0.82) 0%,
-    rgba(0, 0, 0, 0.55) 55%,
-    rgba(0, 0, 0, 0.1) 100%
+    rgba(0, 0, 0, 0.84) 0%,
+    rgba(0, 0, 0, 0.58) 55%,
+    rgba(0, 0, 0, 0.12) 100%
   );
 }
 
@@ -43,15 +59,18 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 24px;
+  line-height: 1.6;
+  margin-bottom: 22px;
 }
 
 .about-hero h1 {
+  max-width: 850px;
   color: #fff;
-  font-size: clamp(40px, 6vw, 75px);
+  font-size: clamp(38px, 6vw, 75px);
   line-height: 1.1;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
+  overflow-wrap: break-word;
 }
 
 .about-hero h1 span {
@@ -63,6 +82,7 @@
   color: #e5e5e5;
   font-size: 16px;
   line-height: 1.8;
+  margin: 0;
 }
 
 /* ==========================================
@@ -70,25 +90,22 @@
 ========================================== */
 
 .about-story {
+  width: 100%;
   padding: 100px 8%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  gap: 75px;
+  gap: clamp(35px, 6vw, 75px);
 }
 
 .about-story-image {
+  width: 100%;
   height: 500px;
   overflow: hidden;
 }
 
-.about-story-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .about-story-content {
+  width: 100%;
   max-width: 550px;
 }
 
@@ -96,7 +113,7 @@
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.2;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
 }
 
 .about-story-content h2 span {
@@ -107,7 +124,7 @@
   color: #666;
   font-size: 15px;
   line-height: 1.9;
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
 
 /* ==========================================
@@ -115,23 +132,25 @@
 ========================================== */
 
 .about-who-we-are {
+  width: 100%;
   background: #171717;
   color: #fff;
   padding: 100px 8%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  gap: 75px;
+  gap: clamp(35px, 6vw, 75px);
 }
 
 .about-who-content {
+  width: 100%;
   max-width: 550px;
 }
 
 .about-who-content h2 {
   font-size: clamp(34px, 4vw, 50px);
   line-height: 1.2;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
   font-weight: 600;
 }
 
@@ -139,18 +158,13 @@
   color: #c4c4c4;
   font-size: 15px;
   line-height: 1.9;
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
 
 .about-who-image {
+  width: 100%;
   height: 480px;
   overflow: hidden;
-}
-
-.about-who-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* ==========================================
@@ -158,16 +172,18 @@
 ========================================== */
 
 .about-mission-vision {
+  width: 100%;
   padding: 100px 8%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 30px;
 }
 
 .about-mission-card,
 .about-vision-card {
-  padding: 55px 45px;
+  min-width: 0;
   min-height: 380px;
+  padding: 55px 45px;
   position: relative;
 }
 
@@ -191,9 +207,10 @@
 
 .about-mission-card h2,
 .about-vision-card h2 {
-  font-size: 32px;
+  max-width: 420px;
+  font-size: clamp(27px, 3vw, 32px);
   line-height: 1.3;
-  margin-bottom: 22px;
+  margin: 0 0 22px;
   font-weight: 600;
 }
 
@@ -202,6 +219,7 @@
   font-size: 15px;
   line-height: 1.9;
   max-width: 480px;
+  margin: 0;
 }
 
 .about-mission-card p {
@@ -217,21 +235,23 @@
 ========================================== */
 
 .about-commitment {
+  width: 100%;
   padding: 100px 8%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  gap: 75px;
+  gap: clamp(35px, 6vw, 75px);
 }
 
 .about-commitment-content {
+  width: 100%;
   max-width: 550px;
 }
 
 .about-commitment-content h2 {
   font-size: clamp(35px, 4vw, 52px);
   line-height: 1.2;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
 }
 
 .about-commitment-content h2 span {
@@ -242,47 +262,47 @@
   color: #666;
   font-size: 15px;
   line-height: 1.9;
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
 
 .about-commitment-image {
+  width: 100%;
   height: 480px;
   overflow: hidden;
 }
 
-.about-commitment-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* ==========================================
-   RESPONSIVE DESIGN
+   TABLET RESPONSIVENESS
 ========================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .about-story,
   .about-who-we-are,
   .about-commitment {
-    gap: 40px;
+    gap: 35px;
     padding: 75px 6%;
   }
 
   .about-story-image,
   .about-who-image,
   .about-commitment-image {
-    height: 400px;
+    height: 380px;
   }
 
   .about-mission-vision {
     padding: 75px 6%;
+    gap: 20px;
   }
 
   .about-mission-card,
   .about-vision-card {
-    padding: 40px 30px;
+    padding: 45px 30px;
   }
 }
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
 
 @media (max-width: 700px) {
   .about-hero,
@@ -290,35 +310,44 @@
     min-height: 450px;
   }
 
+  .about-hero {
+    background-position: 60% center;
+  }
+
   .about-hero-overlay {
-    padding: 75px 6%;
+    padding: 70px 6%;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.86),
+      rgba(0, 0, 0, 0.48)
+    );
+  }
+
+  .about-hero h1 {
+    font-size: clamp(36px, 8vw, 48px);
+  }
+
+  .about-hero p {
+    max-width: 100%;
+    font-size: 15px;
   }
 
   .about-story,
   .about-who-we-are,
   .about-commitment {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 60px 6%;
+    gap: 30px;
   }
 
-  .about-story-image {
-    order: 1;
-  }
-
-  .about-story-content {
-    order: 2;
-  }
-
-  .about-who-image {
-    order: 2;
-  }
-
-  .about-who-content {
-    order: 1;
+  .about-story-image,
+  .about-who-image,
+  .about-commitment-image {
+    height: 350px;
   }
 
   .about-mission-vision {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 60px 6%;
     gap: 20px;
   }
@@ -329,37 +358,78 @@
     padding: 45px 30px;
   }
 
-  .about-story-image,
-  .about-who-image,
-  .about-commitment-image {
-    height: 350px;
+  .about-card-number {
+    top: 22px;
+    right: 25px;
   }
 }
+
+/* ==========================================
+   SMALL MOBILE DEVICES
+========================================== */
 
 @media (max-width: 450px) {
   .about-hero,
   .about-hero-overlay {
-    min-height: 400px;
+    min-height: 410px;
+  }
+
+  .about-hero-overlay {
+    padding: 60px 6%;
+  }
+
+  .about-label,
+  .about-section-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
   }
 
   .about-hero h1 {
-    font-size: 38px;
+    font-size: 36px;
   }
 
   .about-story-content h2,
   .about-who-content h2,
   .about-commitment-content h2 {
-    font-size: 34px;
-  }
-
-  .about-mission-card h2,
-  .about-vision-card h2 {
-    font-size: 27px;
+    font-size: 32px;
   }
 
   .about-story-image,
   .about-who-image,
   .about-commitment-image {
-    height: 280px;
+    height: 270px;
+  }
+
+  .about-mission-card,
+  .about-vision-card {
+    padding: 42px 24px;
+  }
+
+  .about-mission-card h2,
+  .about-vision-card h2 {
+    font-size: 26px;
+  }
+
+  .about-mission-card p,
+  .about-vision-card p,
+  .about-story-content p,
+  .about-who-content p,
+  .about-commitment-content p {
+    font-size: 14px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page *,
+  .about-page *::before,
+  .about-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

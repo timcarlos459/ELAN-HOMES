@@ -3,23 +3,29 @@
 ================================= */
 
 .property-owner-cta {
+  width: 100%;
   padding: 90px 7%;
   background: #f8f6f1;
+  overflow: hidden;
 }
 
 .owner-cta-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 65px;
+  width: 100%;
   max-width: 1250px;
+  min-width: 0;
   margin: 0 auto;
 }
 
 /* CONTENT */
 
 .owner-cta-content {
+  width: 100%;
   max-width: 560px;
+  min-width: 0;
 }
 
 .owner-cta-label {
@@ -32,11 +38,12 @@
 }
 
 .owner-cta-content h2 {
-  font-size: clamp(36px, 4.5vw, 56px);
+  font-size: clamp(34px, 4.5vw, 56px);
   line-height: 1.12;
   font-weight: 600;
   color: #171717;
   margin-bottom: 24px;
+  overflow-wrap: anywhere;
 }
 
 .owner-cta-content h2 span {
@@ -64,13 +71,18 @@
 .owner-primary-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
+  min-height: 48px;
   background: #171717;
   color: #fff;
-  padding: 16px 24px;
+  padding: 14px 24px;
   font-size: 13px;
   font-weight: 600;
-  transition: 0.3s ease;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .owner-primary-btn span {
@@ -89,16 +101,27 @@
 }
 
 .owner-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   color: #171717;
   font-size: 13px;
   font-weight: 600;
-  padding: 15px 5px;
+  padding: 12px 5px;
   border-bottom: 1px solid #c6a15b;
-  transition: 0.3s ease;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .owner-secondary-btn:hover {
   color: #b18a45;
+}
+
+.owner-primary-btn:focus-visible,
+.owner-secondary-btn:focus-visible {
+  outline: 2px solid #b18a45;
+  outline-offset: 4px;
 }
 
 /* NOTE */
@@ -112,6 +135,7 @@
 }
 
 .owner-cta-note span {
+  flex-shrink: 0;
   color: #b18a45;
   font-size: 12px;
   font-weight: 700;
@@ -121,18 +145,22 @@
   color: #777;
   font-size: 12px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 /* IMAGE */
 
 .owner-cta-image {
   position: relative;
+  width: 100%;
   height: 480px;
+  min-width: 0;
   overflow: hidden;
   background: #ddd;
 }
 
 .owner-cta-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -163,10 +191,11 @@
 .owner-image-caption p {
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.5;
   margin-top: 8px;
 }
 
-/* RESPONSIVE */
+/* TABLET */
 
 @media (max-width: 900px) {
   .property-owner-cta {
@@ -174,13 +203,19 @@
   }
 
   .owner-cta-container {
-    gap: 40px;
+    gap: 35px;
   }
 
   .owner-cta-image {
     height: 400px;
   }
+
+  .owner-cta-content h2 {
+    font-size: clamp(34px, 5vw, 46px);
+  }
 }
+
+/* MOBILE */
 
 @media (max-width: 700px) {
   .property-owner-cta {
@@ -188,7 +223,7 @@
   }
 
   .owner-cta-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 35px;
   }
 
@@ -196,18 +231,81 @@
     max-width: 100%;
   }
 
+  .owner-cta-content > p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
   .owner-cta-image {
     height: 350px;
   }
 }
 
+/* SMALL MOBILE */
+
 @media (max-width: 450px) {
+  .property-owner-cta {
+    padding: 48px 5%;
+  }
+
+  .owner-cta-content h2 {
+    font-size: 34px;
+  }
+
+  .owner-cta-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
   .owner-cta-actions {
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .owner-primary-btn {
+    width: 100%;
+  }
+
+  .owner-secondary-btn {
+    align-self: flex-start;
   }
 
   .owner-cta-image {
     height: 300px;
+  }
+
+  .owner-image-caption {
+    padding: 25px 20px 20px;
+  }
+}
+
+/* VERY SMALL SCREENS */
+
+@media (max-width: 350px) {
+  .owner-cta-content h2 {
+    font-size: 30px;
+  }
+
+  .owner-cta-image {
+    height: 260px;
+  }
+
+  .owner-image-caption p {
+    font-size: 16px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .owner-primary-btn,
+  .owner-secondary-btn,
+  .owner-cta-image img {
+    transition: none;
+  }
+
+  .owner-primary-btn:hover {
+    transform: none;
   }
 }

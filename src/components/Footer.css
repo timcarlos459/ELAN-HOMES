@@ -1,5 +1,5 @@
 /* =========================================
-   ELAN HOMES - PREMIUM FOOTER
+   ÉLAN HOMES - PREMIUM FOOTER
 ========================================= */
 
 .elan-footer {
@@ -7,12 +7,10 @@
   background: #101010;
   color: #e9e4da;
   border-top: 1px solid rgba(197, 164, 109, 0.3);
-  font-family: "Inter", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-/* =========================================
-   FOOTER MAIN
-========================================= */
+/* FOOTER MAIN */
 
 .footer-main {
   width: 92%;
@@ -20,13 +18,16 @@
   margin: auto;
   padding: 75px 0 65px;
   display: grid;
-  grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.6fr repeat(5, minmax(0, 1fr));
+  gap: 30px;
 }
 
-/* =========================================
-   BRAND
-========================================= */
+.footer-brand-section {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* BRAND */
 
 .footer-brand {
   display: inline-flex;
@@ -58,16 +59,14 @@
   margin-bottom: 25px;
 }
 
-/* =========================================
-   SOCIAL LINKS
-========================================= */
+/* SOCIAL PLACEHOLDERS */
 
 .footer-socials {
   display: flex;
   gap: 11px;
 }
 
-.footer-socials a {
+.footer-socials span {
   width: 35px;
   height: 35px;
   display: flex;
@@ -78,25 +77,15 @@
   color: #d5b477;
   font-size: 11px;
   font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
 }
 
-.footer-socials a:hover {
-  background: #d5b477;
-  color: #101010;
-  border-color: #d5b477;
-  transform: translateY(-3px);
-}
-
-/* =========================================
-   FOOTER COLUMNS
-========================================= */
+/* FOOTER COLUMNS */
 
 .footer-column {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  min-width: 0;
 }
 
 .footer-column h3 {
@@ -122,8 +111,10 @@
 .footer-column a {
   color: #aaa49a;
   font-size: 12px;
+  line-height: 1.6;
   text-decoration: none;
   transition: all 0.3s ease;
+  overflow-wrap: anywhere;
 }
 
 .footer-column a:hover {
@@ -131,9 +122,14 @@
   padding-left: 5px;
 }
 
-/* =========================================
-   FOOTER BOTTOM
-========================================= */
+/* KEYBOARD ACCESSIBILITY */
+
+.elan-footer a:focus-visible {
+  outline: 2px solid #d5b477;
+  outline-offset: 4px;
+}
+
+/* FOOTER BOTTOM */
 
 .footer-bottom {
   width: 92%;
@@ -154,14 +150,12 @@
   line-height: 1.7;
 }
 
-/* =========================================
-   TABLET
-========================================= */
+/* LAPTOP AND SMALL DESKTOP */
 
-@media (max-width: 1050px) {
+@media (max-width: 1350px) {
   .footer-main {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 45px 30px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 45px 35px;
   }
 
   .footer-brand-section {
@@ -173,20 +167,30 @@
   }
 }
 
-/* =========================================
-   MOBILE
-========================================= */
+/* TABLET */
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .footer-main {
     width: 90%;
-    padding: 55px 0 40px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 38px 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 25px;
   }
 
   .footer-brand-section {
     grid-column: span 2;
+  }
+
+  .footer-bottom {
+    width: 90%;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .footer-main {
+    padding: 55px 0 40px;
+    gap: 35px 20px;
   }
 
   .footer-brand-name {
@@ -195,6 +199,10 @@
 
   .footer-brand-section > p {
     font-size: 12px;
+  }
+
+  .footer-column {
+    gap: 13px;
   }
 
   .footer-column h3 {
@@ -206,13 +214,14 @@
   }
 
   .footer-bottom {
-    width: 90%;
     padding: 20px 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
 }
+
+/* VERY SMALL PHONES */
 
 @media (max-width: 350px) {
   .footer-main {
@@ -221,5 +230,14 @@
 
   .footer-brand-section {
     grid-column: span 1;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .elan-footer * {
+    transition: none !important;
+    animation: none !important;
   }
 }

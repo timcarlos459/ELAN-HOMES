@@ -1,29 +1,41 @@
 /* =================================
-   ELAN HOMES - STAY DETAILS
+   ÉLAN HOMES — STAY DETAILS
 ================================= */
 
 .stay-details-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #faf9f6;
   color: #171717;
-  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-/* HERO */
+.stay-details-page *,
+.stay-details-page *::before,
+.stay-details-page *::after {
+  box-sizing: border-box;
+}
+
+/* =================================
+   HERO
+================================= */
 
 .stay-details-hero {
   min-height: 300px;
+  display: flex;
+  align-items: center;
+  padding: 60px 8%;
   background:
     linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.58)),
     url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600")
       center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  padding: 60px 8%;
 }
 
 .stay-details-hero-content {
-  color: #fff;
+  width: 100%;
   max-width: 850px;
+  color: #fff;
 }
 
 .stay-details-hero-content span {
@@ -34,8 +46,10 @@
 }
 
 .stay-details-hero-content h1 {
-  font-size: clamp(32px, 5vw, 55px);
   margin: 18px 0 10px;
+  font-size: clamp(32px, 5vw, 55px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .stay-details-hero-content p {
@@ -43,20 +57,25 @@
   font-size: 16px;
 }
 
-/* BREADCRUMB */
+/* =================================
+   BREADCRUMB
+================================= */
 
 .stay-details-breadcrumb {
-  padding: 22px 8%;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  font-size: 13px;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 8%;
   color: #777;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .stay-details-breadcrumb a {
   color: #777;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .stay-details-breadcrumb a:hover {
@@ -65,26 +84,31 @@
 
 .stay-details-breadcrumb strong {
   color: #171717;
+  overflow-wrap: anywhere;
 }
 
-/* GALLERY */
+/* =================================
+   ACCOMMODATION GALLERY
+================================= */
 
 .stay-details-gallery {
-  padding: 10px 8% 45px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 12px;
   height: 480px;
+  padding: 10px 8% 45px;
 }
 
 .stay-gallery-main,
 .stay-gallery-side {
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
   border-radius: 8px;
 }
 
 .stay-gallery-main img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -92,25 +116,87 @@
 
 .stay-gallery-side {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
 .stay-gallery-side img {
+  display: block;
   width: 100%;
   height: 100%;
+  min-width: 0;
   object-fit: cover;
 }
 
-/* MAIN LAYOUT */
+.stay-gallery-main .saved-card-no-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  background: #eeeae3;
+  color: #777;
+  font-size: 14px;
+}
+
+/* =================================
+   PROPERTY VIDEO TOUR
+================================= */
+
+.stay-video-section {
+  width: min(1200px, 92%);
+  margin: 45px auto;
+  padding: 35px;
+  background: #111;
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 12px;
+}
+
+.stay-video-heading {
+  margin-bottom: 22px;
+}
+
+.stay-video-heading span {
+  color: #c9a961;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.stay-video-heading h2 {
+  margin: 10px 0;
+  color: #fff;
+  font-size: 27px;
+  line-height: 1.3;
+}
+
+.stay-video-heading p {
+  color: #bbb;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.stay-video-player {
+  display: block;
+  width: 100%;
+  max-height: 650px;
+  background: #000;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+/* =================================
+   MAIN DETAILS LAYOUT
+================================= */
 
 .stay-details-container {
-  padding: 20px 8% 70px;
   display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: 55px;
+  grid-template-columns: minmax(0, 1fr) 350px;
   align-items: start;
+  gap: 55px;
+  padding: 20px 8% 70px;
 }
 
 .stay-details-main {
@@ -119,31 +205,63 @@
 
 .stay-details-heading > span {
   display: inline-block;
-  color: #9c793c;
-  background: #f1eadc;
   padding: 7px 14px;
+  background: #f1eadc;
+  border-radius: 3px;
+  color: #9c793c;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border-radius: 3px;
 }
 
 .stay-details-heading h2 {
-  font-size: 34px;
   margin: 15px 0 8px;
+  font-size: 34px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .stay-details-heading p {
   color: #777;
   font-size: 15px;
+  line-height: 1.6;
 }
 
-/* FEATURES */
+/* =================================
+   SAVE STAY BUTTON
+================================= */
+
+.save-listing-btn {
+  min-height: 44px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  background: #fff;
+  color: #111;
+  border: 1px solid #c9a45c;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.save-listing-btn:hover,
+.save-listing-btn.saved {
+  background: #111;
+  color: #c9a45c;
+}
+
+/* =================================
+   ACCOMMODATION FEATURES
+================================= */
 
 .stay-details-features {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin: 30px 0;
   padding: 25px 0;
@@ -153,12 +271,14 @@
 
 .stay-details-features div {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 7px;
 }
 
 .stay-details-features strong {
   font-size: 17px;
+  overflow-wrap: anywhere;
 }
 
 .stay-details-features span {
@@ -166,7 +286,9 @@
   font-size: 12px;
 }
 
-/* SECTIONS */
+/* =================================
+   DETAILS SECTIONS
+================================= */
 
 .stay-details-section {
   padding: 28px 0;
@@ -174,47 +296,58 @@
 }
 
 .stay-details-section h3 {
-  font-size: 21px;
   margin-bottom: 18px;
+  font-size: 21px;
+  line-height: 1.35;
 }
 
 .stay-details-section p {
   color: #666;
-  line-height: 1.9;
   font-size: 15px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
 }
 
-/* AMENITIES */
+/* =================================
+   AMENITIES
+================================= */
 
 .stay-amenities-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 17px;
 }
 
 .stay-amenity {
   display: flex;
+  min-width: 0;
   align-items: center;
   gap: 12px;
   color: #555;
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .stay-amenity span {
+  flex-shrink: 0;
   color: #b18a45;
-  font-weight: bold;
   font-size: 18px;
+  font-weight: 700;
 }
 
-/* CHECK IN AND OUT */
+/* =================================
+   CHECK-IN AND CHECK-OUT
+================================= */
 
 .stay-check-times {
   display: flex;
-  gap: 60px;
+  flex-wrap: wrap;
+  gap: 35px 60px;
 }
 
 .stay-check-times div {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 8px;
 }
@@ -226,47 +359,55 @@
 
 .stay-check-times strong {
   font-size: 18px;
+  overflow-wrap: anywhere;
 }
 
-/* BOOKING CARD */
+/* =================================
+   BOOKING CARD
+================================= */
 
 .stay-booking-card {
+  position: sticky;
+  top: 100px;
+  min-width: 0;
+  padding: 30px;
   background: #fff;
   border: 1px solid #e7e1d6;
   border-radius: 8px;
-  padding: 30px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 100px;
 }
 
 .stay-booking-card > span {
   color: #888;
   font-size: 11px;
-  letter-spacing: 1.5px;
   font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
 .stay-booking-card h2 {
-  font-size: 29px;
   margin: 12px 0 6px;
   color: #171717;
+  font-size: 29px;
+  overflow-wrap: anywhere;
 }
 
 .stay-booking-card > p {
   color: #888;
   font-size: 12px;
+  line-height: 1.7;
 }
 
 .stay-booking-divider {
   height: 1px;
-  background: #e9e4dc;
   margin: 25px 0;
+  background: #e9e4dc;
 }
 
 .stay-booking-info {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
   margin: 18px 0;
   font-size: 14px;
 }
@@ -277,139 +418,16 @@
 
 .stay-booking-info strong {
   color: #222;
-}
-
-.stay-booking-btn {
-  display: block;
-  background: #171717;
-  color: #d6b36a;
-  padding: 16px;
-  text-align: center;
-  text-decoration: none;
-  margin-top: 28px;
-  font-weight: 700;
-  font-size: 13px;
-  border-radius: 4px;
-  transition: 0.3s ease;
-}
-
-.stay-booking-btn:hover {
-  background: #c5a15b;
-  color: #171717;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .stay-booking-card .stay-booking-note {
+  margin-top: 18px;
+  color: #777;
+  font-size: 12px;
   line-height: 1.7;
   text-align: center;
-  margin-top: 18px;
-}
-
-/* BACK BUTTON */
-
-.stay-details-back {
-  padding: 0 8% 60px;
-}
-
-.stay-details-back a {
-  color: #98743b;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* NOT FOUND */
-
-.stay-not-found {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.stay-not-found h1 {
-  font-size: 35px;
-}
-
-.stay-not-found a {
-  background: #171717;
-  color: #d6b36a;
-  padding: 14px 25px;
-  margin-top: 20px;
-  text-decoration: none;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .stay-details-container {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-
-  .stay-booking-card {
-    position: static;
-  }
-
-  .stay-details-gallery {
-    height: 380px;
-  }
-}
-
-@media (max-width: 600px) {
-  .stay-details-hero {
-    min-height: 240px;
-    padding: 45px 6%;
-  }
-
-  .stay-details-breadcrumb {
-    padding: 18px 6%;
-  }
-
-  .stay-details-gallery {
-    padding: 5px 6% 30px;
-    height: auto;
-    grid-template-columns: 1fr;
-  }
-
-  .stay-gallery-main {
-    height: 260px;
-  }
-
-  .stay-gallery-side {
-    height: 180px;
-  }
-
-  .stay-details-container {
-    padding: 15px 6% 50px;
-  }
-
-  .stay-details-heading h2 {
-    font-size: 27px;
-  }
-
-  .stay-details-features {
-    grid-template-columns: repeat(2, 1fr);
-    row-gap: 25px;
-  }
-
-  .stay-amenities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stay-check-times {
-    gap: 35px;
-  }
-
-  .stay-booking-card {
-    padding: 24px;
-  }
-
-  .stay-details-back {
-    padding: 0 6% 40px;
-  }
 }
 
 /* =================================
@@ -432,15 +450,16 @@
 .stay-booking-field input,
 .stay-booking-field select {
   width: 100%;
+  min-height: 46px;
   padding: 13px 12px;
+  background: #faf9f6;
   border: 1px solid #ded8cd;
   border-radius: 4px;
-  background: #faf9f6;
   color: #171717;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 .stay-booking-field input:focus,
@@ -448,9 +467,44 @@
   border-color: #b18a45;
 }
 
-.stay-booking-field input:disabled {
+.stay-booking-field input:disabled,
+.stay-booking-field select:disabled {
   background: #eeeae3;
   cursor: not-allowed;
+}
+
+.stay-booking-field input:focus-visible,
+.stay-booking-field select:focus-visible {
+  outline: 2px solid #b18a45;
+  outline-offset: 2px;
+}
+
+/* =================================
+   BOOKING AVAILABILITY
+================================= */
+
+.stay-availability-available,
+.stay-availability-unavailable {
+  width: 100%;
+  margin: 16px 0;
+  padding: 13px 14px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.stay-availability-available {
+  background: #edf5ed;
+  border: 1px solid #b8d6b8;
+  color: #286b35;
+}
+
+.stay-availability-unavailable {
+  background: #fbefed;
+  border: 1px solid #e6c0ba;
+  color: #a33327;
 }
 
 /* =================================
@@ -458,17 +512,17 @@
 ================================= */
 
 .stay-price-summary {
+  margin-top: 25px;
+  padding: 18px;
   background: #faf9f6;
   border: 1px solid #e7e1d6;
   border-radius: 5px;
-  padding: 18px;
-  margin-top: 25px;
 }
 
 .stay-price-summary h3 {
-  font-size: 16px;
   margin: 0 0 20px;
   color: #171717;
+  font-size: 16px;
 }
 
 .stay-price-summary .stay-booking-info {
@@ -484,19 +538,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 18px;
 }
 
 .stay-booking-total span {
+  color: #171717;
   font-size: 13px;
   font-weight: 700;
-  color: #171717;
 }
 
 .stay-booking-total strong {
   color: #98743b;
   font-size: 19px;
+  overflow-wrap: anywhere;
 }
 
 /* =================================
@@ -504,53 +560,34 @@
 ================================= */
 
 .stay-booking-btn {
+  display: block;
   width: 100%;
+  min-height: 50px;
+  margin-top: 28px;
+  padding: 16px;
+  background: #171717;
   border: 1px solid #171717;
+  border-radius: 4px;
+  color: #d6b36a;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .stay-booking-btn:hover {
   transform: translateY(-2px);
+  background: #c5a15b;
+  color: #171717;
 }
 
 /* =================================
-   MOBILE BOOKING FORM
-================================= */
-
-@media (max-width: 600px) {
-  .stay-booking-field {
-    margin: 17px 0;
-  }
-
-  .stay-price-summary {
-    padding: 15px;
-  }
-
-  .stay-booking-total strong {
-    font-size: 17px;
-  }
-}
-.save-listing-btn {
-  margin-top: 15px;
-  padding: 12px 20px;
-  background: #ffffff;
-  color: #111111;
-  border: 1px solid #c9a45c;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.save-listing-btn:hover,
-.save-listing-btn.saved {
-  background: #111111;
-  color: #c9a45c;
-}
-
-/* =================================
-   ELAN HOMES - STAY REVIEWS & RATINGS
+   GUEST REVIEWS
 ================================= */
 
 .stay-reviews-section {
@@ -568,41 +605,42 @@
 
 .stay-reviews-eyebrow {
   display: block;
+  margin-bottom: 10px;
   color: #a17d3f;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
-  margin-bottom: 10px;
 }
 
 .stay-reviews-heading h3 {
-  font-size: 25px;
   margin: 0 0 10px;
   color: #171717;
+  font-size: 25px;
 }
 
 .stay-reviews-heading p {
   margin: 0;
   color: #777;
   font-size: 14px;
+  line-height: 1.7;
 }
 
 /* AVERAGE RATING */
 
 .stay-average-rating {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 13px;
   padding: 15px 19px;
   background: #f1eadc;
   border: 1px solid #e5d8bf;
   border-radius: 5px;
-  flex-shrink: 0;
 }
 
 .stay-average-rating > strong {
-  font-size: 32px;
   color: #171717;
+  font-size: 32px;
 }
 
 .stay-average-rating > div {
@@ -642,11 +680,15 @@
 }
 
 .stay-review-card {
+  min-width: 0;
+  padding: 22px;
   background: #fff;
   border: 1px solid #e9e3d9;
   border-radius: 7px;
-  padding: 22px;
-  transition: 0.3s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .stay-review-card:hover {
@@ -665,21 +707,22 @@
 }
 
 .stay-review-avatar {
+  display: flex;
+  flex-shrink: 0;
   width: 43px;
   height: 43px;
-  flex-shrink: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   background: #171717;
-  color: #d6b36a;
   border-radius: 50%;
+  color: #d6b36a;
   font-size: 17px;
   font-weight: 700;
 }
 
 .stay-review-card-top > div:last-child {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: 5px;
 }
@@ -687,6 +730,7 @@
 .stay-review-card-top strong {
   color: #171717;
   font-size: 14px;
+  overflow-wrap: anywhere;
 }
 
 .stay-review-card-top span {
@@ -697,27 +741,29 @@
 /* REVIEW CONTENT */
 
 .stay-review-card > h4 {
+  margin: 13px 0 8px;
   color: #171717;
   font-size: 15px;
-  margin: 13px 0 8px;
+  overflow-wrap: anywhere;
 }
 
 .stay-review-card > p {
+  margin: 12px 0;
   color: #666;
   font-size: 13px;
   line-height: 1.8;
-  margin: 12px 0;
+  overflow-wrap: anywhere;
 }
 
 /* VERIFIED REVIEW */
 
 .stay-verified-review {
   display: inline-block;
-  color: #8a6a34;
+  margin-top: 8px;
+  padding: 6px 9px;
   background: #f5efe3;
   border-radius: 3px;
-  padding: 6px 9px;
-  margin-top: 8px;
+  color: #8a6a34;
   font-size: 10px;
   font-weight: 700;
 }
@@ -725,23 +771,23 @@
 /* NO REVIEWS */
 
 .stay-no-reviews {
+  padding: 38px 25px;
   background: #fff;
   border: 1px dashed #d8cbb5;
   border-radius: 7px;
-  padding: 38px 25px;
   text-align: center;
 }
 
 .stay-no-reviews-icon {
-  font-size: 38px;
-  color: #b18a45;
   margin-bottom: 10px;
+  color: #b18a45;
+  font-size: 38px;
 }
 
 .stay-no-reviews h4 {
+  margin: 0 0 10px;
   color: #171717;
   font-size: 17px;
-  margin: 0 0 10px;
 }
 
 .stay-no-reviews p {
@@ -752,113 +798,29 @@
   line-height: 1.8;
 }
 
-/* REVIEWS RESPONSIVE */
-
-@media (max-width: 700px) {
-  .stay-reviews-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .stay-reviews-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stay-average-rating {
-    width: fit-content;
-  }
-
-  .stay-reviews-heading h3 {
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 400px) {
-  .stay-review-card {
-    padding: 17px;
-  }
-
-  .stay-no-reviews {
-    padding: 30px 17px;
-  }
-}
-
 /* =================================
-   STAY PROPERTY VIDEO TOUR
-================================= */
-
-.stay-video-section {
-  width: min(1200px, 92%);
-  margin: 45px auto;
-  padding: 35px;
-  background: #111;
-  border: 1px solid rgba(201, 169, 97, 0.3);
-  border-radius: 12px;
-}
-
-.stay-video-heading {
-  margin-bottom: 22px;
-}
-
-.stay-video-heading span {
-  color: #c9a961;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.stay-video-heading h2 {
-  color: #fff;
-  font-size: 27px;
-  margin: 10px 0;
-}
-
-.stay-video-heading p {
-  color: #bbb;
-  line-height: 1.7;
-}
-
-.stay-video-player {
-  display: block;
-  width: 100%;
-  max-height: 650px;
-  background: #000;
-  border-radius: 9px;
-  object-fit: contain;
-}
-
-@media (max-width: 600px) {
-  .stay-video-section {
-    padding: 18px;
-    margin: 30px auto;
-  }
-
-  .stay-video-heading h2 {
-    font-size: 22px;
-  }
-}
-
-/* =================================
-   STAY BOOKING ACCOUNT OPTIONS
+   ACCOUNT OPTIONS MODAL
 ================================= */
 
 .stay-account-overlay {
   position: fixed;
-  inset: 0;
   z-index: 9999;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(5px);
+  overflow-y: auto;
 }
 
 .stay-account-modal {
   position: relative;
   width: 100%;
   max-width: 470px;
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
   padding: 42px 35px 35px;
   background: #faf9f6;
   border: 1px solid #c9a45c;
@@ -882,39 +844,42 @@
 
 .stay-account-modal > span {
   display: block;
+  margin-bottom: 15px;
   color: #a17d3f;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2.5px;
-  margin-bottom: 15px;
 }
 
 .stay-account-modal h2 {
+  margin: 0 0 13px;
   color: #171717;
   font-size: 25px;
   line-height: 1.4;
-  margin: 0 0 13px;
+  overflow-wrap: anywhere;
 }
 
 .stay-account-modal > p {
+  margin: 0 0 27px;
   color: #777;
   font-size: 14px;
   line-height: 1.8;
-  margin: 0 0 27px;
 }
 
 .stay-account-close {
   position: absolute;
   top: 12px;
   right: 16px;
+  display: flex;
   width: 35px;
   height: 35px;
+  align-items: center;
+  justify-content: center;
   border: none;
   background: transparent;
   color: #555;
   font-size: 29px;
   cursor: pointer;
-  line-height: 1;
 }
 
 .stay-account-close:hover {
@@ -925,32 +890,37 @@
 .stay-account-register {
   display: block;
   width: 100%;
-  padding: 16px 12px;
+  min-height: 48px;
   margin-top: 13px;
+  padding: 16px 12px;
+  border: 1px solid transparent;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.7px;
   text-decoration: none;
-  transition: 0.3s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .stay-account-signin {
   background: #171717;
+  border-color: #171717;
   color: #d6b36a;
-  border: 1px solid #171717;
 }
 
 .stay-account-signin:hover {
   background: #c5a15b;
-  color: #171717;
   border-color: #c5a15b;
+  color: #171717;
 }
 
 .stay-account-register {
   background: transparent;
+  border-color: #c9a45c;
   color: #171717;
-  border: 1px solid #c9a45c;
 }
 
 .stay-account-register:hover {
@@ -958,6 +928,7 @@
 }
 
 .stay-account-cancel {
+  min-height: 42px;
   margin-top: 22px;
   padding: 9px 18px;
   border: none;
@@ -972,7 +943,264 @@
   color: #a17d3f;
 }
 
-@media (max-width: 500px) {
+/* =================================
+   BACK TO STAYS
+================================= */
+
+.stay-details-back {
+  padding: 0 8% 60px;
+}
+
+.stay-details-back a {
+  color: #98743b;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.stay-details-back a:hover {
+  color: #171717;
+}
+
+/* =================================
+   NOT FOUND
+================================= */
+
+.stay-not-found {
+  display: flex;
+  min-height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.stay-not-found h1 {
+  font-size: 35px;
+}
+
+.stay-not-found p {
+  color: #777;
+  line-height: 1.7;
+}
+
+.stay-not-found a {
+  margin-top: 20px;
+  padding: 14px 25px;
+  background: #171717;
+  color: #d6b36a;
+  text-decoration: none;
+}
+
+/* =================================
+   ACCESSIBILITY
+================================= */
+
+.stay-details-page a:focus-visible,
+.stay-details-page button:focus-visible,
+.stay-account-modal a:focus-visible,
+.stay-account-modal button:focus-visible {
+  outline: 2px solid #b18a45;
+  outline-offset: 3px;
+}
+
+/* =================================
+   TABLET RESPONSIVENESS
+================================= */
+
+@media (max-width: 1100px) {
+  .stay-details-container {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 30px;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .stay-details-gallery {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .stay-details-breadcrumb {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .stay-booking-card {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .stay-details-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .stay-booking-card {
+    position: static;
+    width: 100%;
+  }
+
+  .stay-details-gallery {
+    height: 380px;
+  }
+
+  .stay-details-features {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =================================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media (max-width: 700px) {
+  .stay-reviews-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .stay-reviews-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stay-average-rating {
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .stay-reviews-heading h3 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stay-details-hero {
+    min-height: 240px;
+    padding: 45px 6%;
+  }
+
+  .stay-details-hero-content h1 {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+  .stay-details-hero-content span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .stay-details-hero-content p {
+    font-size: 14px;
+  }
+
+  .stay-details-breadcrumb {
+    gap: 8px;
+    padding: 18px 6%;
+    font-size: 12px;
+  }
+
+  .stay-details-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+    padding: 5px 6% 30px;
+  }
+
+  .stay-gallery-main {
+    height: 260px;
+  }
+
+  .stay-gallery-side {
+    height: 180px;
+  }
+
+  .stay-details-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+    padding: 15px 6% 50px;
+  }
+
+  .stay-details-heading h2 {
+    font-size: 27px;
+  }
+
+  .stay-details-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 25px;
+  }
+
+  .stay-details-section {
+    padding: 23px 0;
+  }
+
+  .stay-details-section h3 {
+    font-size: 19px;
+  }
+
+  .stay-details-section p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .stay-amenities-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .stay-check-times {
+    gap: 25px;
+  }
+
+  .stay-check-times strong {
+    font-size: 16px;
+  }
+
+  .stay-booking-card {
+    padding: 22px;
+  }
+
+  .stay-booking-card h2 {
+    font-size: 26px;
+  }
+
+  .stay-booking-field {
+    margin: 17px 0;
+  }
+
+  .stay-price-summary {
+    padding: 15px;
+  }
+
+  .stay-booking-total strong {
+    font-size: 17px;
+  }
+
+  .stay-availability-available,
+  .stay-availability-unavailable {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .stay-video-section {
+    width: 88%;
+    margin: 30px auto;
+    padding: 18px;
+  }
+
+  .stay-video-heading h2 {
+    font-size: 22px;
+  }
+
+  .stay-video-heading p {
+    font-size: 13px;
+  }
+
+  .stay-details-back {
+    padding: 0 6% 40px;
+  }
+
   .stay-account-modal {
     padding: 40px 22px 27px;
   }
@@ -988,5 +1216,102 @@
   .stay-account-signin,
   .stay-account-register {
     font-size: 11px;
+  }
+}
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 400px) {
+  .stay-details-hero {
+    min-height: 215px;
+    padding: 35px 5%;
+  }
+
+  .stay-details-breadcrumb {
+    padding-right: 5%;
+    padding-left: 5%;
+    font-size: 11px;
+  }
+
+  .stay-details-gallery {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .stay-gallery-main {
+    height: 220px;
+  }
+
+  .stay-gallery-side {
+    height: 150px;
+    gap: 7px;
+  }
+
+  .stay-details-container {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .stay-details-heading h2 {
+    font-size: 24px;
+  }
+
+  .stay-details-features strong {
+    font-size: 15px;
+  }
+
+  .stay-booking-card {
+    padding: 18px;
+  }
+
+  .stay-booking-info {
+    font-size: 12px;
+  }
+
+  .stay-average-rating {
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .stay-average-rating > strong {
+    font-size: 27px;
+  }
+
+  .stay-review-card {
+    padding: 17px;
+  }
+
+  .stay-no-reviews {
+    padding: 30px 17px;
+  }
+
+  .stay-video-section {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .stay-account-overlay {
+    padding: 12px;
+  }
+
+  .stay-account-modal {
+    padding: 40px 17px 23px;
+  }
+}
+
+/* =================================
+   REDUCED MOTION
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .stay-details-page *,
+  .stay-details-page *::before,
+  .stay-details-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

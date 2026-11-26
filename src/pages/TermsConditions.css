@@ -1,12 +1,21 @@
 .terms-page {
-  background: #f7f6f2;
-  color: #171717;
   min-height: 100vh;
   padding-bottom: 80px;
+  background: #f7f6f2;
+  color: #171717;
+  box-sizing: border-box;
 }
 
+.terms-page *,
+.terms-page *::before,
+.terms-page *::after {
+  box-sizing: border-box;
+}
+
+/* HERO */
+
 .terms-hero {
-  background: #111;
+  background: #111111;
   padding: 75px 6%;
   text-align: center;
 }
@@ -19,23 +28,29 @@
 }
 
 .terms-hero h1 {
-  color: #fff;
+  color: #ffffff;
   font-size: clamp(36px, 5vw, 52px);
+  line-height: 1.2;
   margin: 17px 0;
+  overflow-wrap: anywhere;
 }
 
 .terms-hero p {
-  color: #ccc;
   max-width: 680px;
   margin: auto;
+  color: #cccccc;
   line-height: 1.8;
   font-size: 15px;
 }
+
+/* MAIN CONTENT */
 
 .terms-content {
   width: min(900px, 90%);
   margin: 65px auto 0;
 }
+
+/* INTRODUCTION */
 
 .terms-intro {
   margin-bottom: 35px;
@@ -43,6 +58,7 @@
 
 .terms-intro h2 {
   font-size: 28px;
+  line-height: 1.35;
   margin-bottom: 14px;
 }
 
@@ -53,18 +69,22 @@
   line-height: 1.9;
 }
 
+/* TERMS SECTIONS */
+
 .terms-section {
-  background: #fff;
-  border: 1px solid #e8e4dc;
-  border-radius: 7px;
   padding: 25px;
   margin-bottom: 16px;
+  background: #ffffff;
+  border: 1px solid #e8e4dc;
+  border-radius: 7px;
+  overflow-wrap: anywhere;
 }
 
 .terms-section h3 {
-  font-size: 17px;
   margin: 0 0 13px;
   color: #171717;
+  font-size: 17px;
+  line-height: 1.5;
 }
 
 .terms-section p {
@@ -75,17 +95,26 @@
   margin-bottom: 0;
 }
 
+/* LISTS */
+
 .terms-section ul {
   padding-left: 22px;
   margin: 12px 0;
 }
 
 .terms-section li {
+  padding-left: 4px;
   color: #626262;
   font-size: 14px;
   line-height: 1.9;
-  padding-left: 4px;
+  margin-bottom: 5px;
 }
+
+.terms-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* CONTACT LINK */
 
 .terms-link {
   display: inline-block;
@@ -100,54 +129,157 @@
   text-decoration: underline;
 }
 
+.terms-link:focus-visible {
+  outline: 2px solid #9a7839;
+  outline-offset: 4px;
+}
+
+/* BOTTOM ACTIONS */
+
 .terms-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 22px;
   margin-top: 35px;
-  flex-wrap: wrap;
 }
 
 .terms-button {
   display: inline-block;
   padding: 14px 25px;
   background: #c9a961;
-  color: #111;
+  color: #111111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .terms-button:hover {
   background: #b18f48;
 }
 
+.terms-button:focus-visible,
+.terms-back:focus-visible {
+  outline: 3px solid #c9a961;
+  outline-offset: 4px;
+}
+
 .terms-back {
-  color: #333;
+  color: #333333;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
+  transition: color 0.25s ease;
 }
 
 .terms-back:hover {
   color: #9a7839;
 }
 
+/* TABLET */
+
+@media (max-width: 900px) {
+  .terms-content {
+    width: 92%;
+    margin-top: 55px;
+  }
+
+  .terms-hero {
+    padding: 65px 5%;
+  }
+}
+
+/* MOBILE */
+
 @media (max-width: 600px) {
+  .terms-page {
+    padding-bottom: 55px;
+  }
+
   .terms-hero {
     padding: 60px 6%;
   }
 
+  .terms-hero h1 {
+    font-size: 36px;
+  }
+
+  .terms-hero p {
+    font-size: 13px;
+  }
+
   .terms-content {
+    width: 92%;
     margin-top: 40px;
   }
 
-  .terms-section {
-    padding: 20px;
+  .terms-intro {
+    margin-bottom: 25px;
   }
 
   .terms-intro h2 {
     font-size: 24px;
+  }
+
+  .terms-intro p,
+  .terms-section p,
+  .terms-section li {
+    font-size: 13px;
+  }
+
+  .terms-section {
+    padding: 20px;
+    margin-bottom: 13px;
+  }
+
+  .terms-section h3 {
+    font-size: 16px;
+  }
+
+  .terms-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .terms-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .terms-hero h1 {
+    font-size: 30px;
+  }
+
+  .terms-content {
+    width: 94%;
+  }
+
+  .terms-section {
+    padding: 17px;
+  }
+
+  .terms-intro h2 {
+    font-size: 22px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .terms-page *,
+  .terms-page *::before,
+  .terms-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -8,30 +8,78 @@ import "./PropertyDetails.css";
 export default function PropertyDetails() {
   const { id } = useParams();
 
+  /* =====================================
+     FIND PROPERTY
+  ===================================== */
+
   const property = properties.find(
-    (item) => item.id === id && item.status !== "demo",
+    (item) =>
+      item.id === id &&
+      item.status !== "demo" &&
+      item.availabilityStatus !== "demo",
   );
 
+  /* =====================================
+     PROPERTY STATUS
+  ===================================== */
+
+  const propertyStatus = String(
+    property?.availabilityStatus || property?.status || "",
+  ).toLowerCase();
+
+  const isSold = propertyStatus === "sold";
+
+  const isAvailable =
+    !isSold && propertyStatus !== "unavailable" && propertyStatus !== "blocked";
+
+  const isApproved =
+    String(property?.approvalStatus || "").toLowerCase() === "approved";
+
+  const isFeatured =
+    isApproved && property?.promotion?.status === "active" && isAvailable;
+
+  /* =====================================
+     PROPERTY GALLERY
+  ===================================== */
+
   const gallery = property
-    ? property.gallery?.length
+    ? Array.isArray(property.gallery) && property.gallery.length > 0
       ? property.gallery
       : property.image
         ? [property.image]
         : []
     : [];
 
+  /* =====================================
+     STATES
+  ===================================== */
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+
   const [savedListings, setSavedListings] = useState(() => getSavedListings());
+
   const [showAccountOptions, setShowAccountOptions] = useState(false);
+
+  /* =====================================
+     SAVED PROPERTY
+  ===================================== */
 
   const isSaved = savedListings.some(
     (item) => item.type === "property" && item.id === property?.id,
   );
 
-  const isSold = String(property?.status || "").toLowerCase() === "sold";
+  const handleSaveProperty = () => {
+    if (!property) return;
 
-  const isFeatured = property?.promotion?.status === "active" && !isSold;
+    const updatedListings = toggleSavedListing("property", property.id);
+
+    setSavedListings(updatedListings);
+  };
+
+  /* =====================================
+     VIEWING REQUEST LINKS
+  ===================================== */
 
   const viewingRequestPath = property
     ? `/properties/${property.id}/request-viewing`
@@ -45,20 +93,29 @@ export default function PropertyDetails() {
     viewingRequestPath,
   )}`;
 
-  const handleSaveProperty = () => {
-    if (!property) return;
-
-    const updatedListings = toggleSavedListing("property", property.id);
-    setSavedListings(updatedListings);
-  };
+  /* =====================================
+     PRICE FORMATTER
+  ===================================== */
 
   const formatPrice = (price) => {
-    if (typeof price !== "number") return "Price on Request";
+    const amount = Number(price);
 
-    return `KSh ${(price / 1000000).toLocaleString("en-KE", {
-      maximumFractionDigits: 1,
-    })}M`;
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return "Price on Request";
+    }
+
+    if (amount >= 1000000) {
+      return `KSh ${(amount / 1000000).toLocaleString("en-KE", {
+        maximumFractionDigits: 1,
+      })}M`;
+    }
+
+    return `KSh ${amount.toLocaleString("en-KE")}`;
   };
+
+  /* =====================================
+     SEO
+  ===================================== */
 
   const seoTitle = property
     ? `${property.name} ${
@@ -71,6 +128,10 @@ export default function PropertyDetails() {
         property.type?.toLowerCase() || "property"
       } in ${property.location}, Kenya. View property details and enquire with ÉLAN HOMES.`
     : "Property listings are coming soon. Explore accommodation and discover property opportunities across Kenya with ÉLAN HOMES.";
+
+  /* =====================================
+     LIGHTBOX KEYBOARD CONTROLS
+  ===================================== */
 
   useEffect(() => {
     if (!lightboxOpen || gallery.length === 0) return;
@@ -94,13 +155,19 @@ export default function PropertyDetails() {
     };
 
     document.addEventListener("keydown", handleKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [lightboxOpen, gallery.length]);
+
+  /* =====================================
+     ACCOUNT MODAL KEYBOARD CONTROL
+  ===================================== */
 
   useEffect(() => {
     if (!showAccountOptions) return;
@@ -117,6 +184,10 @@ export default function PropertyDetails() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [showAccountOptions]);
+
+  /* =====================================
+     PROPERTY NOT FOUND
+  ===================================== */
 
   if (!property) {
     return (
@@ -141,18 +212,30 @@ export default function PropertyDetails() {
     );
   }
 
+  /* =====================================
+     PROPERTY DETAILS PAGE
+  ===================================== */
+
   return (
     <>
       <SEO title={seoTitle} description={seoDescription} />
 
       <main className="property-details-page">
+        {/* BREADCRUMB */}
+
         <div className="property-breadcrumb">
           <Link to="/">Home</Link>
+
           <span>/</span>
+
           <Link to="/properties">Properties</Link>
+
           <span>/</span>
+
           <span>{property.name}</span>
         </div>
+
+        {/* PROPERTY HERO AND GALLERY */}
 
         <section className="property-details-hero">
           <div className="property-details-image">
@@ -177,8 +260,12 @@ export default function PropertyDetails() {
               </div>
             )}
 
-            <span className={`details-status ${isSold ? "sold" : "available"}`}>
-              {isSold ? "SOLD" : "FOR SALE"}
+            <span
+              className={`details-status ${
+                isSold ? "sold" : isAvailable ? "available" : "unavailable"
+              }`}
+            >
+              {isSold ? "SOLD" : isAvailable ? "FOR SALE" : "UNAVAILABLE"}
             </span>
 
             {isFeatured && (
@@ -186,12 +273,14 @@ export default function PropertyDetails() {
             )}
           </div>
 
+          {/* GALLERY THUMBNAILS */}
+
           {gallery.length > 1 && (
             <div className="property-gallery-thumbnails">
               {gallery.map((image, index) => (
                 <button
                   type="button"
-                  key={image + index}
+                  key={`${image}-${index}`}
                   className={`gallery-thumbnail ${
                     selectedImage === index ? "active" : ""
                   }`}
@@ -209,6 +298,8 @@ export default function PropertyDetails() {
               ))}
             </div>
           )}
+
+          {/* PROPERTY HEADING */}
 
           <div className="property-details-heading">
             <div>
@@ -236,73 +327,107 @@ export default function PropertyDetails() {
           </div>
         </section>
 
+        {/* PROPERTY INFORMATION */}
+
         <section className="property-details-content">
           <div className="property-main-information">
+            {/* OVERVIEW */}
+
             <div className="property-overview">
               <span className="details-label">PROPERTY OVERVIEW</span>
 
               <h2>About This Property</h2>
 
-              <p>{property.description}</p>
+              <p>
+                {property.description ||
+                  "Contact ÉLAN HOMES for more information about this property."}
+              </p>
             </div>
+
+            {/* SPECIFICATIONS */}
 
             <div className="property-specifications">
               <div className="specification-item">
                 <span>Bedrooms</span>
+
                 <strong>{property.bedrooms ?? "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Bathrooms</span>
+
                 <strong>{property.bathrooms ?? "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Property Type</span>
+
                 <strong>{property.type || "N/A"}</strong>
               </div>
 
               <div className="specification-item">
                 <span>Location</span>
+
                 <strong>{property.location || "N/A"}</strong>
               </div>
 
               {property.area && (
                 <div className="specification-item">
                   <span>Area</span>
+
                   <strong>{property.area}</strong>
                 </div>
               )}
             </div>
+
+            {/* AMENITIES */}
 
             <div className="property-amenities">
               <span className="details-label">PROPERTY FEATURES</span>
 
               <h2>Amenities & Features</h2>
 
-              <div className="amenities-grid">
-                {property.amenities?.map((amenity, index) => (
-                  <div className="amenity-item" key={index}>
-                    <span>✓</span>
-                    {amenity}
-                  </div>
-                ))}
-              </div>
+              {Array.isArray(property.amenities) &&
+              property.amenities.length > 0 ? (
+                <div className="amenities-grid">
+                  {property.amenities.map((amenity, index) => (
+                    <div className="amenity-item" key={`${amenity}-${index}`}>
+                      <span>✓</span>
+
+                      {amenity}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>
+                  Contact ÉLAN HOMES for information about this property's
+                  features and amenities.
+                </p>
+              )}
             </div>
           </div>
 
+          {/* ENQUIRY PANEL */}
+
           <aside className="property-enquiry-panel">
             <span className="details-label">
-              {isSold ? "PROPERTY STATUS" : "INTERESTED IN THIS PROPERTY?"}
+              {isSold || !isAvailable
+                ? "PROPERTY STATUS"
+                : "INTERESTED IN THIS PROPERTY?"}
             </span>
 
-            {isSold ? (
+            {isSold || !isAvailable ? (
               <>
-                <h3>This Property Has Been Sold</h3>
+                <h3>
+                  {isSold
+                    ? "This Property Has Been Sold"
+                    : "Viewing Currently Unavailable"}
+                </h3>
 
                 <p>
-                  This listing is no longer available for viewing. Contact ÉLAN
-                  HOMES if you would like assistance finding a similar property.
+                  {isSold
+                    ? "This listing is no longer available for viewing. Contact ÉLAN HOMES if you would like assistance finding a similar property."
+                    : "Viewing requests are currently unavailable for this property. Contact ÉLAN HOMES for assistance."}
                 </p>
 
                 <Link
@@ -349,6 +474,8 @@ export default function PropertyDetails() {
           </aside>
         </section>
 
+        {/* FULL-SCREEN IMAGE GALLERY */}
+
         {lightboxOpen && gallery.length > 0 && (
           <div
             className="property-lightbox"
@@ -392,7 +519,9 @@ export default function PropertyDetails() {
               />
 
               <p>
-                {selectedImage + 1} / {gallery.length} — {property.name}
+                {selectedImage + 1} / {gallery.length}
+                {" — "}
+                {property.name}
               </p>
             </div>
 
@@ -412,6 +541,8 @@ export default function PropertyDetails() {
             </button>
           </div>
         )}
+
+        {/* SIGN IN / REGISTER MODAL */}
 
         {showAccountOptions && (
           <div

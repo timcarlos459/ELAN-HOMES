@@ -17,9 +17,9 @@ export default function Ngong() {
             opportunities and peaceful places to stay around Ngong.
           </p>
 
-          <a href="#ngong-explore" className="ngong-button">
+          <Link to="#ngong-explore" className="ngong-button">
             Explore Ngong
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -44,7 +44,7 @@ export default function Ngong() {
 
       {/* BACK NAVIGATION */}
       <section className="ngong-back">
-        <Link to="/destinations/kajiado">← Back to Kajiado</Link>
+        <a to="/destinations/kajiado">← Back to Kajiado</a>
       </section>
     </main>
   );

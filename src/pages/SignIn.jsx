@@ -7,22 +7,24 @@ export default function SignIn() {
   const [searchParams] = useSearchParams();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // Preserve the page the customer wanted to visit.
+  // Preserve the page the customer originally wanted to visit.
   const requestedRedirect = searchParams.get("redirect");
 
-  // Only allow internal website paths.
-  const redirectTo =
-    requestedRedirect &&
+  // Only allow safe internal website paths.
+  const isSafeRedirect =
+    typeof requestedRedirect === "string" &&
     requestedRedirect.startsWith("/") &&
-    !requestedRedirect.startsWith("//")
-      ? requestedRedirect
-      : "/account";
+    !requestedRedirect.startsWith("//") &&
+    !requestedRedirect.includes("\\");
+
+  const redirectTo = isSafeRedirect ? requestedRedirect : "/account";
 
   const registrationLink = `/register?redirect=${encodeURIComponent(
     redirectTo,
@@ -32,8 +34,9 @@ export default function SignIn() {
     redirectTo,
   )}`;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // HANDLE INPUT CHANGES
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
     setFormData((previous) => ({
       ...previous,
@@ -41,15 +44,17 @@ export default function SignIn() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // HANDLE SIGN-IN
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     // Frontend demonstration only.
-    // Secure authentication, account verification and role-based
-    // redirection will be connected through the backend later.
+    // Real authentication, email OTP verification,
+    // account sessions and role-based redirection
+    // will be connected through the secure backend.
 
     alert(
-      "Secure sign-in is not yet activated. Your selected destination will be preserved when authentication is connected.",
+      "Sign-in is not yet activated. Secure account authentication will be available when the backend is connected.",
     );
   };
 
@@ -63,6 +68,7 @@ export default function SignIn() {
 
       <div className="signin-container">
         {/* BRAND SECTION */}
+
         <div className="signin-brand">
           <Link to="/" className="signin-logo">
             ÉLAN <span>HOMES</span>
@@ -79,13 +85,16 @@ export default function SignIn() {
         </div>
 
         {/* UNIFIED SIGN-IN FORM */}
+
         <form className="signin-form" onSubmit={handleSubmit}>
+          {/* EMAIL */}
+
           <div className="signin-field">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="signin-email">Email Address</label>
 
             <input
               type="email"
-              id="email"
+              id="signin-email"
               name="email"
               placeholder="Enter your email address"
               value={formData.email}
@@ -95,13 +104,15 @@ export default function SignIn() {
             />
           </div>
 
+          {/* PASSWORD */}
+
           <div className="signin-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="signin-password">Password</label>
 
             <div className="signin-password-wrapper">
               <input
                 type={showPassword ? "text" : "password"}
-                id="password"
+                id="signin-password"
                 name="password"
                 placeholder="Enter your password"
                 value={formData.password}
@@ -113,22 +124,32 @@ export default function SignIn() {
               <button
                 type="button"
                 className="signin-show-password"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((previous) => !previous)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
           </div>
 
+          {/* SIGN-IN OPTIONS */}
+
           <div className="signin-options">
             <label className="signin-remember">
-              <input type="checkbox" />
-              Remember me
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(event) => setRememberMe(event.target.checked)}
+              />
+
+              <span>Remember me</span>
             </label>
 
             <Link to={forgotPasswordLink}>Forgot password?</Link>
           </div>
+
+          {/* SUBMIT */}
 
           <button type="submit" className="signin-submit">
             SIGN IN
@@ -136,6 +157,7 @@ export default function SignIn() {
         </form>
 
         {/* REGISTRATION LINK */}
+
         <div className="signin-divider">
           <span>NEW TO ÉLAN HOMES?</span>
         </div>
@@ -144,8 +166,12 @@ export default function SignIn() {
           CREATE AN ACCOUNT
         </Link>
 
+        {/* ACCOUNT SECURITY NOTICE */}
+
         <p className="signin-footer">
-          By continuing, you agree to our Terms of Service and Privacy Policy.
+          By continuing, you agree to our{" "}
+          <Link to="/terms">Terms of Service</Link> and{" "}
+          <Link to="/privacy-policy">Privacy Policy</Link>.
         </p>
 
         <Link to="/" className="signin-back-home">

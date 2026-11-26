@@ -17,7 +17,7 @@ export default function Amboseli() {
             places to stay near the iconic Amboseli landscape.
           </p>
 
-          <a href="#amboseli-explore" className="amboseli-button">
+          <a to="#amboseli-explore" className="amboseli-button">
             Explore Amboseli
           </a>
         </div>

@@ -1,10 +1,13 @@
 .kajiado-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f6f1;
   color: #171717;
-  min-height: 100vh;
 }
 
 /* HERO */
+
 .kajiado-hero {
   min-height: 570px;
   position: relative;
@@ -12,8 +15,8 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.35)),
-    url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5")
-      center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5") center /
+      cover no-repeat;
 }
 
 .kajiado-hero-overlay {
@@ -33,9 +36,9 @@
 }
 
 .kajiado-hero h1 {
-  font-size: clamp(42px, 7vw, 76px);
+  font-size: clamp(38px, 7vw, 76px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.08;
   margin: 22px 0;
 }
 
@@ -58,12 +61,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 25px;
+  min-height: 48px;
+  padding: 14px 25px;
   text-decoration: none;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .kajiado-btn {
@@ -75,6 +83,7 @@
 .kajiado-btn:hover {
   background: #d2b477;
   border-color: #d2b477;
+  transform: translateY(-2px);
 }
 
 .kajiado-btn-outline {
@@ -85,10 +94,14 @@
 .kajiado-btn-outline:hover {
   background: #fff;
   color: #171717;
+  border-color: #fff;
+  transform: translateY(-2px);
 }
 
 /* INTRO */
+
 .kajiado-intro {
+  width: 100%;
   max-width: 850px;
   margin: auto;
   padding: 85px 20px 65px;
@@ -99,6 +112,7 @@
   font-size: clamp(28px, 4vw, 43px);
   margin: 17px 0;
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .kajiado-intro p {
@@ -110,6 +124,7 @@
 }
 
 /* LOCATIONS */
+
 .kajiado-locations {
   width: min(1200px, 90%);
   margin: auto;
@@ -127,12 +142,16 @@
 .kajiado-section-heading h2 {
   font-size: clamp(25px, 4vw, 38px);
   margin-top: 12px;
+  line-height: 1.2;
 }
 
 .kajiado-section-heading p {
   color: #777;
   font-size: 13px;
+  line-height: 1.6;
 }
+
+/* LOCATION GRID */
 
 .kajiado-grid {
   display: grid;
@@ -141,6 +160,8 @@
 }
 
 .kajiado-card {
+  display: block;
+  min-width: 0;
   background: #fff;
   text-decoration: none;
   color: #171717;
@@ -158,6 +179,7 @@
 .kajiado-card-image {
   height: 245px;
   overflow: hidden;
+  background: #e9e3d8;
 }
 
 .kajiado-card-image img {
@@ -177,7 +199,7 @@
 }
 
 .kajiado-card-content > span {
-  color: #bd9858;
+  color: #a88745;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -185,6 +207,7 @@
 
 .kajiado-card-content h3 {
   font-size: 23px;
+  line-height: 1.3;
   margin: 12px 0;
 }
 
@@ -199,6 +222,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-top: 20px;
   padding-top: 17px;
   border-top: 1px solid #eee9df;
@@ -212,40 +236,137 @@
   font-size: 20px;
 }
 
-/* RESPONSIVE */
+/* KEYBOARD ACCESSIBILITY */
+
+.kajiado-page a:focus-visible {
+  outline: 3px solid #bd9858;
+  outline-offset: 4px;
+}
+
+/* TABLET */
+
 @media (max-width: 900px) {
   .kajiado-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
 
   .kajiado-section-heading {
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .kajiado-hero {
+    min-height: 520px;
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
   .kajiado-hero {
-    min-height: 500px;
+    min-height: 470px;
+    background-position: center;
   }
 
   .kajiado-hero-overlay {
-    padding: 75px 0;
+    width: 90%;
+    padding: 65px 0;
+  }
+
+  .kajiado-eyebrow,
+  .kajiado-intro > span,
+  .kajiado-section-heading span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .kajiado-hero h1 {
+    font-size: clamp(36px, 9vw, 48px);
   }
 
   .kajiado-hero p {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .kajiado-hero-actions {
+    gap: 12px;
+  }
+
+  .kajiado-btn,
+  .kajiado-btn-outline {
+    padding: 13px 17px;
+    font-size: 11px;
+  }
+
+  .kajiado-intro {
+    padding: 60px 20px 50px;
+  }
+
+  .kajiado-intro h2 {
+    font-size: 29px;
+  }
+
+  .kajiado-intro p {
+    font-size: 14px;
+  }
+
+  .kajiado-locations {
+    width: 90%;
+    padding-bottom: 65px;
   }
 
   .kajiado-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
 
   .kajiado-card-image {
     height: 230px;
   }
 
+  .kajiado-card-content {
+    padding: 22px;
+  }
+
+  .kajiado-card-content p {
+    min-height: auto;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .kajiado-hero-overlay {
+    width: 92%;
+  }
+
+  .kajiado-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .kajiado-intro {
-    padding-top: 65px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .kajiado-card-content {
+    padding: 18px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .kajiado-page *,
+  .kajiado-page *::before,
+  .kajiado-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

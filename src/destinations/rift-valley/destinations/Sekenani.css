@@ -1,4 +1,11 @@
+/* ================================
+   SEKENANI DESTINATION
+================================ */
+
 .sekenani-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f7f4;
   color: #171717;
 }
@@ -6,29 +13,38 @@
 /* HERO */
 
 .sekenani-hero {
-  min-height: 520px;
-  background-image: url("https://images.unsplash.com/photo-1516426122078-c23e76319801");
-  background-position: center;
-  background-size: cover;
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  background-image: url("https://images.unsplash.com/photo-1516426122078-c23e76319801");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .sekenani-hero::before {
-  content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.25));
+  content: "";
 }
+
+/* HERO CONTENT */
 
 .sekenani-hero-overlay {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: 850px;
   padding: 80px 8%;
   color: #fff;
 }
+
+/* EYEBROW */
 
 .sekenani-hero-overlay > span,
 .sekenani-intro > span {
@@ -38,18 +54,27 @@
   letter-spacing: 3px;
 }
 
+/* HEADING */
+
 .sekenani-hero h1 {
-  font-size: clamp(42px, 7vw, 72px);
-  font-weight: 500;
   margin: 20px 0;
+  color: #fff;
+  font-size: clamp(38px, 7vw, 72px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
 }
 
+/* DESCRIPTION */
+
 .sekenani-hero p {
-  font-size: 17px;
-  line-height: 1.8;
   max-width: 650px;
   color: #eee;
+  font-size: 17px;
+  line-height: 1.8;
 }
+
+/* EXPLORE BUTTON */
 
 .sekenani-hero a {
   display: inline-block;
@@ -57,33 +82,48 @@
   padding: 15px 25px;
   border: 1px solid #c4a46a;
   color: #fff;
-  text-decoration: none;
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 1.5px;
-  transition: 0.3s;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .sekenani-hero a:hover {
+  border-color: #c4a46a;
   background: #c4a46a;
   color: #111;
 }
 
-/* INTRO */
+.sekenani-hero a:focus-visible,
+.sekenani-back a:focus-visible {
+  outline: 2px solid #c4a46a;
+  outline-offset: 5px;
+}
+
+/* INTRODUCTION */
 
 .sekenani-intro {
+  width: 100%;
   max-width: 850px;
-  margin: auto;
+  margin: 0 auto;
   padding: 85px 25px 65px;
   text-align: center;
 }
 
 .sekenani-intro h2 {
+  margin: 20px 0;
+  color: #171717;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 500;
-  margin: 20px 0;
+  line-height: 1.25;
 }
 
 .sekenani-intro p {
+  margin: 0;
   color: #777;
   font-size: 15px;
   line-height: 1.9;
@@ -99,37 +139,119 @@
 /* BACK LINK */
 
 .sekenani-back {
-  text-align: center;
   padding: 35px 20px 65px;
+  text-align: center;
 }
 
 .sekenani-back a {
   color: #a48650;
-  text-decoration: none;
   font-size: 13px;
   font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .sekenani-back a:hover {
   color: #171717;
 }
 
-/* RESPONSIVE */
+/* TABLET */
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .sekenani-hero {
-    min-height: 420px;
+    min-height: 460px;
   }
 
   .sekenani-hero-overlay {
-    padding: 60px 6%;
+    padding: 70px 6%;
   }
 
   .sekenani-hero p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .sekenani-intro {
-    padding: 60px 22px 45px;
+    padding: 70px 25px 55px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .sekenani-hero {
+    min-height: 420px;
+    background-position: center;
+  }
+
+  .sekenani-hero-overlay {
+    padding: 55px 6%;
+  }
+
+  .sekenani-hero-overlay > span,
+  .sekenani-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .sekenani-hero h1 {
+    font-size: clamp(34px, 9vw, 48px);
+    letter-spacing: -1px;
+  }
+
+  .sekenani-hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .sekenani-hero a {
+    padding: 13px 20px;
+    font-size: 10px;
+  }
+
+  .sekenani-intro {
+    padding: 55px 20px 45px;
+  }
+
+  .sekenani-intro h2 {
+    font-size: 28px;
+  }
+
+  .sekenani-intro p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  #sekenani-marketplace {
+    padding-bottom: 35px;
+    scroll-margin-top: 80px;
+  }
+
+  .sekenani-back {
+    padding: 30px 15px 50px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 360px) {
+  .sekenani-hero {
+    min-height: 380px;
+  }
+
+  .sekenani-hero-overlay {
+    padding: 45px 5%;
+  }
+
+  .sekenani-hero h1 {
+    font-size: 34px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .sekenani-hero a,
+  .sekenani-back a {
+    transition: none;
   }
 }

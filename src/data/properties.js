@@ -10,11 +10,17 @@ const properties = [
     bedrooms: 5,
     bathrooms: 4,
     area: "450 sqm",
+
     image:
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000",
+
     status: "For Sale",
+    availabilityStatus: "available",
+    approvalStatus: "approved",
+
     description:
       "Temporary listing for testing the ÉLAN HOMES property viewing process.",
+
     amenities: ["Parking", "Garden", "Security"],
   },
 ];

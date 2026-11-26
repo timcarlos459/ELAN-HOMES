@@ -8,15 +8,23 @@ export const markEnquiryNotificationSent = (record, recipient) => {
     throw new Error("A valid enquiry record is required.");
   }
 
-  if (!Object.values(ENQUIRY_NOTIFICATION_RECIPIENTS).includes(recipient)) {
+  const validRecipients = Object.values(ENQUIRY_NOTIFICATION_RECIPIENTS);
+
+  if (!validRecipients.includes(recipient)) {
     throw new Error("Invalid notification recipient.");
+  }
+
+  if (!globalThis.crypto?.randomUUID) {
+    throw new Error("Secure UUID generation is unavailable.");
   }
 
   const now = new Date().toISOString();
 
   const communication = record.communication || {};
 
-  const notificationHistory = communication.notificationHistory || [];
+  const notificationHistory = Array.isArray(communication.notificationHistory)
+    ? communication.notificationHistory
+    : [];
 
   return {
     ...record,
@@ -27,17 +35,17 @@ export const markEnquiryNotificationSent = (record, recipient) => {
       ownerNotified:
         recipient === ENQUIRY_NOTIFICATION_RECIPIENTS.OWNER
           ? true
-          : communication.ownerNotified || false,
+          : Boolean(communication.ownerNotified),
 
       customerNotified:
         recipient === ENQUIRY_NOTIFICATION_RECIPIENTS.CUSTOMER
           ? true
-          : communication.customerNotified || false,
+          : Boolean(communication.customerNotified),
 
       notificationHistory: [
         ...notificationHistory,
         {
-          id: crypto.randomUUID(),
+          id: globalThis.crypto.randomUUID(),
           recipient,
           sentAt: now,
         },

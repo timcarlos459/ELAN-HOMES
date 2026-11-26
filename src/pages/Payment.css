@@ -1,0 +1,458 @@
+/* =========================================
+   ÉLAN HOMES — PAYMENT PAGE
+========================================= */
+
+.payment-page {
+  min-height: 70vh;
+  padding: 45px 20px 80px;
+  background: #f8f7f3;
+  color: #25231f;
+}
+
+.payment-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* BREADCRUMB */
+
+.payment-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 35px;
+  color: #817b70;
+  font-size: 12px;
+}
+
+.payment-breadcrumb a,
+.payment-back-link a {
+  color: #94702f;
+  text-decoration: none;
+}
+
+.payment-breadcrumb a:hover,
+.payment-back-link a:hover {
+  text-decoration: underline;
+}
+
+/* HEADING */
+
+.payment-heading {
+  margin-bottom: 30px;
+}
+
+.payment-heading > span,
+.payment-message > span {
+  color: #a17b37;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.payment-heading h1 {
+  margin: 12px 0;
+  font-size: clamp(30px, 5vw, 43px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.payment-heading p {
+  color: #777166;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* INVOICE CARD */
+
+.payment-invoice-card {
+  padding: 35px;
+  background: #fff;
+  border: 1px solid #e5e0d6;
+  border-radius: 5px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.035);
+}
+
+.payment-invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #eae6de;
+}
+
+.payment-invoice-header > div > span {
+  color: #a17b37;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.payment-invoice-header h2 {
+  margin: 9px 0 0;
+  font-size: 23px;
+}
+
+.payment-status {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.payment-status-paid {
+  color: #276b39;
+  background: #edf5ed;
+}
+
+.payment-status-issued {
+  color: #856526;
+  background: #f6f0e3;
+}
+
+.payment-status-provisional {
+  color: #766b58;
+  background: #f1eee8;
+}
+
+/* INVOICE REFERENCES */
+
+.payment-invoice-reference {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid #eae6de;
+}
+
+.payment-invoice-reference > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.payment-invoice-reference small {
+  color: #817b70;
+  font-size: 11px;
+}
+
+.payment-invoice-reference strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* CUSTOMER AND LISTING DETAILS */
+
+.payment-customer-details,
+.payment-listing-details {
+  padding: 25px 0;
+  border-bottom: 1px solid #eae6de;
+}
+
+.payment-customer-details h3,
+.payment-listing-details h3,
+.payment-instructions h3 {
+  margin: 0 0 17px;
+  font-size: 15px;
+}
+
+.payment-customer-details > div,
+.payment-listing-details > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.payment-customer-details > div span,
+.payment-listing-details > div span {
+  flex-shrink: 0;
+  color: #777166;
+  font-size: 12px;
+}
+
+.payment-customer-details > div strong,
+.payment-listing-details > div strong {
+  max-width: 65%;
+  font-size: 12px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* TOTAL */
+
+.payment-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 25px 0;
+  border-bottom: 1px solid #eae6de;
+}
+
+.payment-total span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.payment-total strong {
+  color: #98702b;
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+
+/* PAYMENT STATUS MESSAGES */
+
+.payment-paid-message,
+.payment-provisional-message {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.payment-paid-message {
+  background: #edf5ed;
+  border: 1px solid #b8d6b8;
+  color: #286b35;
+}
+
+.payment-provisional-message {
+  background: #f7f4ed;
+  border: 1px solid #ded4bf;
+  color: #80652f;
+}
+
+.payment-paid-message strong,
+.payment-provisional-message strong {
+  font-size: 14px;
+}
+
+.payment-paid-message p,
+.payment-provisional-message p {
+  margin: 9px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* M-PESA INSTRUCTIONS */
+
+.payment-instructions {
+  margin-top: 25px;
+  padding: 22px;
+  background: #f8f6f1;
+  border: 1px solid #e5dfd2;
+  border-radius: 4px;
+}
+
+.payment-instructions p {
+  color: #70695e;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* SECURITY */
+
+.payment-security-note {
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid #eae6de;
+}
+
+.payment-security-note p {
+  color: #817b70;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* BACK LINK */
+
+.payment-back-link {
+  margin-top: 25px;
+  font-size: 13px;
+}
+
+/* NOT FOUND / ERROR */
+
+.payment-message {
+  padding: 55px 30px;
+  background: #fff;
+  border: 1px solid #e5e0d6;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.payment-message h1 {
+  margin: 15px 0;
+  font-size: 30px;
+}
+
+.payment-message p {
+  margin-bottom: 25px;
+  color: #777166;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.payment-message a {
+  color: #98702b;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.payment-message a:hover {
+  text-decoration: underline;
+}
+
+/* ACCESSIBILITY */
+
+.payment-page a:focus-visible {
+  outline: 2px solid #a17b37;
+  outline-offset: 4px;
+}
+
+/* TABLET */
+
+@media (max-width: 768px) {
+  .payment-page {
+    padding: 35px 18px 65px;
+  }
+
+  .payment-invoice-card {
+    padding: 28px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .payment-page {
+    padding: 30px 14px 55px;
+  }
+
+  .payment-breadcrumb {
+    gap: 7px;
+    margin-bottom: 25px;
+    font-size: 11px;
+  }
+
+  .payment-heading {
+    margin-bottom: 22px;
+  }
+
+  .payment-heading h1 {
+    font-size: 30px;
+  }
+
+  .payment-heading p {
+    font-size: 13px;
+  }
+
+  .payment-invoice-card {
+    padding: 20px 16px;
+  }
+
+  .payment-invoice-header {
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .payment-invoice-header h2 {
+    font-size: 19px;
+  }
+
+  .payment-status {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .payment-invoice-reference {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  .payment-customer-details,
+  .payment-listing-details {
+    padding: 20px 0;
+  }
+
+  .payment-customer-details > div,
+  .payment-listing-details > div {
+    gap: 12px;
+  }
+
+  .payment-customer-details > div strong,
+  .payment-listing-details > div strong {
+    max-width: 68%;
+  }
+
+  .payment-total {
+    padding: 20px 0;
+  }
+
+  .payment-total span {
+    font-size: 13px;
+  }
+
+  .payment-total strong {
+    font-size: 18px;
+  }
+
+  .payment-paid-message,
+  .payment-provisional-message {
+    padding: 16px;
+  }
+
+  .payment-instructions {
+    padding: 16px;
+  }
+
+  .payment-message {
+    padding: 40px 20px;
+  }
+
+  .payment-message h1 {
+    font-size: 25px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .payment-page {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .payment-invoice-card {
+    padding: 17px 13px;
+  }
+
+  .payment-invoice-header {
+    flex-direction: column;
+  }
+
+  .payment-total {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-page *,
+  .payment-page *::before,
+  .payment-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -2,13 +2,25 @@
   min-height: 75vh;
   padding: 80px 20px;
   background: #f7f5f0;
+  color: #171717;
+  box-sizing: border-box;
 }
+
+.track-enquiry-page *,
+.track-enquiry-page *::before,
+.track-enquiry-page *::after {
+  box-sizing: border-box;
+}
+
+/* MAIN CONTAINER */
 
 .track-enquiry-container {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
 }
+
+/* PAGE HEADING */
 
 .track-enquiry-heading {
   margin-bottom: 35px;
@@ -25,20 +37,23 @@
 .track-enquiry-heading h1 {
   margin: 15px 0;
   color: #171717;
-  font-size: 36px;
+  font-size: clamp(28px, 5vw, 36px);
+  line-height: 1.25;
 }
 
 .track-enquiry-heading p {
   max-width: 580px;
   margin: 0 auto;
-  color: #777;
+  color: #777777;
   font-size: 15px;
   line-height: 1.8;
 }
 
+/* TRACKING CARD */
+
 .track-enquiry-card {
   padding: 38px;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #e9e3d8;
   border-radius: 8px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
@@ -48,7 +63,10 @@
   margin: 0 0 25px;
   color: #171717;
   font-size: 21px;
+  line-height: 1.4;
 }
+
+/* FORM */
 
 .track-enquiry-card form {
   display: flex;
@@ -57,37 +75,67 @@
 }
 
 .track-enquiry-card label {
-  color: #333;
+  color: #333333;
   font-size: 13px;
   font-weight: 600;
 }
 
 .track-enquiry-card input {
   width: 100%;
+  min-width: 0;
   padding: 15px;
   border: 1px solid #dedbd4;
   border-radius: 4px;
   outline: none;
+  background: #ffffff;
+  color: #171717;
+  font-family: inherit;
   font-size: 13px;
   transition: border-color 0.3s ease;
+}
+
+.track-enquiry-card input::placeholder {
+  color: #999999;
+  opacity: 1;
 }
 
 .track-enquiry-card input:focus {
   border-color: #b89655;
 }
 
+.track-enquiry-card input:focus-visible {
+  outline: 2px solid rgba(184, 150, 85, 0.3);
+  outline-offset: 2px;
+}
+
+/* INPUT HELP */
+
+.track-enquiry-input-help {
+  margin: -4px 0 5px;
+  color: #777777;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* SUBMIT BUTTON */
+
 .track-enquiry-card button {
+  min-height: 48px;
   margin-top: 10px;
   padding: 15px 20px;
   background: #171717;
   color: #d4b16a;
   border: 1px solid #171717;
   border-radius: 4px;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .track-enquiry-card button:hover {
@@ -96,20 +144,54 @@
   border-color: #d4b16a;
 }
 
+.track-enquiry-card button:focus-visible {
+  outline: 3px solid #b89655;
+  outline-offset: 3px;
+}
+
+/* VALIDATION MESSAGES */
+
 .track-enquiry-message {
   margin-top: 20px;
-  padding: 15px;
+  padding: 18px;
   background: #f8f5ee;
   border-left: 3px solid #b89655;
   border-radius: 3px;
+  overflow-wrap: anywhere;
+}
+
+.track-enquiry-message h3 {
+  margin: 0 0 10px;
+  color: #171717;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .track-enquiry-message p {
-  margin: 0;
-  color: #555;
+  margin: 0 0 10px;
+  color: #555555;
   font-size: 13px;
   line-height: 1.7;
 }
+
+.track-enquiry-message p:last-child {
+  margin-bottom: 0;
+}
+
+.track-enquiry-valid {
+  border-left-color: #a88648;
+}
+
+.track-enquiry-invalid {
+  background: #fff5f3;
+  border-left-color: #b34b42;
+}
+
+.track-enquiry-invalid h3 {
+  color: #a33e36;
+}
+
+/* HELP SECTION */
 
 .track-enquiry-help {
   margin-top: 25px;
@@ -117,7 +199,7 @@
 }
 
 .track-enquiry-help p {
-  color: #777;
+  color: #777777;
   font-size: 13px;
   line-height: 1.7;
 }
@@ -135,16 +217,96 @@
   text-decoration: underline;
 }
 
+.track-enquiry-help a:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 4px;
+}
+
+/* TABLET */
+
+@media (max-width: 800px) {
+  .track-enquiry-page {
+    padding: 65px 20px;
+  }
+
+  .track-enquiry-card {
+    padding: 32px;
+  }
+}
+
+/* MOBILE */
+
 @media (max-width: 600px) {
   .track-enquiry-page {
+    min-height: 75vh;
     padding: 55px 16px;
+  }
+
+  .track-enquiry-heading {
+    margin-bottom: 28px;
+  }
+
+  .track-enquiry-heading > span {
+    font-size: 10px;
+    letter-spacing: 1.5px;
   }
 
   .track-enquiry-heading h1 {
     font-size: 28px;
   }
 
+  .track-enquiry-heading p {
+    font-size: 13px;
+  }
+
   .track-enquiry-card {
     padding: 25px 20px;
+  }
+
+  .track-enquiry-card h2 {
+    font-size: 19px;
+  }
+
+  .track-enquiry-card input {
+    padding: 14px 12px;
+    font-size: 12px;
+  }
+
+  .track-enquiry-card button {
+    width: 100%;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .track-enquiry-page {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .track-enquiry-card {
+    padding: 21px 15px;
+  }
+
+  .track-enquiry-heading h1 {
+    font-size: 25px;
+  }
+
+  .track-enquiry-message {
+    padding: 14px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .track-enquiry-page *,
+  .track-enquiry-page *::before,
+  .track-enquiry-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

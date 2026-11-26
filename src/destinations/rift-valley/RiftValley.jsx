@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./RiftValley.css";
 
 import Nyanyuki from "./destinations/Nyanyuki";
@@ -73,7 +74,6 @@ export default function RiftValley({ locationSlug }) {
 
     if (destination) {
       const DestinationComponent = destination.component;
-
       return <DestinationComponent />;
     }
 
@@ -81,6 +81,7 @@ export default function RiftValley({ locationSlug }) {
       <div className="rift-valley-not-found">
         <h2>Destination Not Found</h2>
         <p>The destination you are looking for does not exist.</p>
+        <Link to="/destinations/rift-valley">Back to Rift Valley</Link>
       </div>
     );
   }
@@ -115,13 +116,17 @@ export default function RiftValley({ locationSlug }) {
 
         <div className="rift-valley-grid">
           {destinations.map((destination) => (
-            <a
+            <Link
               key={destination.slug}
-              href={`/destinations/rift-valley/${destination.slug}`}
+              to={`/destinations/rift-valley/${destination.slug}`}
               className="rift-valley-card"
             >
               <div className="rift-valley-card-image">
-                <img src={destination.image} alt={destination.name} />
+                <img
+                  src={destination.image}
+                  alt={destination.name}
+                  loading="lazy"
+                />
 
                 <div className="rift-valley-card-overlay">
                   <span>EXPLORE DESTINATION</span>
@@ -135,7 +140,7 @@ export default function RiftValley({ locationSlug }) {
 
                 <span className="rift-valley-card-link">DISCOVER MORE →</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

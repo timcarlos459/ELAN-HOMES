@@ -1,10 +1,15 @@
+/* SHELA DESTINATION PAGE */
+
 .shela-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
 }
 
 /* HERO */
+
 .shela-hero {
   min-height: 560px;
   padding: 110px 8%;
@@ -12,49 +17,56 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.28)),
-    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57")
+    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .shela-hero-content {
+  width: 100%;
   max-width: 750px;
 }
 
 .shela-hero-content > span {
   display: inline-block;
+  margin-bottom: 22px;
   color: #d5b36a;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 22px;
+  line-height: 1.6;
 }
 
 .shela-hero h1 {
+  margin: 0 0 24px;
   font-size: clamp(45px, 7vw, 82px);
   line-height: 1.05;
-  margin: 0 0 24px;
   font-weight: 700;
 }
 
 .shela-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #e5e5e5;
   font-size: 17px;
   line-height: 1.9;
-  margin-bottom: 32px;
 }
 
 .shela-button {
-  display: inline-block;
-  padding: 16px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .shela-button:hover {
@@ -62,91 +74,55 @@
   transform: translateY(-3px);
 }
 
-/* INTRO */
+/* INTRODUCTION */
+
 .shela-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 100px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
 }
 
-.shela-intro > span,
-.shela-collection-heading > span {
+.shela-intro > span {
+  display: block;
   color: #ad8845;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .shela-intro h2 {
+  margin: 18px 0;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
-  margin: 18px 0;
+  font-weight: 600;
 }
 
 .shela-intro p {
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 2;
 }
 
-/* COLLECTION */
-.shela-collection {
-  padding: 90px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.shela-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.shela-collection-heading h2 {
-  font-size: clamp(28px, 4vw, 42px);
-  margin: 16px 0;
-}
-
-.shela-collection-heading p {
-  color: #666;
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.shela-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.shela-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.shela-empty-state h3 {
-  font-size: 25px;
-  margin: 18px 0 12px;
-}
-
-.shela-empty-state p {
-  color: #777;
-  font-size: 14px;
-  line-height: 1.8;
+.shela-page .location-marketplace,
+.shela-page #shela-marketplace {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .shela-navigation {
   padding: 35px 7%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   border-top: 1px solid #e9e3d8;
@@ -157,50 +133,95 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .shela-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.shela-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .shela-hero {
     min-height: 460px;
     padding: 90px 7%;
   }
 
-  .shela-intro,
-  .shela-collection {
+  .shela-intro {
     padding: 70px 6%;
+  }
+
+  .shela-navigation {
+    padding: 30px 6%;
   }
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .shela-hero {
     min-height: 400px;
     padding: 75px 6%;
   }
 
+  .shela-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .shela-hero h1 {
+    font-size: clamp(38px, 10vw, 48px);
+  }
+
   .shela-hero p {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .shela-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
+  }
+
+  .shela-intro {
+    padding: 55px 6%;
+  }
+
+  .shela-intro h2 {
+    font-size: 29px;
   }
 
   .shela-intro p {
     font-size: 14px;
-  }
-
-  .shela-empty-state {
-    padding: 45px 20px;
-  }
-
-  .shela-empty-state h3 {
-    font-size: 21px;
+    line-height: 1.9;
   }
 
   .shela-navigation {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 28px 6%;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .shela-page *,
+  .shela-page *::before,
+  .shela-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

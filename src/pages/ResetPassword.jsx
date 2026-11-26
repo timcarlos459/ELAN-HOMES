@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
@@ -13,7 +14,8 @@ export default function ResetPassword() {
   const redirectTo =
     requestedRedirect &&
     requestedRedirect.startsWith("/") &&
-    !requestedRedirect.startsWith("//")
+    !requestedRedirect.startsWith("//") &&
+    !requestedRedirect.includes("\\")
       ? requestedRedirect
       : "/account";
 
@@ -52,7 +54,7 @@ export default function ResetPassword() {
     event.preventDefault();
     setError("");
 
-    if (!email) {
+    if (!email.trim()) {
       setError(
         "Your email address is missing. Please restart the password reset process.",
       );
@@ -98,9 +100,15 @@ export default function ResetPassword() {
             <div className="reset-password-heading">
               <span>ACCOUNT SECURITY</span>
               <h1>Create a New Password</h1>
-              <p>Choose a strong password to secure your ÉLAN HOMES account.</p>
+              <p>
+                Choose a strong password to secure your ÉLAN HOMES account.
+              </p>
 
-              {email && <div className="reset-password-email">{email}</div>}
+              {email && (
+                <div className="reset-password-email">
+                  {email}
+                </div>
+              )}
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -121,7 +129,11 @@ export default function ResetPassword() {
 
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowPassword((previous) => !previous)}
+                    aria-label={
+                      showPassword ? "Hide new password" : "Show new password"
+                    }
+                    aria-pressed={showPassword}
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -151,7 +163,9 @@ export default function ResetPassword() {
               </div>
 
               <div className="reset-password-field">
-                <label htmlFor="confirmPassword">Confirm New Password</label>
+                <label htmlFor="confirmPassword">
+                  Confirm New Password
+                </label>
 
                 <div className="reset-password-input-wrapper">
                   <input
@@ -167,7 +181,15 @@ export default function ResetPassword() {
 
                   <button
                     type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    onClick={() =>
+                      setShowConfirmPassword((previous) => !previous)
+                    }
+                    aria-label={
+                      showConfirmPassword
+                        ? "Hide confirmation password"
+                        : "Show confirmation password"
+                    }
+                    aria-pressed={showConfirmPassword}
                   >
                     {showConfirmPassword ? "Hide" : "Show"}
                   </button>
@@ -187,7 +209,11 @@ export default function ResetPassword() {
                 </p>
               )}
 
-              <button type="submit" className="reset-password-submit">
+              <button
+                type="submit"
+                className="reset-password-submit"
+                disabled={!email.trim()}
+              >
                 RESET PASSWORD
               </button>
             </form>
@@ -205,9 +231,10 @@ export default function ResetPassword() {
             <h1>Password Reset Prepared</h1>
 
             <p>
-              Your new password has passed the frontend checks. Once the backend
-              is connected, it will securely update your account password after
-              successful OTP verification.
+              Your new password has passed the frontend checks. No account
+              password has been changed yet. The secure backend must verify
+              your OTP session and update your password before the reset
+              becomes effective.
             </p>
 
             <button

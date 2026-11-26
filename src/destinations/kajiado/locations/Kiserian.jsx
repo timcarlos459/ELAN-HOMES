@@ -17,8 +17,8 @@ export default function Kiserian() {
             opportunities and comfortable places to stay in Kiserian.
           </p>
 
-          <a href="#kiserian-explore" className="kiserian-button">
-            Explore Kiserian
+          <a to="#kiserian-explore" className="kiserian-button">
+            Explorea Kiserian
           </a>
         </div>
       </section>

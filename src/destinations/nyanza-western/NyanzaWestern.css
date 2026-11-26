@@ -1,23 +1,33 @@
+/* ================================
+   NYANZA & WESTERN REGION
+================================ */
+
 .nyanza-western-page {
   width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f7f4;
   color: #171717;
 }
 
+/* HERO */
+
 .nyanza-western-hero {
-  min-height: 430px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-height: 430px;
   padding: 80px 7%;
   background:
     linear-gradient(rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.66)),
     linear-gradient(135deg, #263c38, #111111);
+  color: #fff;
   text-align: center;
-  color: #ffffff;
 }
 
 .nyanza-western-hero-content {
+  width: 100%;
   max-width: 850px;
 }
 
@@ -29,12 +39,18 @@
   letter-spacing: 3px;
 }
 
+/* HERO HEADING */
+
 .nyanza-western-hero-content h1 {
   margin: 22px 0;
+  color: #fff;
   font-size: clamp(36px, 5vw, 58px);
-  line-height: 1.15;
   font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -1px;
 }
+
+/* HERO DESCRIPTION */
 
 .nyanza-western-hero-content p {
   max-width: 700px;
@@ -44,11 +60,16 @@
   line-height: 1.8;
 }
 
+/* DESTINATIONS SECTION */
+
 .nyanza-western-destinations {
+  width: 100%;
   max-width: 1250px;
   margin: 0 auto;
   padding: 85px 30px;
 }
+
+/* SECTION HEADING */
 
 .nyanza-western-section-heading {
   max-width: 700px;
@@ -58,30 +79,40 @@
 
 .nyanza-western-section-heading h2 {
   margin: 15px 0;
+  color: #171717;
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .nyanza-western-section-heading p {
+  margin: 0;
   color: #686868;
   font-size: 15px;
   line-height: 1.7;
 }
 
+/* DESTINATION GRID */
+
 .nyanza-western-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
+  width: 100%;
 }
 
+/* DESTINATION CARDS */
+
 .nyanza-western-card {
-  min-height: 290px;
   display: flex;
   align-items: flex-end;
+  min-width: 0;
+  min-height: 290px;
   padding: 30px;
-  background: linear-gradient(145deg, #293b36, #171717);
+  overflow: hidden;
   border: 1px solid #dedbd3;
   border-radius: 4px;
+  background: linear-gradient(145deg, #293b36, #171717);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -90,6 +121,12 @@
 .nyanza-western-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* CARD CONTENT */
+
+.nyanza-western-card-content {
+  width: 100%;
 }
 
 .nyanza-western-card-content > span {
@@ -101,18 +138,21 @@
 
 .nyanza-western-card h3 {
   margin: 14px 0;
-  color: #ffffff;
+  color: #fff;
   font-size: 27px;
   font-weight: 600;
+  line-height: 1.25;
 }
 
 .nyanza-western-card p {
   min-height: 72px;
-  margin-bottom: 22px;
+  margin: 0 0 22px;
   color: #dedede;
   font-size: 14px;
   line-height: 1.7;
 }
+
+/* CARD LINK */
 
 .nyanza-western-card-link {
   display: inline-block;
@@ -125,30 +165,151 @@
 }
 
 .nyanza-western-card-link:hover {
-  color: #ffffff;
+  color: #fff;
 }
 
+.nyanza-western-card-link:focus-visible {
+  outline: 2px solid #d2b477;
+  outline-offset: 5px;
+}
+
+/* NOT FOUND */
+
+.nyanza-western-not-found {
+  display: flex;
+  min-height: 60vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.nyanza-western-not-found h2 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.nyanza-western-not-found p {
+  color: #686868;
+  line-height: 1.7;
+}
+
+.nyanza-western-not-found a {
+  margin-top: 15px;
+  color: #a48650;
+  text-decoration: none;
+}
+
+.nyanza-western-not-found a:focus-visible {
+  outline: 2px solid #a48650;
+  outline-offset: 5px;
+}
+
+/* TABLET */
+
 @media (max-width: 900px) {
+  .nyanza-western-destinations {
+    padding: 75px 5%;
+  }
+
   .nyanza-western-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .nyanza-western-card {
+    padding: 25px;
   }
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
   .nyanza-western-hero {
-    min-height: 360px;
+    min-height: 380px;
     padding: 65px 22px;
+  }
+
+  .nyanza-western-hero-content > span,
+  .nyanza-western-section-heading > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .nyanza-western-hero-content h1 {
+    margin: 18px 0;
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .nyanza-western-hero-content p {
+    font-size: 14px;
+    line-height: 1.75;
   }
 
   .nyanza-western-destinations {
     padding: 60px 20px;
   }
 
+  .nyanza-western-section-heading {
+    margin-bottom: 35px;
+  }
+
+  .nyanza-western-section-heading h2 {
+    font-size: 30px;
+  }
+
+  .nyanza-western-section-heading p {
+    font-size: 14px;
+  }
+
   .nyanza-western-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .nyanza-western-card {
-    min-height: 260px;
+    min-height: 250px;
+    padding: 25px;
+  }
+
+  .nyanza-western-card h3 {
+    font-size: 24px;
+  }
+
+  .nyanza-western-card p {
+    min-height: auto;
+    font-size: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .nyanza-western-hero {
+    min-height: 350px;
+    padding: 50px 18px;
+  }
+
+  .nyanza-western-destinations {
+    padding: 45px 16px;
+  }
+
+  .nyanza-western-card {
+    min-height: 235px;
+    padding: 20px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .nyanza-western-card,
+  .nyanza-western-card-link {
+    transition: none;
+  }
+
+  .nyanza-western-card:hover {
+    transform: none;
   }
 }

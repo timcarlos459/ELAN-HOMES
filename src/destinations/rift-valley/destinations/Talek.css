@@ -1,4 +1,11 @@
+/* ================================
+   TALEK DESTINATION
+================================ */
+
 .talek-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
   background: #f8f7f4;
   color: #171717;
 }
@@ -6,29 +13,38 @@
 /* HERO */
 
 .talek-hero {
-  min-height: 520px;
-  background-image: url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5");
-  background-position: center;
-  background-size: cover;
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  background-image: url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .talek-hero::before {
-  content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.25));
+  content: "";
 }
+
+/* HERO CONTENT */
 
 .talek-hero-overlay {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: 850px;
   padding: 80px 8%;
   color: #fff;
 }
+
+/* EYEBROW */
 
 .talek-hero-overlay > span,
 .talek-intro > span {
@@ -38,18 +54,27 @@
   letter-spacing: 3px;
 }
 
+/* HEADING */
+
 .talek-hero h1 {
-  font-size: clamp(42px, 7vw, 72px);
-  font-weight: 500;
   margin: 20px 0;
+  color: #fff;
+  font-size: clamp(38px, 7vw, 72px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
 }
 
+/* DESCRIPTION */
+
 .talek-hero p {
-  font-size: 17px;
-  line-height: 1.8;
   max-width: 650px;
   color: #eee;
+  font-size: 17px;
+  line-height: 1.8;
 }
+
+/* EXPLORE BUTTON */
 
 .talek-hero a {
   display: inline-block;
@@ -57,33 +82,48 @@
   padding: 15px 25px;
   border: 1px solid #c4a46a;
   color: #fff;
-  text-decoration: none;
   font-size: 11px;
+  font-weight: 600;
   letter-spacing: 1.5px;
-  transition: 0.3s;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .talek-hero a:hover {
+  border-color: #c4a46a;
   background: #c4a46a;
   color: #111;
 }
 
-/* INTRO */
+.talek-hero a:focus-visible,
+.talek-back a:focus-visible {
+  outline: 2px solid #c4a46a;
+  outline-offset: 5px;
+}
+
+/* INTRODUCTION */
 
 .talek-intro {
+  width: 100%;
   max-width: 850px;
-  margin: auto;
+  margin: 0 auto;
   padding: 85px 25px 65px;
   text-align: center;
 }
 
 .talek-intro h2 {
+  margin: 20px 0;
+  color: #171717;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 500;
-  margin: 20px 0;
+  line-height: 1.25;
 }
 
 .talek-intro p {
+  margin: 0;
   color: #777;
   font-size: 15px;
   line-height: 1.9;
@@ -99,37 +139,119 @@
 /* BACK LINK */
 
 .talek-back {
-  text-align: center;
   padding: 35px 20px 65px;
+  text-align: center;
 }
 
 .talek-back a {
   color: #a48650;
-  text-decoration: none;
   font-size: 13px;
   font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .talek-back a:hover {
   color: #171717;
 }
 
-/* RESPONSIVE */
+/* TABLET */
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .talek-hero {
-    min-height: 420px;
+    min-height: 460px;
   }
 
   .talek-hero-overlay {
-    padding: 60px 6%;
+    padding: 70px 6%;
   }
 
   .talek-hero p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .talek-intro {
-    padding: 60px 22px 45px;
+    padding: 70px 25px 55px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .talek-hero {
+    min-height: 420px;
+    background-position: center;
+  }
+
+  .talek-hero-overlay {
+    padding: 55px 6%;
+  }
+
+  .talek-hero-overlay > span,
+  .talek-intro > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .talek-hero h1 {
+    font-size: clamp(34px, 9vw, 48px);
+    letter-spacing: -1px;
+  }
+
+  .talek-hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .talek-hero a {
+    padding: 13px 20px;
+    font-size: 10px;
+  }
+
+  .talek-intro {
+    padding: 55px 20px 45px;
+  }
+
+  .talek-intro h2 {
+    font-size: 28px;
+  }
+
+  .talek-intro p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  #talek-marketplace {
+    padding-bottom: 35px;
+    scroll-margin-top: 80px;
+  }
+
+  .talek-back {
+    padding: 30px 15px 50px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 360px) {
+  .talek-hero {
+    min-height: 380px;
+  }
+
+  .talek-hero-overlay {
+    padding: 45px 5%;
+  }
+
+  .talek-hero h1 {
+    font-size: 34px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .talek-hero a,
+  .talek-back a {
+    transition: none;
   }
 }

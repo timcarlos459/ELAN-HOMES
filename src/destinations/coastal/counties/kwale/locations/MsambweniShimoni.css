@@ -1,10 +1,15 @@
+/* MSAMBWENI–SHIMONI DESTINATION PAGE */
+
 .msambweni-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
 }
 
 /* HERO */
+
 .msambweni-hero {
   min-height: 590px;
   padding: 100px 8%;
@@ -12,48 +17,55 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.22)),
-    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57")
+    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .msambweni-hero-content {
+  width: 100%;
   max-width: 760px;
 }
 
-.msambweni-hero-content > span,
-.msambweni-intro > span,
-.msambweni-collection-heading > span {
+.msambweni-hero-content > span {
+  display: block;
   color: #c5a15d;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .msambweni-hero h1 {
+  margin: 22px 0;
   font-size: clamp(42px, 6vw, 76px);
   line-height: 1.08;
-  margin: 22px 0;
+  font-weight: 600;
 }
 
 .msambweni-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #eee;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
 }
 
 .msambweni-button {
-  display: inline-block;
-  padding: 15px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .msambweni-button:hover {
@@ -62,11 +74,23 @@
 }
 
 /* INTRODUCTION */
+
 .msambweni-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 95px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
+}
+
+.msambweni-intro > span {
+  display: block;
+  color: #c5a15d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .msambweni-intro h2 {
@@ -74,68 +98,28 @@
   margin: 20px auto;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
+  font-weight: 600;
 }
 
 .msambweni-intro p {
   max-width: 780px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 1.9;
 }
 
-/* COLLECTION */
-.msambweni-collection {
-  padding: 85px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.msambweni-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.msambweni-collection-heading h2 {
-  margin: 18px 0;
-  font-size: clamp(28px, 4vw, 42px);
-}
-
-.msambweni-collection-heading p {
-  color: #666;
-  line-height: 1.8;
-}
-
-.msambweni-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.msambweni-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.msambweni-empty-state h3 {
-  margin: 18px 0 12px;
-  font-size: 27px;
-}
-
-.msambweni-empty-state p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.8;
+.msambweni-intro + * {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .msambweni-navigation {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 35px 7%;
@@ -147,23 +131,36 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .msambweni-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.msambweni-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .msambweni-hero {
     min-height: 480px;
     padding: 80px 7%;
+    background-position: center;
   }
 
-  .msambweni-intro,
-  .msambweni-collection {
+  .msambweni-intro {
     padding: 65px 6%;
+  }
+
+  .msambweni-hero p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 
   .msambweni-navigation {
@@ -172,25 +169,62 @@
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .msambweni-hero {
     min-height: 420px;
     padding: 65px 6%;
   }
 
+  .msambweni-hero h1 {
+    font-size: clamp(34px, 9vw, 42px);
+  }
+
+  .msambweni-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
   .msambweni-hero p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
-  .msambweni-empty-state {
-    padding: 45px 20px;
+  .msambweni-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
   }
 
-  .msambweni-empty-state h3 {
-    font-size: 23px;
+  .msambweni-intro {
+    padding: 60px 6%;
+  }
+
+  .msambweni-intro h2 {
+    font-size: 28px;
+  }
+
+  .msambweni-intro p {
+    font-size: 14px;
+    line-height: 1.8;
   }
 
   .msambweni-navigation {
+    padding: 25px 6% 35px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .msambweni-page *,
+  .msambweni-page *::before,
+  .msambweni-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

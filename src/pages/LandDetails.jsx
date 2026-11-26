@@ -64,7 +64,7 @@ export default function LandDetails() {
       : [];
 
   const isSold = land.availabilityStatus === "sold";
-  const isAvailable = !isSold && land.availabilityStatus !== "unavailable";
+  const isAvailable = land.availabilityStatus === "available";
 
   const formatPrice = (price) => {
     if (typeof price === "number" && Number.isFinite(price)) {

@@ -3,9 +3,16 @@
 ================================= */
 
 .stays-page {
-  background: #f8f6f1;
   min-height: 100vh;
+  background: #f8f6f1;
   color: #171717;
+  overflow-x: hidden;
+}
+
+.stays-page *,
+.stays-page *::before,
+.stays-page *::after {
+  box-sizing: border-box;
 }
 
 /* =================================
@@ -17,7 +24,7 @@
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.28)),
     url("https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1800")
-      center/cover no-repeat;
+      center / cover no-repeat;
   display: flex;
   align-items: center;
   padding: 70px 8%;
@@ -99,7 +106,7 @@
 .stays-filters {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 20px;
   background: #fff;
   padding: 28px;
   border: 1px solid #e9e3d8;
@@ -108,6 +115,7 @@
 }
 
 .stay-filter-group {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -122,6 +130,7 @@
 .stay-filter-group select,
 .stay-filter-group input {
   width: 100%;
+  min-width: 0;
   height: 48px;
   padding: 0 13px;
   border: 1px solid #dedbd4;
@@ -131,15 +140,19 @@
   font-family: inherit;
   font-size: 13px;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .stay-filter-group select:focus,
 .stay-filter-group input:focus {
   border-color: #b18a4b;
+  box-shadow: 0 0 0 3px rgba(177, 138, 75, 0.12);
 }
 
-.stay-filter-group select:disabled {
+.stay-filter-group select:disabled,
+.stay-filter-group input:disabled {
   background: #f2f0ec;
   color: #999;
   cursor: not-allowed;
@@ -147,13 +160,14 @@
 
 .stay-guest-hint {
   display: block;
-  margin-top: 6px;
+  margin-top: 2px;
   color: #777;
   font-size: 11px;
+  line-height: 1.5;
 }
 
 .stays-clear-btn {
-  height: 48px;
+  min-height: 48px;
   align-self: end;
   background: #171717;
   color: #fff;
@@ -162,12 +176,34 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .stays-clear-btn:hover {
   background: #b18a4b;
   border-color: #b18a4b;
+}
+
+.stays-clear-btn:active {
+  transform: scale(0.98);
+}
+
+/* =================================
+   DATE VALIDATION
+================================= */
+
+.stays-date-warning {
+  margin: 18px 0;
+  padding: 13px 16px;
+  border: 1px solid #e8d6ae;
+  border-radius: 5px;
+  background: #fff9ed;
+  color: #775b28;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 /* =================================
@@ -186,11 +222,13 @@
   font-size: 25px;
   font-weight: 600;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .stays-results-heading span {
   color: #888;
   font-size: 13px;
+  flex-shrink: 0;
 }
 
 /* =================================
@@ -204,6 +242,7 @@
 }
 
 .stay-card {
+  min-width: 0;
   background: #fff;
   border-radius: 7px;
   overflow: hidden;
@@ -214,7 +253,7 @@
 }
 
 .stay-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.09);
 }
 
@@ -228,38 +267,35 @@
   overflow: hidden;
   isolation: isolate;
   background: #e8e3d8;
-}
-
-/* Main clickable photo */
-
-.stay-photo-open {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  border: none;
-  outline: none;
-  background: transparent;
   cursor: pointer;
-  overflow: hidden;
-  pointer-events: auto;
 }
 
-.stay-photo-open img {
+.stay-card-image > img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  pointer-events: none;
 }
 
-.stay-photo-open:hover img {
+.stay-card-image:hover > img {
   transform: scale(1.05);
+}
+
+.stay-card-image:focus-visible {
+  outline: 3px solid #b18a4b;
+  outline-offset: -3px;
+}
+
+.saved-card-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e8e3d8;
+  color: #777;
+  font-size: 13px;
 }
 
 /* Card badge */
@@ -292,7 +328,9 @@
   color: #fff;
   font-size: 12px;
   cursor: pointer;
-  pointer-events: auto;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .stay-photo-count:hover {
@@ -320,13 +358,54 @@
   font-size: 19px;
   font-weight: 600;
   margin: 10px 0;
+  overflow-wrap: anywhere;
 }
 
 .stay-card-location {
   color: #888;
   font-size: 13px;
+  line-height: 1.6;
   margin-bottom: 18px;
+  overflow-wrap: anywhere;
 }
+
+/* =================================
+   RATINGS
+================================= */
+
+.stay-card-rating {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 10px 0 15px;
+  font-size: 12px;
+}
+
+.stay-rating-stars {
+  color: #b18a45;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.stay-card-rating strong {
+  color: #171717;
+  font-size: 13px;
+}
+
+.stay-card-rating > span:last-child {
+  color: #888;
+}
+
+.stay-no-rating {
+  color: #999;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* =================================
+   STAY FEATURES
+================================= */
 
 .stay-card-features {
   display: flex;
@@ -340,14 +419,24 @@
 .stay-card-features span {
   color: #555;
   font-size: 12px;
+  line-height: 1.5;
 }
+
+/* =================================
+   PRICE AND DETAILS BUTTON
+================================= */
 
 .stay-card-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding-top: 18px;
+}
+
+.stay-card-bottom > div {
+  min-width: 0;
 }
 
 .stay-card-bottom strong {
@@ -370,7 +459,10 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
   cursor: pointer;
 }
 
@@ -393,12 +485,23 @@
   border-radius: 7px;
 }
 
+.stays-empty > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #a88445;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
 .stays-empty h3 {
   font-size: 22px;
   margin-bottom: 10px;
 }
 
 .stays-empty p {
+  max-width: 600px;
+  margin: 0 auto;
   color: #888;
   font-size: 14px;
   line-height: 1.7;
@@ -412,9 +515,9 @@
   font-weight: 700;
 }
 
-/* =========================================
+/* =================================
    FULL PHOTO GALLERY
-========================================= */
+================================= */
 
 .stay-gallery-overlay {
   position: fixed;
@@ -426,7 +529,6 @@
   align-items: center;
   padding: 25px;
   overflow-y: auto;
-  pointer-events: auto;
 }
 
 .stay-gallery-modal {
@@ -439,7 +541,6 @@
   border-radius: 8px;
   overflow: hidden;
   color: #fff;
-  pointer-events: auto;
 }
 
 /* Gallery header */
@@ -463,9 +564,11 @@
   margin: 7px 0 0;
   font-size: 21px;
   color: #fff;
+  overflow-wrap: anywhere;
 }
 
 .stay-gallery-close {
+  flex: 0 0 42px;
   width: 42px;
   height: 42px;
   border: 1px solid #555;
@@ -475,7 +578,6 @@
   font-size: 30px;
   cursor: pointer;
   line-height: 1;
-  pointer-events: auto;
 }
 
 .stay-gallery-close:hover {
@@ -522,7 +624,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: auto;
 }
 
 .stay-gallery-arrow:hover {
@@ -563,6 +664,8 @@
   padding: 17px 20px;
   overflow-x: auto;
   background: #171717;
+  scrollbar-width: thin;
+  scrollbar-color: #b18a4b #222;
 }
 
 .stay-gallery-thumbnail {
@@ -575,7 +678,6 @@
   overflow: hidden;
   background: #222;
   cursor: pointer;
-  pointer-events: auto;
 }
 
 .stay-gallery-thumbnail img {
@@ -611,7 +713,20 @@
 }
 
 /* =================================
-   RESPONSIVE DESIGN
+   KEYBOARD ACCESSIBILITY
+================================= */
+
+.stays-page button:focus-visible,
+.stays-page a:focus-visible,
+.stays-page select:focus-visible,
+.stays-page input:focus-visible,
+.stay-gallery-modal button:focus-visible {
+  outline: 3px solid #b18a4b;
+  outline-offset: 3px;
+}
+
+/* =================================
+   TABLET
 ================================= */
 
 @media (max-width: 1000px) {
@@ -628,14 +743,28 @@
   }
 }
 
+/* =================================
+   MOBILE
+================================= */
+
 @media (max-width: 600px) {
   .stays-hero {
     min-height: 360px;
     padding: 55px 7%;
   }
 
+  .stays-hero-content span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
   .stays-hero-content h1 {
-    font-size: 38px;
+    font-size: clamp(32px, 9vw, 38px);
+  }
+
+  .stays-hero-content p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .stays-intro {
@@ -646,43 +775,101 @@
     font-size: 28px;
   }
 
+  .stays-intro p {
+    font-size: 14px;
+  }
+
   .stays-content {
     width: 92%;
+    padding-bottom: 55px;
   }
 
   .stays-filters {
     grid-template-columns: 1fr;
+    gap: 16px;
     padding: 20px;
   }
 
-  .stays-grid {
-    grid-template-columns: 1fr;
+  .stay-filter-group select,
+  .stay-filter-group input {
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .stays-clear-btn {
+    width: 100%;
+    min-height: 46px;
   }
 
   .stays-results-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+    margin: 38px 0 20px;
+  }
+
+  .stays-results-heading h2 {
+    font-size: 22px;
+  }
+
+  .stays-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .stay-card-image {
-    height: 230px;
+    height: 235px;
   }
+
+  .stay-card-details {
+    padding: 19px;
+  }
+
+  .stay-card-bottom {
+    align-items: center;
+  }
+
+  .stay-card-bottom .view-stay-btn {
+    padding: 11px 16px;
+  }
+
+  .stays-empty {
+    padding: 45px 18px;
+  }
+
+  /* Gallery */
 
   .stay-gallery-overlay {
     padding: 8px;
+    align-items: center;
+  }
+
+  .stay-gallery-modal {
+    max-height: 95dvh;
+    display: flex;
+    flex-direction: column;
   }
 
   .stay-gallery-header {
-    padding: 15px;
+    padding: 13px;
+    gap: 10px;
   }
 
   .stay-gallery-header h2 {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .stay-gallery-close {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    font-size: 26px;
   }
 
   .stay-gallery-main {
     height: 48vh;
+    min-height: 220px;
+    flex-shrink: 1;
   }
 
   .stay-gallery-arrow {
@@ -699,6 +886,11 @@
     right: 7px;
   }
 
+  .stay-gallery-thumbnails {
+    gap: 8px;
+    padding: 12px;
+  }
+
   .stay-gallery-thumbnail {
     flex-basis: 70px;
     width: 70px;
@@ -708,39 +900,76 @@
   .stay-gallery-footer {
     flex-direction: column;
     align-items: flex-start;
+    gap: 7px;
+    padding: 13px;
   }
 }
 
 /* =================================
-   ELAN HOMES - STAY CARD RATINGS
+   SMALL MOBILE
 ================================= */
 
-.stay-card-rating {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin: 10px 0 15px;
-  font-size: 12px;
+@media (max-width: 380px) {
+  .stays-hero {
+    min-height: 330px;
+    padding: 45px 6%;
+  }
+
+  .stays-hero-content h1 {
+    font-size: 30px;
+  }
+
+  .stays-intro h2 {
+    font-size: 25px;
+  }
+
+  .stays-content {
+    width: 94%;
+  }
+
+  .stays-filters {
+    padding: 15px;
+  }
+
+  .stay-card-image {
+    height: 205px;
+  }
+
+  .stay-card-details {
+    padding: 16px;
+  }
+
+  .stay-card-bottom strong {
+    font-size: 17px;
+  }
+
+  .stay-card-bottom .view-stay-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .stay-gallery-main {
+    height: 42vh;
+    min-height: 190px;
+  }
+
+  .stay-gallery-counter {
+    right: 10px;
+    bottom: 10px;
+  }
 }
 
-.stay-rating-stars {
-  color: #b18a45;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
+/* =================================
+   REDUCED MOTION
+================================= */
 
-.stay-card-rating strong {
-  color: #171717;
-  font-size: 13px;
-}
-
-.stay-card-rating > span:last-child {
-  color: #888;
-}
-
-.stay-no-rating {
-  color: #999;
-  font-size: 12px;
-  font-style: italic;
+@media (prefers-reduced-motion: reduce) {
+  .stays-page *,
+  .stays-page *::before,
+  .stays-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

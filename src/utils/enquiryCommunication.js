@@ -5,23 +5,33 @@ export const addEnquiryMessage = (record, messageData) => {
     throw new Error("A valid enquiry record is required.");
   }
 
+  if (!messageData || typeof messageData !== "object") {
+    throw new Error("Valid message data is required.");
+  }
+
+  if (typeof messageData.message !== "string" || !messageData.message.trim()) {
+    throw new Error("Message cannot be empty.");
+  }
+
   const message = createEnquiryMessage({
     enquiryId: record.id,
     senderType: messageData.senderType,
-    message: messageData.message,
+    message: messageData.message.trim(),
   });
 
-  const now = new Date().toISOString();
+  const existingMessages = Array.isArray(record.communication?.messages)
+    ? record.communication.messages
+    : [];
 
   return {
     ...record,
 
     communication: {
       ...record.communication,
-      messages: [...(record.communication?.messages || []), message],
+      messages: [...existingMessages, message],
     },
 
-    updatedAt: now,
+    updatedAt: new Date().toISOString(),
   };
 };
 
@@ -30,7 +40,9 @@ export const markEnquiryMessageAsRead = (record, messageId) => {
     throw new Error("An enquiry and message ID are required.");
   }
 
-  const messages = record.communication?.messages || [];
+  const messages = Array.isArray(record.communication?.messages)
+    ? record.communication.messages
+    : [];
 
   const messageExists = messages.some((message) => message.id === messageId);
 

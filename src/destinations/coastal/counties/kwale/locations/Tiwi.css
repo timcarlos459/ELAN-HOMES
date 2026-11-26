@@ -1,10 +1,15 @@
+/* TIWI DESTINATION PAGE */
+
 .tiwi-page {
   width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
   background: #f8f6f1;
   color: #171717;
 }
 
 /* HERO */
+
 .tiwi-hero {
   min-height: 590px;
   padding: 100px 8%;
@@ -12,48 +17,55 @@
   align-items: center;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.2)),
-    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57")
+    url("https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2000&q=85")
       center/cover no-repeat;
   color: #fff;
 }
 
 .tiwi-hero-content {
+  width: 100%;
   max-width: 760px;
 }
 
-.tiwi-hero-content > span,
-.tiwi-intro > span,
-.tiwi-collection-heading > span {
+.tiwi-hero-content > span {
+  display: block;
   color: #c5a15d;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .tiwi-hero h1 {
+  margin: 22px 0;
   font-size: clamp(42px, 6vw, 76px);
   line-height: 1.08;
-  margin: 22px 0;
+  font-weight: 600;
 }
 
 .tiwi-hero p {
   max-width: 620px;
+  margin: 0 0 32px;
   color: #eee;
   font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 32px;
 }
 
 .tiwi-button {
-  display: inline-block;
-  padding: 15px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 30px;
   background: #c5a15d;
   color: #111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
-  transition: 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
 .tiwi-button:hover {
@@ -62,11 +74,23 @@
 }
 
 /* INTRODUCTION */
+
 .tiwi-intro {
+  width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
   padding: 95px 7%;
   text-align: center;
+  scroll-margin-top: 30px;
+}
+
+.tiwi-intro > span {
+  display: block;
+  color: #c5a15d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 1.6;
 }
 
 .tiwi-intro h2 {
@@ -74,68 +98,28 @@
   margin: 20px auto;
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.2;
+  font-weight: 600;
 }
 
 .tiwi-intro p {
   max-width: 780px;
-  margin: auto;
+  margin: 0 auto;
   color: #666;
   font-size: 16px;
   line-height: 1.9;
 }
 
-/* COLLECTION */
-.tiwi-collection {
-  padding: 85px 7%;
-  background: #fff;
-}
+/* SHARED MARKETPLACE */
 
-.tiwi-collection-heading {
-  max-width: 750px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
-
-.tiwi-collection-heading h2 {
-  margin: 18px 0;
-  font-size: clamp(28px, 4vw, 42px);
-}
-
-.tiwi-collection-heading p {
-  color: #666;
-  line-height: 1.8;
-}
-
-.tiwi-empty-state {
-  max-width: 850px;
-  margin: auto;
-  padding: 65px 30px;
-  text-align: center;
-  background: #f8f6f1;
-  border: 1px solid #e9e3d8;
-}
-
-.tiwi-empty-state > span {
-  color: #ad8845;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-}
-
-.tiwi-empty-state h3 {
-  margin: 18px 0 12px;
-  font-size: 27px;
-}
-
-.tiwi-empty-state p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.8;
+.tiwi-intro + * {
+  scroll-margin-top: 30px;
 }
 
 /* NAVIGATION */
+
 .tiwi-navigation {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 35px 7%;
@@ -147,23 +131,36 @@
   text-decoration: none;
   font-size: 13px;
   font-weight: 700;
-  transition: 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .tiwi-navigation a:hover {
   color: #171717;
 }
 
+/* ACCESSIBILITY */
+
+.tiwi-page a:focus-visible {
+  outline: 2px solid #b18c4c;
+  outline-offset: 4px;
+}
+
 /* TABLET */
+
 @media (max-width: 768px) {
   .tiwi-hero {
     min-height: 480px;
     padding: 80px 7%;
+    background-position: center;
   }
 
-  .tiwi-intro,
-  .tiwi-collection {
+  .tiwi-intro {
     padding: 65px 6%;
+  }
+
+  .tiwi-hero p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 
   .tiwi-navigation {
@@ -172,25 +169,62 @@
 }
 
 /* MOBILE */
+
 @media (max-width: 480px) {
   .tiwi-hero {
     min-height: 420px;
     padding: 65px 6%;
   }
 
+  .tiwi-hero h1 {
+    font-size: 40px;
+  }
+
+  .tiwi-hero-content > span {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
   .tiwi-hero p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
-  .tiwi-empty-state {
-    padding: 45px 20px;
+  .tiwi-button {
+    min-height: 46px;
+    padding: 0 22px;
+    font-size: 12px;
   }
 
-  .tiwi-empty-state h3 {
-    font-size: 23px;
+  .tiwi-intro {
+    padding: 60px 6%;
+  }
+
+  .tiwi-intro h2 {
+    font-size: 28px;
+  }
+
+  .tiwi-intro p {
+    font-size: 14px;
+    line-height: 1.8;
   }
 
   .tiwi-navigation {
+    padding: 25px 6% 35px;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .tiwi-page *,
+  .tiwi-page *::before,
+  .tiwi-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
