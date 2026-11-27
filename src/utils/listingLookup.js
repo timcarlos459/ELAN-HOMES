@@ -1,5 +1,5 @@
 import properties from "../data/properties";
-import landListings from "../data/landListings";
+import landListings from "../data/land";
 import stays from "../data/stays";
 
 const listingCollections = {
