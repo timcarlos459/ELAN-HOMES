@@ -1,0 +1,796 @@
+/* =========================================
+   ÉLAN HOMES CURATOR–CLIENT AGREEMENT
+   Responsive: Desktop, Tablet and Mobile
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* PAGE */
+
+.curator-client-agreement-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f2eb;
+  color: #25231f;
+  padding-bottom: 70px;
+  overflow-x: hidden;
+}
+
+.curator-client-agreement-page p,
+.curator-client-agreement-page li,
+.curator-client-agreement-page h1,
+.curator-client-agreement-page h2,
+.curator-client-agreement-page h3 {
+  overflow-wrap: break-word;
+}
+
+/* HERO */
+
+.curator-client-agreement-hero {
+  min-height: 300px;
+  width: 100%;
+  padding: 75px 20px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.curator-client-agreement-hero > span {
+  color: #c9a45c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+.curator-client-agreement-hero h1 {
+  width: 100%;
+  max-width: 850px;
+  margin: 0;
+  color: #f5f1e8;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.curator-client-agreement-hero p {
+  width: 100%;
+  max-width: 650px;
+  margin: 18px auto 0;
+  color: #c9c2b6;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* MAIN CONTAINER */
+
+.curator-client-agreement-container {
+  width: min(100% - 36px, 1000px);
+  margin: 45px auto;
+}
+
+/* DRAFT NOTICE */
+
+.curator-client-agreement-notice {
+  padding: 23px 25px;
+  margin-bottom: 35px;
+  background: #fff8e8;
+  border: 1px solid #dfc58e;
+  border-left: 5px solid #c9a45c;
+  border-radius: 7px;
+}
+
+.curator-client-agreement-notice strong {
+  display: block;
+  color: #8b682b;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.curator-client-agreement-notice p {
+  margin: 0;
+  color: #625b4e;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* INTRODUCTION */
+
+.client-agreement-introduction {
+  margin-bottom: 35px;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #e6e0d5;
+  border-radius: 9px;
+}
+
+.client-agreement-introduction h2 {
+  margin: 0 0 17px;
+  color: #a47e3e;
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.client-agreement-introduction p {
+  color: #57534b;
+  font-size: 14px;
+  line-height: 1.85;
+  margin: 12px 0;
+}
+
+/* AGREEMENT SECTIONS */
+
+.client-agreement-section {
+  position: relative;
+  padding: 30px;
+  margin-bottom: 20px;
+  background: #fff;
+  border: 1px solid #e7e1d7;
+  border-radius: 9px;
+  transition: border-color 0.2s ease;
+}
+
+.client-agreement-section:hover {
+  border-color: #c9a45c;
+}
+
+.client-agreement-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  margin-bottom: 15px;
+  background: #171717;
+  border: 1px solid #c9a45c;
+  border-radius: 50%;
+  color: #d6b46e;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.client-agreement-section h2 {
+  margin: 0 0 17px;
+  color: #25231f;
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 650;
+}
+
+.client-agreement-section h3 {
+  margin: 18px 0 9px;
+  color: #a47e3e;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.client-agreement-section p {
+  margin: 12px 0;
+  color: #57534b;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.client-agreement-section ul,
+.client-agreement-booking-summary ul {
+  padding-left: 23px;
+  margin: 14px 0;
+}
+
+.client-agreement-section li,
+.client-agreement-booking-summary li {
+  padding-left: 5px;
+  margin-bottom: 10px;
+  color: #57534b;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.client-agreement-section li::marker,
+.client-agreement-booking-summary li::marker {
+  color: #b18b49;
+}
+
+.client-agreement-section strong {
+  color: #29251e;
+}
+
+/* SERVICE CATEGORY CARDS */
+
+.client-agreement-category {
+  padding: 20px;
+  margin-top: 15px;
+  background: #f8f5ee;
+  border-left: 3px solid #c9a45c;
+  border-radius: 5px;
+}
+
+.client-agreement-category h3 {
+  margin: 0 0 8px;
+  color: #9b773b;
+  font-size: 17px;
+  letter-spacing: 0.3px;
+}
+
+.client-agreement-category p {
+  margin: 0;
+}
+
+/* TRANSACTION SUMMARY */
+
+.client-agreement-booking-summary {
+  padding: 32px;
+  margin-top: 35px;
+  background: #171717;
+  border: 1px solid rgba(201, 164, 92, 0.45);
+  border-radius: 10px;
+  color: #f5f1e8;
+}
+
+.client-agreement-booking-summary h2 {
+  margin: 0 0 15px;
+  color: #d0ad68;
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+.client-agreement-booking-summary h3 {
+  margin: 25px 0 10px;
+  color: #d0ad68;
+  font-size: 16px;
+}
+
+.client-agreement-booking-summary p,
+.client-agreement-booking-summary li {
+  color: #d0c9bd;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* FINAL DISCLAIMER */
+
+.client-agreement-final-disclaimer {
+  margin-top: 45px;
+  padding: 28px;
+  background: #fff4e5;
+  border: 1px solid #c49a45;
+  border-left: 5px solid #c49a45;
+  border-radius: 8px;
+}
+
+.client-agreement-final-disclaimer h2 {
+  margin: 0 0 18px;
+  color: #171717;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 800;
+}
+
+.client-agreement-final-disclaimer p {
+  margin: 0 0 14px;
+  color: #393939;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.client-agreement-final-disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
+/* ELECTRONIC ACKNOWLEDGEMENT */
+
+.curator-client-acceptance {
+  width: 100%;
+  margin-top: 40px;
+  padding: 35px;
+  background: #111;
+  border: 1px solid rgba(201, 164, 92, 0.45);
+  border-radius: 12px;
+  color: #f5f1e8;
+}
+
+.curator-client-acceptance h2 {
+  margin: 0 0 15px;
+  color: #d0ad68;
+  font-size: 25px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.curator-client-acceptance > p {
+  margin: 0 0 16px;
+  color: #c8c2b7;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.curator-client-acceptance > p:last-of-type {
+  margin-bottom: 25px;
+}
+
+/* ACKNOWLEDGEMENT FORM */
+
+.client-acceptance-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.client-acceptance-form > label:not(.client-acceptance-checkbox) {
+  color: #d0ad68;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.client-acceptance-form > input[type="text"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 15px 16px;
+  background: #1c1c1c;
+  border: 1px solid #49433a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.client-acceptance-form > input[type="text"]:focus {
+  border-color: #d0ad68;
+  box-shadow: 0 0 0 2px rgba(208, 173, 104, 0.12);
+}
+
+.client-acceptance-form > input::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+/* ACKNOWLEDGEMENT CHECKBOX */
+
+.client-acceptance-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 18px;
+  background: #1b1b1b;
+  border: 1px solid #39342c;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.client-acceptance-checkbox input {
+  width: 19px;
+  height: 19px;
+  min-width: 19px;
+  margin: 3px 0 0;
+  accent-color: #c9a45c;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.client-acceptance-checkbox span {
+  min-width: 0;
+  color: #ded8cd;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* SUBMIT BUTTON */
+
+.client-acceptance-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 340px;
+  min-height: 52px;
+  padding: 15px 24px;
+  margin-top: 5px;
+  background: #c9a45c;
+  color: #111;
+  border: 1px solid #c9a45c;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.client-acceptance-submit:hover {
+  background: transparent;
+  color: #d0ad68;
+}
+
+.client-acceptance-submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* ERROR MESSAGE */
+
+.client-acceptance-error {
+  width: 100%;
+  padding: 13px 15px;
+  margin: 0;
+  background: rgba(180, 65, 65, 0.12);
+  border: 1px solid rgba(210, 90, 90, 0.5);
+  border-radius: 6px;
+  color: #f0aaaa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* SUCCESS MESSAGE */
+
+.client-acceptance-success {
+  width: 100%;
+  min-width: 0;
+  padding: 23px;
+  background: rgba(62, 130, 85, 0.1);
+  border: 1px solid rgba(95, 170, 115, 0.45);
+  border-left: 4px solid #72b887;
+  border-radius: 8px;
+}
+
+.client-acceptance-success h3 {
+  margin: 0 0 18px;
+  color: #a8d9b4;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.client-acceptance-success p {
+  margin: 10px 0;
+  color: #d7d0c4;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.client-acceptance-success strong {
+  color: #d0ad68;
+}
+
+/* FOOTER */
+
+.client-agreement-footer {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.client-agreement-footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 13px 22px;
+  color: #9b773b;
+  border: 1px solid #c9a45c;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.client-agreement-footer a:hover {
+  background: #171717;
+  color: #d0ad68;
+}
+
+.client-agreement-footer a:focus-visible {
+  outline: 2px solid #c9a45c;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 900px) {
+  .curator-client-agreement-container {
+    width: min(100% - 32px, 1000px);
+    margin: 35px auto;
+  }
+
+  .curator-client-agreement-hero {
+    min-height: 270px;
+    padding: 65px 25px;
+  }
+
+  .client-agreement-introduction,
+  .client-agreement-section {
+    padding: 27px;
+  }
+
+  .client-agreement-booking-summary,
+  .curator-client-acceptance {
+    padding: 28px;
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 700px) {
+  .curator-client-agreement-page {
+    padding-bottom: 40px;
+  }
+
+  .curator-client-agreement-hero {
+    min-height: auto;
+    padding: 55px 18px;
+  }
+
+  .curator-client-agreement-hero > span {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+  }
+
+  .curator-client-agreement-hero h1 {
+    font-size: clamp(27px, 7vw, 36px);
+    line-height: 1.25;
+  }
+
+  .curator-client-agreement-hero p {
+    max-width: 480px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .curator-client-agreement-container {
+    width: calc(100% - 28px);
+    margin: 25px auto;
+  }
+
+  .curator-client-agreement-notice {
+    padding: 19px 17px;
+    margin-bottom: 22px;
+  }
+
+  .curator-client-agreement-notice strong {
+    font-size: 11px;
+    letter-spacing: 0.7px;
+  }
+
+  .curator-client-agreement-notice p {
+    font-size: 13px;
+  }
+
+  .client-agreement-introduction,
+  .client-agreement-section {
+    padding: 22px 18px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+  .client-agreement-introduction h2 {
+    font-size: 21px;
+  }
+
+  .client-agreement-section h2 {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .client-agreement-section h3 {
+    font-size: 15px;
+  }
+
+  .client-agreement-introduction p,
+  .client-agreement-section p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .client-agreement-section ul,
+  .client-agreement-booking-summary ul {
+    padding-left: 20px;
+  }
+
+  .client-agreement-section li,
+  .client-agreement-booking-summary li {
+    padding-left: 3px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .client-agreement-number {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .client-agreement-category {
+    padding: 17px;
+  }
+
+  .client-agreement-category h3 {
+    font-size: 16px;
+  }
+
+  .client-agreement-booking-summary {
+    padding: 23px 18px;
+    margin-top: 25px;
+  }
+
+  .client-agreement-booking-summary h2 {
+    font-size: 20px;
+  }
+
+  .client-agreement-booking-summary h3 {
+    font-size: 15px;
+  }
+
+  .client-agreement-booking-summary p,
+  .client-agreement-booking-summary li {
+    font-size: 13px;
+  }
+
+  .client-agreement-final-disclaimer {
+    padding: 21px 18px;
+    margin-top: 25px;
+  }
+
+  .client-agreement-final-disclaimer h2 {
+    font-size: 15px;
+  }
+
+  .client-agreement-final-disclaimer p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .curator-client-acceptance {
+    padding: 24px 18px;
+    margin-top: 28px;
+    border-radius: 9px;
+  }
+
+  .curator-client-acceptance h2 {
+    font-size: 21px;
+  }
+
+  .curator-client-acceptance > p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .client-acceptance-form {
+    gap: 13px;
+  }
+
+  .client-acceptance-form > input[type="text"] {
+    min-height: 49px;
+    padding: 13px;
+    font-size: 16px;
+  }
+
+  .client-acceptance-checkbox {
+    padding: 15px 12px;
+    gap: 10px;
+  }
+
+  .client-acceptance-checkbox span {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .client-acceptance-submit {
+    width: 100%;
+    max-width: 100%;
+    min-height: 51px;
+    padding: 14px 12px;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+  }
+
+  .client-acceptance-success {
+    padding: 19px 15px;
+  }
+
+  .client-acceptance-success h3 {
+    font-size: 16px;
+  }
+
+  .client-acceptance-success p {
+    font-size: 12px;
+  }
+
+  .client-agreement-footer {
+    margin-top: 25px;
+  }
+
+  .client-agreement-footer a {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px;
+    padding: 13px 15px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE DEVICES
+========================================= */
+
+@media (max-width: 380px) {
+  .curator-client-agreement-container {
+    width: calc(100% - 20px);
+  }
+
+  .curator-client-agreement-hero {
+    padding: 45px 14px;
+  }
+
+  .curator-client-agreement-hero h1 {
+    font-size: 26px;
+  }
+
+  .client-agreement-introduction,
+  .client-agreement-section {
+    padding: 19px 14px;
+  }
+
+  .client-agreement-booking-summary,
+  .curator-client-acceptance {
+    padding: 20px 14px;
+  }
+
+  .client-agreement-final-disclaimer {
+    padding: 18px 14px;
+  }
+
+  .client-acceptance-checkbox {
+    padding: 13px 10px;
+    gap: 9px;
+  }
+
+  .client-acceptance-checkbox span {
+    font-size: 11px;
+  }
+
+  .client-acceptance-submit {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .client-agreement-section,
+  .client-acceptance-submit,
+  .client-agreement-footer a,
+  .client-acceptance-form > input[type="text"] {
+    transition: none;
+  }
+}

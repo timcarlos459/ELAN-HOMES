@@ -1,30 +1,97 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [destinationOpen, setDestinationOpen] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(false);
+  const [desktopAccountOpen, setDesktopAccountOpen] = useState(false);
+  const [mobileAccountOpen, setMobileAccountOpen] = useState(false);
+
+  const navbarRef = useRef(null);
 
   const closeMenus = () => {
     setMenuOpen(false);
     setDestinationOpen(false);
-    setAccountOpen(false);
+    setDesktopAccountOpen(false);
+    setMobileAccountOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen((current) => !current);
+    setDestinationOpen(false);
+    setDesktopAccountOpen(false);
+    setMobileAccountOpen(false);
   };
 
   const toggleDestinations = () => {
     setDestinationOpen((current) => !current);
-    setAccountOpen(false);
+    setDesktopAccountOpen(false);
+    setMobileAccountOpen(false);
   };
 
-  const toggleAccount = () => {
-    setAccountOpen((current) => !current);
+  const toggleDesktopAccount = () => {
+    setDesktopAccountOpen((current) => !current);
     setDestinationOpen(false);
+    setMobileAccountOpen(false);
   };
+
+  const toggleMobileAccount = () => {
+    setMobileAccountOpen((current) => !current);
+    setDestinationOpen(false);
+    setDesktopAccountOpen(false);
+  };
+
+  // Close menus when clicking outside the navbar.
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        closeMenus();
+      }
+    };
+
+    document.addEventListener("pointerdown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsideClick);
+    };
+  }, []);
+
+  // Close menus when pressing Escape.
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        closeMenus();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  // Close mobile navigation when returning to desktop layout.
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 950) {
+        setMenuOpen(false);
+        setMobileAccountOpen(false);
+      } else {
+        setDesktopAccountOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <header className="elan-navbar">
+    <header className="elan-navbar" ref={navbarRef}>
       <div className="elan-navbar-inner">
         {/* BRAND */}
         <Link to="/" className="elan-brand" onClick={closeMenus}>
@@ -36,14 +103,14 @@ export default function Navbar() {
         <button
           type="button"
           className="mobile-menu-toggle"
-          onClick={() => setMenuOpen((current) => !current)}
+          onClick={toggleMenu}
           aria-label={
             menuOpen ? "Close navigation menu" : "Open navigation menu"
           }
           aria-expanded={menuOpen}
           aria-controls="elan-main-navigation"
         >
-          <span>{menuOpen ? "✕" : "☰"}</span>
+          <span aria-hidden="true">{menuOpen ? "✕" : "☰"}</span>
         </button>
 
         {/* MAIN NAVIGATION */}
@@ -76,12 +143,17 @@ export default function Navbar() {
               onClick={toggleDestinations}
               aria-expanded={destinationOpen}
               aria-haspopup="true"
+              aria-controls="elan-destinations-menu"
             >
-              Destinations <span>⌄</span>
+              Destinations
+              <span aria-hidden="true">{destinationOpen ? "⌃" : "⌄"}</span>
             </button>
 
             {destinationOpen && (
-              <div className="nav-dropdown-menu destinations-menu">
+              <div
+                id="elan-destinations-menu"
+                className="nav-dropdown-menu destinations-menu"
+              >
                 <div className="dropdown-heading">EXPLORE KENYA</div>
 
                 <Link to="/destinations/nairobi" onClick={closeMenus}>
@@ -128,16 +200,21 @@ export default function Navbar() {
             <button
               type="button"
               className="nav-dropdown-trigger mobile-account-trigger"
-              onClick={toggleAccount}
-              aria-expanded={accountOpen}
+              onClick={toggleMobileAccount}
+              aria-expanded={mobileAccountOpen}
               aria-haspopup="true"
+              aria-controls="elan-mobile-account-menu"
             >
               <span>Account</span>
-              <span>{accountOpen ? "⌃" : "⌄"}</span>
+
+              <span aria-hidden="true">{mobileAccountOpen ? "⌃" : "⌄"}</span>
             </button>
 
-            {accountOpen && (
-              <div className="mobile-account-menu">
+            {mobileAccountOpen && (
+              <div
+                id="elan-mobile-account-menu"
+                className="mobile-account-menu"
+              >
                 <Link to="/signin" onClick={closeMenus}>
                   Sign In
                 </Link>
@@ -176,7 +253,8 @@ export default function Navbar() {
         {/* DESKTOP ACTIONS */}
         <div className="elan-nav-actions">
           <Link to="/search" className="nav-search" onClick={closeMenus}>
-            <span>⌕</span> Search
+            <span aria-hidden="true">⌕</span>
+            Search
           </Link>
 
           {/* DESKTOP ACCOUNT */}
@@ -184,17 +262,25 @@ export default function Navbar() {
             <button
               type="button"
               className="account-trigger"
-              onClick={toggleAccount}
-              aria-expanded={accountOpen}
+              onClick={toggleDesktopAccount}
+              aria-expanded={desktopAccountOpen}
               aria-haspopup="true"
+              aria-controls="elan-desktop-account-menu"
             >
-              <span className="account-icon">♙</span>
+              <span className="account-icon" aria-hidden="true">
+                ♙
+              </span>
+
               <span>Account</span>
-              <span>⌄</span>
+
+              <span aria-hidden="true">{desktopAccountOpen ? "⌃" : "⌄"}</span>
             </button>
 
-            {accountOpen && (
-              <div className="nav-dropdown-menu account-menu">
+            {desktopAccountOpen && (
+              <div
+                id="elan-desktop-account-menu"
+                className="nav-dropdown-menu account-menu"
+              >
                 <Link to="/signin" onClick={closeMenus}>
                   Sign In
                 </Link>
@@ -203,7 +289,7 @@ export default function Navbar() {
                   Create Account
                 </Link>
 
-                <div className="dropdown-divider"></div>
+                <div className="dropdown-divider" />
 
                 <Link to="/account" onClick={closeMenus}>
                   My Account
@@ -226,7 +312,8 @@ export default function Navbar() {
             className="list-property-btn"
             onClick={closeMenus}
           >
-            List Your Property <span>↗</span>
+            List Your Property
+            <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>

@@ -118,7 +118,6 @@ export default function Register() {
     }
 
     const email = formData.email.trim().toLowerCase();
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailPattern.test(email)) {
@@ -127,7 +126,6 @@ export default function Register() {
     }
 
     const normalizedPhone = formData.phone.replace(/[\s-]/g, "");
-
     const phonePattern = /^(?:\+254|254|0)(?:7\d{8}|1\d{8})$/;
 
     if (!phonePattern.test(normalizedPhone)) {
@@ -152,8 +150,15 @@ export default function Register() {
       return;
     }
 
+    if (formData.accountType === "curator") {
+      alert(
+        "Your Curator registration details have passed frontend validation.\n\nWhen secure account services are connected, you will be able to create your account and submit your Curator application.\n\nYour application will require ÉLAN HOMES approval before you can publish listings, manage bookings or operate as a Curator.\n\nYou will review and accept the Curator–ÉLAN HOMES Agreement before your account is activated.",
+      );
+      return;
+    }
+
     alert(
-      "Your registration details have passed frontend validation.\n\nAccount creation and email OTP verification will become available when secure authentication is connected.",
+      "Your Explorer registration details have passed frontend validation.\n\nAccount creation and email OTP verification will become available when secure authentication is connected.",
     );
   };
 
@@ -301,7 +306,6 @@ export default function Register() {
 
                       <span className="register-category-content">
                         <strong>{category.title}</strong>
-
                         <span>{category.description}</span>
                       </span>
 
@@ -480,7 +484,7 @@ export default function Register() {
 
             <span>
               I agree to the{" "}
-              <Link to="/terms" target="_blank">
+              <Link to="/terms-and-conditions" target="_blank">
                 Terms of Service
               </Link>{" "}
               and{" "}
@@ -491,17 +495,28 @@ export default function Register() {
             </span>
           </label>
 
-          {/* FRONTEND NOTICE */}
+          {/* REGISTRATION NOTICE */}
 
-          <p className="register-category-note">
-            Registration and email verification will be activated when secure
-            account services are connected.
-          </p>
+          {formData.accountType === "curator" ? (
+            <p className="register-category-note">
+              Curator applications are subject to approval. You will be able to
+              complete your profile while your application is under review, but
+              publishing listings and managing bookings require approval and
+              acceptance of the Curator–ÉLAN HOMES Agreement.
+            </p>
+          ) : (
+            <p className="register-category-note">
+              Account creation and email verification will be activated when
+              secure authentication services are connected.
+            </p>
+          )}
 
           {/* SUBMIT */}
 
           <button type="submit" className="register-submit">
-            CREATE ACCOUNT
+            {formData.accountType === "curator"
+              ? "CONTINUE AS CURATOR"
+              : "CREATE ACCOUNT"}
           </button>
         </form>
 

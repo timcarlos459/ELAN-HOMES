@@ -1,0 +1,789 @@
+/* =========================================
+   ÉLAN HOMES — CURATOR LISTINGS
+========================================= */
+
+.curator-listings-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 65px 5.8%;
+  background: #080808;
+  color: #f5f1e8;
+  box-sizing: border-box;
+}
+
+.curator-listings-page *,
+.curator-listings-page *::before,
+.curator-listings-page *::after {
+  box-sizing: border-box;
+}
+
+.curator-listings-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+.curator-listings-header {
+  display: grid;
+  grid-template-columns: auto auto auto minmax(220px, 1fr);
+  align-items: start;
+  gap: 22px;
+  margin-bottom: 55px;
+}
+
+.curator-listings-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 12px 16px;
+  border: 1px solid #39352c;
+  border-radius: 4px;
+  color: #d2b16f;
+  font-size: 12px;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.curator-listings-back:hover {
+  background: #c9a45c;
+  border-color: #c9a45c;
+  color: #080808;
+}
+
+.curator-listings-header > span {
+  color: #c9a45c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.7;
+}
+
+.curator-listings-header h1 {
+  margin: 0;
+  color: #f5f1e8;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.curator-listings-header p {
+  margin: 3px 0 0;
+  color: #aaa49a;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* MANAGEMENT NOTICE */
+
+.curator-listings-notice {
+  padding: 22px 25px;
+  margin-bottom: 35px;
+  border: 1px solid rgba(201, 164, 92, 0.22);
+  border-left: 3px solid #c9a45c;
+  border-radius: 5px;
+  background: #11100d;
+}
+
+.curator-listings-notice strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #f5f1e8;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.curator-listings-notice p {
+  margin: 0;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* OVERVIEW */
+
+.curator-listings-overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 42px;
+}
+
+.curator-listings-overview > div {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  min-height: 115px;
+  padding: 23px;
+  border: 1px solid #302c24;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #15130f, #0d0d0c);
+}
+
+.curator-listings-overview span {
+  color: #aaa49a;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+.curator-listings-overview strong {
+  color: #d2b16f;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+/* SECTION HEADINGS */
+
+.curator-listings-section {
+  margin-top: 10px;
+}
+
+.curator-listings-heading {
+  margin-bottom: 23px;
+}
+
+.curator-listings-heading span {
+  display: block;
+  margin-bottom: 9px;
+  color: #c9a45c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.curator-listings-heading h2 {
+  margin: 0;
+  color: #f5f1e8;
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+}
+
+/* CATEGORY FILTERS */
+
+.curator-listings-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.curator-listings-filters button {
+  min-height: 42px;
+  padding: 0 19px;
+  border: 1px solid #39352c;
+  border-radius: 3px;
+  background: transparent;
+  color: #bcb5a8;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.curator-listings-filters button:hover {
+  border-color: #c9a45c;
+  color: #d2b16f;
+}
+
+.curator-listings-filters button.active {
+  border-color: #c9a45c;
+  background: #c9a45c;
+  color: #080808;
+  font-weight: 600;
+}
+
+/* EMPTY STATE */
+
+.curator-listings-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 45px 25px;
+  border: 1px dashed #494235;
+  border-radius: 5px;
+  background: #10100e;
+  text-align: center;
+}
+
+.curator-listings-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(201, 164, 92, 0.35);
+  border-radius: 50%;
+  color: #d2b16f;
+  font-size: 30px;
+}
+
+.curator-listings-empty h3 {
+  margin: 0 0 12px;
+  color: #f5f1e8;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.curator-listings-empty p {
+  max-width: 470px;
+  margin: 0;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* LISTING GRID */
+
+.curator-listings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.curator-listing-card {
+  padding: 24px;
+  border: 1px solid #302c24;
+  border-radius: 5px;
+  background: #15130f;
+  transition: border-color 0.25s ease;
+}
+
+.curator-listing-card:hover {
+  border-color: #c9a45c;
+}
+
+.curator-listing-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.curator-listing-category {
+  color: #d2b16f;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.curator-listing-status {
+  padding: 6px 10px;
+  border: 1px solid #494235;
+  border-radius: 3px;
+  color: #c9c1b3;
+  font-size: 10px;
+}
+
+.curator-listing-card h3 {
+  margin: 17px 0 8px;
+  color: #f5f1e8;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.curator-listing-card > p {
+  margin: 7px 0;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.curator-listing-card > strong {
+  display: block;
+  margin-top: 14px;
+  color: #d2b16f;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.curator-listing-card .curator-listing-pending {
+  padding: 10px 12px;
+  border-left: 2px solid #c9a45c;
+  background: #211b10;
+  color: #e0c58e;
+  font-size: 11px;
+}
+
+/* LISTING ACTIONS */
+
+.curator-listing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #302c24;
+}
+
+.curator-listing-actions button {
+  flex: 1;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid #c9a45c;
+  border-radius: 3px;
+  background: #c9a45c;
+  color: #080808;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.curator-listing-actions button:hover {
+  background: #e0c58e;
+  border-color: #e0c58e;
+}
+
+.curator-listing-actions .curator-listing-remove-button {
+  background: transparent;
+  color: #d2b16f;
+}
+
+.curator-listing-actions .curator-listing-remove-button:hover {
+  background: #c9a45c;
+  color: #080808;
+}
+
+.curator-listing-actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* REQUEST HISTORY */
+
+.curator-listings-requests {
+  margin-top: 55px;
+}
+
+.curator-listings-no-requests {
+  padding: 25px;
+  border: 1px solid #302c24;
+  border-radius: 4px;
+  background: #11100d;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.curator-listings-request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curator-listings-request {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 22px;
+  border: 1px solid #302c24;
+  border-radius: 4px;
+  background: #11100d;
+}
+
+.curator-listings-request > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.curator-listings-request > div:last-child {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.curator-listings-request span {
+  color: #c9a45c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.curator-listings-request h3 {
+  margin: 0;
+  color: #f5f1e8;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.curator-listings-request strong {
+  color: #d2b16f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.curator-listings-request small {
+  color: #898478;
+  font-size: 11px;
+}
+
+/* FOOTER */
+
+.curator-listings-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 45px;
+  padding: 25px 0;
+  border-top: 1px solid #29261f;
+}
+
+.curator-listings-footer h3 {
+  width: 100%;
+  margin: 0;
+  color: #f5f1e8;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.curator-listings-footer p {
+  flex: 1;
+  margin: 0;
+  color: #898478;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.curator-listings-footer a {
+  color: #d2b16f;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.curator-listings-footer a:hover {
+  color: #f5d38d;
+}
+
+.curator-listings-demo {
+  margin-top: 12px;
+  color: #898478;
+  font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* MODAL OVERLAY */
+
+.curator-listing-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+}
+
+/* MODAL */
+
+.curator-listing-modal {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  padding: 38px;
+  border: 1px solid #494235;
+  border-radius: 6px;
+  background: #11100d;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+}
+
+.curator-listing-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 17px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #39352c;
+  border-radius: 50%;
+  background: transparent;
+  color: #d2b16f;
+  font-size: 23px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.curator-listing-modal-close:hover {
+  background: #c9a45c;
+  color: #080808;
+}
+
+.curator-modal-eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: #c9a45c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+.curator-listing-modal h2 {
+  margin: 0 0 13px;
+  color: #f5f1e8;
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.curator-listing-modal > p {
+  margin: 0 0 25px;
+  color: #aaa49a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.curator-listing-modal > p strong {
+  color: #d2b16f;
+}
+
+/* MODAL FORM */
+
+.curator-listing-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.curator-listing-modal label {
+  margin-top: 7px;
+  color: #d8d0c2;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.curator-listing-modal input,
+.curator-listing-modal select,
+.curator-listing-modal textarea {
+  width: 100%;
+  min-height: 45px;
+  padding: 12px 14px;
+  border: 1px solid #39352c;
+  border-radius: 3px;
+  outline: none;
+  background: #090908;
+  color: #f5f1e8;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.curator-listing-modal textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.curator-listing-modal input:focus,
+.curator-listing-modal select:focus,
+.curator-listing-modal textarea:focus {
+  border-color: #c9a45c;
+}
+
+.curator-listing-modal select option {
+  background: #11100d;
+  color: #f5f1e8;
+}
+
+.curator-listing-modal input::placeholder,
+.curator-listing-modal textarea::placeholder {
+  color: #777166;
+}
+
+/* MODAL SUBMIT BUTTON */
+
+.curator-modal-submit {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 14px;
+  padding: 13px 18px;
+  border: 1px solid #c9a45c;
+  border-radius: 3px;
+  background: #c9a45c;
+  color: #080808;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.curator-modal-submit:hover {
+  background: #e0c58e;
+  border-color: #e0c58e;
+}
+
+.curator-modal-danger {
+  border-color: #9d5148;
+  background: #9d5148;
+  color: #fff;
+}
+
+.curator-modal-danger:hover {
+  border-color: #c66a5d;
+  background: #c66a5d;
+  color: #fff;
+}
+
+/* REMOVAL WARNING */
+
+.curator-removal-warning {
+  margin-top: 10px;
+  padding: 13px 15px;
+  border-left: 2px solid #c9a45c;
+  background: #211b10;
+  color: #d8c59d;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* SUCCESS MODAL */
+
+.curator-listing-success {
+  max-width: 450px;
+  text-align: center;
+}
+
+.curator-listing-success .curator-modal-eyebrow {
+  margin-bottom: 16px;
+}
+
+.curator-listing-success h2 {
+  font-size: 28px;
+}
+
+.curator-listing-success > p {
+  margin-bottom: 20px;
+}
+
+/* TABLET */
+
+@media (max-width: 1050px) {
+  .curator-listings-header {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .curator-listings-header p {
+    grid-column: 2 / -1;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .curator-listings-page {
+    padding: 35px 18px;
+  }
+
+  .curator-listings-header {
+    grid-template-columns: 1fr;
+    gap: 17px;
+    margin-bottom: 35px;
+  }
+
+  .curator-listings-header p {
+    grid-column: auto;
+  }
+
+  .curator-listings-header h1 {
+    font-size: 36px;
+  }
+
+  .curator-listings-notice {
+    padding: 18px;
+  }
+
+  .curator-listings-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .curator-listings-overview > div {
+    min-height: 90px;
+  }
+
+  .curator-listings-heading h2 {
+    font-size: 23px;
+  }
+
+  .curator-listings-filters {
+    gap: 8px;
+  }
+
+  .curator-listings-filters button {
+    padding: 0 13px;
+    font-size: 11px;
+  }
+
+  .curator-listings-empty {
+    min-height: 250px;
+    padding: 35px 15px;
+  }
+
+  .curator-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .curator-listing-card {
+    padding: 19px;
+  }
+
+  .curator-listing-actions {
+    flex-direction: column;
+  }
+
+  .curator-listings-request {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .curator-listings-request > div:last-child {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .curator-listings-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .curator-listing-modal-overlay {
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .curator-listing-modal {
+    margin: auto 0;
+    padding: 30px 21px;
+  }
+
+  .curator-listing-modal h2 {
+    padding-right: 25px;
+    font-size: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curator-listings-page *,
+  .curator-listings-page *::before,
+  .curator-listings-page *::after {
+    transition: none !important;
+  }
+}

@@ -64,6 +64,22 @@ const AccountSecurity = lazy(() => import("./pages/AccountSecurity"));
 const Saved = lazy(() => import("./pages/Saved"));
 const MyBookings = lazy(() => import("./pages/MyBookings"));
 
+// CURATOR PAGES
+const CuratorDashboard = lazy(() => import("./pages/curator/CuratorDashboard"));
+const CuratorProfile = lazy(() => import("./pages/curator/CuratorProfile"));
+const CuratorAgreement = lazy(() => import("./pages/curator/CuratorAgreement"));
+
+const CuratorClientAgreement = lazy(
+  () => import("./pages/curator/CuratorClientAgreement"),
+);
+
+const CuratorAgreementRequests = lazy(
+  () => import("./pages/curator/CuratorAgreementRequests"),
+);
+
+const CuratorEarnings = lazy(() => import("./pages/curator/CuratorEarnings"));
+const CuratorListings = lazy(() => import("./pages/curator/CuratorListings"));
+
 // LOADING SCREEN
 function PageLoader() {
   return (
@@ -93,6 +109,7 @@ function Home() {
   );
 }
 
+// MAIN APP
 function App() {
   return (
     <BrowserRouter>
@@ -112,10 +129,12 @@ function App() {
 
               {/* PROPERTIES */}
               <Route path="/properties" element={<Properties />} />
+
               <Route
                 path="/properties/:id/request-viewing"
                 element={<RequestViewing />}
               />
+
               <Route path="/properties/:id" element={<PropertyDetails />} />
 
               {/* STAYS */}
@@ -124,10 +143,12 @@ function App() {
 
               {/* LAND */}
               <Route path="/land" element={<Land />} />
+
               <Route
                 path="/land/:id/request-viewing"
                 element={<RequestLandViewing />}
               />
+
               <Route path="/land/:id" element={<LandDetails />} />
 
               {/* CENTRAL ENQUIRY SYSTEM */}
@@ -148,10 +169,12 @@ function App() {
               {/* DESTINATIONS */}
               <Route path="/destinations" element={<ExploreDestinations />} />
               <Route path="/destinations/:slug" element={<Destination />} />
+
               <Route
                 path="/destinations/:slug/:locationSlug"
                 element={<Destination />}
               />
+
               <Route
                 path="/destinations/:slug/:countySlug/:locationSlug"
                 element={<Destination />}
@@ -161,10 +184,12 @@ function App() {
               <Route path="/help-centre" element={<HelpCentre />} />
               <Route path="/booking-policy" element={<BookingPolicy />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
               <Route
                 path="/terms-and-conditions"
                 element={<TermsConditions />}
               />
+
               <Route path="/careers" element={<Careers />} />
 
               {/* ACCOUNT PAGES */}
@@ -172,14 +197,37 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/verify-otp" element={<VerifyOTP />} />
+
               <Route
                 path="/account/reset-password"
                 element={<ResetPassword />}
               />
+
               <Route path="/account" element={<Account />} />
               <Route path="/account/security" element={<AccountSecurity />} />
               <Route path="/saved" element={<Saved />} />
               <Route path="/bookings" element={<MyBookings />} />
+
+              {/* CURATOR PAGES */}
+              <Route path="/curator" element={<CuratorDashboard />} />
+              <Route path="/curator/profile" element={<CuratorProfile />} />
+
+              <Route path="/curator/agreement" element={<CuratorAgreement />} />
+
+              <Route
+                path="/curator/client-agreement"
+                element={<CuratorClientAgreement />}
+              />
+
+              <Route
+                path="/curator/agreement-requests"
+                element={<CuratorAgreementRequests />}
+              />
+
+              <Route path="/curator/earnings" element={<CuratorEarnings />} />
+
+              {/* CURATOR LISTINGS */}
+              <Route path="/curator/listings" element={<CuratorListings />} />
             </Routes>
           </Suspense>
         </main>

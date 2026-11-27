@@ -1,5 +1,6 @@
 /* =========================================
    ÉLAN HOMES — REGISTRATION PAGE
+   Explorer & Curator Registration
 ========================================= */
 
 .register-page {
@@ -9,6 +10,7 @@
   justify-content: center;
   align-items: center;
   background: #f8f6f2;
+  box-sizing: border-box;
 }
 
 .register-container {
@@ -60,7 +62,9 @@
   line-height: 1.8;
 }
 
-/* REGISTRATION FORM */
+/* =========================================
+   REGISTRATION FORM
+========================================= */
 
 .register-form {
   display: flex;
@@ -68,7 +72,9 @@
   gap: 19px;
 }
 
-/* ACCOUNT TYPE */
+/* =========================================
+   ACCOUNT TYPE
+========================================= */
 
 .register-account-section {
   display: flex;
@@ -112,7 +118,8 @@
   transition:
     border-color 0.3s ease,
     background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .register-account-option:hover {
@@ -184,7 +191,9 @@
   letter-spacing: 1px;
 }
 
-/* CURATOR CATEGORY SELECTION */
+/* =========================================
+   CURATOR CATEGORY SELECTION
+========================================= */
 
 .register-category-section {
   display: flex;
@@ -242,7 +251,8 @@
   transition:
     border-color 0.3s ease,
     background 0.3s ease,
-    transform 0.3s ease;
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .register-category-option:hover {
@@ -339,7 +349,9 @@
   letter-spacing: 0.5px;
 }
 
-/* SECTION HEADINGS */
+/* =========================================
+   SECTION HEADINGS
+========================================= */
 
 .register-section-heading {
   padding-bottom: 10px;
@@ -353,7 +365,9 @@
   font-weight: 600;
 }
 
-/* NAME FIELDS */
+/* =========================================
+   NAME FIELDS
+========================================= */
 
 .register-name-fields {
   display: grid;
@@ -361,7 +375,9 @@
   gap: 15px;
 }
 
-/* FORM FIELDS */
+/* =========================================
+   FORM FIELDS
+========================================= */
 
 .register-field {
   display: flex;
@@ -387,11 +403,23 @@
   color: #171717;
   outline: none;
   font-size: 13px;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.register-field input:hover {
+  border-color: #b8a989;
 }
 
 .register-field input:focus {
   border-color: #98743b;
+  box-shadow: 0 0 0 2px rgba(152, 116, 59, 0.08);
+}
+
+.register-field input::placeholder {
+  color: #aaa;
+  opacity: 1;
 }
 
 .register-password-wrapper {
@@ -416,7 +444,37 @@
   cursor: pointer;
 }
 
-/* TERMS */
+.register-show-password:hover {
+  color: #705225;
+}
+
+/* =========================================
+   VALIDATION MESSAGES
+========================================= */
+
+.register-error {
+  color: #b42318;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.register-success {
+  color: #287a45;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.register-message {
+  padding: 13px 15px;
+  border: 1px solid #e7e1d6;
+  background: #fbfaf7;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   TERMS AND CONDITIONS
+========================================= */
 
 .register-terms {
   display: flex;
@@ -434,7 +492,19 @@
   accent-color: #98743b;
 }
 
-/* SUBMIT BUTTON */
+.register-terms a {
+  color: #98743b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.register-terms a:hover {
+  color: #705225;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
 
 .register-submit {
   width: 100%;
@@ -448,7 +518,8 @@
   cursor: pointer;
   transition:
     background 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .register-submit:hover {
@@ -456,7 +527,19 @@
   border-color: #98743b;
 }
 
-/* SIGN IN */
+.register-submit:active {
+  transform: translateY(1px);
+}
+
+.register-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   SIGN IN
+========================================= */
 
 .register-divider {
   display: flex;
@@ -497,7 +580,9 @@
   color: #fff;
 }
 
-/* FOOTER */
+/* =========================================
+   FOOTER
+========================================= */
 
 .register-footer {
   margin-top: 25px;
@@ -520,7 +605,9 @@
   color: #98743b;
 }
 
-/* ACCESSIBILITY */
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
 .register-account-option:focus-within,
 .register-category-option:focus-within {
@@ -542,7 +629,14 @@
   outline-offset: 3px;
 }
 
-/* TABLET */
+.register-terms input:focus-visible {
+  outline: 2px solid #98743b;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 768px) {
   .register-page {
@@ -554,7 +648,9 @@
   }
 }
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
   .register-page {
@@ -599,7 +695,9 @@
   }
 }
 
-/* SMALL MOBILE */
+/* =========================================
+   SMALL MOBILE
+========================================= */
 
 @media (max-width: 380px) {
   .register-container {
@@ -632,7 +730,9 @@
   }
 }
 
-/* REDUCED MOTION */
+/* =========================================
+   REDUCED MOTION
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .register-page *,

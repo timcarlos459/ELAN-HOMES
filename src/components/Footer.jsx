@@ -35,13 +35,38 @@ const accountLinks = [
   { name: "My Bookings", link: "/bookings" },
 ];
 
+const socialPlatforms = [
+  { name: "Facebook", label: "f" },
+  { name: "Instagram", label: "ig" },
+  { name: "TikTok", label: "tk" },
+  { name: "LinkedIn", label: "in" },
+];
+
+function FooterColumn({ title, links }) {
+  return (
+    <nav className="footer-column" aria-label={title}>
+      <h3>{title}</h3>
+
+      {links.map((item) => (
+        <Link to={item.link} key={item.name}>
+          {item.name}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="elan-footer">
       <div className="footer-main">
         {/* BRAND SECTION */}
         <div className="footer-brand-section">
-          <Link to="/" className="footer-brand">
+          <Link
+            to="/"
+            className="footer-brand"
+            aria-label="ÉLAN HOMES homepage"
+          >
             <span className="footer-brand-name">ÉLAN HOMES</span>
             <span className="footer-brand-tagline">LIVE • STAY • INVEST</span>
           </Link>
@@ -51,68 +76,46 @@ export default function Footer() {
             prime investment opportunities across Kenya.
           </p>
 
-          {/* SOCIAL MEDIA PLACEHOLDERS */}
-          <div className="footer-socials">
-            <span aria-label="Facebook">f</span>
-            <span aria-label="Instagram">ig</span>
-            <span aria-label="TikTok">tk</span>
-            <span aria-label="LinkedIn">in</span>
+          {/* FUTURE SOCIAL MEDIA ACCOUNTS */}
+          <div
+            className="footer-socials"
+            aria-label="Our future social media platforms"
+          >
+            {socialPlatforms.map((platform) => (
+              <span
+                key={platform.name}
+                aria-label={`${platform.name} account coming soon`}
+                title={`${platform.name} - Coming soon`}
+              >
+                {platform.label}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* EXPLORE */}
-        <div className="footer-column">
-          <h3>Explore</h3>
-          <Link to="/">Home</Link>
-          <Link to="/properties">Properties</Link>
-          <Link to="/stays">Holiday Stays</Link>
-          <Link to="/land">Land & Investments</Link>
-          <Link to="/destinations/nairobi">Destinations</Link>
-        </div>
+        <FooterColumn
+          title="Explore"
+          links={[
+            { name: "Home", link: "/" },
+            { name: "Properties", link: "/properties" },
+            { name: "Holiday Stays", link: "/stays" },
+            { name: "Land & Investments", link: "/land" },
+            { name: "Destinations", link: "/destinations/nairobi" },
+          ]}
+        />
 
         {/* DESTINATIONS */}
-        <div className="footer-column">
-          <h3>Destinations</h3>
-
-          {regions.map((region) => (
-            <Link to={region.link} key={region.name}>
-              {region.name}
-            </Link>
-          ))}
-        </div>
+        <FooterColumn title="Destinations" links={regions} />
 
         {/* COMPANY */}
-        <div className="footer-column">
-          <h3>Company</h3>
-
-          {companyLinks.map((item) => (
-            <Link to={item.link} key={item.name}>
-              {item.name}
-            </Link>
-          ))}
-        </div>
+        <FooterColumn title="Company" links={companyLinks} />
 
         {/* SUPPORT */}
-        <div className="footer-column">
-          <h3>Support</h3>
-
-          {supportLinks.map((item) => (
-            <Link to={item.link} key={item.name}>
-              {item.name}
-            </Link>
-          ))}
-        </div>
+        <FooterColumn title="Support" links={supportLinks} />
 
         {/* ACCOUNT */}
-        <div className="footer-column">
-          <h3>My Account</h3>
-
-          {accountLinks.map((item) => (
-            <Link to={item.link} key={item.name}>
-              {item.name}
-            </Link>
-          ))}
-        </div>
+        <FooterColumn title="My Account" links={accountLinks} />
       </div>
 
       {/* FOOTER BOTTOM */}

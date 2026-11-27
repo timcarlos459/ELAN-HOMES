@@ -1,0 +1,568 @@
+/* =========================================
+   ÉLAN HOMES — CURATOR DASHBOARD
+========================================= */
+
+.curator-dashboard {
+  min-height: 75vh;
+  background: #f7f5f0;
+  color: #171717;
+  padding-bottom: 80px;
+}
+
+/* HEADER */
+
+.curator-dashboard-header {
+  background: #111;
+  color: #fff;
+  padding: 85px 7%;
+}
+
+.curator-eyebrow {
+  color: #c6a15b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.curator-dashboard-header h1 {
+  margin: 18px 0 12px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.2;
+}
+
+.curator-dashboard-header p {
+  max-width: 650px;
+  color: #d0d0d0;
+  line-height: 1.8;
+}
+
+/* MAIN CONTENT */
+
+.curator-dashboard-content {
+  width: min(1200px, 90%);
+  margin: 45px auto;
+}
+
+/* WELCOME SECTION */
+
+.curator-dashboard-welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #fff;
+  padding: 28px;
+  border: 1px solid #e8e3d9;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.curator-account-label {
+  color: #a17d3e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.curator-dashboard-welcome h2 {
+  margin: 10px 0;
+}
+
+.curator-dashboard-welcome p {
+  color: #777;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.curator-status {
+  background: #f5efe2;
+  color: #886a34;
+  padding: 10px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.curator-status.approved {
+  background: #edf3e9;
+  color: #527449;
+}
+
+/* =========================================
+   COMMUNICATION NOTICE
+========================================= */
+
+.curator-communication-notice {
+  background: #171717;
+  color: #fff;
+  border-radius: 12px;
+  padding: 35px;
+  margin-bottom: 35px;
+  border-left: 5px solid #c6a15b;
+}
+
+.curator-notice-eyebrow {
+  display: block;
+  color: #c6a15b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.curator-communication-notice h2 {
+  color: #fff;
+  font-size: clamp(22px, 3vw, 29px);
+  line-height: 1.4;
+  margin: 0 0 15px;
+}
+
+.curator-communication-notice p {
+  color: #c4c4c4;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 14px;
+}
+
+.curator-communication-notice p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   APPLICATION STATUS
+========================================= */
+
+.curator-application-notice {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e8e0d2;
+  border-radius: 12px;
+  padding: 35px;
+  margin-bottom: 35px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.035);
+}
+
+.curator-application-notice::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: #b99654;
+}
+
+.curator-application-notice h2 {
+  color: #171717;
+  font-size: clamp(22px, 3vw, 29px);
+  line-height: 1.4;
+  margin: 0 0 14px;
+}
+
+.curator-application-notice > p {
+  max-width: 800px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 20px;
+}
+
+.curator-application-notice.approved {
+  border-color: #dce8d7;
+  background: #fff;
+}
+
+.curator-application-notice.approved::before {
+  background: #628557;
+}
+
+/* APPLICATION LINK */
+
+.curator-application-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #98713a;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-decoration: none;
+}
+
+.curator-application-link:hover {
+  color: #171717;
+}
+
+/* APPLICATION PERMISSIONS */
+
+.curator-permissions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  border-top: 1px solid #eee9df;
+  padding-top: 22px;
+  margin-top: 20px;
+}
+
+.curator-permissions > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.curator-permission-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #edf3e9;
+  color: #527449;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.curator-permission-icon.restricted {
+  background: #f5eee5;
+  color: #9a7540;
+}
+
+/* =========================================
+   APPROVAL JOURNEY
+========================================= */
+
+.curator-approval-journey {
+  background: #171717;
+  color: #fff;
+  border-radius: 12px;
+  padding: 38px;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+
+.curator-section-heading {
+  margin-bottom: 28px;
+}
+
+.curator-section-heading > span {
+  display: block;
+  color: #a17d3e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.curator-section-heading h2 {
+  color: #171717;
+  font-size: clamp(23px, 3vw, 31px);
+  margin: 0 0 12px;
+}
+
+.curator-section-heading p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.curator-approval-journey .curator-section-heading h2 {
+  color: #fff;
+}
+
+.curator-approval-journey .curator-section-heading p {
+  color: #bdbdbd;
+}
+
+/* JOURNEY STEPS */
+
+.curator-approval-steps {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 0;
+}
+
+.curator-approval-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  gap: 22px;
+  padding: 0 0 35px;
+}
+
+.curator-approval-step:last-child {
+  padding-bottom: 0;
+}
+
+.curator-approval-step > span {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #242424;
+  border: 1px solid #c6a15b;
+  border-radius: 50%;
+  color: #c6a15b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.curator-approval-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 48px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(198, 161, 91, 0.5);
+}
+
+.curator-approval-step h4 {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 4px 0 9px;
+}
+
+.curator-approval-step p {
+  max-width: 650px;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* =========================================
+   DASHBOARD SERVICES
+========================================= */
+
+.curator-dashboard-sections {
+  margin-top: 40px;
+}
+
+.curator-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.curator-dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  background: #fff;
+  padding: 28px;
+  border: 1px solid #e8e3d9;
+  border-radius: 10px;
+  color: #171717;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.curator-dashboard-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.curator-dashboard-card p {
+  width: 100%;
+  min-height: 45px;
+  color: #777;
+  line-height: 1.7;
+  font-size: 14px;
+  margin: 0 0 15px;
+}
+
+.curator-dashboard-card > a {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 10px;
+  color: #a17d3e;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.curator-dashboard-card > a:hover {
+  color: #171717;
+}
+
+.curator-dashboard-card:not(.locked):hover {
+  border-color: #b99654;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* LOCKED CARDS */
+
+.curator-dashboard-card.locked {
+  background: #f5f4f1;
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+.curator-locked-label {
+  display: inline-block;
+  margin-top: auto;
+  padding-top: 10px;
+  color: #888;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* REQUEST CLIENT AGREEMENT CARD */
+
+.curator-dashboard-card.agreement-request-card {
+  background: linear-gradient(145deg, #fffdf8 0%, #f5f0e7 100%);
+  border: 1px solid #d7c29e;
+}
+
+.curator-dashboard-card.agreement-request-card h3 {
+  color: #806337;
+}
+
+.curator-dashboard-card.agreement-request-card p {
+  color: #625b50;
+}
+
+.curator-dashboard-card.agreement-request-card > a {
+  color: #98713a;
+}
+
+.curator-dashboard-card.agreement-request-card > a:hover {
+  color: #171717;
+}
+
+/* =========================================
+   SUPPORT SECTION
+========================================= */
+
+.curator-dashboard-support {
+  margin-top: 35px;
+  padding: 28px;
+  background: #171717;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.curator-dashboard-support h2 {
+  margin: 0 0 10px;
+  color: #fff;
+}
+
+.curator-dashboard-support p {
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.curator-dashboard-support a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #c6a15b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.curator-dashboard-support a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================
+   TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 900px) {
+  .curator-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+  .curator-dashboard-header {
+    padding: 65px 6%;
+  }
+
+  .curator-dashboard-content {
+    width: 90%;
+    margin: 30px auto;
+  }
+
+  .curator-dashboard-welcome {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 22px;
+  }
+
+  .curator-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .curator-dashboard-card {
+    padding: 22px;
+  }
+
+  .curator-dashboard-card p {
+    min-height: auto;
+  }
+
+  .curator-application-notice,
+  .curator-approval-journey,
+  .curator-communication-notice {
+    padding: 25px 22px;
+  }
+
+  .curator-permissions {
+    grid-template-columns: 1fr;
+  }
+
+  .curator-approval-step {
+    grid-template-columns: 48px 1fr;
+    gap: 15px;
+    padding-bottom: 30px;
+  }
+
+  .curator-approval-step > span {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .curator-approval-step:not(:last-child)::after {
+    left: 20px;
+    top: 42px;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .curator-dashboard-card,
+  .curator-dashboard-card > a {
+    transition: none;
+  }
+
+  .curator-dashboard-card:hover {
+    transform: none;
+  }
+}

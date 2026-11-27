@@ -1,0 +1,398 @@
+/* =========================================
+   ÉLAN HOMES — CURATOR PROFILE
+========================================= */
+
+.curator-profile-page {
+  min-height: 100vh;
+  padding-bottom: 90px;
+  background: #f8f7f4;
+  color: #171717;
+}
+
+/* HEADER */
+
+.curator-profile-header {
+  padding: 90px 7% 65px;
+  background: #111;
+  color: #fff;
+}
+
+.curator-profile-header > span,
+.curator-profile-intro > span {
+  color: #b99a5b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.curator-profile-header h1 {
+  margin: 16px 0;
+  font-size: clamp(34px, 5vw, 52px);
+}
+
+.curator-profile-header p {
+  max-width: 650px;
+  color: #c8c8c8;
+  line-height: 1.8;
+}
+
+.curator-profile-header a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #d4b36a;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.curator-profile-header a:hover {
+  color: #fff;
+}
+
+/* MAIN CONTAINER */
+
+.curator-profile-container {
+  width: min(100% - 40px, 1000px);
+  margin: 55px auto 0;
+}
+
+/* INTRODUCTION */
+
+.curator-profile-intro {
+  margin-bottom: 35px;
+}
+
+.curator-profile-intro h2 {
+  margin: 12px 0;
+  font-size: 30px;
+}
+
+.curator-profile-intro p {
+  max-width: 680px;
+  color: #777;
+  line-height: 1.8;
+}
+
+/* FORM */
+
+.curator-profile-form {
+  padding: 40px;
+  background: #fff;
+  border: 1px solid #e8e4dc;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgb(30 25 15 / 3%);
+}
+
+/* FORM SECTIONS */
+
+.curator-form-section {
+  padding-bottom: 35px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #eeeae3;
+}
+
+.curator-form-section:last-child {
+  margin-bottom: 0;
+}
+
+.curator-form-section h3 {
+  margin: 0 0 25px;
+  color: #24211b;
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.curator-form-description {
+  margin-top: -12px;
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* FORM GRID */
+
+.curator-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.curator-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+}
+
+.curator-form-group label {
+  color: #333;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* INPUTS */
+
+.curator-form-group input,
+.curator-form-group select,
+.curator-form-group textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #ddd8ce;
+  border-radius: 4px;
+  outline: none;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.curator-form-group textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.curator-form-group input:focus,
+.curator-form-group select:focus,
+.curator-form-group textarea:focus {
+  border-color: #b99a5b;
+  box-shadow: 0 0 0 3px rgb(185 154 91 / 12%);
+}
+
+.curator-form-group input::placeholder,
+.curator-form-group textarea::placeholder {
+  color: #aaa398;
+}
+
+.curator-form-group small {
+  color: #888;
+  font-size: 12px;
+}
+
+/* DISABLED APPLICATION FIELDS */
+
+.curator-profile-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.curator-profile-form fieldset:disabled {
+  opacity: 0.75;
+}
+
+.curator-profile-form fieldset:disabled input,
+.curator-profile-form fieldset:disabled select,
+.curator-profile-form fieldset:disabled textarea {
+  background: #f5f3ef;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* CATEGORY OPTIONS */
+
+.curator-category-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.curator-category-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 55px;
+  padding: 15px;
+  border: 1px solid #e3ded4;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.curator-category-option:hover {
+  border-color: #b99a5b;
+  background: #fcfaf6;
+}
+
+.curator-category-option input {
+  width: 17px;
+  height: 17px;
+  accent-color: #a8894c;
+  cursor: pointer;
+}
+
+.curator-category-option span {
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.curator-profile-form fieldset:disabled .curator-category-option {
+  cursor: not-allowed;
+}
+
+/* FEEDBACK MESSAGES */
+
+.curator-profile-message {
+  margin-bottom: 25px;
+  padding: 15px 18px;
+  border-left: 3px solid #b99a5b;
+  border-radius: 3px;
+  background: #faf6ed;
+  color: #51452e;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.curator-profile-message.success {
+  border-left-color: #64845c;
+  background: #f1f6ef;
+  color: #405c39;
+}
+
+.curator-profile-message.error {
+  border-left-color: #b64b42;
+  background: #fbf0ee;
+  color: #913b34;
+}
+
+/* ACTION BUTTONS */
+
+.curator-profile-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.curator-profile-actions a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.curator-profile-actions a:hover {
+  color: #a8894c;
+}
+
+.curator-profile-actions button {
+  min-height: 48px;
+  padding: 0 28px;
+  border: 1px solid #b99a5b;
+  border-radius: 3px;
+  background: #b99a5b;
+  color: #111;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.curator-profile-actions button:hover {
+  background: #111;
+  border-color: #111;
+  color: #fff;
+}
+
+.curator-profile-actions button:focus-visible,
+.curator-profile-actions a:focus-visible,
+.curator-profile-header a:focus-visible {
+  outline: 3px solid #b99a5b;
+  outline-offset: 4px;
+}
+
+.curator-profile-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* DEMONSTRATION NOTICE */
+
+.curator-profile-demo-note {
+  margin: 22px 0 0;
+  padding: 16px 18px;
+  border-left: 3px solid #b99a5b;
+  background: #f2eee5;
+  color: #706858;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* TABLETS */
+
+@media (max-width: 700px) {
+  .curator-profile-header {
+    padding: 65px 6% 50px;
+  }
+
+  .curator-profile-container {
+    width: min(100% - 28px, 1000px);
+    margin-top: 35px;
+  }
+
+  .curator-profile-form {
+    padding: 25px 20px;
+  }
+
+  .curator-category-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+  .curator-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .curator-profile-intro h2 {
+    font-size: 25px;
+  }
+
+  .curator-profile-form {
+    padding: 22px 16px;
+  }
+
+  .curator-profile-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .curator-profile-actions button {
+    width: 100%;
+  }
+
+  .curator-profile-actions a {
+    text-align: center;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .curator-profile-header a,
+  .curator-form-group input,
+  .curator-form-group select,
+  .curator-form-group textarea,
+  .curator-category-option,
+  .curator-profile-actions button {
+    transition: none;
+  }
+}
